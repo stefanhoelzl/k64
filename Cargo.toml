@@ -1,0 +1,22 @@
+[package]
+name = "k64"
+version = "0.0.1"
+authors = ["Stefan Hoelzl <stefan.hoelzl@posteo.de>"]
+categories = ["embedded", "hardware-support", "no-std"]
+description = "Peripheral access API for Kinetis K64 microcontrollers"
+keywords = ["arm", "cortex-m", "kinetis", "svd2rust"]
+license = "MIT"
+repository = "https://github.com/stefanhoelzl/k64"
+
+[dependencies]
+cortex-m = "0.4.3"
+bare-metal = "0.1.1"
+vcell = "0.1.0"
+
+[dependencies.cortex-m-rt]
+optional = true
+version = "0.3.15"
+
+[features]
+rt = ["cortex-m-rt"]
+
