@@ -2,7 +2,7 @@
 Peripheral access API for Kinetis K64 microcontrollers
 
 # Issues
-Due to [https://github.com/japaric/svd2rust/issues/16](svd2rust Issue 16) there are some registers missing.
+Due to [svd2rust Issue 16](https://github.com/japaric/svd2rust/issues/16) there are some registers missing.
 ```bash
 WARNING tcd0_nbytes_mloffno overlaps with another register at offset 4104. Ignoring.
 WARNING tcd0_nbytes_mloffyes overlaps with another register at offset 4104. Ignoring.
