@@ -5,9 +5,9 @@
 Peripheral access API for Kinetis K64 microcontrollers
 
 ## Linker File
-A memory.x file can be found in the repository.
-The smaller SRAM_L section (64K) is used for the stack 
-and the larger SRAM_U section (192K) is used for the ram.
+A [linker file](memory.x) can be found in the repository.
+The smaller `SRAM_L` section (`64K`) is used for the stack 
+and the larger `SRAM_U` section (`192K`) is used for the ram.
 
 **Attention:** An un-aligned access across both sections can result in a hard fault!
 
