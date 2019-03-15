@@ -1,18 +1,21 @@
 [![Crates.io](https://img.shields.io/crates/v/k64.svg)](https://crates.io/crates/k64)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 # k64
 Peripheral access API for Kinetis K64 microcontrollers
 
-# memory.x
-A memory.x file can be found on the repository, but it only uses one section of the SRAM memory, feel free to change the script to support both sections.
+## Linker File
+A memory.x file can be found in the repository.
+The smaller SRAM_L section (64K) is used for the stack 
+and the larger SRAM_U section (192K) is used for the ram.
+
 **Attention:** An un-aligned access across both sections can result in a hard fault!
 
-# Issues
+## Issues
 Due to [svd2rust Issue 16](https://github.com/japaric/svd2rust/issues/16) there are some registers missing.
 see [warnings](WARNINGS.md)
 
-# Development
+## Development
 The following `make` commands are available:
 * `setup`: installs tools
 * `generate`: generates new sources from svd file
