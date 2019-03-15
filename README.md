@@ -1,4 +1,5 @@
 [![Crates.io](https://img.shields.io/crates/v/k64.svg)](https://crates.io/crates/k64)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # k64
 Peripheral access API for Kinetis K64 microcontrollers
