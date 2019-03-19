@@ -6,5 +6,11 @@ steps:
       curl https://sh.rustup.rs -sSf | sh -s -- -y
       echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"
     displayName: Install rust
-  - script: make all
-    displayName: Build k64
+  - script: make setup
+    displayName: Setup tools
+  - script: make generate
+    displayName: Generate bindings
+  - script: make package
+    displayName: Build package
+  - script: make examples
+    displayName: Build examples

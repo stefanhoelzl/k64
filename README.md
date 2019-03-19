@@ -29,3 +29,4 @@ The following `make` commands are available:
 * `generate`: generates new sources from svd file
 * `package`: creates a local package
 * `publish`: publishes to [crates.io](http://www.crates.io)
+* `examples`: build all examples
