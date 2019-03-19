@@ -1,5 +1,5 @@
 [package]
-name = "Flash_LED_LPTMR"
+name = "flash_led_ptmr"
 version = "0.1.0"
 authors = ["Miguel Pérez García <miguelpg_95@hotmail.com>"]
 edition = "2018"
