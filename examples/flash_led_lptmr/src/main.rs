@@ -8,26 +8,30 @@ extern crate panic_halt;
 use core::cell::RefCell;
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
-use k64::{Peripherals, Interrupt, interrupt};
+use k64::lptmr0::psr::PCSW;
 use k64::GPIOE;
 use k64::LPTMR0;
-use k64::lptmr0::psr::PCSW;
+use k64::{interrupt, Interrupt, Peripherals};
 
-lazy_static!{
+lazy_static! {
     static ref MUTEX_GPIOE_PTOR: Mutex<RefCell<Option<GPIOE>>> = Mutex::new(RefCell::new(None));
     static ref MUTEX_LPTRM_CSR: Mutex<RefCell<Option<LPTMR0>>> = Mutex::new(RefCell::new(None));
 }
 
 #[entry]
 fn main() -> ! {
-
     let p = Peripherals::take().unwrap();
     let sim = &p.SIM;
-    sim.scgc5.modify(|_, w| w.porte().set_bit().lptmr().set_bit());
+    sim.scgc5
+        .modify(|_, w| w.porte().set_bit().lptmr().set_bit());
 
     let lptmr0 = &p.LPTMR0;
-    lptmr0.psr.modify(|_, w| w.pcs().variant(PCSW::_01).pbyp().set_bit());
-    lptmr0.cmr.modify(|_, w| unsafe{ w.compare().bits(500 - 1) });
+    lptmr0
+        .psr
+        .modify(|_, w| w.pcs().variant(PCSW::_01).pbyp().set_bit());
+    lptmr0
+        .cmr
+        .modify(|_, w| unsafe { w.compare().bits(500 - 1) });
     lptmr0.csr.modify(|_, w| w.tie().set_bit().ten().set_bit());
 
     let porte = &p.PORTE;
@@ -42,8 +46,7 @@ fn main() -> ! {
 
     config_nvic();
 
-    loop {
-    }
+    loop {}
 }
 
 #[interrupt]
