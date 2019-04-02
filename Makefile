@@ -8,6 +8,7 @@ clean:
 .PHONY: setup
 setup:
 	cargo install --force svd2rust form
+	rustup target add thumbv7em-none-eabihf
 	rustup component add rustfmt
 
 .PHONY: generate
@@ -21,6 +22,10 @@ generate: clean
 .PHONY: package
 package:
 	cargo package
+
+.PHONY: examples
+examples:
+	(cd examples/flash_led_lptmr; cargo build)
 
 check_master:
 	@echo "check if on master"

@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/stefanhoelzl/k64/_apis/build/status/stefanhoelzl.k64?branchName=master)](https://dev.azure.com/stefanhoelzl/k64/_build/latest?definitionId=1&branchName=master)
 [![Crates.io](https://img.shields.io/crates/v/k64.svg)](https://crates.io/crates/k64)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -8,6 +9,8 @@ Peripheral access API for Kinetis K64 microcontroller
 check out the following ressources to get started with embedded in Rust:
 * [Embedded Rust documentation](https://docs.rust-embedded.org)
 * [Embedded in Rust](http://blog.japaric.io)
+
+Examples can be found [here](examples).
 
 ## Linker File
 A [linker file](memory.x) can be found in the repository.
@@ -26,3 +29,4 @@ The following `make` commands are available:
 * `generate`: generates new sources from svd file
 * `package`: creates a local package
 * `publish`: publishes to [crates.io](http://www.crates.io)
+* `examples`: build all examples
