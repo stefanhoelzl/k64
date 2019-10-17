@@ -1,956 +1,666 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ATCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ATCR"]
+pub type R = crate::R<u32, super::ATCR>;
+#[doc = "Writer for register ATCR"]
+pub type W = crate::W<u32, super::ATCR>;
+#[doc = "Register ATCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ATCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `EN`"]
+#[doc = "Enable Timer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ENR {
-    #[doc = "The timer stops at the current value."]
+pub enum EN_A {
+    #[doc = "0: The timer stops at the current value."]
     _0,
-    #[doc = "The timer starts incrementing."]
+    #[doc = "1: The timer starts incrementing."]
     _1,
 }
-impl ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ENR::_0 => false,
-            ENR::_1 => true,
+impl From<EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: EN_A) -> Self {
+        match variant {
+            EN_A::_0 => false,
+            EN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ENR {
-        match value {
-            false => ENR::_0,
-            true => ENR::_1,
+}
+#[doc = "Reader of field `EN`"]
+pub type EN_R = crate::R<bool, EN_A>;
+impl EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EN_A {
+        match self.bits {
+            false => EN_A::_0,
+            true => EN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ENR::_0
+        *self == EN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ENR::_1
+        *self == EN_A::_1
     }
 }
-#[doc = "Possible values of the field `OFFEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OFFENR {
-    #[doc = "Disable."]
-    _0,
-    #[doc = "The timer can be reset to zero when the given offset time is reached (offset event). The field is cleared when the offset event is reached, so no further event occurs until the field is set again. The timer offset value must be set before setting this field."]
-    _1,
-}
-impl OFFENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OFFENR::_0 => false,
-            OFFENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OFFENR {
-        match value {
-            false => OFFENR::_0,
-            true => OFFENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == OFFENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == OFFENR::_1
-    }
-}
-#[doc = "Possible values of the field `OFFRST`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OFFRSTR {
-    #[doc = "The timer is not affected and no action occurs, besides clearing OFFEN, when the offset is reached."]
-    _0,
-    #[doc = "If OFFEN is set, the timer resets to zero when the offset setting is reached. The offset event does not cause a timer interrupt."]
-    _1,
-}
-impl OFFRSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OFFRSTR::_0 => false,
-            OFFRSTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OFFRSTR {
-        match value {
-            false => OFFRSTR::_0,
-            true => OFFRSTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == OFFRSTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == OFFRSTR::_1
-    }
-}
-#[doc = "Possible values of the field `PEREN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PERENR {
-    #[doc = "Disable."]
-    _0,
-    #[doc = "A period event interrupt can be generated (EIR\\[TS_TIMER\\]) and the event signal output is asserted when the timer wraps around according to the periodic setting ATPER. The timer period value must be set before setting this bit. Not all devices contain the event signal output. See the chip configuration details."]
-    _1,
-}
-impl PERENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PERENR::_0 => false,
-            PERENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PERENR {
-        match value {
-            false => PERENR::_0,
-            true => PERENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PERENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PERENR::_1
-    }
-}
-#[doc = "Possible values of the field `PINPER`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PINPERR {
-    #[doc = "Disable."]
-    _0,
-    #[doc = "Enable."]
-    _1,
-}
-impl PINPERR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PINPERR::_0 => false,
-            PINPERR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PINPERR {
-        match value {
-            false => PINPERR::_0,
-            true => PINPERR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PINPERR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PINPERR::_1
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RESTARTR {
-    bits: bool,
-}
-impl RESTARTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Possible values of the field `CAPTURE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CAPTURER {
-    #[doc = "No effect."]
-    _0,
-    #[doc = "The current time is captured and can be read from the ATVR register."]
-    _1,
-}
-impl CAPTURER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CAPTURER::_0 => false,
-            CAPTURER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CAPTURER {
-        match value {
-            false => CAPTURER::_0,
-            true => CAPTURER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CAPTURER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CAPTURER::_1
-    }
-}
-#[doc = "Possible values of the field `SLAVE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SLAVER {
-    #[doc = "The timer is active and all configuration fields in this register are relevant."]
-    _0,
-    #[doc = "The internal timer is disabled and the externally provided timer value is used. All other fields, except CAPTURE, in this register have no effect. CAPTURE can still be used to capture the current timer value."]
-    _1,
-}
-impl SLAVER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SLAVER::_0 => false,
-            SLAVER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SLAVER {
-        match value {
-            false => SLAVER::_0,
-            true => SLAVER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SLAVER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SLAVER::_1
-    }
-}
-#[doc = "Values that can be written to the field `EN`"]
-pub enum ENW {
-    #[doc = "The timer stops at the current value."]
-    _0,
-    #[doc = "The timer starts incrementing."]
-    _1,
-}
-impl ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ENW::_0 => false,
-            ENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ENW<'a> {
+#[doc = "Write proxy for field `EN`"]
+pub struct EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ENW) -> &'a mut W {
+impl<'a> EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The timer stops at the current value."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ENW::_0)
+        self.variant(EN_A::_0)
     }
     #[doc = "The timer starts incrementing."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ENW::_1)
+        self.variant(EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `OFFEN`"]
-pub enum OFFENW {
-    #[doc = "Disable."]
+#[doc = "Enable One-Shot Offset Event\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum OFFEN_A {
+    #[doc = "0: Disable."]
     _0,
+    #[doc = "1: The timer can be reset to zero when the given offset time is reached (offset event). The field is cleared when the offset event is reached, so no further event occurs until the field is set again. The timer offset value must be set before setting this field."]
+    _1,
+}
+impl From<OFFEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: OFFEN_A) -> Self {
+        match variant {
+            OFFEN_A::_0 => false,
+            OFFEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `OFFEN`"]
+pub type OFFEN_R = crate::R<bool, OFFEN_A>;
+impl OFFEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OFFEN_A {
+        match self.bits {
+            false => OFFEN_A::_0,
+            true => OFFEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == OFFEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == OFFEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `OFFEN`"]
+pub struct OFFEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> OFFEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OFFEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Disable."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(OFFEN_A::_0)
+    }
     #[doc = "The timer can be reset to zero when the given offset time is reached (offset event). The field is cleared when the offset event is reached, so no further event occurs until the field is set again. The timer offset value must be set before setting this field."]
-    _1,
-}
-impl OFFENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OFFENW::_0 => false,
-            OFFENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OFFENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _OFFENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OFFENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Disable."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(OFFENW::_0)
-    }
-    #[doc = "The timer can be reset to zero when the given offset time is reached (offset event). The field is cleared when the offset event is reached, so no further event occurs until the field is set again. The timer offset value must be set before setting this field."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(OFFENW::_1)
+        self.variant(OFFEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `OFFRST`"]
-pub enum OFFRSTW {
-    #[doc = "The timer is not affected and no action occurs, besides clearing OFFEN, when the offset is reached."]
+#[doc = "Reset Timer On Offset Event\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum OFFRST_A {
+    #[doc = "0: The timer is not affected and no action occurs, besides clearing OFFEN, when the offset is reached."]
     _0,
-    #[doc = "If OFFEN is set, the timer resets to zero when the offset setting is reached. The offset event does not cause a timer interrupt."]
+    #[doc = "1: If OFFEN is set, the timer resets to zero when the offset setting is reached. The offset event does not cause a timer interrupt."]
     _1,
 }
-impl OFFRSTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OFFRSTW::_0 => false,
-            OFFRSTW::_1 => true,
+impl From<OFFRST_A> for bool {
+    #[inline(always)]
+    fn from(variant: OFFRST_A) -> Self {
+        match variant {
+            OFFRST_A::_0 => false,
+            OFFRST_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _OFFRSTW<'a> {
+#[doc = "Reader of field `OFFRST`"]
+pub type OFFRST_R = crate::R<bool, OFFRST_A>;
+impl OFFRST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OFFRST_A {
+        match self.bits {
+            false => OFFRST_A::_0,
+            true => OFFRST_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == OFFRST_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == OFFRST_A::_1
+    }
+}
+#[doc = "Write proxy for field `OFFRST`"]
+pub struct OFFRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OFFRSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OFFRSTW) -> &'a mut W {
+impl<'a> OFFRST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OFFRST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The timer is not affected and no action occurs, besides clearing OFFEN, when the offset is reached."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(OFFRSTW::_0)
+        self.variant(OFFRST_A::_0)
     }
     #[doc = "If OFFEN is set, the timer resets to zero when the offset setting is reached. The offset event does not cause a timer interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(OFFRSTW::_1)
+        self.variant(OFFRST_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PEREN`"]
-pub enum PERENW {
-    #[doc = "Disable."]
+#[doc = "Enable Periodical Event\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PEREN_A {
+    #[doc = "0: Disable."]
     _0,
+    #[doc = "1: A period event interrupt can be generated (EIR\\[TS_TIMER\\]) and the event signal output is asserted when the timer wraps around according to the periodic setting ATPER. The timer period value must be set before setting this bit. Not all devices contain the event signal output. See the chip configuration details."]
+    _1,
+}
+impl From<PEREN_A> for bool {
+    #[inline(always)]
+    fn from(variant: PEREN_A) -> Self {
+        match variant {
+            PEREN_A::_0 => false,
+            PEREN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PEREN`"]
+pub type PEREN_R = crate::R<bool, PEREN_A>;
+impl PEREN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PEREN_A {
+        match self.bits {
+            false => PEREN_A::_0,
+            true => PEREN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PEREN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PEREN_A::_1
+    }
+}
+#[doc = "Write proxy for field `PEREN`"]
+pub struct PEREN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PEREN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PEREN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Disable."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PEREN_A::_0)
+    }
     #[doc = "A period event interrupt can be generated (EIR\\[TS_TIMER\\]) and the event signal output is asserted when the timer wraps around according to the periodic setting ATPER. The timer period value must be set before setting this bit. Not all devices contain the event signal output. See the chip configuration details."]
-    _1,
-}
-impl PERENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PERENW::_0 => false,
-            PERENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PERENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PERENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PERENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Disable."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PERENW::_0)
-    }
-    #[doc = "A period event interrupt can be generated (EIR\\[TS_TIMER\\]) and the event signal output is asserted when the timer wraps around according to the periodic setting ATPER. The timer period value must be set before setting this bit. Not all devices contain the event signal output. See the chip configuration details."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PERENW::_1)
+        self.variant(PEREN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PINPER`"]
-pub enum PINPERW {
-    #[doc = "Disable."]
+#[doc = "Enables event signal output assertion on period event\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PINPER_A {
+    #[doc = "0: Disable."]
     _0,
-    #[doc = "Enable."]
+    #[doc = "1: Enable."]
     _1,
 }
-impl PINPERW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PINPERW::_0 => false,
-            PINPERW::_1 => true,
+impl From<PINPER_A> for bool {
+    #[inline(always)]
+    fn from(variant: PINPER_A) -> Self {
+        match variant {
+            PINPER_A::_0 => false,
+            PINPER_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PINPERW<'a> {
+#[doc = "Reader of field `PINPER`"]
+pub type PINPER_R = crate::R<bool, PINPER_A>;
+impl PINPER_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PINPER_A {
+        match self.bits {
+            false => PINPER_A::_0,
+            true => PINPER_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PINPER_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PINPER_A::_1
+    }
+}
+#[doc = "Write proxy for field `PINPER`"]
+pub struct PINPER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PINPERW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PINPERW) -> &'a mut W {
+impl<'a> PINPER_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PINPER_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disable."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PINPERW::_0)
+        self.variant(PINPER_A::_0)
     }
     #[doc = "Enable."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PINPERW::_1)
+        self.variant(PINPER_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RESTARTW<'a> {
+#[doc = "Reader of field `RESTART`"]
+pub type RESTART_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RESTART`"]
+pub struct RESTART_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESTARTW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RESTART_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CAPTURE`"]
-pub enum CAPTUREW {
-    #[doc = "No effect."]
+#[doc = "Capture Timer Value\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CAPTURE_A {
+    #[doc = "0: No effect."]
     _0,
-    #[doc = "The current time is captured and can be read from the ATVR register."]
+    #[doc = "1: The current time is captured and can be read from the ATVR register."]
     _1,
 }
-impl CAPTUREW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CAPTUREW::_0 => false,
-            CAPTUREW::_1 => true,
+impl From<CAPTURE_A> for bool {
+    #[inline(always)]
+    fn from(variant: CAPTURE_A) -> Self {
+        match variant {
+            CAPTURE_A::_0 => false,
+            CAPTURE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CAPTUREW<'a> {
+#[doc = "Reader of field `CAPTURE`"]
+pub type CAPTURE_R = crate::R<bool, CAPTURE_A>;
+impl CAPTURE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CAPTURE_A {
+        match self.bits {
+            false => CAPTURE_A::_0,
+            true => CAPTURE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CAPTURE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CAPTURE_A::_1
+    }
+}
+#[doc = "Write proxy for field `CAPTURE`"]
+pub struct CAPTURE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAPTUREW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CAPTUREW) -> &'a mut W {
+impl<'a> CAPTURE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CAPTURE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No effect."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CAPTUREW::_0)
+        self.variant(CAPTURE_A::_0)
     }
     #[doc = "The current time is captured and can be read from the ATVR register."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CAPTUREW::_1)
+        self.variant(CAPTURE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SLAVE`"]
-pub enum SLAVEW {
-    #[doc = "The timer is active and all configuration fields in this register are relevant."]
+#[doc = "Enable Timer Slave Mode\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SLAVE_A {
+    #[doc = "0: The timer is active and all configuration fields in this register are relevant."]
     _0,
-    #[doc = "The internal timer is disabled and the externally provided timer value is used. All other fields, except CAPTURE, in this register have no effect. CAPTURE can still be used to capture the current timer value."]
+    #[doc = "1: The internal timer is disabled and the externally provided timer value is used. All other fields, except CAPTURE, in this register have no effect. CAPTURE can still be used to capture the current timer value."]
     _1,
 }
-impl SLAVEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SLAVEW::_0 => false,
-            SLAVEW::_1 => true,
+impl From<SLAVE_A> for bool {
+    #[inline(always)]
+    fn from(variant: SLAVE_A) -> Self {
+        match variant {
+            SLAVE_A::_0 => false,
+            SLAVE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SLAVEW<'a> {
+#[doc = "Reader of field `SLAVE`"]
+pub type SLAVE_R = crate::R<bool, SLAVE_A>;
+impl SLAVE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SLAVE_A {
+        match self.bits {
+            false => SLAVE_A::_0,
+            true => SLAVE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SLAVE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SLAVE_A::_1
+    }
+}
+#[doc = "Write proxy for field `SLAVE`"]
+pub struct SLAVE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SLAVEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SLAVEW) -> &'a mut W {
+impl<'a> SLAVE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SLAVE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The timer is active and all configuration fields in this register are relevant."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SLAVEW::_0)
+        self.variant(SLAVE_A::_0)
     }
     #[doc = "The internal timer is disabled and the externally provided timer value is used. All other fields, except CAPTURE, in this register have no effect. CAPTURE can still be used to capture the current timer value."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SLAVEW::_1)
+        self.variant(SLAVE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enable Timer"]
-    #[inline]
-    pub fn en(&self) -> ENR {
-        ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn en(&self) -> EN_R {
+        EN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 2 - Enable One-Shot Offset Event"]
-    #[inline]
-    pub fn offen(&self) -> OFFENR {
-        OFFENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn offen(&self) -> OFFEN_R {
+        OFFEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Reset Timer On Offset Event"]
-    #[inline]
-    pub fn offrst(&self) -> OFFRSTR {
-        OFFRSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn offrst(&self) -> OFFRST_R {
+        OFFRST_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Enable Periodical Event"]
-    #[inline]
-    pub fn peren(&self) -> PERENR {
-        PERENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn peren(&self) -> PEREN_R {
+        PEREN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Enables event signal output assertion on period event"]
-    #[inline]
-    pub fn pinper(&self) -> PINPERR {
-        PINPERR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pinper(&self) -> PINPER_R {
+        PINPER_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Reset Timer"]
-    #[inline]
-    pub fn restart(&self) -> RESTARTR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RESTARTR { bits }
+    #[inline(always)]
+    pub fn restart(&self) -> RESTART_R {
+        RESTART_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Capture Timer Value"]
-    #[inline]
-    pub fn capture(&self) -> CAPTURER {
-        CAPTURER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn capture(&self) -> CAPTURE_R {
+        CAPTURE_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Enable Timer Slave Mode"]
-    #[inline]
-    pub fn slave(&self) -> SLAVER {
-        SLAVER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn slave(&self) -> SLAVE_R {
+        SLAVE_R::new(((self.bits >> 13) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enable Timer"]
-    #[inline]
-    pub fn en(&mut self) -> _ENW {
-        _ENW { w: self }
+    #[inline(always)]
+    pub fn en(&mut self) -> EN_W {
+        EN_W { w: self }
     }
     #[doc = "Bit 2 - Enable One-Shot Offset Event"]
-    #[inline]
-    pub fn offen(&mut self) -> _OFFENW {
-        _OFFENW { w: self }
+    #[inline(always)]
+    pub fn offen(&mut self) -> OFFEN_W {
+        OFFEN_W { w: self }
     }
     #[doc = "Bit 3 - Reset Timer On Offset Event"]
-    #[inline]
-    pub fn offrst(&mut self) -> _OFFRSTW {
-        _OFFRSTW { w: self }
+    #[inline(always)]
+    pub fn offrst(&mut self) -> OFFRST_W {
+        OFFRST_W { w: self }
     }
     #[doc = "Bit 4 - Enable Periodical Event"]
-    #[inline]
-    pub fn peren(&mut self) -> _PERENW {
-        _PERENW { w: self }
+    #[inline(always)]
+    pub fn peren(&mut self) -> PEREN_W {
+        PEREN_W { w: self }
     }
     #[doc = "Bit 7 - Enables event signal output assertion on period event"]
-    #[inline]
-    pub fn pinper(&mut self) -> _PINPERW {
-        _PINPERW { w: self }
+    #[inline(always)]
+    pub fn pinper(&mut self) -> PINPER_W {
+        PINPER_W { w: self }
     }
     #[doc = "Bit 9 - Reset Timer"]
-    #[inline]
-    pub fn restart(&mut self) -> _RESTARTW {
-        _RESTARTW { w: self }
+    #[inline(always)]
+    pub fn restart(&mut self) -> RESTART_W {
+        RESTART_W { w: self }
     }
     #[doc = "Bit 11 - Capture Timer Value"]
-    #[inline]
-    pub fn capture(&mut self) -> _CAPTUREW {
-        _CAPTUREW { w: self }
+    #[inline(always)]
+    pub fn capture(&mut self) -> CAPTURE_W {
+        CAPTURE_W { w: self }
     }
     #[doc = "Bit 13 - Enable Timer Slave Mode"]
-    #[inline]
-    pub fn slave(&mut self) -> _SLAVEW {
-        _SLAVEW { w: self }
+    #[inline(always)]
+    pub fn slave(&mut self) -> SLAVE_W {
+        SLAVE_W { w: self }
     }
 }

@@ -1,403 +1,282 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::LVDSC2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register LVDSC2"]
+pub type R = crate::R<u8, super::LVDSC2>;
+#[doc = "Writer for register LVDSC2"]
+pub type W = crate::W<u8, super::LVDSC2>;
+#[doc = "Register LVDSC2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::LVDSC2 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `LVWV`"]
+#[doc = "Low-Voltage Warning Voltage Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LVWVR {
-    #[doc = "Low trip point selected (VLVW = VLVW1)"]
+pub enum LVWV_A {
+    #[doc = "0: Low trip point selected (VLVW = VLVW1)"]
     _00,
-    #[doc = "Mid 1 trip point selected (VLVW = VLVW2)"]
+    #[doc = "1: Mid 1 trip point selected (VLVW = VLVW2)"]
     _01,
-    #[doc = "Mid 2 trip point selected (VLVW = VLVW3)"]
+    #[doc = "2: Mid 2 trip point selected (VLVW = VLVW3)"]
     _10,
-    #[doc = "High trip point selected (VLVW = VLVW4)"]
+    #[doc = "3: High trip point selected (VLVW = VLVW4)"]
     _11,
 }
-impl LVWVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            LVWVR::_00 => 0,
-            LVWVR::_01 => 1,
-            LVWVR::_10 => 2,
-            LVWVR::_11 => 3,
+impl From<LVWV_A> for u8 {
+    #[inline(always)]
+    fn from(variant: LVWV_A) -> Self {
+        match variant {
+            LVWV_A::_00 => 0,
+            LVWV_A::_01 => 1,
+            LVWV_A::_10 => 2,
+            LVWV_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> LVWVR {
-        match value {
-            0 => LVWVR::_00,
-            1 => LVWVR::_01,
-            2 => LVWVR::_10,
-            3 => LVWVR::_11,
+}
+#[doc = "Reader of field `LVWV`"]
+pub type LVWV_R = crate::R<u8, LVWV_A>;
+impl LVWV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LVWV_A {
+        match self.bits {
+            0 => LVWV_A::_00,
+            1 => LVWV_A::_01,
+            2 => LVWV_A::_10,
+            3 => LVWV_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == LVWVR::_00
+        *self == LVWV_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == LVWVR::_01
+        *self == LVWV_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == LVWVR::_10
+        *self == LVWV_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == LVWVR::_11
+        *self == LVWV_A::_11
     }
 }
-#[doc = "Possible values of the field `LVWIE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LVWIER {
-    #[doc = "Hardware interrupt disabled (use polling)"]
-    _0,
-    #[doc = "Request a hardware interrupt when LVWF = 1"]
-    _1,
-}
-impl LVWIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LVWIER::_0 => false,
-            LVWIER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LVWIER {
-        match value {
-            false => LVWIER::_0,
-            true => LVWIER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LVWIER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LVWIER::_1
-    }
-}
-#[doc = "Possible values of the field `LVWF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LVWFR {
-    #[doc = "Low-voltage warning event not detected"]
-    _0,
-    #[doc = "Low-voltage warning event detected"]
-    _1,
-}
-impl LVWFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LVWFR::_0 => false,
-            LVWFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LVWFR {
-        match value {
-            false => LVWFR::_0,
-            true => LVWFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LVWFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LVWFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `LVWV`"]
-pub enum LVWVW {
-    #[doc = "Low trip point selected (VLVW = VLVW1)"]
-    _00,
-    #[doc = "Mid 1 trip point selected (VLVW = VLVW2)"]
-    _01,
-    #[doc = "Mid 2 trip point selected (VLVW = VLVW3)"]
-    _10,
-    #[doc = "High trip point selected (VLVW = VLVW4)"]
-    _11,
-}
-impl LVWVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            LVWVW::_00 => 0,
-            LVWVW::_01 => 1,
-            LVWVW::_10 => 2,
-            LVWVW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LVWVW<'a> {
+#[doc = "Write proxy for field `LVWV`"]
+pub struct LVWV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LVWVW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LVWVW) -> &'a mut W {
+impl<'a> LVWV_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LVWV_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Low trip point selected (VLVW = VLVW1)"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(LVWVW::_00)
+        self.variant(LVWV_A::_00)
     }
     #[doc = "Mid 1 trip point selected (VLVW = VLVW2)"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(LVWVW::_01)
+        self.variant(LVWV_A::_01)
     }
     #[doc = "Mid 2 trip point selected (VLVW = VLVW3)"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(LVWVW::_10)
+        self.variant(LVWV_A::_10)
     }
     #[doc = "High trip point selected (VLVW = VLVW4)"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(LVWVW::_11)
+        self.variant(LVWV_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u8) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LVWIE`"]
-pub enum LVWIEW {
-    #[doc = "Hardware interrupt disabled (use polling)"]
+#[doc = "Low-Voltage Warning Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LVWIE_A {
+    #[doc = "0: Hardware interrupt disabled (use polling)"]
     _0,
-    #[doc = "Request a hardware interrupt when LVWF = 1"]
+    #[doc = "1: Request a hardware interrupt when LVWF = 1"]
     _1,
 }
-impl LVWIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LVWIEW::_0 => false,
-            LVWIEW::_1 => true,
+impl From<LVWIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: LVWIE_A) -> Self {
+        match variant {
+            LVWIE_A::_0 => false,
+            LVWIE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LVWIEW<'a> {
+#[doc = "Reader of field `LVWIE`"]
+pub type LVWIE_R = crate::R<bool, LVWIE_A>;
+impl LVWIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LVWIE_A {
+        match self.bits {
+            false => LVWIE_A::_0,
+            true => LVWIE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LVWIE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LVWIE_A::_1
+    }
+}
+#[doc = "Write proxy for field `LVWIE`"]
+pub struct LVWIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LVWIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LVWIEW) -> &'a mut W {
+impl<'a> LVWIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LVWIE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Hardware interrupt disabled (use polling)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LVWIEW::_0)
+        self.variant(LVWIE_A::_0)
     }
     #[doc = "Request a hardware interrupt when LVWF = 1"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LVWIEW::_1)
+        self.variant(LVWIE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _LVWACKW<'a> {
+#[doc = "Write proxy for field `LVWACK`"]
+pub struct LVWACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LVWACKW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> LVWACK_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
+    }
+}
+#[doc = "Low-Voltage Warning Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LVWF_A {
+    #[doc = "0: Low-voltage warning event not detected"]
+    _0,
+    #[doc = "1: Low-voltage warning event detected"]
+    _1,
+}
+impl From<LVWF_A> for bool {
+    #[inline(always)]
+    fn from(variant: LVWF_A) -> Self {
+        match variant {
+            LVWF_A::_0 => false,
+            LVWF_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `LVWF`"]
+pub type LVWF_R = crate::R<bool, LVWF_A>;
+impl LVWF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LVWF_A {
+        match self.bits {
+            false => LVWF_A::_0,
+            true => LVWF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LVWF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LVWF_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Low-Voltage Warning Voltage Select"]
-    #[inline]
-    pub fn lvwv(&self) -> LVWVR {
-        LVWVR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn lvwv(&self) -> LVWV_R {
+        LVWV_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bit 5 - Low-Voltage Warning Interrupt Enable"]
-    #[inline]
-    pub fn lvwie(&self) -> LVWIER {
-        LVWIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lvwie(&self) -> LVWIE_R {
+        LVWIE_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Low-Voltage Warning Flag"]
-    #[inline]
-    pub fn lvwf(&self) -> LVWFR {
-        LVWFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lvwf(&self) -> LVWF_R {
+        LVWF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Low-Voltage Warning Voltage Select"]
-    #[inline]
-    pub fn lvwv(&mut self) -> _LVWVW {
-        _LVWVW { w: self }
+    #[inline(always)]
+    pub fn lvwv(&mut self) -> LVWV_W {
+        LVWV_W { w: self }
     }
     #[doc = "Bit 5 - Low-Voltage Warning Interrupt Enable"]
-    #[inline]
-    pub fn lvwie(&mut self) -> _LVWIEW {
-        _LVWIEW { w: self }
+    #[inline(always)]
+    pub fn lvwie(&mut self) -> LVWIE_W {
+        LVWIE_W { w: self }
     }
     #[doc = "Bit 6 - Low-Voltage Warning Acknowledge"]
-    #[inline]
-    pub fn lvwack(&mut self) -> _LVWACKW {
-        _LVWACKW { w: self }
+    #[inline(always)]
+    pub fn lvwack(&mut self) -> LVWACK_W {
+        LVWACK_W { w: self }
     }
 }

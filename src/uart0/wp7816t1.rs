@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::WP7816T1 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register WP7816T1"]
+pub type R = crate::R<u8, super::WP7816T1>;
+#[doc = "Writer for register WP7816T1"]
+pub type W = crate::W<u8, super::WP7816T1>;
+#[doc = "Register WP7816T1 `reset()`'s with value 0x0a"]
+impl crate::ResetValue for super::WP7816T1 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0a
     }
 }
-#[doc = r" Value of the field"]
-pub struct BWIR {
-    bits: u8,
-}
-impl BWIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CWIR {
-    bits: u8,
-}
-impl CWIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BWIW<'a> {
+#[doc = "Reader of field `BWI`"]
+pub type BWI_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BWI`"]
+pub struct BWI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BWIW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> BWI_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u8) & 0x0f);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CWIW<'a> {
+#[doc = "Reader of field `CWI`"]
+pub type CWI_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CWI`"]
+pub struct CWI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CWIW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CWI_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u8) & 0x0f) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Block Wait Time Integer(C7816\\[TTYPE\\] = 1)"]
-    #[inline]
-    pub fn bwi(&self) -> BWIR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        BWIR { bits }
+    #[inline(always)]
+    pub fn bwi(&self) -> BWI_R {
+        BWI_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:7 - Character Wait Time Integer (C7816\\[TTYPE\\] = 1)"]
-    #[inline]
-    pub fn cwi(&self) -> CWIR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        CWIR { bits }
+    #[inline(always)]
+    pub fn cwi(&self) -> CWI_R {
+        CWI_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 10 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Block Wait Time Integer(C7816\\[TTYPE\\] = 1)"]
-    #[inline]
-    pub fn bwi(&mut self) -> _BWIW {
-        _BWIW { w: self }
+    #[inline(always)]
+    pub fn bwi(&mut self) -> BWI_W {
+        BWI_W { w: self }
     }
     #[doc = "Bits 4:7 - Character Wait Time Integer (C7816\\[TTYPE\\] = 1)"]
-    #[inline]
-    pub fn cwi(&mut self) -> _CWIW {
-        _CWIW { w: self }
+    #[inline(always)]
+    pub fn cwi(&mut self) -> CWI_W {
+        CWI_W { w: self }
     }
 }

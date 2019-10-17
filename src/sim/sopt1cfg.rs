@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SOPT1CFG {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SOPT1CFG"]
+pub type R = crate::R<u32, super::SOPT1CFG>;
+#[doc = "Writer for register SOPT1CFG"]
+pub type W = crate::W<u32, super::SOPT1CFG>;
+#[doc = "Register SOPT1CFG `reset()`'s with value 0"]
+impl crate::ResetValue for super::SOPT1CFG {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `URWE`"]
+#[doc = "USB voltage regulator enable write enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum URWER {
-    #[doc = "SOPT1 USBREGEN cannot be written."]
+pub enum URWE_A {
+    #[doc = "0: SOPT1 USBREGEN cannot be written."]
     _0,
-    #[doc = "SOPT1 USBREGEN can be written."]
+    #[doc = "1: SOPT1 USBREGEN can be written."]
     _1,
 }
-impl URWER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            URWER::_0 => false,
-            URWER::_1 => true,
+impl From<URWE_A> for bool {
+    #[inline(always)]
+    fn from(variant: URWE_A) -> Self {
+        match variant {
+            URWE_A::_0 => false,
+            URWE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> URWER {
-        match value {
-            false => URWER::_0,
-            true => URWER::_1,
+}
+#[doc = "Reader of field `URWE`"]
+pub type URWE_R = crate::R<bool, URWE_A>;
+impl URWE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> URWE_A {
+        match self.bits {
+            false => URWE_A::_0,
+            true => URWE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == URWER::_0
+        *self == URWE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == URWER::_1
+        *self == URWE_A::_1
     }
 }
-#[doc = "Possible values of the field `UVSWE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UVSWER {
-    #[doc = "SOPT1 USBVSTBY cannot be written."]
-    _0,
-    #[doc = "SOPT1 USBVSTBY can be written."]
-    _1,
-}
-impl UVSWER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            UVSWER::_0 => false,
-            UVSWER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> UVSWER {
-        match value {
-            false => UVSWER::_0,
-            true => UVSWER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == UVSWER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == UVSWER::_1
-    }
-}
-#[doc = "Possible values of the field `USSWE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USSWER {
-    #[doc = "SOPT1 USBSSTBY cannot be written."]
-    _0,
-    #[doc = "SOPT1 USBSSTBY can be written."]
-    _1,
-}
-impl USSWER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USSWER::_0 => false,
-            USSWER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USSWER {
-        match value {
-            false => USSWER::_0,
-            true => USSWER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == USSWER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == USSWER::_1
-    }
-}
-#[doc = "Values that can be written to the field `URWE`"]
-pub enum URWEW {
-    #[doc = "SOPT1 USBREGEN cannot be written."]
-    _0,
-    #[doc = "SOPT1 USBREGEN can be written."]
-    _1,
-}
-impl URWEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            URWEW::_0 => false,
-            URWEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _URWEW<'a> {
+#[doc = "Write proxy for field `URWE`"]
+pub struct URWE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _URWEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: URWEW) -> &'a mut W {
+impl<'a> URWE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: URWE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "SOPT1 USBREGEN cannot be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(URWEW::_0)
+        self.variant(URWE_A::_0)
     }
     #[doc = "SOPT1 USBREGEN can be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(URWEW::_1)
+        self.variant(URWE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UVSWE`"]
-pub enum UVSWEW {
-    #[doc = "SOPT1 USBVSTBY cannot be written."]
+#[doc = "USB voltage regulator VLP standby write enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum UVSWE_A {
+    #[doc = "0: SOPT1 USBVSTBY cannot be written."]
     _0,
-    #[doc = "SOPT1 USBVSTBY can be written."]
+    #[doc = "1: SOPT1 USBVSTBY can be written."]
     _1,
 }
-impl UVSWEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            UVSWEW::_0 => false,
-            UVSWEW::_1 => true,
+impl From<UVSWE_A> for bool {
+    #[inline(always)]
+    fn from(variant: UVSWE_A) -> Self {
+        match variant {
+            UVSWE_A::_0 => false,
+            UVSWE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _UVSWEW<'a> {
+#[doc = "Reader of field `UVSWE`"]
+pub type UVSWE_R = crate::R<bool, UVSWE_A>;
+impl UVSWE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> UVSWE_A {
+        match self.bits {
+            false => UVSWE_A::_0,
+            true => UVSWE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == UVSWE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == UVSWE_A::_1
+    }
+}
+#[doc = "Write proxy for field `UVSWE`"]
+pub struct UVSWE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UVSWEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UVSWEW) -> &'a mut W {
+impl<'a> UVSWE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UVSWE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "SOPT1 USBVSTBY cannot be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(UVSWEW::_0)
+        self.variant(UVSWE_A::_0)
     }
     #[doc = "SOPT1 USBVSTBY can be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(UVSWEW::_1)
+        self.variant(UVSWE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USSWE`"]
-pub enum USSWEW {
-    #[doc = "SOPT1 USBSSTBY cannot be written."]
+#[doc = "USB voltage regulator stop standby write enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum USSWE_A {
+    #[doc = "0: SOPT1 USBSSTBY cannot be written."]
     _0,
-    #[doc = "SOPT1 USBSSTBY can be written."]
+    #[doc = "1: SOPT1 USBSSTBY can be written."]
     _1,
 }
-impl USSWEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USSWEW::_0 => false,
-            USSWEW::_1 => true,
+impl From<USSWE_A> for bool {
+    #[inline(always)]
+    fn from(variant: USSWE_A) -> Self {
+        match variant {
+            USSWE_A::_0 => false,
+            USSWE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _USSWEW<'a> {
+#[doc = "Reader of field `USSWE`"]
+pub type USSWE_R = crate::R<bool, USSWE_A>;
+impl USSWE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USSWE_A {
+        match self.bits {
+            false => USSWE_A::_0,
+            true => USSWE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == USSWE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == USSWE_A::_1
+    }
+}
+#[doc = "Write proxy for field `USSWE`"]
+pub struct USSWE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USSWEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USSWEW) -> &'a mut W {
+impl<'a> USSWE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USSWE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "SOPT1 USBSSTBY cannot be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(USSWEW::_0)
+        self.variant(USSWE_A::_0)
     }
     #[doc = "SOPT1 USBSSTBY can be written."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(USSWEW::_1)
+        self.variant(USSWE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 24 - USB voltage regulator enable write enable"]
-    #[inline]
-    pub fn urwe(&self) -> URWER {
-        URWER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn urwe(&self) -> URWE_R {
+        URWE_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - USB voltage regulator VLP standby write enable"]
-    #[inline]
-    pub fn uvswe(&self) -> UVSWER {
-        UVSWER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uvswe(&self) -> UVSWE_R {
+        UVSWE_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - USB voltage regulator stop standby write enable"]
-    #[inline]
-    pub fn usswe(&self) -> USSWER {
-        USSWER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usswe(&self) -> USSWE_R {
+        USSWE_R::new(((self.bits >> 26) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 24 - USB voltage regulator enable write enable"]
-    #[inline]
-    pub fn urwe(&mut self) -> _URWEW {
-        _URWEW { w: self }
+    #[inline(always)]
+    pub fn urwe(&mut self) -> URWE_W {
+        URWE_W { w: self }
     }
     #[doc = "Bit 25 - USB voltage regulator VLP standby write enable"]
-    #[inline]
-    pub fn uvswe(&mut self) -> _UVSWEW {
-        _UVSWEW { w: self }
+    #[inline(always)]
+    pub fn uvswe(&mut self) -> UVSWE_W {
+        UVSWE_W { w: self }
     }
     #[doc = "Bit 26 - USB voltage regulator stop standby write enable"]
-    #[inline]
-    pub fn usswe(&mut self) -> _USSWEW {
-        _USSWEW { w: self }
+    #[inline(always)]
+    pub fn usswe(&mut self) -> USSWE_W {
+        USSWE_W { w: self }
     }
 }

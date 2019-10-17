@@ -1,591 +1,430 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::MUXCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MUXCR"]
+pub type R = crate::R<u8, super::MUXCR>;
+#[doc = "Writer for register MUXCR"]
+pub type W = crate::W<u8, super::MUXCR>;
+#[doc = "Register MUXCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MUXCR {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `MSEL`"]
+#[doc = "Minus Input Mux Control\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MSELR {
-    #[doc = "IN0"]
+pub enum MSEL_A {
+    #[doc = "0: IN0"]
     _000,
-    #[doc = "IN1"]
+    #[doc = "1: IN1"]
     _001,
-    #[doc = "IN2"]
+    #[doc = "2: IN2"]
     _010,
-    #[doc = "IN3"]
+    #[doc = "3: IN3"]
     _011,
-    #[doc = "IN4"]
+    #[doc = "4: IN4"]
     _100,
-    #[doc = "IN5"]
+    #[doc = "5: IN5"]
     _101,
-    #[doc = "IN6"]
+    #[doc = "6: IN6"]
     _110,
-    #[doc = "IN7"]
+    #[doc = "7: IN7"]
     _111,
 }
-impl MSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MSELR::_000 => 0,
-            MSELR::_001 => 1,
-            MSELR::_010 => 2,
-            MSELR::_011 => 3,
-            MSELR::_100 => 4,
-            MSELR::_101 => 5,
-            MSELR::_110 => 6,
-            MSELR::_111 => 7,
+impl From<MSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MSEL_A) -> Self {
+        match variant {
+            MSEL_A::_000 => 0,
+            MSEL_A::_001 => 1,
+            MSEL_A::_010 => 2,
+            MSEL_A::_011 => 3,
+            MSEL_A::_100 => 4,
+            MSEL_A::_101 => 5,
+            MSEL_A::_110 => 6,
+            MSEL_A::_111 => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MSELR {
-        match value {
-            0 => MSELR::_000,
-            1 => MSELR::_001,
-            2 => MSELR::_010,
-            3 => MSELR::_011,
-            4 => MSELR::_100,
-            5 => MSELR::_101,
-            6 => MSELR::_110,
-            7 => MSELR::_111,
+}
+#[doc = "Reader of field `MSEL`"]
+pub type MSEL_R = crate::R<u8, MSEL_A>;
+impl MSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MSEL_A {
+        match self.bits {
+            0 => MSEL_A::_000,
+            1 => MSEL_A::_001,
+            2 => MSEL_A::_010,
+            3 => MSEL_A::_011,
+            4 => MSEL_A::_100,
+            5 => MSEL_A::_101,
+            6 => MSEL_A::_110,
+            7 => MSEL_A::_111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == MSELR::_000
+        *self == MSEL_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == MSELR::_001
+        *self == MSEL_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == MSELR::_010
+        *self == MSEL_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == MSELR::_011
+        *self == MSEL_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == MSELR::_100
+        *self == MSEL_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == MSELR::_101
+        *self == MSEL_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == MSELR::_110
+        *self == MSEL_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == MSELR::_111
+        *self == MSEL_A::_111
     }
 }
-#[doc = "Possible values of the field `PSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSELR {
-    #[doc = "IN0"]
-    _000,
-    #[doc = "IN1"]
-    _001,
-    #[doc = "IN2"]
-    _010,
-    #[doc = "IN3"]
-    _011,
-    #[doc = "IN4"]
-    _100,
-    #[doc = "IN5"]
-    _101,
-    #[doc = "IN6"]
-    _110,
-    #[doc = "IN7"]
-    _111,
+#[doc = "Write proxy for field `MSEL`"]
+pub struct MSEL_W<'a> {
+    w: &'a mut W,
 }
-impl PSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PSELR::_000 => 0,
-            PSELR::_001 => 1,
-            PSELR::_010 => 2,
-            PSELR::_011 => 3,
-            PSELR::_100 => 4,
-            PSELR::_101 => 5,
-            PSELR::_110 => 6,
-            PSELR::_111 => 7,
+impl<'a> MSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MSEL_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PSELR {
-        match value {
-            0 => PSELR::_000,
-            1 => PSELR::_001,
-            2 => PSELR::_010,
-            3 => PSELR::_011,
-            4 => PSELR::_100,
-            5 => PSELR::_101,
-            6 => PSELR::_110,
-            7 => PSELR::_111,
+    #[doc = "IN0"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(MSEL_A::_000)
+    }
+    #[doc = "IN1"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(MSEL_A::_001)
+    }
+    #[doc = "IN2"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(MSEL_A::_010)
+    }
+    #[doc = "IN3"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(MSEL_A::_011)
+    }
+    #[doc = "IN4"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(MSEL_A::_100)
+    }
+    #[doc = "IN5"]
+    #[inline(always)]
+    pub fn _101(self) -> &'a mut W {
+        self.variant(MSEL_A::_101)
+    }
+    #[doc = "IN6"]
+    #[inline(always)]
+    pub fn _110(self) -> &'a mut W {
+        self.variant(MSEL_A::_110)
+    }
+    #[doc = "IN7"]
+    #[inline(always)]
+    pub fn _111(self) -> &'a mut W {
+        self.variant(MSEL_A::_111)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u8) & 0x07);
+        self.w
+    }
+}
+#[doc = "Plus Input Mux Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PSEL_A {
+    #[doc = "0: IN0"]
+    _000,
+    #[doc = "1: IN1"]
+    _001,
+    #[doc = "2: IN2"]
+    _010,
+    #[doc = "3: IN3"]
+    _011,
+    #[doc = "4: IN4"]
+    _100,
+    #[doc = "5: IN5"]
+    _101,
+    #[doc = "6: IN6"]
+    _110,
+    #[doc = "7: IN7"]
+    _111,
+}
+impl From<PSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PSEL_A) -> Self {
+        match variant {
+            PSEL_A::_000 => 0,
+            PSEL_A::_001 => 1,
+            PSEL_A::_010 => 2,
+            PSEL_A::_011 => 3,
+            PSEL_A::_100 => 4,
+            PSEL_A::_101 => 5,
+            PSEL_A::_110 => 6,
+            PSEL_A::_111 => 7,
+        }
+    }
+}
+#[doc = "Reader of field `PSEL`"]
+pub type PSEL_R = crate::R<u8, PSEL_A>;
+impl PSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PSEL_A {
+        match self.bits {
+            0 => PSEL_A::_000,
+            1 => PSEL_A::_001,
+            2 => PSEL_A::_010,
+            3 => PSEL_A::_011,
+            4 => PSEL_A::_100,
+            5 => PSEL_A::_101,
+            6 => PSEL_A::_110,
+            7 => PSEL_A::_111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == PSELR::_000
+        *self == PSEL_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == PSELR::_001
+        *self == PSEL_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == PSELR::_010
+        *self == PSEL_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == PSELR::_011
+        *self == PSEL_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == PSELR::_100
+        *self == PSEL_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == PSELR::_101
+        *self == PSEL_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == PSELR::_110
+        *self == PSEL_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == PSELR::_111
+        *self == PSEL_A::_111
     }
 }
-#[doc = "Possible values of the field `PSTM`"]
+#[doc = "Write proxy for field `PSEL`"]
+pub struct PSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PSEL_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
+        }
+    }
+    #[doc = "IN0"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(PSEL_A::_000)
+    }
+    #[doc = "IN1"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(PSEL_A::_001)
+    }
+    #[doc = "IN2"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(PSEL_A::_010)
+    }
+    #[doc = "IN3"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(PSEL_A::_011)
+    }
+    #[doc = "IN4"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(PSEL_A::_100)
+    }
+    #[doc = "IN5"]
+    #[inline(always)]
+    pub fn _101(self) -> &'a mut W {
+        self.variant(PSEL_A::_101)
+    }
+    #[doc = "IN6"]
+    #[inline(always)]
+    pub fn _110(self) -> &'a mut W {
+        self.variant(PSEL_A::_110)
+    }
+    #[doc = "IN7"]
+    #[inline(always)]
+    pub fn _111(self) -> &'a mut W {
+        self.variant(PSEL_A::_111)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 3)) | (((value as u8) & 0x07) << 3);
+        self.w
+    }
+}
+#[doc = "Pass Through Mode Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSTMR {
-    #[doc = "Pass Through Mode is disabled."]
+pub enum PSTM_A {
+    #[doc = "0: Pass Through Mode is disabled."]
     _0,
-    #[doc = "Pass Through Mode is enabled."]
+    #[doc = "1: Pass Through Mode is enabled."]
     _1,
 }
-impl PSTMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PSTMR::_0 => false,
-            PSTMR::_1 => true,
+impl From<PSTM_A> for bool {
+    #[inline(always)]
+    fn from(variant: PSTM_A) -> Self {
+        match variant {
+            PSTM_A::_0 => false,
+            PSTM_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PSTMR {
-        match value {
-            false => PSTMR::_0,
-            true => PSTMR::_1,
+}
+#[doc = "Reader of field `PSTM`"]
+pub type PSTM_R = crate::R<bool, PSTM_A>;
+impl PSTM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PSTM_A {
+        match self.bits {
+            false => PSTM_A::_0,
+            true => PSTM_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PSTMR::_0
+        *self == PSTM_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PSTMR::_1
+        *self == PSTM_A::_1
     }
 }
-#[doc = "Values that can be written to the field `MSEL`"]
-pub enum MSELW {
-    #[doc = "IN0"]
-    _000,
-    #[doc = "IN1"]
-    _001,
-    #[doc = "IN2"]
-    _010,
-    #[doc = "IN3"]
-    _011,
-    #[doc = "IN4"]
-    _100,
-    #[doc = "IN5"]
-    _101,
-    #[doc = "IN6"]
-    _110,
-    #[doc = "IN7"]
-    _111,
-}
-impl MSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MSELW::_000 => 0,
-            MSELW::_001 => 1,
-            MSELW::_010 => 2,
-            MSELW::_011 => 3,
-            MSELW::_100 => 4,
-            MSELW::_101 => 5,
-            MSELW::_110 => 6,
-            MSELW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MSELW<'a> {
+#[doc = "Write proxy for field `PSTM`"]
+pub struct PSTM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MSELW) -> &'a mut W {
+impl<'a> PSTM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PSTM_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "IN0"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(MSELW::_000)
-    }
-    #[doc = "IN1"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(MSELW::_001)
-    }
-    #[doc = "IN2"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(MSELW::_010)
-    }
-    #[doc = "IN3"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(MSELW::_011)
-    }
-    #[doc = "IN4"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(MSELW::_100)
-    }
-    #[doc = "IN5"]
-    #[inline]
-    pub fn _101(self) -> &'a mut W {
-        self.variant(MSELW::_101)
-    }
-    #[doc = "IN6"]
-    #[inline]
-    pub fn _110(self) -> &'a mut W {
-        self.variant(MSELW::_110)
-    }
-    #[doc = "IN7"]
-    #[inline]
-    pub fn _111(self) -> &'a mut W {
-        self.variant(MSELW::_111)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PSEL`"]
-pub enum PSELW {
-    #[doc = "IN0"]
-    _000,
-    #[doc = "IN1"]
-    _001,
-    #[doc = "IN2"]
-    _010,
-    #[doc = "IN3"]
-    _011,
-    #[doc = "IN4"]
-    _100,
-    #[doc = "IN5"]
-    _101,
-    #[doc = "IN6"]
-    _110,
-    #[doc = "IN7"]
-    _111,
-}
-impl PSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PSELW::_000 => 0,
-            PSELW::_001 => 1,
-            PSELW::_010 => 2,
-            PSELW::_011 => 3,
-            PSELW::_100 => 4,
-            PSELW::_101 => 5,
-            PSELW::_110 => 6,
-            PSELW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PSELW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "IN0"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(PSELW::_000)
-    }
-    #[doc = "IN1"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(PSELW::_001)
-    }
-    #[doc = "IN2"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(PSELW::_010)
-    }
-    #[doc = "IN3"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(PSELW::_011)
-    }
-    #[doc = "IN4"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(PSELW::_100)
-    }
-    #[doc = "IN5"]
-    #[inline]
-    pub fn _101(self) -> &'a mut W {
-        self.variant(PSELW::_101)
-    }
-    #[doc = "IN6"]
-    #[inline]
-    pub fn _110(self) -> &'a mut W {
-        self.variant(PSELW::_110)
-    }
-    #[doc = "IN7"]
-    #[inline]
-    pub fn _111(self) -> &'a mut W {
-        self.variant(PSELW::_111)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PSTM`"]
-pub enum PSTMW {
-    #[doc = "Pass Through Mode is disabled."]
-    _0,
-    #[doc = "Pass Through Mode is enabled."]
-    _1,
-}
-impl PSTMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PSTMW::_0 => false,
-            PSTMW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PSTMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PSTMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PSTMW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Pass Through Mode is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PSTMW::_0)
+        self.variant(PSTM_A::_0)
     }
     #[doc = "Pass Through Mode is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PSTMW::_1)
+        self.variant(PSTM_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Minus Input Mux Control"]
-    #[inline]
-    pub fn msel(&self) -> MSELR {
-        MSELR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn msel(&self) -> MSEL_R {
+        MSEL_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 3:5 - Plus Input Mux Control"]
-    #[inline]
-    pub fn psel(&self) -> PSELR {
-        PSELR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn psel(&self) -> PSEL_R {
+        PSEL_R::new(((self.bits >> 3) & 0x07) as u8)
     }
     #[doc = "Bit 7 - Pass Through Mode Enable"]
-    #[inline]
-    pub fn pstm(&self) -> PSTMR {
-        PSTMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn pstm(&self) -> PSTM_R {
+        PSTM_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Minus Input Mux Control"]
-    #[inline]
-    pub fn msel(&mut self) -> _MSELW {
-        _MSELW { w: self }
+    #[inline(always)]
+    pub fn msel(&mut self) -> MSEL_W {
+        MSEL_W { w: self }
     }
     #[doc = "Bits 3:5 - Plus Input Mux Control"]
-    #[inline]
-    pub fn psel(&mut self) -> _PSELW {
-        _PSELW { w: self }
+    #[inline(always)]
+    pub fn psel(&mut self) -> PSEL_W {
+        PSEL_W { w: self }
     }
     #[doc = "Bit 7 - Pass Through Mode Enable"]
-    #[inline]
-    pub fn pstm(&mut self) -> _PSTMW {
-        _PSTMW { w: self }
+    #[inline(always)]
+    pub fn pstm(&mut self) -> PSTM_W {
+        PSTM_W { w: self }
     }
 }

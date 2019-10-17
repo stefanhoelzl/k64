@@ -1,129 +1,105 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::HOSTVER {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `SVN`"]
+#[doc = "Reader of register HOSTVER"]
+pub type R = crate::R<u32, super::HOSTVER>;
+#[doc = "Specification Version Number\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SVNR {
-    #[doc = "SD host specification version 2.0, supports test event register and ADMA."]
+pub enum SVN_A {
+    #[doc = "1: SD host specification version 2.0, supports test event register and ADMA."]
     _1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl SVNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SVNR::_1 => 1,
-            SVNR::_Reserved(bits) => bits,
+impl From<SVN_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SVN_A) -> Self {
+        match variant {
+            SVN_A::_1 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SVNR {
-        match value {
-            1 => SVNR::_1,
-            i => SVNR::_Reserved(i),
+}
+#[doc = "Reader of field `SVN`"]
+pub type SVN_R = crate::R<u8, SVN_A>;
+impl SVN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SVN_A> {
+        use crate::Variant::*;
+        match self.bits {
+            1 => Val(SVN_A::_1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SVNR::_1
+        *self == SVN_A::_1
     }
 }
-#[doc = "Possible values of the field `VVN`"]
+#[doc = "Vendor Version Number\n\nValue on reset: 18"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VVNR {
-    #[doc = "Freescale SDHC version 1.0"]
+pub enum VVN_A {
+    #[doc = "0: Freescale SDHC version 1.0"]
     _0,
-    #[doc = "Freescale SDHC version 2.0"]
+    #[doc = "16: Freescale SDHC version 2.0"]
     _10000,
-    #[doc = "Freescale SDHC version 2.1"]
+    #[doc = "17: Freescale SDHC version 2.1"]
     _10001,
-    #[doc = "Freescale SDHC version 2.2"]
+    #[doc = "18: Freescale SDHC version 2.2"]
     _10010,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl VVNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VVNR::_0 => 0,
-            VVNR::_10000 => 16,
-            VVNR::_10001 => 17,
-            VVNR::_10010 => 18,
-            VVNR::_Reserved(bits) => bits,
+impl From<VVN_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VVN_A) -> Self {
+        match variant {
+            VVN_A::_0 => 0,
+            VVN_A::_10000 => 16,
+            VVN_A::_10001 => 17,
+            VVN_A::_10010 => 18,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VVNR {
-        match value {
-            0 => VVNR::_0,
-            16 => VVNR::_10000,
-            17 => VVNR::_10001,
-            18 => VVNR::_10010,
-            i => VVNR::_Reserved(i),
+}
+#[doc = "Reader of field `VVN`"]
+pub type VVN_R = crate::R<u8, VVN_A>;
+impl VVN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, VVN_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(VVN_A::_0),
+            16 => Val(VVN_A::_10000),
+            17 => Val(VVN_A::_10001),
+            18 => Val(VVN_A::_10010),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == VVNR::_0
+        *self == VVN_A::_0
     }
     #[doc = "Checks if the value of the field is `_10000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10000(&self) -> bool {
-        *self == VVNR::_10000
+        *self == VVN_A::_10000
     }
     #[doc = "Checks if the value of the field is `_10001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10001(&self) -> bool {
-        *self == VVNR::_10001
+        *self == VVN_A::_10001
     }
     #[doc = "Checks if the value of the field is `_10010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10010(&self) -> bool {
-        *self == VVNR::_10010
+        *self == VVN_A::_10010
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Specification Version Number"]
-    #[inline]
-    pub fn svn(&self) -> SVNR {
-        SVNR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn svn(&self) -> SVN_R {
+        SVN_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:15 - Vendor Version Number"]
-    #[inline]
-    pub fn vvn(&self) -> VVNR {
-        VVNR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn vvn(&self) -> VVN_R {
+        VVN_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }

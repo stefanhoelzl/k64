@@ -1,167 +1,94 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::FPROT {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register FPROT%s"]
+pub type R = crate::R<u8, super::FPROT>;
+#[doc = "Writer for register FPROT%s"]
+pub type W = crate::W<u8, super::FPROT>;
+#[doc = "Register FPROT%s `reset()`'s with value 0"]
+impl crate::ResetValue for super::FPROT {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PROT`"]
+#[doc = "Program Flash Region Protect\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PROTR {
-    #[doc = "Program flash region is protected."]
+pub enum PROT_A {
+    #[doc = "0: Program flash region is protected."]
     _0,
-    #[doc = "Program flash region is not protected"]
+    #[doc = "1: Program flash region is not protected"]
     _1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl PROTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PROTR::_0 => 0,
-            PROTR::_1 => 1,
-            PROTR::_Reserved(bits) => bits,
+impl From<PROT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PROT_A) -> Self {
+        match variant {
+            PROT_A::_0 => 0,
+            PROT_A::_1 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PROTR {
-        match value {
-            0 => PROTR::_0,
-            1 => PROTR::_1,
-            i => PROTR::_Reserved(i),
+}
+#[doc = "Reader of field `PROT`"]
+pub type PROT_R = crate::R<u8, PROT_A>;
+impl PROT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PROT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PROT_A::_0),
+            1 => Val(PROT_A::_1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PROTR::_0
+        *self == PROT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PROTR::_1
+        *self == PROT_A::_1
     }
 }
-#[doc = "Values that can be written to the field `PROT`"]
-pub enum PROTW {
-    #[doc = "Program flash region is protected."]
-    _0,
-    #[doc = "Program flash region is not protected"]
-    _1,
-}
-impl PROTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PROTW::_0 => 0,
-            PROTW::_1 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PROTW<'a> {
+#[doc = "Write proxy for field `PROT`"]
+pub struct PROT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PROTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PROTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> PROT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PROT_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Program flash region is protected."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PROTW::_0)
+        self.variant(PROT_A::_0)
     }
     #[doc = "Program flash region is not protected"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PROTW::_1)
+        self.variant(PROT_A::_1)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 255;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u8) & 0xff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Program Flash Region Protect"]
-    #[inline]
-    pub fn prot(&self) -> PROTR {
-        PROTR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn prot(&self) -> PROT_R {
+        PROT_R::new((self.bits & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Program Flash Region Protect"]
-    #[inline]
-    pub fn prot(&mut self) -> _PROTW {
-        _PROTW { w: self }
+    #[inline(always)]
+    pub fn prot(&mut self) -> PROT_W {
+        PROT_W { w: self }
     }
 }

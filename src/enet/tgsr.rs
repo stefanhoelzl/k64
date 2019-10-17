@@ -1,540 +1,368 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TGSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TGSR"]
+pub type R = crate::R<u32, super::TGSR>;
+#[doc = "Writer for register TGSR"]
+pub type W = crate::W<u32, super::TGSR>;
+#[doc = "Register TGSR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TGSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TF0`"]
+#[doc = "Copy Of Timer Flag For Channel 0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TF0R {
-    #[doc = "Timer Flag for Channel 0 is clear"]
+pub enum TF0_A {
+    #[doc = "0: Timer Flag for Channel 0 is clear"]
     _0,
-    #[doc = "Timer Flag for Channel 0 is set"]
+    #[doc = "1: Timer Flag for Channel 0 is set"]
     _1,
 }
-impl TF0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TF0R::_0 => false,
-            TF0R::_1 => true,
+impl From<TF0_A> for bool {
+    #[inline(always)]
+    fn from(variant: TF0_A) -> Self {
+        match variant {
+            TF0_A::_0 => false,
+            TF0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TF0R {
-        match value {
-            false => TF0R::_0,
-            true => TF0R::_1,
+}
+#[doc = "Reader of field `TF0`"]
+pub type TF0_R = crate::R<bool, TF0_A>;
+impl TF0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TF0_A {
+        match self.bits {
+            false => TF0_A::_0,
+            true => TF0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == TF0R::_0
+        *self == TF0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == TF0R::_1
+        *self == TF0_A::_1
     }
 }
-#[doc = "Possible values of the field `TF1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TF1R {
-    #[doc = "Timer Flag for Channel 1 is clear"]
-    _0,
-    #[doc = "Timer Flag for Channel 1 is set"]
-    _1,
-}
-impl TF1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TF1R::_0 => false,
-            TF1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TF1R {
-        match value {
-            false => TF1R::_0,
-            true => TF1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TF1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TF1R::_1
-    }
-}
-#[doc = "Possible values of the field `TF2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TF2R {
-    #[doc = "Timer Flag for Channel 2 is clear"]
-    _0,
-    #[doc = "Timer Flag for Channel 2 is set"]
-    _1,
-}
-impl TF2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TF2R::_0 => false,
-            TF2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TF2R {
-        match value {
-            false => TF2R::_0,
-            true => TF2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TF2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TF2R::_1
-    }
-}
-#[doc = "Possible values of the field `TF3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TF3R {
-    #[doc = "Timer Flag for Channel 3 is clear"]
-    _0,
-    #[doc = "Timer Flag for Channel 3 is set"]
-    _1,
-}
-impl TF3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TF3R::_0 => false,
-            TF3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TF3R {
-        match value {
-            false => TF3R::_0,
-            true => TF3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TF3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TF3R::_1
-    }
-}
-#[doc = "Values that can be written to the field `TF0`"]
-pub enum TF0W {
-    #[doc = "Timer Flag for Channel 0 is clear"]
-    _0,
-    #[doc = "Timer Flag for Channel 0 is set"]
-    _1,
-}
-impl TF0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TF0W::_0 => false,
-            TF0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TF0W<'a> {
+#[doc = "Write proxy for field `TF0`"]
+pub struct TF0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TF0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TF0W) -> &'a mut W {
+impl<'a> TF0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TF0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Timer Flag for Channel 0 is clear"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TF0W::_0)
+        self.variant(TF0_A::_0)
     }
     #[doc = "Timer Flag for Channel 0 is set"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TF0W::_1)
+        self.variant(TF0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TF1`"]
-pub enum TF1W {
+#[doc = "Copy Of Timer Flag For Channel 1\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TF1_A {
+    #[doc = "0: Timer Flag for Channel 1 is clear"]
+    _0,
+    #[doc = "1: Timer Flag for Channel 1 is set"]
+    _1,
+}
+impl From<TF1_A> for bool {
+    #[inline(always)]
+    fn from(variant: TF1_A) -> Self {
+        match variant {
+            TF1_A::_0 => false,
+            TF1_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TF1`"]
+pub type TF1_R = crate::R<bool, TF1_A>;
+impl TF1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TF1_A {
+        match self.bits {
+            false => TF1_A::_0,
+            true => TF1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TF1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TF1_A::_1
+    }
+}
+#[doc = "Write proxy for field `TF1`"]
+pub struct TF1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TF1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TF1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Timer Flag for Channel 1 is clear"]
-    _0,
-    #[doc = "Timer Flag for Channel 1 is set"]
-    _1,
-}
-impl TF1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TF1W::_0 => false,
-            TF1W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TF1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TF1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TF1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Timer Flag for Channel 1 is clear"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TF1W::_0)
+        self.variant(TF1_A::_0)
     }
     #[doc = "Timer Flag for Channel 1 is set"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TF1W::_1)
+        self.variant(TF1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TF2`"]
-pub enum TF2W {
-    #[doc = "Timer Flag for Channel 2 is clear"]
+#[doc = "Copy Of Timer Flag For Channel 2\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TF2_A {
+    #[doc = "0: Timer Flag for Channel 2 is clear"]
     _0,
-    #[doc = "Timer Flag for Channel 2 is set"]
+    #[doc = "1: Timer Flag for Channel 2 is set"]
     _1,
 }
-impl TF2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TF2W::_0 => false,
-            TF2W::_1 => true,
+impl From<TF2_A> for bool {
+    #[inline(always)]
+    fn from(variant: TF2_A) -> Self {
+        match variant {
+            TF2_A::_0 => false,
+            TF2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TF2W<'a> {
+#[doc = "Reader of field `TF2`"]
+pub type TF2_R = crate::R<bool, TF2_A>;
+impl TF2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TF2_A {
+        match self.bits {
+            false => TF2_A::_0,
+            true => TF2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TF2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TF2_A::_1
+    }
+}
+#[doc = "Write proxy for field `TF2`"]
+pub struct TF2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TF2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TF2W) -> &'a mut W {
+impl<'a> TF2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TF2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Timer Flag for Channel 2 is clear"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TF2W::_0)
+        self.variant(TF2_A::_0)
     }
     #[doc = "Timer Flag for Channel 2 is set"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TF2W::_1)
+        self.variant(TF2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TF3`"]
-pub enum TF3W {
-    #[doc = "Timer Flag for Channel 3 is clear"]
+#[doc = "Copy Of Timer Flag For Channel 3\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TF3_A {
+    #[doc = "0: Timer Flag for Channel 3 is clear"]
     _0,
-    #[doc = "Timer Flag for Channel 3 is set"]
+    #[doc = "1: Timer Flag for Channel 3 is set"]
     _1,
 }
-impl TF3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TF3W::_0 => false,
-            TF3W::_1 => true,
+impl From<TF3_A> for bool {
+    #[inline(always)]
+    fn from(variant: TF3_A) -> Self {
+        match variant {
+            TF3_A::_0 => false,
+            TF3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TF3W<'a> {
+#[doc = "Reader of field `TF3`"]
+pub type TF3_R = crate::R<bool, TF3_A>;
+impl TF3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TF3_A {
+        match self.bits {
+            false => TF3_A::_0,
+            true => TF3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TF3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TF3_A::_1
+    }
+}
+#[doc = "Write proxy for field `TF3`"]
+pub struct TF3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TF3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TF3W) -> &'a mut W {
+impl<'a> TF3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TF3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Timer Flag for Channel 3 is clear"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TF3W::_0)
+        self.variant(TF3_A::_0)
     }
     #[doc = "Timer Flag for Channel 3 is set"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TF3W::_1)
+        self.variant(TF3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Copy Of Timer Flag For Channel 0"]
-    #[inline]
-    pub fn tf0(&self) -> TF0R {
-        TF0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tf0(&self) -> TF0_R {
+        TF0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Copy Of Timer Flag For Channel 1"]
-    #[inline]
-    pub fn tf1(&self) -> TF1R {
-        TF1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tf1(&self) -> TF1_R {
+        TF1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Copy Of Timer Flag For Channel 2"]
-    #[inline]
-    pub fn tf2(&self) -> TF2R {
-        TF2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tf2(&self) -> TF2_R {
+        TF2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Copy Of Timer Flag For Channel 3"]
-    #[inline]
-    pub fn tf3(&self) -> TF3R {
-        TF3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tf3(&self) -> TF3_R {
+        TF3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Copy Of Timer Flag For Channel 0"]
-    #[inline]
-    pub fn tf0(&mut self) -> _TF0W {
-        _TF0W { w: self }
+    #[inline(always)]
+    pub fn tf0(&mut self) -> TF0_W {
+        TF0_W { w: self }
     }
     #[doc = "Bit 1 - Copy Of Timer Flag For Channel 1"]
-    #[inline]
-    pub fn tf1(&mut self) -> _TF1W {
-        _TF1W { w: self }
+    #[inline(always)]
+    pub fn tf1(&mut self) -> TF1_W {
+        TF1_W { w: self }
     }
     #[doc = "Bit 2 - Copy Of Timer Flag For Channel 2"]
-    #[inline]
-    pub fn tf2(&mut self) -> _TF2W {
-        _TF2W { w: self }
+    #[inline(always)]
+    pub fn tf2(&mut self) -> TF2_W {
+        TF2_W { w: self }
     }
     #[doc = "Bit 3 - Copy Of Timer Flag For Channel 3"]
-    #[inline]
-    pub fn tf3(&mut self) -> _TF3W {
-        _TF3W { w: self }
+    #[inline(always)]
+    pub fn tf3(&mut self) -> TF3_W {
+        TF3_W { w: self }
     }
 }

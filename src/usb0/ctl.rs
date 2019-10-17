@@ -1,596 +1,342 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::CTL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CTL"]
+pub type R = crate::R<u8, super::CTL>;
+#[doc = "Writer for register CTL"]
+pub type W = crate::W<u8, super::CTL>;
+#[doc = "Register CTL `reset()`'s with value 0"]
+impl crate::ResetValue for super::CTL {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `USBENSOFEN`"]
+#[doc = "USB Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USBENSOFENR {
-    #[doc = "Disables the USB Module."]
+pub enum USBENSOFEN_A {
+    #[doc = "0: Disables the USB Module."]
     _0,
-    #[doc = "Enables the USB Module."]
+    #[doc = "1: Enables the USB Module."]
     _1,
 }
-impl USBENSOFENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USBENSOFENR::_0 => false,
-            USBENSOFENR::_1 => true,
+impl From<USBENSOFEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: USBENSOFEN_A) -> Self {
+        match variant {
+            USBENSOFEN_A::_0 => false,
+            USBENSOFEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USBENSOFENR {
-        match value {
-            false => USBENSOFENR::_0,
-            true => USBENSOFENR::_1,
+}
+#[doc = "Reader of field `USBENSOFEN`"]
+pub type USBENSOFEN_R = crate::R<bool, USBENSOFEN_A>;
+impl USBENSOFEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USBENSOFEN_A {
+        match self.bits {
+            false => USBENSOFEN_A::_0,
+            true => USBENSOFEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == USBENSOFENR::_0
+        *self == USBENSOFEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == USBENSOFENR::_1
+        *self == USBENSOFEN_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct ODDRSTR {
-    bits: bool,
-}
-impl ODDRSTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RESUMER {
-    bits: bool,
-}
-impl RESUMER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct HOSTMODEENR {
-    bits: bool,
-}
-impl HOSTMODEENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RESETR {
-    bits: bool,
-}
-impl RESETR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXSUSPENDTOKENBUSYR {
-    bits: bool,
-}
-impl TXSUSPENDTOKENBUSYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SE0R {
-    bits: bool,
-}
-impl SE0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct JSTATER {
-    bits: bool,
-}
-impl JSTATER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Values that can be written to the field `USBENSOFEN`"]
-pub enum USBENSOFENW {
-    #[doc = "Disables the USB Module."]
-    _0,
-    #[doc = "Enables the USB Module."]
-    _1,
-}
-impl USBENSOFENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USBENSOFENW::_0 => false,
-            USBENSOFENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _USBENSOFENW<'a> {
+#[doc = "Write proxy for field `USBENSOFEN`"]
+pub struct USBENSOFEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USBENSOFENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USBENSOFENW) -> &'a mut W {
+impl<'a> USBENSOFEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USBENSOFEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disables the USB Module."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(USBENSOFENW::_0)
+        self.variant(USBENSOFEN_A::_0)
     }
     #[doc = "Enables the USB Module."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(USBENSOFENW::_1)
+        self.variant(USBENSOFEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ODDRSTW<'a> {
+#[doc = "Reader of field `ODDRST`"]
+pub type ODDRST_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ODDRST`"]
+pub struct ODDRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ODDRSTW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> ODDRST_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RESUMEW<'a> {
+#[doc = "Reader of field `RESUME`"]
+pub type RESUME_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RESUME`"]
+pub struct RESUME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESUMEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RESUME_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _HOSTMODEENW<'a> {
+#[doc = "Reader of field `HOSTMODEEN`"]
+pub type HOSTMODEEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `HOSTMODEEN`"]
+pub struct HOSTMODEEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HOSTMODEENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> HOSTMODEEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RESETW<'a> {
+#[doc = "Reader of field `RESET`"]
+pub type RESET_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RESET`"]
+pub struct RESET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESETW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RESET_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _TXSUSPENDTOKENBUSYW<'a> {
+#[doc = "Reader of field `TXSUSPENDTOKENBUSY`"]
+pub type TXSUSPENDTOKENBUSY_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TXSUSPENDTOKENBUSY`"]
+pub struct TXSUSPENDTOKENBUSY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXSUSPENDTOKENBUSYW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> TXSUSPENDTOKENBUSY_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SE0W<'a> {
+#[doc = "Reader of field `SE0`"]
+pub type SE0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SE0`"]
+pub struct SE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SE0W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SE0_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _JSTATEW<'a> {
+#[doc = "Reader of field `JSTATE`"]
+pub type JSTATE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `JSTATE`"]
+pub struct JSTATE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _JSTATEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> JSTATE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - USB Enable"]
-    #[inline]
-    pub fn usbensofen(&self) -> USBENSOFENR {
-        USBENSOFENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn usbensofen(&self) -> USBENSOFEN_R {
+        USBENSOFEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Setting this bit to 1 resets all the BDT ODD ping/pong fields to 0, which then specifies the EVEN BDT bank"]
-    #[inline]
-    pub fn oddrst(&self) -> ODDRSTR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        ODDRSTR { bits }
+    #[inline(always)]
+    pub fn oddrst(&self) -> ODDRST_R {
+        ODDRST_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - When set to 1 this bit enables the USB Module to execute resume signaling"]
-    #[inline]
-    pub fn resume(&self) -> RESUMER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        RESUMER { bits }
+    #[inline(always)]
+    pub fn resume(&self) -> RESUME_R {
+        RESUME_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - When set to 1, this bit enables the USB Module to operate in Host mode"]
-    #[inline]
-    pub fn hostmodeen(&self) -> HOSTMODEENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        HOSTMODEENR { bits }
+    #[inline(always)]
+    pub fn hostmodeen(&self) -> HOSTMODEEN_R {
+        HOSTMODEEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Setting this bit enables the USB Module to generate USB reset signaling"]
-    #[inline]
-    pub fn reset(&self) -> RESETR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        RESETR { bits }
+    #[inline(always)]
+    pub fn reset(&self) -> RESET_R {
+        RESET_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - In Host mode, TOKEN_BUSY is set when the USB module is busy executing a USB token"]
-    #[inline]
-    pub fn txsuspendtokenbusy(&self) -> TXSUSPENDTOKENBUSYR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        TXSUSPENDTOKENBUSYR { bits }
+    #[inline(always)]
+    pub fn txsuspendtokenbusy(&self) -> TXSUSPENDTOKENBUSY_R {
+        TXSUSPENDTOKENBUSY_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Live USB Single Ended Zero signal"]
-    #[inline]
-    pub fn se0(&self) -> SE0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        SE0R { bits }
+    #[inline(always)]
+    pub fn se0(&self) -> SE0_R {
+        SE0_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Live USB differential receiver JSTATE signal"]
-    #[inline]
-    pub fn jstate(&self) -> JSTATER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        JSTATER { bits }
+    #[inline(always)]
+    pub fn jstate(&self) -> JSTATE_R {
+        JSTATE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - USB Enable"]
-    #[inline]
-    pub fn usbensofen(&mut self) -> _USBENSOFENW {
-        _USBENSOFENW { w: self }
+    #[inline(always)]
+    pub fn usbensofen(&mut self) -> USBENSOFEN_W {
+        USBENSOFEN_W { w: self }
     }
     #[doc = "Bit 1 - Setting this bit to 1 resets all the BDT ODD ping/pong fields to 0, which then specifies the EVEN BDT bank"]
-    #[inline]
-    pub fn oddrst(&mut self) -> _ODDRSTW {
-        _ODDRSTW { w: self }
+    #[inline(always)]
+    pub fn oddrst(&mut self) -> ODDRST_W {
+        ODDRST_W { w: self }
     }
     #[doc = "Bit 2 - When set to 1 this bit enables the USB Module to execute resume signaling"]
-    #[inline]
-    pub fn resume(&mut self) -> _RESUMEW {
-        _RESUMEW { w: self }
+    #[inline(always)]
+    pub fn resume(&mut self) -> RESUME_W {
+        RESUME_W { w: self }
     }
     #[doc = "Bit 3 - When set to 1, this bit enables the USB Module to operate in Host mode"]
-    #[inline]
-    pub fn hostmodeen(&mut self) -> _HOSTMODEENW {
-        _HOSTMODEENW { w: self }
+    #[inline(always)]
+    pub fn hostmodeen(&mut self) -> HOSTMODEEN_W {
+        HOSTMODEEN_W { w: self }
     }
     #[doc = "Bit 4 - Setting this bit enables the USB Module to generate USB reset signaling"]
-    #[inline]
-    pub fn reset(&mut self) -> _RESETW {
-        _RESETW { w: self }
+    #[inline(always)]
+    pub fn reset(&mut self) -> RESET_W {
+        RESET_W { w: self }
     }
     #[doc = "Bit 5 - In Host mode, TOKEN_BUSY is set when the USB module is busy executing a USB token"]
-    #[inline]
-    pub fn txsuspendtokenbusy(&mut self) -> _TXSUSPENDTOKENBUSYW {
-        _TXSUSPENDTOKENBUSYW { w: self }
+    #[inline(always)]
+    pub fn txsuspendtokenbusy(&mut self) -> TXSUSPENDTOKENBUSY_W {
+        TXSUSPENDTOKENBUSY_W { w: self }
     }
     #[doc = "Bit 6 - Live USB Single Ended Zero signal"]
-    #[inline]
-    pub fn se0(&mut self) -> _SE0W {
-        _SE0W { w: self }
+    #[inline(always)]
+    pub fn se0(&mut self) -> SE0_W {
+        SE0_W { w: self }
     }
     #[doc = "Bit 7 - Live USB differential receiver JSTATE signal"]
-    #[inline]
-    pub fn jstate(&mut self) -> _JSTATEW {
-        _JSTATEW { w: self }
+    #[inline(always)]
+    pub fn jstate(&mut self) -> JSTATE_W {
+        JSTATE_W { w: self }
     }
 }

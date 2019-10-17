@@ -1,718 +1,490 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::OTGSTAT {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OTGSTAT"]
+pub type R = crate::R<u8, super::OTGSTAT>;
+#[doc = "Writer for register OTGSTAT"]
+pub type W = crate::W<u8, super::OTGSTAT>;
+#[doc = "Register OTGSTAT `reset()`'s with value 0"]
+impl crate::ResetValue for super::OTGSTAT {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `AVBUSVLD`"]
+#[doc = "A VBUS Valid\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AVBUSVLDR {
-    #[doc = "The VBUS voltage is below the A VBUS Valid threshold."]
+pub enum AVBUSVLD_A {
+    #[doc = "0: The VBUS voltage is below the A VBUS Valid threshold."]
     _0,
-    #[doc = "The VBUS voltage is above the A VBUS Valid threshold."]
+    #[doc = "1: The VBUS voltage is above the A VBUS Valid threshold."]
     _1,
 }
-impl AVBUSVLDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AVBUSVLDR::_0 => false,
-            AVBUSVLDR::_1 => true,
+impl From<AVBUSVLD_A> for bool {
+    #[inline(always)]
+    fn from(variant: AVBUSVLD_A) -> Self {
+        match variant {
+            AVBUSVLD_A::_0 => false,
+            AVBUSVLD_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AVBUSVLDR {
-        match value {
-            false => AVBUSVLDR::_0,
-            true => AVBUSVLDR::_1,
+}
+#[doc = "Reader of field `AVBUSVLD`"]
+pub type AVBUSVLD_R = crate::R<bool, AVBUSVLD_A>;
+impl AVBUSVLD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AVBUSVLD_A {
+        match self.bits {
+            false => AVBUSVLD_A::_0,
+            true => AVBUSVLD_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AVBUSVLDR::_0
+        *self == AVBUSVLD_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AVBUSVLDR::_1
+        *self == AVBUSVLD_A::_1
     }
 }
-#[doc = "Possible values of the field `BSESSEND`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BSESSENDR {
-    #[doc = "The VBUS voltage is above the B session end threshold."]
-    _0,
-    #[doc = "The VBUS voltage is below the B session end threshold."]
-    _1,
-}
-impl BSESSENDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BSESSENDR::_0 => false,
-            BSESSENDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BSESSENDR {
-        match value {
-            false => BSESSENDR::_0,
-            true => BSESSENDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BSESSENDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BSESSENDR::_1
-    }
-}
-#[doc = "Possible values of the field `SESS_VLD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SESS_VLDR {
-    #[doc = "The VBUS voltage is below the B session valid threshold"]
-    _0,
-    #[doc = "The VBUS voltage is above the B session valid threshold."]
-    _1,
-}
-impl SESS_VLDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SESS_VLDR::_0 => false,
-            SESS_VLDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SESS_VLDR {
-        match value {
-            false => SESS_VLDR::_0,
-            true => SESS_VLDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SESS_VLDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SESS_VLDR::_1
-    }
-}
-#[doc = "Possible values of the field `LINESTATESTABLE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINESTATESTABLER {
-    #[doc = "The LINE_STAT_CHG bit is not yet stable."]
-    _0,
-    #[doc = "The LINE_STAT_CHG bit has been debounced and is stable."]
-    _1,
-}
-impl LINESTATESTABLER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LINESTATESTABLER::_0 => false,
-            LINESTATESTABLER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LINESTATESTABLER {
-        match value {
-            false => LINESTATESTABLER::_0,
-            true => LINESTATESTABLER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LINESTATESTABLER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LINESTATESTABLER::_1
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ONEMSECENR {
-    bits: bool,
-}
-impl ONEMSECENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Possible values of the field `ID`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IDR {
-    #[doc = "Indicates a Type A cable is plugged into the USB connector."]
-    _0,
-    #[doc = "Indicates no cable is attached or a Type B cable is plugged into the USB connector."]
-    _1,
-}
-impl IDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IDR::_0 => false,
-            IDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IDR {
-        match value {
-            false => IDR::_0,
-            true => IDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IDR::_1
-    }
-}
-#[doc = "Values that can be written to the field `AVBUSVLD`"]
-pub enum AVBUSVLDW {
-    #[doc = "The VBUS voltage is below the A VBUS Valid threshold."]
-    _0,
-    #[doc = "The VBUS voltage is above the A VBUS Valid threshold."]
-    _1,
-}
-impl AVBUSVLDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            AVBUSVLDW::_0 => false,
-            AVBUSVLDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _AVBUSVLDW<'a> {
+#[doc = "Write proxy for field `AVBUSVLD`"]
+pub struct AVBUSVLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AVBUSVLDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: AVBUSVLDW) -> &'a mut W {
+impl<'a> AVBUSVLD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: AVBUSVLD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The VBUS voltage is below the A VBUS Valid threshold."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(AVBUSVLDW::_0)
+        self.variant(AVBUSVLD_A::_0)
     }
     #[doc = "The VBUS voltage is above the A VBUS Valid threshold."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(AVBUSVLDW::_1)
+        self.variant(AVBUSVLD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BSESSEND`"]
-pub enum BSESSENDW {
+#[doc = "B Session End\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BSESSEND_A {
+    #[doc = "0: The VBUS voltage is above the B session end threshold."]
+    _0,
+    #[doc = "1: The VBUS voltage is below the B session end threshold."]
+    _1,
+}
+impl From<BSESSEND_A> for bool {
+    #[inline(always)]
+    fn from(variant: BSESSEND_A) -> Self {
+        match variant {
+            BSESSEND_A::_0 => false,
+            BSESSEND_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `BSESSEND`"]
+pub type BSESSEND_R = crate::R<bool, BSESSEND_A>;
+impl BSESSEND_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BSESSEND_A {
+        match self.bits {
+            false => BSESSEND_A::_0,
+            true => BSESSEND_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BSESSEND_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BSESSEND_A::_1
+    }
+}
+#[doc = "Write proxy for field `BSESSEND`"]
+pub struct BSESSEND_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> BSESSEND_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BSESSEND_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The VBUS voltage is above the B session end threshold."]
-    _0,
-    #[doc = "The VBUS voltage is below the B session end threshold."]
-    _1,
-}
-impl BSESSENDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BSESSENDW::_0 => false,
-            BSESSENDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BSESSENDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BSESSENDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BSESSENDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The VBUS voltage is above the B session end threshold."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BSESSENDW::_0)
+        self.variant(BSESSEND_A::_0)
     }
     #[doc = "The VBUS voltage is below the B session end threshold."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BSESSENDW::_1)
+        self.variant(BSESSEND_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SESS_VLD`"]
-pub enum SESS_VLDW {
-    #[doc = "The VBUS voltage is below the B session valid threshold"]
+#[doc = "Session Valid\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SESS_VLD_A {
+    #[doc = "0: The VBUS voltage is below the B session valid threshold"]
     _0,
-    #[doc = "The VBUS voltage is above the B session valid threshold."]
+    #[doc = "1: The VBUS voltage is above the B session valid threshold."]
     _1,
 }
-impl SESS_VLDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SESS_VLDW::_0 => false,
-            SESS_VLDW::_1 => true,
+impl From<SESS_VLD_A> for bool {
+    #[inline(always)]
+    fn from(variant: SESS_VLD_A) -> Self {
+        match variant {
+            SESS_VLD_A::_0 => false,
+            SESS_VLD_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SESS_VLDW<'a> {
+#[doc = "Reader of field `SESS_VLD`"]
+pub type SESS_VLD_R = crate::R<bool, SESS_VLD_A>;
+impl SESS_VLD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SESS_VLD_A {
+        match self.bits {
+            false => SESS_VLD_A::_0,
+            true => SESS_VLD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SESS_VLD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SESS_VLD_A::_1
+    }
+}
+#[doc = "Write proxy for field `SESS_VLD`"]
+pub struct SESS_VLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SESS_VLDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SESS_VLDW) -> &'a mut W {
+impl<'a> SESS_VLD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SESS_VLD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The VBUS voltage is below the B session valid threshold"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SESS_VLDW::_0)
+        self.variant(SESS_VLD_A::_0)
     }
     #[doc = "The VBUS voltage is above the B session valid threshold."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SESS_VLDW::_1)
+        self.variant(SESS_VLD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LINESTATESTABLE`"]
-pub enum LINESTATESTABLEW {
-    #[doc = "The LINE_STAT_CHG bit is not yet stable."]
+#[doc = "Indicates that the internal signals that control the LINE_STATE_CHG field of OTGISTAT are stable for at least 1 millisecond\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LINESTATESTABLE_A {
+    #[doc = "0: The LINE_STAT_CHG bit is not yet stable."]
     _0,
-    #[doc = "The LINE_STAT_CHG bit has been debounced and is stable."]
+    #[doc = "1: The LINE_STAT_CHG bit has been debounced and is stable."]
     _1,
 }
-impl LINESTATESTABLEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINESTATESTABLEW::_0 => false,
-            LINESTATESTABLEW::_1 => true,
+impl From<LINESTATESTABLE_A> for bool {
+    #[inline(always)]
+    fn from(variant: LINESTATESTABLE_A) -> Self {
+        match variant {
+            LINESTATESTABLE_A::_0 => false,
+            LINESTATESTABLE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LINESTATESTABLEW<'a> {
+#[doc = "Reader of field `LINESTATESTABLE`"]
+pub type LINESTATESTABLE_R = crate::R<bool, LINESTATESTABLE_A>;
+impl LINESTATESTABLE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINESTATESTABLE_A {
+        match self.bits {
+            false => LINESTATESTABLE_A::_0,
+            true => LINESTATESTABLE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LINESTATESTABLE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LINESTATESTABLE_A::_1
+    }
+}
+#[doc = "Write proxy for field `LINESTATESTABLE`"]
+pub struct LINESTATESTABLE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINESTATESTABLEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LINESTATESTABLEW) -> &'a mut W {
+impl<'a> LINESTATESTABLE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LINESTATESTABLE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The LINE_STAT_CHG bit is not yet stable."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LINESTATESTABLEW::_0)
+        self.variant(LINESTATESTABLE_A::_0)
     }
     #[doc = "The LINE_STAT_CHG bit has been debounced and is stable."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LINESTATESTABLEW::_1)
+        self.variant(LINESTATESTABLE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ONEMSECENW<'a> {
+#[doc = "Reader of field `ONEMSECEN`"]
+pub type ONEMSECEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ONEMSECEN`"]
+pub struct ONEMSECEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONEMSECENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> ONEMSECEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ID`"]
-pub enum IDW {
-    #[doc = "Indicates a Type A cable is plugged into the USB connector."]
+#[doc = "Indicates the current state of the ID pin on the USB connector\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ID_A {
+    #[doc = "0: Indicates a Type A cable is plugged into the USB connector."]
     _0,
-    #[doc = "Indicates no cable is attached or a Type B cable is plugged into the USB connector."]
+    #[doc = "1: Indicates no cable is attached or a Type B cable is plugged into the USB connector."]
     _1,
 }
-impl IDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IDW::_0 => false,
-            IDW::_1 => true,
+impl From<ID_A> for bool {
+    #[inline(always)]
+    fn from(variant: ID_A) -> Self {
+        match variant {
+            ID_A::_0 => false,
+            ID_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _IDW<'a> {
+#[doc = "Reader of field `ID`"]
+pub type ID_R = crate::R<bool, ID_A>;
+impl ID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ID_A {
+        match self.bits {
+            false => ID_A::_0,
+            true => ID_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ID_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ID_A::_1
+    }
+}
+#[doc = "Write proxy for field `ID`"]
+pub struct ID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IDW) -> &'a mut W {
+impl<'a> ID_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ID_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Indicates a Type A cable is plugged into the USB connector."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IDW::_0)
+        self.variant(ID_A::_0)
     }
     #[doc = "Indicates no cable is attached or a Type B cable is plugged into the USB connector."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IDW::_1)
+        self.variant(ID_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - A VBUS Valid"]
-    #[inline]
-    pub fn avbusvld(&self) -> AVBUSVLDR {
-        AVBUSVLDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn avbusvld(&self) -> AVBUSVLD_R {
+        AVBUSVLD_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 2 - B Session End"]
-    #[inline]
-    pub fn bsessend(&self) -> BSESSENDR {
-        BSESSENDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn bsessend(&self) -> BSESSEND_R {
+        BSESSEND_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Session Valid"]
-    #[inline]
-    pub fn sess_vld(&self) -> SESS_VLDR {
-        SESS_VLDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn sess_vld(&self) -> SESS_VLD_R {
+        SESS_VLD_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Indicates that the internal signals that control the LINE_STATE_CHG field of OTGISTAT are stable for at least 1 millisecond"]
-    #[inline]
-    pub fn linestatestable(&self) -> LINESTATESTABLER {
-        LINESTATESTABLER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn linestatestable(&self) -> LINESTATESTABLE_R {
+        LINESTATESTABLE_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - This bit is reserved for the 1ms count, but it is not useful to software."]
-    #[inline]
-    pub fn onemsecen(&self) -> ONEMSECENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        ONEMSECENR { bits }
+    #[inline(always)]
+    pub fn onemsecen(&self) -> ONEMSECEN_R {
+        ONEMSECEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Indicates the current state of the ID pin on the USB connector"]
-    #[inline]
-    pub fn id(&self) -> IDR {
-        IDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn id(&self) -> ID_R {
+        ID_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - A VBUS Valid"]
-    #[inline]
-    pub fn avbusvld(&mut self) -> _AVBUSVLDW {
-        _AVBUSVLDW { w: self }
+    #[inline(always)]
+    pub fn avbusvld(&mut self) -> AVBUSVLD_W {
+        AVBUSVLD_W { w: self }
     }
     #[doc = "Bit 2 - B Session End"]
-    #[inline]
-    pub fn bsessend(&mut self) -> _BSESSENDW {
-        _BSESSENDW { w: self }
+    #[inline(always)]
+    pub fn bsessend(&mut self) -> BSESSEND_W {
+        BSESSEND_W { w: self }
     }
     #[doc = "Bit 3 - Session Valid"]
-    #[inline]
-    pub fn sess_vld(&mut self) -> _SESS_VLDW {
-        _SESS_VLDW { w: self }
+    #[inline(always)]
+    pub fn sess_vld(&mut self) -> SESS_VLD_W {
+        SESS_VLD_W { w: self }
     }
     #[doc = "Bit 5 - Indicates that the internal signals that control the LINE_STATE_CHG field of OTGISTAT are stable for at least 1 millisecond"]
-    #[inline]
-    pub fn linestatestable(&mut self) -> _LINESTATESTABLEW {
-        _LINESTATESTABLEW { w: self }
+    #[inline(always)]
+    pub fn linestatestable(&mut self) -> LINESTATESTABLE_W {
+        LINESTATESTABLE_W { w: self }
     }
     #[doc = "Bit 6 - This bit is reserved for the 1ms count, but it is not useful to software."]
-    #[inline]
-    pub fn onemsecen(&mut self) -> _ONEMSECENW {
-        _ONEMSECENW { w: self }
+    #[inline(always)]
+    pub fn onemsecen(&mut self) -> ONEMSECEN_W {
+        ONEMSECEN_W { w: self }
     }
     #[doc = "Bit 7 - Indicates the current state of the ID pin on the USB connector"]
-    #[inline]
-    pub fn id(&mut self) -> _IDW {
-        _IDW { w: self }
+    #[inline(always)]
+    pub fn id(&mut self) -> ID_W {
+        ID_W { w: self }
     }
 }

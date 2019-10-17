@@ -1,386 +1,248 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u16,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u16,
-}
-impl super::TCD_ATTR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TCD%s_ATTR"]
+pub type R = crate::R<u16, super::TCD_ATTR>;
+#[doc = "Writer for register TCD%s_ATTR"]
+pub type W = crate::W<u16, super::TCD_ATTR>;
+#[doc = "Register TCD%s_ATTR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TCD_ATTR {
+    type Type = u16;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct DSIZER {
-    bits: u8,
+#[doc = "Reader of field `DSIZE`"]
+pub type DSIZE_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DSIZE`"]
+pub struct DSIZE_W<'a> {
+    w: &'a mut W,
 }
-impl DSIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> DSIZE_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u16) & 0x07);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct DMODR {
-    bits: u8,
+#[doc = "Reader of field `DMOD`"]
+pub type DMOD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DMOD`"]
+pub struct DMOD_W<'a> {
+    w: &'a mut W,
 }
-impl DMODR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> DMOD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x1f << 3)) | (((value as u16) & 0x1f) << 3);
+        self.w
     }
 }
-#[doc = "Possible values of the field `SSIZE`"]
+#[doc = "Source data transfer size\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SSIZER {
-    #[doc = "8-bit"]
+pub enum SSIZE_A {
+    #[doc = "0: 8-bit"]
     _000,
-    #[doc = "16-bit"]
+    #[doc = "1: 16-bit"]
     _001,
-    #[doc = "32-bit"]
+    #[doc = "2: 32-bit"]
     _010,
-    #[doc = "16-byte"]
+    #[doc = "4: 16-byte"]
     _100,
-    #[doc = "32-byte"]
+    #[doc = "5: 32-byte"]
     _101,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl SSIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SSIZER::_000 => 0,
-            SSIZER::_001 => 1,
-            SSIZER::_010 => 2,
-            SSIZER::_100 => 4,
-            SSIZER::_101 => 5,
-            SSIZER::_Reserved(bits) => bits,
+impl From<SSIZE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SSIZE_A) -> Self {
+        match variant {
+            SSIZE_A::_000 => 0,
+            SSIZE_A::_001 => 1,
+            SSIZE_A::_010 => 2,
+            SSIZE_A::_100 => 4,
+            SSIZE_A::_101 => 5,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SSIZER {
-        match value {
-            0 => SSIZER::_000,
-            1 => SSIZER::_001,
-            2 => SSIZER::_010,
-            4 => SSIZER::_100,
-            5 => SSIZER::_101,
-            i => SSIZER::_Reserved(i),
+}
+#[doc = "Reader of field `SSIZE`"]
+pub type SSIZE_R = crate::R<u8, SSIZE_A>;
+impl SSIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SSIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SSIZE_A::_000),
+            1 => Val(SSIZE_A::_001),
+            2 => Val(SSIZE_A::_010),
+            4 => Val(SSIZE_A::_100),
+            5 => Val(SSIZE_A::_101),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == SSIZER::_000
+        *self == SSIZE_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == SSIZER::_001
+        *self == SSIZE_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == SSIZER::_010
+        *self == SSIZE_A::_010
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == SSIZER::_100
+        *self == SSIZE_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == SSIZER::_101
+        *self == SSIZE_A::_101
     }
 }
-#[doc = "Possible values of the field `SMOD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SMODR {
-    #[doc = "Source address modulo feature is disabled"]
-    _0,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `SSIZE`"]
+pub struct SSIZE_W<'a> {
+    w: &'a mut W,
 }
-impl SMODR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SMODR::_0 => 0,
-            SMODR::_Reserved(bits) => bits,
+impl<'a> SSIZE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SSIZE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "8-bit"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(SSIZE_A::_000)
+    }
+    #[doc = "16-bit"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(SSIZE_A::_001)
+    }
+    #[doc = "32-bit"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(SSIZE_A::_010)
+    }
+    #[doc = "16-byte"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(SSIZE_A::_100)
+    }
+    #[doc = "32-byte"]
+    #[inline(always)]
+    pub fn _101(self) -> &'a mut W {
+        self.variant(SSIZE_A::_101)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 8)) | (((value as u16) & 0x07) << 8);
+        self.w
+    }
+}
+#[doc = "Source Address Modulo.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SMOD_A {
+    #[doc = "0: Source address modulo feature is disabled"]
+    _0,
+}
+impl From<SMOD_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SMOD_A) -> Self {
+        match variant {
+            SMOD_A::_0 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SMODR {
-        match value {
-            0 => SMODR::_0,
-            i => SMODR::_Reserved(i),
+}
+#[doc = "Reader of field `SMOD`"]
+pub type SMOD_R = crate::R<u8, SMOD_A>;
+impl SMOD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SMOD_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SMOD_A::_0),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SMODR::_0
+        *self == SMOD_A::_0
     }
 }
-#[doc = r" Proxy"]
-pub struct _DSIZEW<'a> {
+#[doc = "Write proxy for field `SMOD`"]
+pub struct SMOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DSIZEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMODW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMODW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SSIZE`"]
-pub enum SSIZEW {
-    #[doc = "8-bit"]
-    _000,
-    #[doc = "16-bit"]
-    _001,
-    #[doc = "32-bit"]
-    _010,
-    #[doc = "16-byte"]
-    _100,
-    #[doc = "32-byte"]
-    _101,
-}
-impl SSIZEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            SSIZEW::_000 => 0,
-            SSIZEW::_001 => 1,
-            SSIZEW::_010 => 2,
-            SSIZEW::_100 => 4,
-            SSIZEW::_101 => 5,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SSIZEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SSIZEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SSIZEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "8-bit"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(SSIZEW::_000)
-    }
-    #[doc = "16-bit"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(SSIZEW::_001)
-    }
-    #[doc = "32-bit"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(SSIZEW::_010)
-    }
-    #[doc = "16-byte"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(SSIZEW::_100)
-    }
-    #[doc = "32-byte"]
-    #[inline]
-    pub fn _101(self) -> &'a mut W {
-        self.variant(SSIZEW::_101)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SMOD`"]
-pub enum SMODW {
-    #[doc = "Source address modulo feature is disabled"]
-    _0,
-}
-impl SMODW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            SMODW::_0 => 0,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SMODW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SMODW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SMODW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> SMOD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SMOD_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Source address modulo feature is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SMODW::_0)
+        self.variant(SMOD_A::_0)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 11)) | (((value as u16) & 0x1f) << 11);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Destination Data Transfer Size"]
-    #[inline]
-    pub fn dsize(&self) -> DSIZER {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        };
-        DSIZER { bits }
+    #[inline(always)]
+    pub fn dsize(&self) -> DSIZE_R {
+        DSIZE_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 3:7 - Destination Address Modulo"]
-    #[inline]
-    pub fn dmod(&self) -> DMODR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        };
-        DMODR { bits }
+    #[inline(always)]
+    pub fn dmod(&self) -> DMOD_R {
+        DMOD_R::new(((self.bits >> 3) & 0x1f) as u8)
     }
     #[doc = "Bits 8:10 - Source data transfer size"]
-    #[inline]
-    pub fn ssize(&self) -> SSIZER {
-        SSIZER::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn ssize(&self) -> SSIZE_R {
+        SSIZE_R::new(((self.bits >> 8) & 0x07) as u8)
     }
     #[doc = "Bits 11:15 - Source Address Modulo."]
-    #[inline]
-    pub fn smod(&self) -> SMODR {
-        SMODR::_from({
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn smod(&self) -> SMOD_R {
+        SMOD_R::new(((self.bits >> 11) & 0x1f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u16) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Destination Data Transfer Size"]
-    #[inline]
-    pub fn dsize(&mut self) -> _DSIZEW {
-        _DSIZEW { w: self }
+    #[inline(always)]
+    pub fn dsize(&mut self) -> DSIZE_W {
+        DSIZE_W { w: self }
     }
     #[doc = "Bits 3:7 - Destination Address Modulo"]
-    #[inline]
-    pub fn dmod(&mut self) -> _DMODW {
-        _DMODW { w: self }
+    #[inline(always)]
+    pub fn dmod(&mut self) -> DMOD_W {
+        DMOD_W { w: self }
     }
     #[doc = "Bits 8:10 - Source data transfer size"]
-    #[inline]
-    pub fn ssize(&mut self) -> _SSIZEW {
-        _SSIZEW { w: self }
+    #[inline(always)]
+    pub fn ssize(&mut self) -> SSIZE_W {
+        SSIZE_W { w: self }
     }
     #[doc = "Bits 11:15 - Source Address Modulo."]
-    #[inline]
-    pub fn smod(&mut self) -> _SMODW {
-        _SMODW { w: self }
+    #[inline(always)]
+    pub fn smod(&mut self) -> SMOD_W {
+        SMOD_W { w: self }
     }
 }

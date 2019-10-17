@@ -1,528 +1,464 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::SDID {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `PINID`"]
+#[doc = "Reader of register SDID"]
+pub type R = crate::R<u32, super::SDID>;
+#[doc = "Pincount identification\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PINIDR {
-    #[doc = "32-pin"]
+pub enum PINID_A {
+    #[doc = "2: 32-pin"]
     _0010,
-    #[doc = "48-pin"]
+    #[doc = "4: 48-pin"]
     _0100,
-    #[doc = "64-pin"]
+    #[doc = "5: 64-pin"]
     _0101,
-    #[doc = "80-pin"]
+    #[doc = "6: 80-pin"]
     _0110,
-    #[doc = "81-pin or 121-pin"]
+    #[doc = "7: 81-pin or 121-pin"]
     _0111,
-    #[doc = "100-pin"]
+    #[doc = "8: 100-pin"]
     _1000,
-    #[doc = "121-pin"]
+    #[doc = "9: 121-pin"]
     _1001,
-    #[doc = "144-pin"]
+    #[doc = "10: 144-pin"]
     _1010,
-    #[doc = "Custom pinout (WLCSP)"]
+    #[doc = "11: Custom pinout (WLCSP)"]
     _1011,
-    #[doc = "169-pin"]
+    #[doc = "12: 169-pin"]
     _1100,
-    #[doc = "256-pin"]
+    #[doc = "14: 256-pin"]
     _1110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl PINIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PINIDR::_0010 => 2,
-            PINIDR::_0100 => 4,
-            PINIDR::_0101 => 5,
-            PINIDR::_0110 => 6,
-            PINIDR::_0111 => 7,
-            PINIDR::_1000 => 8,
-            PINIDR::_1001 => 9,
-            PINIDR::_1010 => 10,
-            PINIDR::_1011 => 11,
-            PINIDR::_1100 => 12,
-            PINIDR::_1110 => 14,
-            PINIDR::_Reserved(bits) => bits,
+impl From<PINID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PINID_A) -> Self {
+        match variant {
+            PINID_A::_0010 => 2,
+            PINID_A::_0100 => 4,
+            PINID_A::_0101 => 5,
+            PINID_A::_0110 => 6,
+            PINID_A::_0111 => 7,
+            PINID_A::_1000 => 8,
+            PINID_A::_1001 => 9,
+            PINID_A::_1010 => 10,
+            PINID_A::_1011 => 11,
+            PINID_A::_1100 => 12,
+            PINID_A::_1110 => 14,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PINIDR {
-        match value {
-            2 => PINIDR::_0010,
-            4 => PINIDR::_0100,
-            5 => PINIDR::_0101,
-            6 => PINIDR::_0110,
-            7 => PINIDR::_0111,
-            8 => PINIDR::_1000,
-            9 => PINIDR::_1001,
-            10 => PINIDR::_1010,
-            11 => PINIDR::_1011,
-            12 => PINIDR::_1100,
-            14 => PINIDR::_1110,
-            i => PINIDR::_Reserved(i),
+}
+#[doc = "Reader of field `PINID`"]
+pub type PINID_R = crate::R<u8, PINID_A>;
+impl PINID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PINID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            2 => Val(PINID_A::_0010),
+            4 => Val(PINID_A::_0100),
+            5 => Val(PINID_A::_0101),
+            6 => Val(PINID_A::_0110),
+            7 => Val(PINID_A::_0111),
+            8 => Val(PINID_A::_1000),
+            9 => Val(PINID_A::_1001),
+            10 => Val(PINID_A::_1010),
+            11 => Val(PINID_A::_1011),
+            12 => Val(PINID_A::_1100),
+            14 => Val(PINID_A::_1110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0010(&self) -> bool {
-        *self == PINIDR::_0010
+        *self == PINID_A::_0010
     }
     #[doc = "Checks if the value of the field is `_0100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0100(&self) -> bool {
-        *self == PINIDR::_0100
+        *self == PINID_A::_0100
     }
     #[doc = "Checks if the value of the field is `_0101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0101(&self) -> bool {
-        *self == PINIDR::_0101
+        *self == PINID_A::_0101
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == PINIDR::_0110
+        *self == PINID_A::_0110
     }
     #[doc = "Checks if the value of the field is `_0111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0111(&self) -> bool {
-        *self == PINIDR::_0111
+        *self == PINID_A::_0111
     }
     #[doc = "Checks if the value of the field is `_1000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1000(&self) -> bool {
-        *self == PINIDR::_1000
+        *self == PINID_A::_1000
     }
     #[doc = "Checks if the value of the field is `_1001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1001(&self) -> bool {
-        *self == PINIDR::_1001
+        *self == PINID_A::_1001
     }
     #[doc = "Checks if the value of the field is `_1010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1010(&self) -> bool {
-        *self == PINIDR::_1010
+        *self == PINID_A::_1010
     }
     #[doc = "Checks if the value of the field is `_1011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1011(&self) -> bool {
-        *self == PINIDR::_1011
+        *self == PINID_A::_1011
     }
     #[doc = "Checks if the value of the field is `_1100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1100(&self) -> bool {
-        *self == PINIDR::_1100
+        *self == PINID_A::_1100
     }
     #[doc = "Checks if the value of the field is `_1110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1110(&self) -> bool {
-        *self == PINIDR::_1110
+        *self == PINID_A::_1110
     }
 }
-#[doc = "Possible values of the field `FAMID`"]
+#[doc = "Kinetis family identification\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FAMIDR {
-    #[doc = "K1x Family (without tamper)"]
+pub enum FAMID_A {
+    #[doc = "0: K1x Family (without tamper)"]
     _000,
-    #[doc = "K2x Family (without tamper)"]
+    #[doc = "1: K2x Family (without tamper)"]
     _001,
-    #[doc = "K3x Family or K1x/K6x Family (with tamper)"]
+    #[doc = "2: K3x Family or K1x/K6x Family (with tamper)"]
     _010,
-    #[doc = "K4x Family or K2x Family (with tamper)"]
+    #[doc = "3: K4x Family or K2x Family (with tamper)"]
     _011,
-    #[doc = "K6x Family (without tamper)"]
+    #[doc = "4: K6x Family (without tamper)"]
     _100,
-    #[doc = "K7x Family"]
+    #[doc = "5: K7x Family"]
     _101,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl FAMIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FAMIDR::_000 => 0,
-            FAMIDR::_001 => 1,
-            FAMIDR::_010 => 2,
-            FAMIDR::_011 => 3,
-            FAMIDR::_100 => 4,
-            FAMIDR::_101 => 5,
-            FAMIDR::_Reserved(bits) => bits,
+impl From<FAMID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FAMID_A) -> Self {
+        match variant {
+            FAMID_A::_000 => 0,
+            FAMID_A::_001 => 1,
+            FAMID_A::_010 => 2,
+            FAMID_A::_011 => 3,
+            FAMID_A::_100 => 4,
+            FAMID_A::_101 => 5,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FAMIDR {
-        match value {
-            0 => FAMIDR::_000,
-            1 => FAMIDR::_001,
-            2 => FAMIDR::_010,
-            3 => FAMIDR::_011,
-            4 => FAMIDR::_100,
-            5 => FAMIDR::_101,
-            i => FAMIDR::_Reserved(i),
+}
+#[doc = "Reader of field `FAMID`"]
+pub type FAMID_R = crate::R<u8, FAMID_A>;
+impl FAMID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FAMID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(FAMID_A::_000),
+            1 => Val(FAMID_A::_001),
+            2 => Val(FAMID_A::_010),
+            3 => Val(FAMID_A::_011),
+            4 => Val(FAMID_A::_100),
+            5 => Val(FAMID_A::_101),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == FAMIDR::_000
+        *self == FAMID_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == FAMIDR::_001
+        *self == FAMID_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == FAMIDR::_010
+        *self == FAMID_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == FAMIDR::_011
+        *self == FAMID_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == FAMIDR::_100
+        *self == FAMID_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == FAMIDR::_101
+        *self == FAMID_A::_101
     }
 }
-#[doc = r" Value of the field"]
-pub struct DIEIDR {
-    bits: u8,
-}
-impl DIEIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct REVIDR {
-    bits: u8,
-}
-impl REVIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `SERIESID`"]
+#[doc = "Reader of field `DIEID`"]
+pub type DIEID_R = crate::R<u8, u8>;
+#[doc = "Reader of field `REVID`"]
+pub type REVID_R = crate::R<u8, u8>;
+#[doc = "Kinetis Series ID\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SERIESIDR {
-    #[doc = "Kinetis K series"]
+pub enum SERIESID_A {
+    #[doc = "0: Kinetis K series"]
     _0000,
-    #[doc = "Kinetis L series"]
+    #[doc = "1: Kinetis L series"]
     _0001,
-    #[doc = "Kinetis W series"]
+    #[doc = "5: Kinetis W series"]
     _0101,
-    #[doc = "Kinetis V series"]
+    #[doc = "6: Kinetis V series"]
     _0110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl SERIESIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SERIESIDR::_0000 => 0,
-            SERIESIDR::_0001 => 1,
-            SERIESIDR::_0101 => 5,
-            SERIESIDR::_0110 => 6,
-            SERIESIDR::_Reserved(bits) => bits,
+impl From<SERIESID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SERIESID_A) -> Self {
+        match variant {
+            SERIESID_A::_0000 => 0,
+            SERIESID_A::_0001 => 1,
+            SERIESID_A::_0101 => 5,
+            SERIESID_A::_0110 => 6,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SERIESIDR {
-        match value {
-            0 => SERIESIDR::_0000,
-            1 => SERIESIDR::_0001,
-            5 => SERIESIDR::_0101,
-            6 => SERIESIDR::_0110,
-            i => SERIESIDR::_Reserved(i),
+}
+#[doc = "Reader of field `SERIESID`"]
+pub type SERIESID_R = crate::R<u8, SERIESID_A>;
+impl SERIESID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SERIESID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SERIESID_A::_0000),
+            1 => Val(SERIESID_A::_0001),
+            5 => Val(SERIESID_A::_0101),
+            6 => Val(SERIESID_A::_0110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0000(&self) -> bool {
-        *self == SERIESIDR::_0000
+        *self == SERIESID_A::_0000
     }
     #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0001(&self) -> bool {
-        *self == SERIESIDR::_0001
+        *self == SERIESID_A::_0001
     }
     #[doc = "Checks if the value of the field is `_0101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0101(&self) -> bool {
-        *self == SERIESIDR::_0101
+        *self == SERIESID_A::_0101
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == SERIESIDR::_0110
+        *self == SERIESID_A::_0110
     }
 }
-#[doc = "Possible values of the field `SUBFAMID`"]
+#[doc = "Kinetis Sub-Family ID\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SUBFAMIDR {
-    #[doc = "Kx0 Subfamily"]
+pub enum SUBFAMID_A {
+    #[doc = "0: Kx0 Subfamily"]
     _0000,
-    #[doc = "Kx1 Subfamily (tamper detect)"]
+    #[doc = "1: Kx1 Subfamily (tamper detect)"]
     _0001,
-    #[doc = "Kx2 Subfamily"]
+    #[doc = "2: Kx2 Subfamily"]
     _0010,
-    #[doc = "Kx3 Subfamily (tamper detect)"]
+    #[doc = "3: Kx3 Subfamily (tamper detect)"]
     _0011,
-    #[doc = "Kx4 Subfamily"]
+    #[doc = "4: Kx4 Subfamily"]
     _0100,
-    #[doc = "Kx5 Subfamily (tamper detect)"]
+    #[doc = "5: Kx5 Subfamily (tamper detect)"]
     _0101,
-    #[doc = "Kx6 Subfamily"]
+    #[doc = "6: Kx6 Subfamily"]
     _0110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl SUBFAMIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SUBFAMIDR::_0000 => 0,
-            SUBFAMIDR::_0001 => 1,
-            SUBFAMIDR::_0010 => 2,
-            SUBFAMIDR::_0011 => 3,
-            SUBFAMIDR::_0100 => 4,
-            SUBFAMIDR::_0101 => 5,
-            SUBFAMIDR::_0110 => 6,
-            SUBFAMIDR::_Reserved(bits) => bits,
+impl From<SUBFAMID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SUBFAMID_A) -> Self {
+        match variant {
+            SUBFAMID_A::_0000 => 0,
+            SUBFAMID_A::_0001 => 1,
+            SUBFAMID_A::_0010 => 2,
+            SUBFAMID_A::_0011 => 3,
+            SUBFAMID_A::_0100 => 4,
+            SUBFAMID_A::_0101 => 5,
+            SUBFAMID_A::_0110 => 6,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SUBFAMIDR {
-        match value {
-            0 => SUBFAMIDR::_0000,
-            1 => SUBFAMIDR::_0001,
-            2 => SUBFAMIDR::_0010,
-            3 => SUBFAMIDR::_0011,
-            4 => SUBFAMIDR::_0100,
-            5 => SUBFAMIDR::_0101,
-            6 => SUBFAMIDR::_0110,
-            i => SUBFAMIDR::_Reserved(i),
+}
+#[doc = "Reader of field `SUBFAMID`"]
+pub type SUBFAMID_R = crate::R<u8, SUBFAMID_A>;
+impl SUBFAMID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SUBFAMID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SUBFAMID_A::_0000),
+            1 => Val(SUBFAMID_A::_0001),
+            2 => Val(SUBFAMID_A::_0010),
+            3 => Val(SUBFAMID_A::_0011),
+            4 => Val(SUBFAMID_A::_0100),
+            5 => Val(SUBFAMID_A::_0101),
+            6 => Val(SUBFAMID_A::_0110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0000(&self) -> bool {
-        *self == SUBFAMIDR::_0000
+        *self == SUBFAMID_A::_0000
     }
     #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0001(&self) -> bool {
-        *self == SUBFAMIDR::_0001
+        *self == SUBFAMID_A::_0001
     }
     #[doc = "Checks if the value of the field is `_0010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0010(&self) -> bool {
-        *self == SUBFAMIDR::_0010
+        *self == SUBFAMID_A::_0010
     }
     #[doc = "Checks if the value of the field is `_0011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0011(&self) -> bool {
-        *self == SUBFAMIDR::_0011
+        *self == SUBFAMID_A::_0011
     }
     #[doc = "Checks if the value of the field is `_0100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0100(&self) -> bool {
-        *self == SUBFAMIDR::_0100
+        *self == SUBFAMID_A::_0100
     }
     #[doc = "Checks if the value of the field is `_0101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0101(&self) -> bool {
-        *self == SUBFAMIDR::_0101
+        *self == SUBFAMID_A::_0101
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == SUBFAMIDR::_0110
+        *self == SUBFAMID_A::_0110
     }
 }
-#[doc = "Possible values of the field `FAMILYID`"]
+#[doc = "Kinetis Family ID\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FAMILYIDR {
-    #[doc = "K1x Family"]
+pub enum FAMILYID_A {
+    #[doc = "1: K1x Family"]
     _0001,
-    #[doc = "K2x Family"]
+    #[doc = "2: K2x Family"]
     _0010,
-    #[doc = "K3x Family"]
+    #[doc = "3: K3x Family"]
     _0011,
-    #[doc = "K4x Family"]
+    #[doc = "4: K4x Family"]
     _0100,
-    #[doc = "K6x Family"]
+    #[doc = "6: K6x Family"]
     _0110,
-    #[doc = "K7x Family"]
+    #[doc = "7: K7x Family"]
     _0111,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl FAMILYIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FAMILYIDR::_0001 => 1,
-            FAMILYIDR::_0010 => 2,
-            FAMILYIDR::_0011 => 3,
-            FAMILYIDR::_0100 => 4,
-            FAMILYIDR::_0110 => 6,
-            FAMILYIDR::_0111 => 7,
-            FAMILYIDR::_Reserved(bits) => bits,
+impl From<FAMILYID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FAMILYID_A) -> Self {
+        match variant {
+            FAMILYID_A::_0001 => 1,
+            FAMILYID_A::_0010 => 2,
+            FAMILYID_A::_0011 => 3,
+            FAMILYID_A::_0100 => 4,
+            FAMILYID_A::_0110 => 6,
+            FAMILYID_A::_0111 => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FAMILYIDR {
-        match value {
-            1 => FAMILYIDR::_0001,
-            2 => FAMILYIDR::_0010,
-            3 => FAMILYIDR::_0011,
-            4 => FAMILYIDR::_0100,
-            6 => FAMILYIDR::_0110,
-            7 => FAMILYIDR::_0111,
-            i => FAMILYIDR::_Reserved(i),
+}
+#[doc = "Reader of field `FAMILYID`"]
+pub type FAMILYID_R = crate::R<u8, FAMILYID_A>;
+impl FAMILYID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FAMILYID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            1 => Val(FAMILYID_A::_0001),
+            2 => Val(FAMILYID_A::_0010),
+            3 => Val(FAMILYID_A::_0011),
+            4 => Val(FAMILYID_A::_0100),
+            6 => Val(FAMILYID_A::_0110),
+            7 => Val(FAMILYID_A::_0111),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0001(&self) -> bool {
-        *self == FAMILYIDR::_0001
+        *self == FAMILYID_A::_0001
     }
     #[doc = "Checks if the value of the field is `_0010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0010(&self) -> bool {
-        *self == FAMILYIDR::_0010
+        *self == FAMILYID_A::_0010
     }
     #[doc = "Checks if the value of the field is `_0011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0011(&self) -> bool {
-        *self == FAMILYIDR::_0011
+        *self == FAMILYID_A::_0011
     }
     #[doc = "Checks if the value of the field is `_0100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0100(&self) -> bool {
-        *self == FAMILYIDR::_0100
+        *self == FAMILYID_A::_0100
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == FAMILYIDR::_0110
+        *self == FAMILYID_A::_0110
     }
     #[doc = "Checks if the value of the field is `_0111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0111(&self) -> bool {
-        *self == FAMILYIDR::_0111
+        *self == FAMILYID_A::_0111
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Pincount identification"]
-    #[inline]
-    pub fn pinid(&self) -> PINIDR {
-        PINIDR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn pinid(&self) -> PINID_R {
+        PINID_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:6 - Kinetis family identification"]
-    #[inline]
-    pub fn famid(&self) -> FAMIDR {
-        FAMIDR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn famid(&self) -> FAMID_R {
+        FAMID_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 7:11 - Device Die ID"]
-    #[inline]
-    pub fn dieid(&self) -> DIEIDR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DIEIDR { bits }
+    #[inline(always)]
+    pub fn dieid(&self) -> DIEID_R {
+        DIEID_R::new(((self.bits >> 7) & 0x1f) as u8)
     }
     #[doc = "Bits 12:15 - Device revision number"]
-    #[inline]
-    pub fn revid(&self) -> REVIDR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        REVIDR { bits }
+    #[inline(always)]
+    pub fn revid(&self) -> REVID_R {
+        REVID_R::new(((self.bits >> 12) & 0x0f) as u8)
     }
     #[doc = "Bits 20:23 - Kinetis Series ID"]
-    #[inline]
-    pub fn seriesid(&self) -> SERIESIDR {
-        SERIESIDR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn seriesid(&self) -> SERIESID_R {
+        SERIESID_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
     #[doc = "Bits 24:27 - Kinetis Sub-Family ID"]
-    #[inline]
-    pub fn subfamid(&self) -> SUBFAMIDR {
-        SUBFAMIDR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn subfamid(&self) -> SUBFAMID_R {
+        SUBFAMID_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 28:31 - Kinetis Family ID"]
-    #[inline]
-    pub fn familyid(&self) -> FAMILYIDR {
-        FAMILYIDR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn familyid(&self) -> FAMILYID_R {
+        FAMILYID_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }

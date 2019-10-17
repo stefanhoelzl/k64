@@ -1,404 +1,286 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::CR0 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CR0"]
+pub type R = crate::R<u8, super::CR0>;
+#[doc = "Writer for register CR0"]
+pub type W = crate::W<u8, super::CR0>;
+#[doc = "Register CR0 `reset()`'s with value 0"]
+impl crate::ResetValue for super::CR0 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `HYSTCTR`"]
+#[doc = "Comparator hard block hysteresis control\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HYSTCTRR {
-    #[doc = "Level 0"]
+pub enum HYSTCTR_A {
+    #[doc = "0: Level 0"]
     _00,
-    #[doc = "Level 1"]
+    #[doc = "1: Level 1"]
     _01,
-    #[doc = "Level 2"]
+    #[doc = "2: Level 2"]
     _10,
-    #[doc = "Level 3"]
+    #[doc = "3: Level 3"]
     _11,
 }
-impl HYSTCTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HYSTCTRR::_00 => 0,
-            HYSTCTRR::_01 => 1,
-            HYSTCTRR::_10 => 2,
-            HYSTCTRR::_11 => 3,
+impl From<HYSTCTR_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HYSTCTR_A) -> Self {
+        match variant {
+            HYSTCTR_A::_00 => 0,
+            HYSTCTR_A::_01 => 1,
+            HYSTCTR_A::_10 => 2,
+            HYSTCTR_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HYSTCTRR {
-        match value {
-            0 => HYSTCTRR::_00,
-            1 => HYSTCTRR::_01,
-            2 => HYSTCTRR::_10,
-            3 => HYSTCTRR::_11,
+}
+#[doc = "Reader of field `HYSTCTR`"]
+pub type HYSTCTR_R = crate::R<u8, HYSTCTR_A>;
+impl HYSTCTR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HYSTCTR_A {
+        match self.bits {
+            0 => HYSTCTR_A::_00,
+            1 => HYSTCTR_A::_01,
+            2 => HYSTCTR_A::_10,
+            3 => HYSTCTR_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == HYSTCTRR::_00
+        *self == HYSTCTR_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == HYSTCTRR::_01
+        *self == HYSTCTR_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == HYSTCTRR::_10
+        *self == HYSTCTR_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == HYSTCTRR::_11
+        *self == HYSTCTR_A::_11
     }
 }
-#[doc = "Possible values of the field `FILTER_CNT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FILTER_CNTR {
-    #[doc = "Filter is disabled. If SE = 1, then COUT is a logic 0. This is not a legal state, and is not recommended. If SE = 0, COUT = COUTA."]
-    _000,
-    #[doc = "One sample must agree. The comparator output is simply sampled."]
-    _001,
-    #[doc = "2 consecutive samples must agree."]
-    _010,
-    #[doc = "3 consecutive samples must agree."]
-    _011,
-    #[doc = "4 consecutive samples must agree."]
-    _100,
-    #[doc = "5 consecutive samples must agree."]
-    _101,
-    #[doc = "6 consecutive samples must agree."]
-    _110,
-    #[doc = "7 consecutive samples must agree."]
-    _111,
+#[doc = "Write proxy for field `HYSTCTR`"]
+pub struct HYSTCTR_W<'a> {
+    w: &'a mut W,
 }
-impl FILTER_CNTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FILTER_CNTR::_000 => 0,
-            FILTER_CNTR::_001 => 1,
-            FILTER_CNTR::_010 => 2,
-            FILTER_CNTR::_011 => 3,
-            FILTER_CNTR::_100 => 4,
-            FILTER_CNTR::_101 => 5,
-            FILTER_CNTR::_110 => 6,
-            FILTER_CNTR::_111 => 7,
+impl<'a> HYSTCTR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HYSTCTR_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FILTER_CNTR {
-        match value {
-            0 => FILTER_CNTR::_000,
-            1 => FILTER_CNTR::_001,
-            2 => FILTER_CNTR::_010,
-            3 => FILTER_CNTR::_011,
-            4 => FILTER_CNTR::_100,
-            5 => FILTER_CNTR::_101,
-            6 => FILTER_CNTR::_110,
-            7 => FILTER_CNTR::_111,
+    #[doc = "Level 0"]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(HYSTCTR_A::_00)
+    }
+    #[doc = "Level 1"]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(HYSTCTR_A::_01)
+    }
+    #[doc = "Level 2"]
+    #[inline(always)]
+    pub fn _10(self) -> &'a mut W {
+        self.variant(HYSTCTR_A::_10)
+    }
+    #[doc = "Level 3"]
+    #[inline(always)]
+    pub fn _11(self) -> &'a mut W {
+        self.variant(HYSTCTR_A::_11)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x03) | ((value as u8) & 0x03);
+        self.w
+    }
+}
+#[doc = "Filter Sample Count\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FILTER_CNT_A {
+    #[doc = "0: Filter is disabled. If SE = 1, then COUT is a logic 0. This is not a legal state, and is not recommended. If SE = 0, COUT = COUTA."]
+    _000,
+    #[doc = "1: One sample must agree. The comparator output is simply sampled."]
+    _001,
+    #[doc = "2: 2 consecutive samples must agree."]
+    _010,
+    #[doc = "3: 3 consecutive samples must agree."]
+    _011,
+    #[doc = "4: 4 consecutive samples must agree."]
+    _100,
+    #[doc = "5: 5 consecutive samples must agree."]
+    _101,
+    #[doc = "6: 6 consecutive samples must agree."]
+    _110,
+    #[doc = "7: 7 consecutive samples must agree."]
+    _111,
+}
+impl From<FILTER_CNT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FILTER_CNT_A) -> Self {
+        match variant {
+            FILTER_CNT_A::_000 => 0,
+            FILTER_CNT_A::_001 => 1,
+            FILTER_CNT_A::_010 => 2,
+            FILTER_CNT_A::_011 => 3,
+            FILTER_CNT_A::_100 => 4,
+            FILTER_CNT_A::_101 => 5,
+            FILTER_CNT_A::_110 => 6,
+            FILTER_CNT_A::_111 => 7,
+        }
+    }
+}
+#[doc = "Reader of field `FILTER_CNT`"]
+pub type FILTER_CNT_R = crate::R<u8, FILTER_CNT_A>;
+impl FILTER_CNT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FILTER_CNT_A {
+        match self.bits {
+            0 => FILTER_CNT_A::_000,
+            1 => FILTER_CNT_A::_001,
+            2 => FILTER_CNT_A::_010,
+            3 => FILTER_CNT_A::_011,
+            4 => FILTER_CNT_A::_100,
+            5 => FILTER_CNT_A::_101,
+            6 => FILTER_CNT_A::_110,
+            7 => FILTER_CNT_A::_111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == FILTER_CNTR::_000
+        *self == FILTER_CNT_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == FILTER_CNTR::_001
+        *self == FILTER_CNT_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == FILTER_CNTR::_010
+        *self == FILTER_CNT_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == FILTER_CNTR::_011
+        *self == FILTER_CNT_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == FILTER_CNTR::_100
+        *self == FILTER_CNT_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == FILTER_CNTR::_101
+        *self == FILTER_CNT_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == FILTER_CNTR::_110
+        *self == FILTER_CNT_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == FILTER_CNTR::_111
+        *self == FILTER_CNT_A::_111
     }
 }
-#[doc = "Values that can be written to the field `HYSTCTR`"]
-pub enum HYSTCTRW {
-    #[doc = "Level 0"]
-    _00,
-    #[doc = "Level 1"]
-    _01,
-    #[doc = "Level 2"]
-    _10,
-    #[doc = "Level 3"]
-    _11,
-}
-impl HYSTCTRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HYSTCTRW::_00 => 0,
-            HYSTCTRW::_01 => 1,
-            HYSTCTRW::_10 => 2,
-            HYSTCTRW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HYSTCTRW<'a> {
+#[doc = "Write proxy for field `FILTER_CNT`"]
+pub struct FILTER_CNT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HYSTCTRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HYSTCTRW) -> &'a mut W {
+impl<'a> FILTER_CNT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FILTER_CNT_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Level 0"]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(HYSTCTRW::_00)
-    }
-    #[doc = "Level 1"]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(HYSTCTRW::_01)
-    }
-    #[doc = "Level 2"]
-    #[inline]
-    pub fn _10(self) -> &'a mut W {
-        self.variant(HYSTCTRW::_10)
-    }
-    #[doc = "Level 3"]
-    #[inline]
-    pub fn _11(self) -> &'a mut W {
-        self.variant(HYSTCTRW::_11)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `FILTER_CNT`"]
-pub enum FILTER_CNTW {
-    #[doc = "Filter is disabled. If SE = 1, then COUT is a logic 0. This is not a legal state, and is not recommended. If SE = 0, COUT = COUTA."]
-    _000,
-    #[doc = "One sample must agree. The comparator output is simply sampled."]
-    _001,
-    #[doc = "2 consecutive samples must agree."]
-    _010,
-    #[doc = "3 consecutive samples must agree."]
-    _011,
-    #[doc = "4 consecutive samples must agree."]
-    _100,
-    #[doc = "5 consecutive samples must agree."]
-    _101,
-    #[doc = "6 consecutive samples must agree."]
-    _110,
-    #[doc = "7 consecutive samples must agree."]
-    _111,
-}
-impl FILTER_CNTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FILTER_CNTW::_000 => 0,
-            FILTER_CNTW::_001 => 1,
-            FILTER_CNTW::_010 => 2,
-            FILTER_CNTW::_011 => 3,
-            FILTER_CNTW::_100 => 4,
-            FILTER_CNTW::_101 => 5,
-            FILTER_CNTW::_110 => 6,
-            FILTER_CNTW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FILTER_CNTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FILTER_CNTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FILTER_CNTW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Filter is disabled. If SE = 1, then COUT is a logic 0. This is not a legal state, and is not recommended. If SE = 0, COUT = COUTA."]
-    #[inline]
+    #[inline(always)]
     pub fn _000(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_000)
+        self.variant(FILTER_CNT_A::_000)
     }
     #[doc = "One sample must agree. The comparator output is simply sampled."]
-    #[inline]
+    #[inline(always)]
     pub fn _001(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_001)
+        self.variant(FILTER_CNT_A::_001)
     }
     #[doc = "2 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _010(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_010)
+        self.variant(FILTER_CNT_A::_010)
     }
     #[doc = "3 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _011(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_011)
+        self.variant(FILTER_CNT_A::_011)
     }
     #[doc = "4 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _100(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_100)
+        self.variant(FILTER_CNT_A::_100)
     }
     #[doc = "5 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _101(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_101)
+        self.variant(FILTER_CNT_A::_101)
     }
     #[doc = "6 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _110(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_110)
+        self.variant(FILTER_CNT_A::_110)
     }
     #[doc = "7 consecutive samples must agree."]
-    #[inline]
+    #[inline(always)]
     pub fn _111(self) -> &'a mut W {
-        self.variant(FILTER_CNTW::_111)
+        self.variant(FILTER_CNT_A::_111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 4)) | (((value as u8) & 0x07) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Comparator hard block hysteresis control"]
-    #[inline]
-    pub fn hystctr(&self) -> HYSTCTRR {
-        HYSTCTRR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn hystctr(&self) -> HYSTCTR_R {
+        HYSTCTR_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 4:6 - Filter Sample Count"]
-    #[inline]
-    pub fn filter_cnt(&self) -> FILTER_CNTR {
-        FILTER_CNTR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn filter_cnt(&self) -> FILTER_CNT_R {
+        FILTER_CNT_R::new(((self.bits >> 4) & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Comparator hard block hysteresis control"]
-    #[inline]
-    pub fn hystctr(&mut self) -> _HYSTCTRW {
-        _HYSTCTRW { w: self }
+    #[inline(always)]
+    pub fn hystctr(&mut self) -> HYSTCTR_W {
+        HYSTCTR_W { w: self }
     }
     #[doc = "Bits 4:6 - Filter Sample Count"]
-    #[inline]
-    pub fn filter_cnt(&mut self) -> _FILTER_CNTW {
-        _FILTER_CNTW { w: self }
+    #[inline(always)]
+    pub fn filter_cnt(&mut self) -> FILTER_CNT_W {
+        FILTER_CNT_W { w: self }
     }
 }

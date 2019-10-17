@@ -1,700 +1,480 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C2"]
+pub type R = crate::R<u8, super::C2>;
+#[doc = "Writer for register C2"]
+pub type W = crate::W<u8, super::C2>;
+#[doc = "Register C2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C2 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct ADR {
-    bits: u8,
-}
-impl ADR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `RMEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RMENR {
-    #[doc = "Range mode disabled. No address matching occurs for an address within the range of values of the A1 and RA registers."]
-    _0,
-    #[doc = "Range mode enabled. Address matching occurs when a slave receives an address within the range of values of the A1 and RA registers."]
-    _1,
-}
-impl RMENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RMENR::_0 => false,
-            RMENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RMENR {
-        match value {
-            false => RMENR::_0,
-            true => RMENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RMENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RMENR::_1
-    }
-}
-#[doc = "Possible values of the field `SBRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SBRCR {
-    #[doc = "The slave baud rate follows the master baud rate and clock stretching may occur"]
-    _0,
-    #[doc = "Slave baud rate is independent of the master baud rate"]
-    _1,
-}
-impl SBRCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SBRCR::_0 => false,
-            SBRCR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SBRCR {
-        match value {
-            false => SBRCR::_0,
-            true => SBRCR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SBRCR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SBRCR::_1
-    }
-}
-#[doc = "Possible values of the field `HDRS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HDRSR {
-    #[doc = "Normal drive mode"]
-    _0,
-    #[doc = "High drive mode"]
-    _1,
-}
-impl HDRSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HDRSR::_0 => false,
-            HDRSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HDRSR {
-        match value {
-            false => HDRSR::_0,
-            true => HDRSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == HDRSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == HDRSR::_1
-    }
-}
-#[doc = "Possible values of the field `ADEXT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADEXTR {
-    #[doc = "7-bit address scheme"]
-    _0,
-    #[doc = "10-bit address scheme"]
-    _1,
-}
-impl ADEXTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADEXTR::_0 => false,
-            ADEXTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADEXTR {
-        match value {
-            false => ADEXTR::_0,
-            true => ADEXTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ADEXTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ADEXTR::_1
-    }
-}
-#[doc = "Possible values of the field `GCAEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GCAENR {
-    #[doc = "Disabled"]
-    _0,
-    #[doc = "Enabled"]
-    _1,
-}
-impl GCAENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GCAENR::_0 => false,
-            GCAENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GCAENR {
-        match value {
-            false => GCAENR::_0,
-            true => GCAENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == GCAENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == GCAENR::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADW<'a> {
+#[doc = "Reader of field `AD`"]
+pub type AD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `AD`"]
+pub struct AD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> AD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x07) | ((value as u8) & 0x07);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RMEN`"]
-pub enum RMENW {
+#[doc = "Range Address Matching Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RMEN_A {
+    #[doc = "0: Range mode disabled. No address matching occurs for an address within the range of values of the A1 and RA registers."]
+    _0,
+    #[doc = "1: Range mode enabled. Address matching occurs when a slave receives an address within the range of values of the A1 and RA registers."]
+    _1,
+}
+impl From<RMEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: RMEN_A) -> Self {
+        match variant {
+            RMEN_A::_0 => false,
+            RMEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `RMEN`"]
+pub type RMEN_R = crate::R<bool, RMEN_A>;
+impl RMEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RMEN_A {
+        match self.bits {
+            false => RMEN_A::_0,
+            true => RMEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RMEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RMEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `RMEN`"]
+pub struct RMEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> RMEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RMEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Range mode disabled. No address matching occurs for an address within the range of values of the A1 and RA registers."]
-    _0,
-    #[doc = "Range mode enabled. Address matching occurs when a slave receives an address within the range of values of the A1 and RA registers."]
-    _1,
-}
-impl RMENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RMENW::_0 => false,
-            RMENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RMENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RMENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RMENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Range mode disabled. No address matching occurs for an address within the range of values of the A1 and RA registers."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RMENW::_0)
+        self.variant(RMEN_A::_0)
     }
     #[doc = "Range mode enabled. Address matching occurs when a slave receives an address within the range of values of the A1 and RA registers."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RMENW::_1)
+        self.variant(RMEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SBRC`"]
-pub enum SBRCW {
-    #[doc = "The slave baud rate follows the master baud rate and clock stretching may occur"]
+#[doc = "Slave Baud Rate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SBRC_A {
+    #[doc = "0: The slave baud rate follows the master baud rate and clock stretching may occur"]
     _0,
-    #[doc = "Slave baud rate is independent of the master baud rate"]
+    #[doc = "1: Slave baud rate is independent of the master baud rate"]
     _1,
 }
-impl SBRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SBRCW::_0 => false,
-            SBRCW::_1 => true,
+impl From<SBRC_A> for bool {
+    #[inline(always)]
+    fn from(variant: SBRC_A) -> Self {
+        match variant {
+            SBRC_A::_0 => false,
+            SBRC_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SBRCW<'a> {
+#[doc = "Reader of field `SBRC`"]
+pub type SBRC_R = crate::R<bool, SBRC_A>;
+impl SBRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SBRC_A {
+        match self.bits {
+            false => SBRC_A::_0,
+            true => SBRC_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SBRC_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SBRC_A::_1
+    }
+}
+#[doc = "Write proxy for field `SBRC`"]
+pub struct SBRC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SBRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SBRCW) -> &'a mut W {
+impl<'a> SBRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SBRC_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The slave baud rate follows the master baud rate and clock stretching may occur"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SBRCW::_0)
+        self.variant(SBRC_A::_0)
     }
     #[doc = "Slave baud rate is independent of the master baud rate"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SBRCW::_1)
+        self.variant(SBRC_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HDRS`"]
-pub enum HDRSW {
+#[doc = "High Drive Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HDRS_A {
+    #[doc = "0: Normal drive mode"]
+    _0,
+    #[doc = "1: High drive mode"]
+    _1,
+}
+impl From<HDRS_A> for bool {
+    #[inline(always)]
+    fn from(variant: HDRS_A) -> Self {
+        match variant {
+            HDRS_A::_0 => false,
+            HDRS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `HDRS`"]
+pub type HDRS_R = crate::R<bool, HDRS_A>;
+impl HDRS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HDRS_A {
+        match self.bits {
+            false => HDRS_A::_0,
+            true => HDRS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == HDRS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == HDRS_A::_1
+    }
+}
+#[doc = "Write proxy for field `HDRS`"]
+pub struct HDRS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> HDRS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HDRS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Normal drive mode"]
-    _0,
-    #[doc = "High drive mode"]
-    _1,
-}
-impl HDRSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HDRSW::_0 => false,
-            HDRSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HDRSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HDRSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HDRSW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Normal drive mode"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(HDRSW::_0)
+        self.variant(HDRS_A::_0)
     }
     #[doc = "High drive mode"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(HDRSW::_1)
+        self.variant(HDRS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ADEXT`"]
-pub enum ADEXTW {
-    #[doc = "7-bit address scheme"]
+#[doc = "Address Extension\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADEXT_A {
+    #[doc = "0: 7-bit address scheme"]
     _0,
-    #[doc = "10-bit address scheme"]
+    #[doc = "1: 10-bit address scheme"]
     _1,
 }
-impl ADEXTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADEXTW::_0 => false,
-            ADEXTW::_1 => true,
+impl From<ADEXT_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADEXT_A) -> Self {
+        match variant {
+            ADEXT_A::_0 => false,
+            ADEXT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ADEXTW<'a> {
+#[doc = "Reader of field `ADEXT`"]
+pub type ADEXT_R = crate::R<bool, ADEXT_A>;
+impl ADEXT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADEXT_A {
+        match self.bits {
+            false => ADEXT_A::_0,
+            true => ADEXT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ADEXT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ADEXT_A::_1
+    }
+}
+#[doc = "Write proxy for field `ADEXT`"]
+pub struct ADEXT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADEXTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADEXTW) -> &'a mut W {
+impl<'a> ADEXT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADEXT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "7-bit address scheme"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ADEXTW::_0)
+        self.variant(ADEXT_A::_0)
     }
     #[doc = "10-bit address scheme"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ADEXTW::_1)
+        self.variant(ADEXT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `GCAEN`"]
-pub enum GCAENW {
-    #[doc = "Disabled"]
+#[doc = "General Call Address Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GCAEN_A {
+    #[doc = "0: Disabled"]
     _0,
-    #[doc = "Enabled"]
+    #[doc = "1: Enabled"]
     _1,
 }
-impl GCAENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GCAENW::_0 => false,
-            GCAENW::_1 => true,
+impl From<GCAEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: GCAEN_A) -> Self {
+        match variant {
+            GCAEN_A::_0 => false,
+            GCAEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _GCAENW<'a> {
+#[doc = "Reader of field `GCAEN`"]
+pub type GCAEN_R = crate::R<bool, GCAEN_A>;
+impl GCAEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GCAEN_A {
+        match self.bits {
+            false => GCAEN_A::_0,
+            true => GCAEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == GCAEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == GCAEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `GCAEN`"]
+pub struct GCAEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GCAENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GCAENW) -> &'a mut W {
+impl<'a> GCAEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GCAEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(GCAENW::_0)
+        self.variant(GCAEN_A::_0)
     }
     #[doc = "Enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(GCAENW::_1)
+        self.variant(GCAEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Slave Address"]
-    #[inline]
-    pub fn ad(&self) -> ADR {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        ADR { bits }
+    #[inline(always)]
+    pub fn ad(&self) -> AD_R {
+        AD_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bit 3 - Range Address Matching Enable"]
-    #[inline]
-    pub fn rmen(&self) -> RMENR {
-        RMENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rmen(&self) -> RMEN_R {
+        RMEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Slave Baud Rate Control"]
-    #[inline]
-    pub fn sbrc(&self) -> SBRCR {
-        SBRCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn sbrc(&self) -> SBRC_R {
+        SBRC_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - High Drive Select"]
-    #[inline]
-    pub fn hdrs(&self) -> HDRSR {
-        HDRSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn hdrs(&self) -> HDRS_R {
+        HDRS_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Address Extension"]
-    #[inline]
-    pub fn adext(&self) -> ADEXTR {
-        ADEXTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn adext(&self) -> ADEXT_R {
+        ADEXT_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - General Call Address Enable"]
-    #[inline]
-    pub fn gcaen(&self) -> GCAENR {
-        GCAENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn gcaen(&self) -> GCAEN_R {
+        GCAEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Slave Address"]
-    #[inline]
-    pub fn ad(&mut self) -> _ADW {
-        _ADW { w: self }
+    #[inline(always)]
+    pub fn ad(&mut self) -> AD_W {
+        AD_W { w: self }
     }
     #[doc = "Bit 3 - Range Address Matching Enable"]
-    #[inline]
-    pub fn rmen(&mut self) -> _RMENW {
-        _RMENW { w: self }
+    #[inline(always)]
+    pub fn rmen(&mut self) -> RMEN_W {
+        RMEN_W { w: self }
     }
     #[doc = "Bit 4 - Slave Baud Rate Control"]
-    #[inline]
-    pub fn sbrc(&mut self) -> _SBRCW {
-        _SBRCW { w: self }
+    #[inline(always)]
+    pub fn sbrc(&mut self) -> SBRC_W {
+        SBRC_W { w: self }
     }
     #[doc = "Bit 5 - High Drive Select"]
-    #[inline]
-    pub fn hdrs(&mut self) -> _HDRSW {
-        _HDRSW { w: self }
+    #[inline(always)]
+    pub fn hdrs(&mut self) -> HDRS_W {
+        HDRS_W { w: self }
     }
     #[doc = "Bit 6 - Address Extension"]
-    #[inline]
-    pub fn adext(&mut self) -> _ADEXTW {
-        _ADEXTW { w: self }
+    #[inline(always)]
+    pub fn adext(&mut self) -> ADEXT_W {
+        ADEXT_W { w: self }
     }
     #[doc = "Bit 7 - General Call Address Enable"]
-    #[inline]
-    pub fn gcaen(&mut self) -> _GCAENW {
-        _GCAENW { w: self }
+    #[inline(always)]
+    pub fn gcaen(&mut self) -> GCAEN_W {
+        GCAEN_W { w: self }
     }
 }

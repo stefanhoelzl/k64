@@ -1,778 +1,544 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SCGC5 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SCGC5"]
+pub type R = crate::R<u32, super::SCGC5>;
+#[doc = "Writer for register SCGC5"]
+pub type W = crate::W<u32, super::SCGC5>;
+#[doc = "Register SCGC5 `reset()`'s with value 0x0004_0182"]
+impl crate::ResetValue for super::SCGC5 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0004_0182
     }
 }
-#[doc = "Possible values of the field `LPTMR`"]
+#[doc = "Low Power Timer Access Control\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPTMRR {
-    #[doc = "Access disabled"]
+pub enum LPTMR_A {
+    #[doc = "0: Access disabled"]
     _0,
-    #[doc = "Access enabled"]
+    #[doc = "1: Access enabled"]
     _1,
 }
-impl LPTMRR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LPTMRR::_0 => false,
-            LPTMRR::_1 => true,
+impl From<LPTMR_A> for bool {
+    #[inline(always)]
+    fn from(variant: LPTMR_A) -> Self {
+        match variant {
+            LPTMR_A::_0 => false,
+            LPTMR_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LPTMRR {
-        match value {
-            false => LPTMRR::_0,
-            true => LPTMRR::_1,
+}
+#[doc = "Reader of field `LPTMR`"]
+pub type LPTMR_R = crate::R<bool, LPTMR_A>;
+impl LPTMR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LPTMR_A {
+        match self.bits {
+            false => LPTMR_A::_0,
+            true => LPTMR_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LPTMRR::_0
+        *self == LPTMR_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LPTMRR::_1
+        *self == LPTMR_A::_1
     }
 }
-#[doc = "Possible values of the field `PORTA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PORTAR {
-    #[doc = "Clock disabled"]
-    _0,
-    #[doc = "Clock enabled"]
-    _1,
-}
-impl PORTAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PORTAR::_0 => false,
-            PORTAR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PORTAR {
-        match value {
-            false => PORTAR::_0,
-            true => PORTAR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PORTAR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PORTAR::_1
-    }
-}
-#[doc = "Possible values of the field `PORTB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PORTBR {
-    #[doc = "Clock disabled"]
-    _0,
-    #[doc = "Clock enabled"]
-    _1,
-}
-impl PORTBR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PORTBR::_0 => false,
-            PORTBR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PORTBR {
-        match value {
-            false => PORTBR::_0,
-            true => PORTBR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PORTBR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PORTBR::_1
-    }
-}
-#[doc = "Possible values of the field `PORTC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PORTCR {
-    #[doc = "Clock disabled"]
-    _0,
-    #[doc = "Clock enabled"]
-    _1,
-}
-impl PORTCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PORTCR::_0 => false,
-            PORTCR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PORTCR {
-        match value {
-            false => PORTCR::_0,
-            true => PORTCR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PORTCR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PORTCR::_1
-    }
-}
-#[doc = "Possible values of the field `PORTD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PORTDR {
-    #[doc = "Clock disabled"]
-    _0,
-    #[doc = "Clock enabled"]
-    _1,
-}
-impl PORTDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PORTDR::_0 => false,
-            PORTDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PORTDR {
-        match value {
-            false => PORTDR::_0,
-            true => PORTDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PORTDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PORTDR::_1
-    }
-}
-#[doc = "Possible values of the field `PORTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PORTER {
-    #[doc = "Clock disabled"]
-    _0,
-    #[doc = "Clock enabled"]
-    _1,
-}
-impl PORTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PORTER::_0 => false,
-            PORTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PORTER {
-        match value {
-            false => PORTER::_0,
-            true => PORTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PORTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PORTER::_1
-    }
-}
-#[doc = "Values that can be written to the field `LPTMR`"]
-pub enum LPTMRW {
-    #[doc = "Access disabled"]
-    _0,
-    #[doc = "Access enabled"]
-    _1,
-}
-impl LPTMRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LPTMRW::_0 => false,
-            LPTMRW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LPTMRW<'a> {
+#[doc = "Write proxy for field `LPTMR`"]
+pub struct LPTMR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPTMRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPTMRW) -> &'a mut W {
+impl<'a> LPTMR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LPTMR_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Access disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LPTMRW::_0)
+        self.variant(LPTMR_A::_0)
     }
     #[doc = "Access enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LPTMRW::_1)
+        self.variant(LPTMR_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PORTA`"]
-pub enum PORTAW {
-    #[doc = "Clock disabled"]
+#[doc = "Port A Clock Gate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PORTA_A {
+    #[doc = "0: Clock disabled"]
     _0,
-    #[doc = "Clock enabled"]
+    #[doc = "1: Clock enabled"]
     _1,
 }
-impl PORTAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PORTAW::_0 => false,
-            PORTAW::_1 => true,
+impl From<PORTA_A> for bool {
+    #[inline(always)]
+    fn from(variant: PORTA_A) -> Self {
+        match variant {
+            PORTA_A::_0 => false,
+            PORTA_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PORTAW<'a> {
+#[doc = "Reader of field `PORTA`"]
+pub type PORTA_R = crate::R<bool, PORTA_A>;
+impl PORTA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PORTA_A {
+        match self.bits {
+            false => PORTA_A::_0,
+            true => PORTA_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PORTA_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PORTA_A::_1
+    }
+}
+#[doc = "Write proxy for field `PORTA`"]
+pub struct PORTA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PORTAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PORTAW) -> &'a mut W {
+impl<'a> PORTA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PORTA_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PORTAW::_0)
+        self.variant(PORTA_A::_0)
     }
     #[doc = "Clock enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PORTAW::_1)
+        self.variant(PORTA_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PORTB`"]
-pub enum PORTBW {
-    #[doc = "Clock disabled"]
+#[doc = "Port B Clock Gate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PORTB_A {
+    #[doc = "0: Clock disabled"]
     _0,
-    #[doc = "Clock enabled"]
+    #[doc = "1: Clock enabled"]
     _1,
 }
-impl PORTBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PORTBW::_0 => false,
-            PORTBW::_1 => true,
+impl From<PORTB_A> for bool {
+    #[inline(always)]
+    fn from(variant: PORTB_A) -> Self {
+        match variant {
+            PORTB_A::_0 => false,
+            PORTB_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PORTBW<'a> {
+#[doc = "Reader of field `PORTB`"]
+pub type PORTB_R = crate::R<bool, PORTB_A>;
+impl PORTB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PORTB_A {
+        match self.bits {
+            false => PORTB_A::_0,
+            true => PORTB_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PORTB_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PORTB_A::_1
+    }
+}
+#[doc = "Write proxy for field `PORTB`"]
+pub struct PORTB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PORTBW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PORTBW) -> &'a mut W {
+impl<'a> PORTB_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PORTB_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PORTBW::_0)
+        self.variant(PORTB_A::_0)
     }
     #[doc = "Clock enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PORTBW::_1)
+        self.variant(PORTB_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PORTC`"]
-pub enum PORTCW {
-    #[doc = "Clock disabled"]
+#[doc = "Port C Clock Gate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PORTC_A {
+    #[doc = "0: Clock disabled"]
     _0,
-    #[doc = "Clock enabled"]
+    #[doc = "1: Clock enabled"]
     _1,
 }
-impl PORTCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PORTCW::_0 => false,
-            PORTCW::_1 => true,
+impl From<PORTC_A> for bool {
+    #[inline(always)]
+    fn from(variant: PORTC_A) -> Self {
+        match variant {
+            PORTC_A::_0 => false,
+            PORTC_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PORTCW<'a> {
+#[doc = "Reader of field `PORTC`"]
+pub type PORTC_R = crate::R<bool, PORTC_A>;
+impl PORTC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PORTC_A {
+        match self.bits {
+            false => PORTC_A::_0,
+            true => PORTC_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PORTC_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PORTC_A::_1
+    }
+}
+#[doc = "Write proxy for field `PORTC`"]
+pub struct PORTC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PORTCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PORTCW) -> &'a mut W {
+impl<'a> PORTC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PORTC_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PORTCW::_0)
+        self.variant(PORTC_A::_0)
     }
     #[doc = "Clock enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PORTCW::_1)
+        self.variant(PORTC_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PORTD`"]
-pub enum PORTDW {
-    #[doc = "Clock disabled"]
+#[doc = "Port D Clock Gate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PORTD_A {
+    #[doc = "0: Clock disabled"]
     _0,
-    #[doc = "Clock enabled"]
+    #[doc = "1: Clock enabled"]
     _1,
 }
-impl PORTDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PORTDW::_0 => false,
-            PORTDW::_1 => true,
+impl From<PORTD_A> for bool {
+    #[inline(always)]
+    fn from(variant: PORTD_A) -> Self {
+        match variant {
+            PORTD_A::_0 => false,
+            PORTD_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PORTDW<'a> {
+#[doc = "Reader of field `PORTD`"]
+pub type PORTD_R = crate::R<bool, PORTD_A>;
+impl PORTD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PORTD_A {
+        match self.bits {
+            false => PORTD_A::_0,
+            true => PORTD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PORTD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PORTD_A::_1
+    }
+}
+#[doc = "Write proxy for field `PORTD`"]
+pub struct PORTD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PORTDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PORTDW) -> &'a mut W {
+impl<'a> PORTD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PORTD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PORTDW::_0)
+        self.variant(PORTD_A::_0)
     }
     #[doc = "Clock enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PORTDW::_1)
+        self.variant(PORTD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PORTE`"]
-pub enum PORTEW {
-    #[doc = "Clock disabled"]
+#[doc = "Port E Clock Gate Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PORTE_A {
+    #[doc = "0: Clock disabled"]
     _0,
-    #[doc = "Clock enabled"]
+    #[doc = "1: Clock enabled"]
     _1,
 }
-impl PORTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PORTEW::_0 => false,
-            PORTEW::_1 => true,
+impl From<PORTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: PORTE_A) -> Self {
+        match variant {
+            PORTE_A::_0 => false,
+            PORTE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PORTEW<'a> {
+#[doc = "Reader of field `PORTE`"]
+pub type PORTE_R = crate::R<bool, PORTE_A>;
+impl PORTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PORTE_A {
+        match self.bits {
+            false => PORTE_A::_0,
+            true => PORTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PORTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PORTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `PORTE`"]
+pub struct PORTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PORTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PORTEW) -> &'a mut W {
+impl<'a> PORTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PORTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PORTEW::_0)
+        self.variant(PORTE_A::_0)
     }
     #[doc = "Clock enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PORTEW::_1)
+        self.variant(PORTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Low Power Timer Access Control"]
-    #[inline]
-    pub fn lptmr(&self) -> LPTMRR {
-        LPTMRR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn lptmr(&self) -> LPTMR_R {
+        LPTMR_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 9 - Port A Clock Gate Control"]
-    #[inline]
-    pub fn porta(&self) -> PORTAR {
-        PORTAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn porta(&self) -> PORTA_R {
+        PORTA_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Port B Clock Gate Control"]
-    #[inline]
-    pub fn portb(&self) -> PORTBR {
-        PORTBR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn portb(&self) -> PORTB_R {
+        PORTB_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Port C Clock Gate Control"]
-    #[inline]
-    pub fn portc(&self) -> PORTCR {
-        PORTCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn portc(&self) -> PORTC_R {
+        PORTC_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Port D Clock Gate Control"]
-    #[inline]
-    pub fn portd(&self) -> PORTDR {
-        PORTDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn portd(&self) -> PORTD_R {
+        PORTD_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Port E Clock Gate Control"]
-    #[inline]
-    pub fn porte(&self) -> PORTER {
-        PORTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn porte(&self) -> PORTE_R {
+        PORTE_R::new(((self.bits >> 13) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 262530 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Low Power Timer Access Control"]
-    #[inline]
-    pub fn lptmr(&mut self) -> _LPTMRW {
-        _LPTMRW { w: self }
+    #[inline(always)]
+    pub fn lptmr(&mut self) -> LPTMR_W {
+        LPTMR_W { w: self }
     }
     #[doc = "Bit 9 - Port A Clock Gate Control"]
-    #[inline]
-    pub fn porta(&mut self) -> _PORTAW {
-        _PORTAW { w: self }
+    #[inline(always)]
+    pub fn porta(&mut self) -> PORTA_W {
+        PORTA_W { w: self }
     }
     #[doc = "Bit 10 - Port B Clock Gate Control"]
-    #[inline]
-    pub fn portb(&mut self) -> _PORTBW {
-        _PORTBW { w: self }
+    #[inline(always)]
+    pub fn portb(&mut self) -> PORTB_W {
+        PORTB_W { w: self }
     }
     #[doc = "Bit 11 - Port C Clock Gate Control"]
-    #[inline]
-    pub fn portc(&mut self) -> _PORTCW {
-        _PORTCW { w: self }
+    #[inline(always)]
+    pub fn portc(&mut self) -> PORTC_W {
+        PORTC_W { w: self }
     }
     #[doc = "Bit 12 - Port D Clock Gate Control"]
-    #[inline]
-    pub fn portd(&mut self) -> _PORTDW {
-        _PORTDW { w: self }
+    #[inline(always)]
+    pub fn portd(&mut self) -> PORTD_W {
+        PORTD_W { w: self }
     }
     #[doc = "Bit 13 - Port E Clock Gate Control"]
-    #[inline]
-    pub fn porte(&mut self) -> _PORTEW {
-        _PORTEW { w: self }
+    #[inline(always)]
+    pub fn porte(&mut self) -> PORTE_W {
+        PORTE_W { w: self }
     }
 }

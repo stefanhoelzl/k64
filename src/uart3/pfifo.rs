@@ -1,492 +1,374 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::PFIFO {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PFIFO"]
+pub type R = crate::R<u8, super::PFIFO>;
+#[doc = "Writer for register PFIFO"]
+pub type W = crate::W<u8, super::PFIFO>;
+#[doc = "Register PFIFO `reset()`'s with value 0"]
+impl crate::ResetValue for super::PFIFO {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RXFIFOSIZE`"]
+#[doc = "Receive FIFO. Buffer Depth\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXFIFOSIZER {
-    #[doc = "Receive FIFO/Buffer depth = 1 dataword."]
+pub enum RXFIFOSIZE_A {
+    #[doc = "0: Receive FIFO/Buffer depth = 1 dataword."]
     _000,
-    #[doc = "Receive FIFO/Buffer depth = 4 datawords."]
+    #[doc = "1: Receive FIFO/Buffer depth = 4 datawords."]
     _001,
-    #[doc = "Receive FIFO/Buffer depth = 8 datawords."]
+    #[doc = "2: Receive FIFO/Buffer depth = 8 datawords."]
     _010,
-    #[doc = "Receive FIFO/Buffer depth = 16 datawords."]
+    #[doc = "3: Receive FIFO/Buffer depth = 16 datawords."]
     _011,
-    #[doc = "Receive FIFO/Buffer depth = 32 datawords."]
+    #[doc = "4: Receive FIFO/Buffer depth = 32 datawords."]
     _100,
-    #[doc = "Receive FIFO/Buffer depth = 64 datawords."]
+    #[doc = "5: Receive FIFO/Buffer depth = 64 datawords."]
     _101,
-    #[doc = "Receive FIFO/Buffer depth = 128 datawords."]
+    #[doc = "6: Receive FIFO/Buffer depth = 128 datawords."]
     _110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl RXFIFOSIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            RXFIFOSIZER::_000 => 0,
-            RXFIFOSIZER::_001 => 1,
-            RXFIFOSIZER::_010 => 2,
-            RXFIFOSIZER::_011 => 3,
-            RXFIFOSIZER::_100 => 4,
-            RXFIFOSIZER::_101 => 5,
-            RXFIFOSIZER::_110 => 6,
-            RXFIFOSIZER::_Reserved(bits) => bits,
+impl From<RXFIFOSIZE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: RXFIFOSIZE_A) -> Self {
+        match variant {
+            RXFIFOSIZE_A::_000 => 0,
+            RXFIFOSIZE_A::_001 => 1,
+            RXFIFOSIZE_A::_010 => 2,
+            RXFIFOSIZE_A::_011 => 3,
+            RXFIFOSIZE_A::_100 => 4,
+            RXFIFOSIZE_A::_101 => 5,
+            RXFIFOSIZE_A::_110 => 6,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> RXFIFOSIZER {
-        match value {
-            0 => RXFIFOSIZER::_000,
-            1 => RXFIFOSIZER::_001,
-            2 => RXFIFOSIZER::_010,
-            3 => RXFIFOSIZER::_011,
-            4 => RXFIFOSIZER::_100,
-            5 => RXFIFOSIZER::_101,
-            6 => RXFIFOSIZER::_110,
-            i => RXFIFOSIZER::_Reserved(i),
+}
+#[doc = "Reader of field `RXFIFOSIZE`"]
+pub type RXFIFOSIZE_R = crate::R<u8, RXFIFOSIZE_A>;
+impl RXFIFOSIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, RXFIFOSIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(RXFIFOSIZE_A::_000),
+            1 => Val(RXFIFOSIZE_A::_001),
+            2 => Val(RXFIFOSIZE_A::_010),
+            3 => Val(RXFIFOSIZE_A::_011),
+            4 => Val(RXFIFOSIZE_A::_100),
+            5 => Val(RXFIFOSIZE_A::_101),
+            6 => Val(RXFIFOSIZE_A::_110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == RXFIFOSIZER::_000
+        *self == RXFIFOSIZE_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == RXFIFOSIZER::_001
+        *self == RXFIFOSIZE_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == RXFIFOSIZER::_010
+        *self == RXFIFOSIZE_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == RXFIFOSIZER::_011
+        *self == RXFIFOSIZE_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == RXFIFOSIZER::_100
+        *self == RXFIFOSIZE_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == RXFIFOSIZER::_101
+        *self == RXFIFOSIZE_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == RXFIFOSIZER::_110
+        *self == RXFIFOSIZE_A::_110
     }
 }
-#[doc = "Possible values of the field `RXFE`"]
+#[doc = "Receive FIFO Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXFER {
-    #[doc = "Receive FIFO is not enabled. Buffer is depth 1. (Legacy support)"]
+pub enum RXFE_A {
+    #[doc = "0: Receive FIFO is not enabled. Buffer is depth 1. (Legacy support)"]
     _0,
-    #[doc = "Receive FIFO is enabled. Buffer is depth indicted by RXFIFOSIZE."]
+    #[doc = "1: Receive FIFO is enabled. Buffer is depth indicted by RXFIFOSIZE."]
     _1,
 }
-impl RXFER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXFER::_0 => false,
-            RXFER::_1 => true,
+impl From<RXFE_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXFE_A) -> Self {
+        match variant {
+            RXFE_A::_0 => false,
+            RXFE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXFER {
-        match value {
-            false => RXFER::_0,
-            true => RXFER::_1,
+}
+#[doc = "Reader of field `RXFE`"]
+pub type RXFE_R = crate::R<bool, RXFE_A>;
+impl RXFE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXFE_A {
+        match self.bits {
+            false => RXFE_A::_0,
+            true => RXFE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RXFER::_0
+        *self == RXFE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RXFER::_1
+        *self == RXFE_A::_1
     }
 }
-#[doc = "Possible values of the field `TXFIFOSIZE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXFIFOSIZER {
-    #[doc = "Transmit FIFO/Buffer depth = 1 dataword."]
-    _000,
-    #[doc = "Transmit FIFO/Buffer depth = 4 datawords."]
-    _001,
-    #[doc = "Transmit FIFO/Buffer depth = 8 datawords."]
-    _010,
-    #[doc = "Transmit FIFO/Buffer depth = 16 datawords."]
-    _011,
-    #[doc = "Transmit FIFO/Buffer depth = 32 datawords."]
-    _100,
-    #[doc = "Transmit FIFO/Buffer depth = 64 datawords."]
-    _101,
-    #[doc = "Transmit FIFO/Buffer depth = 128 datawords."]
-    _110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl TXFIFOSIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TXFIFOSIZER::_000 => 0,
-            TXFIFOSIZER::_001 => 1,
-            TXFIFOSIZER::_010 => 2,
-            TXFIFOSIZER::_011 => 3,
-            TXFIFOSIZER::_100 => 4,
-            TXFIFOSIZER::_101 => 5,
-            TXFIFOSIZER::_110 => 6,
-            TXFIFOSIZER::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TXFIFOSIZER {
-        match value {
-            0 => TXFIFOSIZER::_000,
-            1 => TXFIFOSIZER::_001,
-            2 => TXFIFOSIZER::_010,
-            3 => TXFIFOSIZER::_011,
-            4 => TXFIFOSIZER::_100,
-            5 => TXFIFOSIZER::_101,
-            6 => TXFIFOSIZER::_110,
-            i => TXFIFOSIZER::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
-    pub fn is_000(&self) -> bool {
-        *self == TXFIFOSIZER::_000
-    }
-    #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
-    pub fn is_001(&self) -> bool {
-        *self == TXFIFOSIZER::_001
-    }
-    #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
-    pub fn is_010(&self) -> bool {
-        *self == TXFIFOSIZER::_010
-    }
-    #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
-    pub fn is_011(&self) -> bool {
-        *self == TXFIFOSIZER::_011
-    }
-    #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
-    pub fn is_100(&self) -> bool {
-        *self == TXFIFOSIZER::_100
-    }
-    #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
-    pub fn is_101(&self) -> bool {
-        *self == TXFIFOSIZER::_101
-    }
-    #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
-    pub fn is_110(&self) -> bool {
-        *self == TXFIFOSIZER::_110
-    }
-}
-#[doc = "Possible values of the field `TXFE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXFER {
-    #[doc = "Transmit FIFO is not enabled. Buffer is depth 1. (Legacy support)."]
-    _0,
-    #[doc = "Transmit FIFO is enabled. Buffer is depth indicated by TXFIFOSIZE."]
-    _1,
-}
-impl TXFER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXFER::_0 => false,
-            TXFER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXFER {
-        match value {
-            false => TXFER::_0,
-            true => TXFER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXFER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXFER::_1
-    }
-}
-#[doc = "Values that can be written to the field `RXFE`"]
-pub enum RXFEW {
-    #[doc = "Receive FIFO is not enabled. Buffer is depth 1. (Legacy support)"]
-    _0,
-    #[doc = "Receive FIFO is enabled. Buffer is depth indicted by RXFIFOSIZE."]
-    _1,
-}
-impl RXFEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXFEW::_0 => false,
-            RXFEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RXFEW<'a> {
+#[doc = "Write proxy for field `RXFE`"]
+pub struct RXFE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXFEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXFEW) -> &'a mut W {
+impl<'a> RXFE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXFE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Receive FIFO is not enabled. Buffer is depth 1. (Legacy support)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXFEW::_0)
+        self.variant(RXFE_A::_0)
     }
     #[doc = "Receive FIFO is enabled. Buffer is depth indicted by RXFIFOSIZE."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXFEW::_1)
+        self.variant(RXFE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TXFE`"]
-pub enum TXFEW {
-    #[doc = "Transmit FIFO is not enabled. Buffer is depth 1. (Legacy support)."]
+#[doc = "Transmit FIFO. Buffer Depth\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXFIFOSIZE_A {
+    #[doc = "0: Transmit FIFO/Buffer depth = 1 dataword."]
+    _000,
+    #[doc = "1: Transmit FIFO/Buffer depth = 4 datawords."]
+    _001,
+    #[doc = "2: Transmit FIFO/Buffer depth = 8 datawords."]
+    _010,
+    #[doc = "3: Transmit FIFO/Buffer depth = 16 datawords."]
+    _011,
+    #[doc = "4: Transmit FIFO/Buffer depth = 32 datawords."]
+    _100,
+    #[doc = "5: Transmit FIFO/Buffer depth = 64 datawords."]
+    _101,
+    #[doc = "6: Transmit FIFO/Buffer depth = 128 datawords."]
+    _110,
+}
+impl From<TXFIFOSIZE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TXFIFOSIZE_A) -> Self {
+        match variant {
+            TXFIFOSIZE_A::_000 => 0,
+            TXFIFOSIZE_A::_001 => 1,
+            TXFIFOSIZE_A::_010 => 2,
+            TXFIFOSIZE_A::_011 => 3,
+            TXFIFOSIZE_A::_100 => 4,
+            TXFIFOSIZE_A::_101 => 5,
+            TXFIFOSIZE_A::_110 => 6,
+        }
+    }
+}
+#[doc = "Reader of field `TXFIFOSIZE`"]
+pub type TXFIFOSIZE_R = crate::R<u8, TXFIFOSIZE_A>;
+impl TXFIFOSIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TXFIFOSIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TXFIFOSIZE_A::_000),
+            1 => Val(TXFIFOSIZE_A::_001),
+            2 => Val(TXFIFOSIZE_A::_010),
+            3 => Val(TXFIFOSIZE_A::_011),
+            4 => Val(TXFIFOSIZE_A::_100),
+            5 => Val(TXFIFOSIZE_A::_101),
+            6 => Val(TXFIFOSIZE_A::_110),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_000`"]
+    #[inline(always)]
+    pub fn is_000(&self) -> bool {
+        *self == TXFIFOSIZE_A::_000
+    }
+    #[doc = "Checks if the value of the field is `_001`"]
+    #[inline(always)]
+    pub fn is_001(&self) -> bool {
+        *self == TXFIFOSIZE_A::_001
+    }
+    #[doc = "Checks if the value of the field is `_010`"]
+    #[inline(always)]
+    pub fn is_010(&self) -> bool {
+        *self == TXFIFOSIZE_A::_010
+    }
+    #[doc = "Checks if the value of the field is `_011`"]
+    #[inline(always)]
+    pub fn is_011(&self) -> bool {
+        *self == TXFIFOSIZE_A::_011
+    }
+    #[doc = "Checks if the value of the field is `_100`"]
+    #[inline(always)]
+    pub fn is_100(&self) -> bool {
+        *self == TXFIFOSIZE_A::_100
+    }
+    #[doc = "Checks if the value of the field is `_101`"]
+    #[inline(always)]
+    pub fn is_101(&self) -> bool {
+        *self == TXFIFOSIZE_A::_101
+    }
+    #[doc = "Checks if the value of the field is `_110`"]
+    #[inline(always)]
+    pub fn is_110(&self) -> bool {
+        *self == TXFIFOSIZE_A::_110
+    }
+}
+#[doc = "Transmit FIFO Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXFE_A {
+    #[doc = "0: Transmit FIFO is not enabled. Buffer is depth 1. (Legacy support)."]
     _0,
-    #[doc = "Transmit FIFO is enabled. Buffer is depth indicated by TXFIFOSIZE."]
+    #[doc = "1: Transmit FIFO is enabled. Buffer is depth indicated by TXFIFOSIZE."]
     _1,
 }
-impl TXFEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TXFEW::_0 => false,
-            TXFEW::_1 => true,
+impl From<TXFE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXFE_A) -> Self {
+        match variant {
+            TXFE_A::_0 => false,
+            TXFE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TXFEW<'a> {
+#[doc = "Reader of field `TXFE`"]
+pub type TXFE_R = crate::R<bool, TXFE_A>;
+impl TXFE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXFE_A {
+        match self.bits {
+            false => TXFE_A::_0,
+            true => TXFE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXFE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXFE_A::_1
+    }
+}
+#[doc = "Write proxy for field `TXFE`"]
+pub struct TXFE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXFEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TXFEW) -> &'a mut W {
+impl<'a> TXFE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TXFE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmit FIFO is not enabled. Buffer is depth 1. (Legacy support)."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TXFEW::_0)
+        self.variant(TXFE_A::_0)
     }
     #[doc = "Transmit FIFO is enabled. Buffer is depth indicated by TXFIFOSIZE."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TXFEW::_1)
+        self.variant(TXFE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Receive FIFO. Buffer Depth"]
-    #[inline]
-    pub fn rxfifosize(&self) -> RXFIFOSIZER {
-        RXFIFOSIZER::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn rxfifosize(&self) -> RXFIFOSIZE_R {
+        RXFIFOSIZE_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bit 3 - Receive FIFO Enable"]
-    #[inline]
-    pub fn rxfe(&self) -> RXFER {
-        RXFER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxfe(&self) -> RXFE_R {
+        RXFE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 4:6 - Transmit FIFO. Buffer Depth"]
-    #[inline]
-    pub fn txfifosize(&self) -> TXFIFOSIZER {
-        TXFIFOSIZER::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn txfifosize(&self) -> TXFIFOSIZE_R {
+        TXFIFOSIZE_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bit 7 - Transmit FIFO Enable"]
-    #[inline]
-    pub fn txfe(&self) -> TXFER {
-        TXFER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn txfe(&self) -> TXFE_R {
+        TXFE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 3 - Receive FIFO Enable"]
-    #[inline]
-    pub fn rxfe(&mut self) -> _RXFEW {
-        _RXFEW { w: self }
+    #[inline(always)]
+    pub fn rxfe(&mut self) -> RXFE_W {
+        RXFE_W { w: self }
     }
     #[doc = "Bit 7 - Transmit FIFO Enable"]
-    #[inline]
-    pub fn txfe(&mut self) -> _TXFEW {
-        _TXFEW { w: self }
+    #[inline(always)]
+    pub fn txfe(&mut self) -> TXFE_W {
+        TXFE_W { w: self }
     }
 }

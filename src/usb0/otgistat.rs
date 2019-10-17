@@ -1,418 +1,220 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::OTGISTAT {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OTGISTAT"]
+pub type R = crate::R<u8, super::OTGISTAT>;
+#[doc = "Writer for register OTGISTAT"]
+pub type W = crate::W<u8, super::OTGISTAT>;
+#[doc = "Register OTGISTAT `reset()`'s with value 0"]
+impl crate::ResetValue for super::OTGISTAT {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct AVBUSCHGR {
-    bits: bool,
-}
-impl AVBUSCHGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct B_SESS_CHGR {
-    bits: bool,
-}
-impl B_SESS_CHGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SESSVLDCHGR {
-    bits: bool,
-}
-impl SESSVLDCHGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LINE_STATE_CHGR {
-    bits: bool,
-}
-impl LINE_STATE_CHGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ONEMSECR {
-    bits: bool,
-}
-impl ONEMSECR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct IDCHGR {
-    bits: bool,
-}
-impl IDCHGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _AVBUSCHGW<'a> {
+#[doc = "Reader of field `AVBUSCHG`"]
+pub type AVBUSCHG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `AVBUSCHG`"]
+pub struct AVBUSCHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AVBUSCHGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> AVBUSCHG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _B_SESS_CHGW<'a> {
+#[doc = "Reader of field `B_SESS_CHG`"]
+pub type B_SESS_CHG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `B_SESS_CHG`"]
+pub struct B_SESS_CHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _B_SESS_CHGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> B_SESS_CHG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SESSVLDCHGW<'a> {
+#[doc = "Reader of field `SESSVLDCHG`"]
+pub type SESSVLDCHG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SESSVLDCHG`"]
+pub struct SESSVLDCHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SESSVLDCHGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SESSVLDCHG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _LINE_STATE_CHGW<'a> {
+#[doc = "Reader of field `LINE_STATE_CHG`"]
+pub type LINE_STATE_CHG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `LINE_STATE_CHG`"]
+pub struct LINE_STATE_CHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE_STATE_CHGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> LINE_STATE_CHG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ONEMSECW<'a> {
+#[doc = "Reader of field `ONEMSEC`"]
+pub type ONEMSEC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ONEMSEC`"]
+pub struct ONEMSEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONEMSECW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> ONEMSEC_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _IDCHGW<'a> {
+#[doc = "Reader of field `IDCHG`"]
+pub type IDCHG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `IDCHG`"]
+pub struct IDCHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDCHGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> IDCHG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - This bit is set when a change in VBUS is detected on an A device."]
-    #[inline]
-    pub fn avbuschg(&self) -> AVBUSCHGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        AVBUSCHGR { bits }
+    #[inline(always)]
+    pub fn avbuschg(&self) -> AVBUSCHG_R {
+        AVBUSCHG_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 2 - This bit is set when a change in VBUS is detected on a B device."]
-    #[inline]
-    pub fn b_sess_chg(&self) -> B_SESS_CHGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        B_SESS_CHGR { bits }
+    #[inline(always)]
+    pub fn b_sess_chg(&self) -> B_SESS_CHG_R {
+        B_SESS_CHG_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - This bit is set when a change in VBUS is detected indicating a session valid or a session no longer valid"]
-    #[inline]
-    pub fn sessvldchg(&self) -> SESSVLDCHGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        SESSVLDCHGR { bits }
+    #[inline(always)]
+    pub fn sessvldchg(&self) -> SESSVLDCHG_R {
+        SESSVLDCHG_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 5 - This interrupt is set when the USB line state (CTL\\[SE0\\] and CTL\\[JSTATE\\] bits) are stable without change for 1 millisecond, and the value of the line state is different from the last time when the line state was stable"]
-    #[inline]
-    pub fn line_state_chg(&self) -> LINE_STATE_CHGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        LINE_STATE_CHGR { bits }
+    #[inline(always)]
+    pub fn line_state_chg(&self) -> LINE_STATE_CHG_R {
+        LINE_STATE_CHG_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - This bit is set when the 1 millisecond timer expires"]
-    #[inline]
-    pub fn onemsec(&self) -> ONEMSECR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        ONEMSECR { bits }
+    #[inline(always)]
+    pub fn onemsec(&self) -> ONEMSEC_R {
+        ONEMSEC_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - This bit is set when a change in the ID Signal from the USB connector is sensed."]
-    #[inline]
-    pub fn idchg(&self) -> IDCHGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        IDCHGR { bits }
+    #[inline(always)]
+    pub fn idchg(&self) -> IDCHG_R {
+        IDCHG_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - This bit is set when a change in VBUS is detected on an A device."]
-    #[inline]
-    pub fn avbuschg(&mut self) -> _AVBUSCHGW {
-        _AVBUSCHGW { w: self }
+    #[inline(always)]
+    pub fn avbuschg(&mut self) -> AVBUSCHG_W {
+        AVBUSCHG_W { w: self }
     }
     #[doc = "Bit 2 - This bit is set when a change in VBUS is detected on a B device."]
-    #[inline]
-    pub fn b_sess_chg(&mut self) -> _B_SESS_CHGW {
-        _B_SESS_CHGW { w: self }
+    #[inline(always)]
+    pub fn b_sess_chg(&mut self) -> B_SESS_CHG_W {
+        B_SESS_CHG_W { w: self }
     }
     #[doc = "Bit 3 - This bit is set when a change in VBUS is detected indicating a session valid or a session no longer valid"]
-    #[inline]
-    pub fn sessvldchg(&mut self) -> _SESSVLDCHGW {
-        _SESSVLDCHGW { w: self }
+    #[inline(always)]
+    pub fn sessvldchg(&mut self) -> SESSVLDCHG_W {
+        SESSVLDCHG_W { w: self }
     }
     #[doc = "Bit 5 - This interrupt is set when the USB line state (CTL\\[SE0\\] and CTL\\[JSTATE\\] bits) are stable without change for 1 millisecond, and the value of the line state is different from the last time when the line state was stable"]
-    #[inline]
-    pub fn line_state_chg(&mut self) -> _LINE_STATE_CHGW {
-        _LINE_STATE_CHGW { w: self }
+    #[inline(always)]
+    pub fn line_state_chg(&mut self) -> LINE_STATE_CHG_W {
+        LINE_STATE_CHG_W { w: self }
     }
     #[doc = "Bit 6 - This bit is set when the 1 millisecond timer expires"]
-    #[inline]
-    pub fn onemsec(&mut self) -> _ONEMSECW {
-        _ONEMSECW { w: self }
+    #[inline(always)]
+    pub fn onemsec(&mut self) -> ONEMSEC_W {
+        ONEMSEC_W { w: self }
     }
     #[doc = "Bit 7 - This bit is set when a change in the ID Signal from the USB connector is sensed."]
-    #[inline]
-    pub fn idchg(&mut self) -> _IDCHGW {
-        _IDCHGW { w: self }
+    #[inline(always)]
+    pub fn idchg(&mut self) -> IDCHG_W {
+        IDCHG_W { w: self }
     }
 }

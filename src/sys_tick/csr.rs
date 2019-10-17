@@ -1,480 +1,314 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CSR"]
+pub type R = crate::R<u32, super::CSR>;
+#[doc = "Writer for register CSR"]
+pub type W = crate::W<u32, super::CSR>;
+#[doc = "Register CSR `reset()`'s with value 0x04"]
+impl crate::ResetValue for super::CSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x04
     }
 }
-#[doc = "Possible values of the field `ENABLE`"]
+#[doc = "no description available\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ENABLER {
-    #[doc = "counter disabled"]
+pub enum ENABLE_A {
+    #[doc = "0: counter disabled"]
     _0,
-    #[doc = "counter enabled"]
+    #[doc = "1: counter enabled"]
     _1,
 }
-impl ENABLER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ENABLER::_0 => false,
-            ENABLER::_1 => true,
+impl From<ENABLE_A> for bool {
+    #[inline(always)]
+    fn from(variant: ENABLE_A) -> Self {
+        match variant {
+            ENABLE_A::_0 => false,
+            ENABLE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ENABLER {
-        match value {
-            false => ENABLER::_0,
-            true => ENABLER::_1,
+}
+#[doc = "Reader of field `ENABLE`"]
+pub type ENABLE_R = crate::R<bool, ENABLE_A>;
+impl ENABLE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ENABLE_A {
+        match self.bits {
+            false => ENABLE_A::_0,
+            true => ENABLE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ENABLER::_0
+        *self == ENABLE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ENABLER::_1
+        *self == ENABLE_A::_1
     }
 }
-#[doc = "Possible values of the field `TICKINT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TICKINTR {
-    #[doc = "counting down to 0 does not assert the SysTick exception request"]
-    _0,
-    #[doc = "counting down to 0 asserts the SysTick exception request"]
-    _1,
-}
-impl TICKINTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TICKINTR::_0 => false,
-            TICKINTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TICKINTR {
-        match value {
-            false => TICKINTR::_0,
-            true => TICKINTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TICKINTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TICKINTR::_1
-    }
-}
-#[doc = "Possible values of the field `CLKSOURCE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLKSOURCER {
-    #[doc = "external clock"]
-    _0,
-    #[doc = "processor clock"]
-    _1,
-}
-impl CLKSOURCER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CLKSOURCER::_0 => false,
-            CLKSOURCER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CLKSOURCER {
-        match value {
-            false => CLKSOURCER::_0,
-            true => CLKSOURCER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CLKSOURCER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CLKSOURCER::_1
-    }
-}
-#[doc = r" Value of the field"]
-pub struct COUNTFLAGR {
-    bits: bool,
-}
-impl COUNTFLAGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Values that can be written to the field `ENABLE`"]
-pub enum ENABLEW {
-    #[doc = "counter disabled"]
-    _0,
-    #[doc = "counter enabled"]
-    _1,
-}
-impl ENABLEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ENABLEW::_0 => false,
-            ENABLEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ENABLEW<'a> {
+#[doc = "Write proxy for field `ENABLE`"]
+pub struct ENABLE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ENABLEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ENABLEW) -> &'a mut W {
+impl<'a> ENABLE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ENABLE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "counter disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ENABLEW::_0)
+        self.variant(ENABLE_A::_0)
     }
     #[doc = "counter enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ENABLEW::_1)
+        self.variant(ENABLE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TICKINT`"]
-pub enum TICKINTW {
-    #[doc = "counting down to 0 does not assert the SysTick exception request"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TICKINT_A {
+    #[doc = "0: counting down to 0 does not assert the SysTick exception request"]
     _0,
-    #[doc = "counting down to 0 asserts the SysTick exception request"]
+    #[doc = "1: counting down to 0 asserts the SysTick exception request"]
     _1,
 }
-impl TICKINTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TICKINTW::_0 => false,
-            TICKINTW::_1 => true,
+impl From<TICKINT_A> for bool {
+    #[inline(always)]
+    fn from(variant: TICKINT_A) -> Self {
+        match variant {
+            TICKINT_A::_0 => false,
+            TICKINT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TICKINTW<'a> {
+#[doc = "Reader of field `TICKINT`"]
+pub type TICKINT_R = crate::R<bool, TICKINT_A>;
+impl TICKINT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TICKINT_A {
+        match self.bits {
+            false => TICKINT_A::_0,
+            true => TICKINT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TICKINT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TICKINT_A::_1
+    }
+}
+#[doc = "Write proxy for field `TICKINT`"]
+pub struct TICKINT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TICKINTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TICKINTW) -> &'a mut W {
+impl<'a> TICKINT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TICKINT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "counting down to 0 does not assert the SysTick exception request"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TICKINTW::_0)
+        self.variant(TICKINT_A::_0)
     }
     #[doc = "counting down to 0 asserts the SysTick exception request"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TICKINTW::_1)
+        self.variant(TICKINT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CLKSOURCE`"]
-pub enum CLKSOURCEW {
-    #[doc = "external clock"]
+#[doc = "no description available\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLKSOURCE_A {
+    #[doc = "0: external clock"]
     _0,
-    #[doc = "processor clock"]
+    #[doc = "1: processor clock"]
     _1,
 }
-impl CLKSOURCEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CLKSOURCEW::_0 => false,
-            CLKSOURCEW::_1 => true,
+impl From<CLKSOURCE_A> for bool {
+    #[inline(always)]
+    fn from(variant: CLKSOURCE_A) -> Self {
+        match variant {
+            CLKSOURCE_A::_0 => false,
+            CLKSOURCE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CLKSOURCEW<'a> {
+#[doc = "Reader of field `CLKSOURCE`"]
+pub type CLKSOURCE_R = crate::R<bool, CLKSOURCE_A>;
+impl CLKSOURCE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLKSOURCE_A {
+        match self.bits {
+            false => CLKSOURCE_A::_0,
+            true => CLKSOURCE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CLKSOURCE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CLKSOURCE_A::_1
+    }
+}
+#[doc = "Write proxy for field `CLKSOURCE`"]
+pub struct CLKSOURCE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKSOURCEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLKSOURCEW) -> &'a mut W {
+impl<'a> CLKSOURCE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLKSOURCE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "external clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CLKSOURCEW::_0)
+        self.variant(CLKSOURCE_A::_0)
     }
     #[doc = "processor clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CLKSOURCEW::_1)
+        self.variant(CLKSOURCE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _COUNTFLAGW<'a> {
+#[doc = "Reader of field `COUNTFLAG`"]
+pub type COUNTFLAG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `COUNTFLAG`"]
+pub struct COUNTFLAG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COUNTFLAGW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> COUNTFLAG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - no description available"]
-    #[inline]
-    pub fn enable(&self) -> ENABLER {
-        ENABLER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn enable(&self) -> ENABLE_R {
+        ENABLE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - no description available"]
-    #[inline]
-    pub fn tickint(&self) -> TICKINTR {
-        TICKINTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tickint(&self) -> TICKINT_R {
+        TICKINT_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - no description available"]
-    #[inline]
-    pub fn clksource(&self) -> CLKSOURCER {
-        CLKSOURCER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn clksource(&self) -> CLKSOURCE_R {
+        CLKSOURCE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 16 - no description available"]
-    #[inline]
-    pub fn countflag(&self) -> COUNTFLAGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        COUNTFLAGR { bits }
+    #[inline(always)]
+    pub fn countflag(&self) -> COUNTFLAG_R {
+        COUNTFLAG_R::new(((self.bits >> 16) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 4 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - no description available"]
-    #[inline]
-    pub fn enable(&mut self) -> _ENABLEW {
-        _ENABLEW { w: self }
+    #[inline(always)]
+    pub fn enable(&mut self) -> ENABLE_W {
+        ENABLE_W { w: self }
     }
     #[doc = "Bit 1 - no description available"]
-    #[inline]
-    pub fn tickint(&mut self) -> _TICKINTW {
-        _TICKINTW { w: self }
+    #[inline(always)]
+    pub fn tickint(&mut self) -> TICKINT_W {
+        TICKINT_W { w: self }
     }
     #[doc = "Bit 2 - no description available"]
-    #[inline]
-    pub fn clksource(&mut self) -> _CLKSOURCEW {
-        _CLKSOURCEW { w: self }
+    #[inline(always)]
+    pub fn clksource(&mut self) -> CLKSOURCE_W {
+        CLKSOURCE_W { w: self }
     }
     #[doc = "Bit 16 - no description available"]
-    #[inline]
-    pub fn countflag(&mut self) -> _COUNTFLAGW {
-        _COUNTFLAGW { w: self }
+    #[inline(always)]
+    pub fn countflag(&mut self) -> COUNTFLAG_W {
+        COUNTFLAG_W { w: self }
     }
 }

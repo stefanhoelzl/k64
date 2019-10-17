@@ -1,1375 +1,1017 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SOPT2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SOPT2"]
+pub type R = crate::R<u32, super::SOPT2>;
+#[doc = "Writer for register SOPT2"]
+pub type W = crate::W<u32, super::SOPT2>;
+#[doc = "Register SOPT2 `reset()`'s with value 0x1000"]
+impl crate::ResetValue for super::SOPT2 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x1000
     }
 }
-#[doc = "Possible values of the field `RTCCLKOUTSEL`"]
+#[doc = "RTC clock out select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RTCCLKOUTSELR {
-    #[doc = "RTC 1 Hz clock is output on the RTC_CLKOUT pin."]
+pub enum RTCCLKOUTSEL_A {
+    #[doc = "0: RTC 1 Hz clock is output on the RTC_CLKOUT pin."]
     _0,
-    #[doc = "RTC 32.768kHz clock is output on the RTC_CLKOUT pin."]
+    #[doc = "1: RTC 32.768kHz clock is output on the RTC_CLKOUT pin."]
     _1,
 }
-impl RTCCLKOUTSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RTCCLKOUTSELR::_0 => false,
-            RTCCLKOUTSELR::_1 => true,
+impl From<RTCCLKOUTSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: RTCCLKOUTSEL_A) -> Self {
+        match variant {
+            RTCCLKOUTSEL_A::_0 => false,
+            RTCCLKOUTSEL_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RTCCLKOUTSELR {
-        match value {
-            false => RTCCLKOUTSELR::_0,
-            true => RTCCLKOUTSELR::_1,
+}
+#[doc = "Reader of field `RTCCLKOUTSEL`"]
+pub type RTCCLKOUTSEL_R = crate::R<bool, RTCCLKOUTSEL_A>;
+impl RTCCLKOUTSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RTCCLKOUTSEL_A {
+        match self.bits {
+            false => RTCCLKOUTSEL_A::_0,
+            true => RTCCLKOUTSEL_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RTCCLKOUTSELR::_0
+        *self == RTCCLKOUTSEL_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RTCCLKOUTSELR::_1
+        *self == RTCCLKOUTSEL_A::_1
     }
 }
-#[doc = "Possible values of the field `CLKOUTSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLKOUTSELR {
-    #[doc = "FlexBus CLKOUT"]
-    _000,
-    #[doc = "Flash clock"]
-    _010,
-    #[doc = "LPO clock (1 kHz)"]
-    _011,
-    #[doc = "MCGIRCLK"]
-    _100,
-    #[doc = "RTC 32.768kHz clock"]
-    _101,
-    #[doc = "OSCERCLK0"]
-    _110,
-    #[doc = "IRC 48 MHz clock"]
-    _111,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `RTCCLKOUTSEL`"]
+pub struct RTCCLKOUTSEL_W<'a> {
+    w: &'a mut W,
 }
-impl CLKOUTSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CLKOUTSELR::_000 => 0,
-            CLKOUTSELR::_010 => 2,
-            CLKOUTSELR::_011 => 3,
-            CLKOUTSELR::_100 => 4,
-            CLKOUTSELR::_101 => 5,
-            CLKOUTSELR::_110 => 6,
-            CLKOUTSELR::_111 => 7,
-            CLKOUTSELR::_Reserved(bits) => bits,
+impl<'a> RTCCLKOUTSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RTCCLKOUTSEL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CLKOUTSELR {
-        match value {
-            0 => CLKOUTSELR::_000,
-            2 => CLKOUTSELR::_010,
-            3 => CLKOUTSELR::_011,
-            4 => CLKOUTSELR::_100,
-            5 => CLKOUTSELR::_101,
-            6 => CLKOUTSELR::_110,
-            7 => CLKOUTSELR::_111,
-            i => CLKOUTSELR::_Reserved(i),
+    #[doc = "RTC 1 Hz clock is output on the RTC_CLKOUT pin."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(RTCCLKOUTSEL_A::_0)
+    }
+    #[doc = "RTC 32.768kHz clock is output on the RTC_CLKOUT pin."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(RTCCLKOUTSEL_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
+    }
+}
+#[doc = "CLKOUT select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLKOUTSEL_A {
+    #[doc = "0: FlexBus CLKOUT"]
+    _000,
+    #[doc = "2: Flash clock"]
+    _010,
+    #[doc = "3: LPO clock (1 kHz)"]
+    _011,
+    #[doc = "4: MCGIRCLK"]
+    _100,
+    #[doc = "5: RTC 32.768kHz clock"]
+    _101,
+    #[doc = "6: OSCERCLK0"]
+    _110,
+    #[doc = "7: IRC 48 MHz clock"]
+    _111,
+}
+impl From<CLKOUTSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CLKOUTSEL_A) -> Self {
+        match variant {
+            CLKOUTSEL_A::_000 => 0,
+            CLKOUTSEL_A::_010 => 2,
+            CLKOUTSEL_A::_011 => 3,
+            CLKOUTSEL_A::_100 => 4,
+            CLKOUTSEL_A::_101 => 5,
+            CLKOUTSEL_A::_110 => 6,
+            CLKOUTSEL_A::_111 => 7,
+        }
+    }
+}
+#[doc = "Reader of field `CLKOUTSEL`"]
+pub type CLKOUTSEL_R = crate::R<u8, CLKOUTSEL_A>;
+impl CLKOUTSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CLKOUTSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CLKOUTSEL_A::_000),
+            2 => Val(CLKOUTSEL_A::_010),
+            3 => Val(CLKOUTSEL_A::_011),
+            4 => Val(CLKOUTSEL_A::_100),
+            5 => Val(CLKOUTSEL_A::_101),
+            6 => Val(CLKOUTSEL_A::_110),
+            7 => Val(CLKOUTSEL_A::_111),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == CLKOUTSELR::_000
+        *self == CLKOUTSEL_A::_000
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == CLKOUTSELR::_010
+        *self == CLKOUTSEL_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == CLKOUTSELR::_011
+        *self == CLKOUTSEL_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == CLKOUTSELR::_100
+        *self == CLKOUTSEL_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == CLKOUTSELR::_101
+        *self == CLKOUTSEL_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == CLKOUTSELR::_110
+        *self == CLKOUTSEL_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == CLKOUTSELR::_111
+        *self == CLKOUTSEL_A::_111
     }
 }
-#[doc = "Possible values of the field `FBSL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FBSLR {
-    #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
-    _00,
-    #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
-    _01,
-    #[doc = "Off-chip instruction accesses are disallowed. Data accesses are allowed."]
-    _10,
-    #[doc = "Off-chip instruction accesses and data accesses are allowed."]
-    _11,
-}
-impl FBSLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FBSLR::_00 => 0,
-            FBSLR::_01 => 1,
-            FBSLR::_10 => 2,
-            FBSLR::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FBSLR {
-        match value {
-            0 => FBSLR::_00,
-            1 => FBSLR::_01,
-            2 => FBSLR::_10,
-            3 => FBSLR::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == FBSLR::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == FBSLR::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == FBSLR::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == FBSLR::_11
-    }
-}
-#[doc = "Possible values of the field `PTD7PAD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PTD7PADR {
-    #[doc = "Single-pad drive strength for PTD7."]
-    _0,
-    #[doc = "Double pad drive strength for PTD7."]
-    _1,
-}
-impl PTD7PADR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PTD7PADR::_0 => false,
-            PTD7PADR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PTD7PADR {
-        match value {
-            false => PTD7PADR::_0,
-            true => PTD7PADR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PTD7PADR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PTD7PADR::_1
-    }
-}
-#[doc = "Possible values of the field `TRACECLKSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRACECLKSELR {
-    #[doc = "MCGOUTCLK"]
-    _0,
-    #[doc = "Core/system clock"]
-    _1,
-}
-impl TRACECLKSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TRACECLKSELR::_0 => false,
-            TRACECLKSELR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TRACECLKSELR {
-        match value {
-            false => TRACECLKSELR::_0,
-            true => TRACECLKSELR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TRACECLKSELR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TRACECLKSELR::_1
-    }
-}
-#[doc = "Possible values of the field `PLLFLLSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLFLLSELR {
-    #[doc = "MCGFLLCLK clock"]
-    _00,
-    #[doc = "MCGPLLCLK clock"]
-    _01,
-    #[doc = "IRC48 MHz clock"]
-    _11,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl PLLFLLSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PLLFLLSELR::_00 => 0,
-            PLLFLLSELR::_01 => 1,
-            PLLFLLSELR::_11 => 3,
-            PLLFLLSELR::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PLLFLLSELR {
-        match value {
-            0 => PLLFLLSELR::_00,
-            1 => PLLFLLSELR::_01,
-            3 => PLLFLLSELR::_11,
-            i => PLLFLLSELR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == PLLFLLSELR::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == PLLFLLSELR::_01
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == PLLFLLSELR::_11
-    }
-}
-#[doc = "Possible values of the field `USBSRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USBSRCR {
-    #[doc = "External bypass clock (USB_CLKIN)."]
-    _0,
-    #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\], and then divided by the USB fractional divider as configured by SIM_CLKDIV2\\[USBFRAC, USBDIV\\]."]
-    _1,
-}
-impl USBSRCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USBSRCR::_0 => false,
-            USBSRCR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USBSRCR {
-        match value {
-            false => USBSRCR::_0,
-            true => USBSRCR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == USBSRCR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == USBSRCR::_1
-    }
-}
-#[doc = "Possible values of the field `RMIISRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RMIISRCR {
-    #[doc = "EXTAL clock"]
-    _0,
-    #[doc = "External bypass clock (ENET_1588_CLKIN)."]
-    _1,
-}
-impl RMIISRCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RMIISRCR::_0 => false,
-            RMIISRCR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RMIISRCR {
-        match value {
-            false => RMIISRCR::_0,
-            true => RMIISRCR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RMIISRCR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RMIISRCR::_1
-    }
-}
-#[doc = "Possible values of the field `TIMESRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIMESRCR {
-    #[doc = "Core/system clock."]
-    _00,
-    #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
-    _01,
-    #[doc = "OSCERCLK clock"]
-    _10,
-    #[doc = "External bypass clock (ENET_1588_CLKIN)."]
-    _11,
-}
-impl TIMESRCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TIMESRCR::_00 => 0,
-            TIMESRCR::_01 => 1,
-            TIMESRCR::_10 => 2,
-            TIMESRCR::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TIMESRCR {
-        match value {
-            0 => TIMESRCR::_00,
-            1 => TIMESRCR::_01,
-            2 => TIMESRCR::_10,
-            3 => TIMESRCR::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == TIMESRCR::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == TIMESRCR::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == TIMESRCR::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == TIMESRCR::_11
-    }
-}
-#[doc = "Possible values of the field `SDHCSRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SDHCSRCR {
-    #[doc = "Core/system clock."]
-    _00,
-    #[doc = "MCGFLLCLK, or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
-    _01,
-    #[doc = "OSCERCLK clock"]
-    _10,
-    #[doc = "External bypass clock (SDHC0_CLKIN)"]
-    _11,
-}
-impl SDHCSRCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            SDHCSRCR::_00 => 0,
-            SDHCSRCR::_01 => 1,
-            SDHCSRCR::_10 => 2,
-            SDHCSRCR::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> SDHCSRCR {
-        match value {
-            0 => SDHCSRCR::_00,
-            1 => SDHCSRCR::_01,
-            2 => SDHCSRCR::_10,
-            3 => SDHCSRCR::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == SDHCSRCR::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == SDHCSRCR::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == SDHCSRCR::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == SDHCSRCR::_11
-    }
-}
-#[doc = "Values that can be written to the field `RTCCLKOUTSEL`"]
-pub enum RTCCLKOUTSELW {
-    #[doc = "RTC 1 Hz clock is output on the RTC_CLKOUT pin."]
-    _0,
-    #[doc = "RTC 32.768kHz clock is output on the RTC_CLKOUT pin."]
-    _1,
-}
-impl RTCCLKOUTSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RTCCLKOUTSELW::_0 => false,
-            RTCCLKOUTSELW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RTCCLKOUTSELW<'a> {
+#[doc = "Write proxy for field `CLKOUTSEL`"]
+pub struct CLKOUTSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTCCLKOUTSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RTCCLKOUTSELW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "RTC 1 Hz clock is output on the RTC_CLKOUT pin."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(RTCCLKOUTSELW::_0)
-    }
-    #[doc = "RTC 32.768kHz clock is output on the RTC_CLKOUT pin."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(RTCCLKOUTSELW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CLKOUTSEL`"]
-pub enum CLKOUTSELW {
-    #[doc = "FlexBus CLKOUT"]
-    _000,
-    #[doc = "Flash clock"]
-    _010,
-    #[doc = "LPO clock (1 kHz)"]
-    _011,
-    #[doc = "MCGIRCLK"]
-    _100,
-    #[doc = "RTC 32.768kHz clock"]
-    _101,
-    #[doc = "OSCERCLK0"]
-    _110,
-    #[doc = "IRC 48 MHz clock"]
-    _111,
-}
-impl CLKOUTSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CLKOUTSELW::_000 => 0,
-            CLKOUTSELW::_010 => 2,
-            CLKOUTSELW::_011 => 3,
-            CLKOUTSELW::_100 => 4,
-            CLKOUTSELW::_101 => 5,
-            CLKOUTSELW::_110 => 6,
-            CLKOUTSELW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLKOUTSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CLKOUTSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLKOUTSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> CLKOUTSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLKOUTSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "FlexBus CLKOUT"]
-    #[inline]
+    #[inline(always)]
     pub fn _000(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_000)
+        self.variant(CLKOUTSEL_A::_000)
     }
     #[doc = "Flash clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _010(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_010)
+        self.variant(CLKOUTSEL_A::_010)
     }
     #[doc = "LPO clock (1 kHz)"]
-    #[inline]
+    #[inline(always)]
     pub fn _011(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_011)
+        self.variant(CLKOUTSEL_A::_011)
     }
     #[doc = "MCGIRCLK"]
-    #[inline]
+    #[inline(always)]
     pub fn _100(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_100)
+        self.variant(CLKOUTSEL_A::_100)
     }
     #[doc = "RTC 32.768kHz clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _101(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_101)
+        self.variant(CLKOUTSEL_A::_101)
     }
     #[doc = "OSCERCLK0"]
-    #[inline]
+    #[inline(always)]
     pub fn _110(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_110)
+        self.variant(CLKOUTSEL_A::_110)
     }
     #[doc = "IRC 48 MHz clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _111(self) -> &'a mut W {
-        self.variant(CLKOUTSELW::_111)
+        self.variant(CLKOUTSEL_A::_111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 5)) | (((value as u32) & 0x07) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `FBSL`"]
-pub enum FBSLW {
-    #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
+#[doc = "FlexBus security level\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FBSL_A {
+    #[doc = "0: All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
     _00,
-    #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
+    #[doc = "1: All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
     _01,
-    #[doc = "Off-chip instruction accesses are disallowed. Data accesses are allowed."]
+    #[doc = "2: Off-chip instruction accesses are disallowed. Data accesses are allowed."]
     _10,
-    #[doc = "Off-chip instruction accesses and data accesses are allowed."]
+    #[doc = "3: Off-chip instruction accesses and data accesses are allowed."]
     _11,
 }
-impl FBSLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FBSLW::_00 => 0,
-            FBSLW::_01 => 1,
-            FBSLW::_10 => 2,
-            FBSLW::_11 => 3,
+impl From<FBSL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FBSL_A) -> Self {
+        match variant {
+            FBSL_A::_00 => 0,
+            FBSL_A::_01 => 1,
+            FBSL_A::_10 => 2,
+            FBSL_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _FBSLW<'a> {
+#[doc = "Reader of field `FBSL`"]
+pub type FBSL_R = crate::R<u8, FBSL_A>;
+impl FBSL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FBSL_A {
+        match self.bits {
+            0 => FBSL_A::_00,
+            1 => FBSL_A::_01,
+            2 => FBSL_A::_10,
+            3 => FBSL_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == FBSL_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == FBSL_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == FBSL_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == FBSL_A::_11
+    }
+}
+#[doc = "Write proxy for field `FBSL`"]
+pub struct FBSL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FBSLW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FBSLW) -> &'a mut W {
+impl<'a> FBSL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FBSL_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(FBSLW::_00)
+        self.variant(FBSL_A::_00)
     }
     #[doc = "All off-chip accesses (instruction and data) via the FlexBus are disallowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(FBSLW::_01)
+        self.variant(FBSL_A::_01)
     }
     #[doc = "Off-chip instruction accesses are disallowed. Data accesses are allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(FBSLW::_10)
+        self.variant(FBSL_A::_10)
     }
     #[doc = "Off-chip instruction accesses and data accesses are allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(FBSLW::_11)
+        self.variant(FBSL_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PTD7PAD`"]
-pub enum PTD7PADW {
-    #[doc = "Single-pad drive strength for PTD7."]
+#[doc = "PTD7 pad drive strength\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PTD7PAD_A {
+    #[doc = "0: Single-pad drive strength for PTD7."]
     _0,
-    #[doc = "Double pad drive strength for PTD7."]
+    #[doc = "1: Double pad drive strength for PTD7."]
     _1,
 }
-impl PTD7PADW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PTD7PADW::_0 => false,
-            PTD7PADW::_1 => true,
+impl From<PTD7PAD_A> for bool {
+    #[inline(always)]
+    fn from(variant: PTD7PAD_A) -> Self {
+        match variant {
+            PTD7PAD_A::_0 => false,
+            PTD7PAD_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PTD7PADW<'a> {
+#[doc = "Reader of field `PTD7PAD`"]
+pub type PTD7PAD_R = crate::R<bool, PTD7PAD_A>;
+impl PTD7PAD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PTD7PAD_A {
+        match self.bits {
+            false => PTD7PAD_A::_0,
+            true => PTD7PAD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PTD7PAD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PTD7PAD_A::_1
+    }
+}
+#[doc = "Write proxy for field `PTD7PAD`"]
+pub struct PTD7PAD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTD7PADW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PTD7PADW) -> &'a mut W {
+impl<'a> PTD7PAD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PTD7PAD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Single-pad drive strength for PTD7."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PTD7PADW::_0)
+        self.variant(PTD7PAD_A::_0)
     }
     #[doc = "Double pad drive strength for PTD7."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PTD7PADW::_1)
+        self.variant(PTD7PAD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TRACECLKSEL`"]
-pub enum TRACECLKSELW {
-    #[doc = "MCGOUTCLK"]
+#[doc = "Debug trace clock select\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TRACECLKSEL_A {
+    #[doc = "0: MCGOUTCLK"]
     _0,
-    #[doc = "Core/system clock"]
+    #[doc = "1: Core/system clock"]
     _1,
 }
-impl TRACECLKSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TRACECLKSELW::_0 => false,
-            TRACECLKSELW::_1 => true,
+impl From<TRACECLKSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: TRACECLKSEL_A) -> Self {
+        match variant {
+            TRACECLKSEL_A::_0 => false,
+            TRACECLKSEL_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TRACECLKSELW<'a> {
+#[doc = "Reader of field `TRACECLKSEL`"]
+pub type TRACECLKSEL_R = crate::R<bool, TRACECLKSEL_A>;
+impl TRACECLKSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TRACECLKSEL_A {
+        match self.bits {
+            false => TRACECLKSEL_A::_0,
+            true => TRACECLKSEL_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TRACECLKSEL_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TRACECLKSEL_A::_1
+    }
+}
+#[doc = "Write proxy for field `TRACECLKSEL`"]
+pub struct TRACECLKSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRACECLKSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TRACECLKSELW) -> &'a mut W {
+impl<'a> TRACECLKSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TRACECLKSEL_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "MCGOUTCLK"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TRACECLKSELW::_0)
+        self.variant(TRACECLKSEL_A::_0)
     }
     #[doc = "Core/system clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TRACECLKSELW::_1)
+        self.variant(TRACECLKSEL_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PLLFLLSEL`"]
-pub enum PLLFLLSELW {
-    #[doc = "MCGFLLCLK clock"]
+#[doc = "PLL/FLL clock select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PLLFLLSEL_A {
+    #[doc = "0: MCGFLLCLK clock"]
     _00,
-    #[doc = "MCGPLLCLK clock"]
+    #[doc = "1: MCGPLLCLK clock"]
     _01,
-    #[doc = "IRC48 MHz clock"]
+    #[doc = "3: IRC48 MHz clock"]
     _11,
 }
-impl PLLFLLSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PLLFLLSELW::_00 => 0,
-            PLLFLLSELW::_01 => 1,
-            PLLFLLSELW::_11 => 3,
+impl From<PLLFLLSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PLLFLLSEL_A) -> Self {
+        match variant {
+            PLLFLLSEL_A::_00 => 0,
+            PLLFLLSEL_A::_01 => 1,
+            PLLFLLSEL_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLFLLSELW<'a> {
+#[doc = "Reader of field `PLLFLLSEL`"]
+pub type PLLFLLSEL_R = crate::R<u8, PLLFLLSEL_A>;
+impl PLLFLLSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PLLFLLSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PLLFLLSEL_A::_00),
+            1 => Val(PLLFLLSEL_A::_01),
+            3 => Val(PLLFLLSEL_A::_11),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == PLLFLLSEL_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == PLLFLLSEL_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == PLLFLLSEL_A::_11
+    }
+}
+#[doc = "Write proxy for field `PLLFLLSEL`"]
+pub struct PLLFLLSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLFLLSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLLFLLSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> PLLFLLSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLLFLLSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "MCGFLLCLK clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(PLLFLLSELW::_00)
+        self.variant(PLLFLLSEL_A::_00)
     }
     #[doc = "MCGPLLCLK clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(PLLFLLSELW::_01)
+        self.variant(PLLFLLSEL_A::_01)
     }
     #[doc = "IRC48 MHz clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(PLLFLLSELW::_11)
+        self.variant(PLLFLLSEL_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USBSRC`"]
-pub enum USBSRCW {
-    #[doc = "External bypass clock (USB_CLKIN)."]
+#[doc = "USB clock source select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum USBSRC_A {
+    #[doc = "0: External bypass clock (USB_CLKIN)."]
     _0,
-    #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\], and then divided by the USB fractional divider as configured by SIM_CLKDIV2\\[USBFRAC, USBDIV\\]."]
+    #[doc = "1: MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\], and then divided by the USB fractional divider as configured by SIM_CLKDIV2\\[USBFRAC, USBDIV\\]."]
     _1,
 }
-impl USBSRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USBSRCW::_0 => false,
-            USBSRCW::_1 => true,
+impl From<USBSRC_A> for bool {
+    #[inline(always)]
+    fn from(variant: USBSRC_A) -> Self {
+        match variant {
+            USBSRC_A::_0 => false,
+            USBSRC_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _USBSRCW<'a> {
+#[doc = "Reader of field `USBSRC`"]
+pub type USBSRC_R = crate::R<bool, USBSRC_A>;
+impl USBSRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USBSRC_A {
+        match self.bits {
+            false => USBSRC_A::_0,
+            true => USBSRC_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == USBSRC_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == USBSRC_A::_1
+    }
+}
+#[doc = "Write proxy for field `USBSRC`"]
+pub struct USBSRC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USBSRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USBSRCW) -> &'a mut W {
+impl<'a> USBSRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USBSRC_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "External bypass clock (USB_CLKIN)."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(USBSRCW::_0)
+        self.variant(USBSRC_A::_0)
     }
     #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\], and then divided by the USB fractional divider as configured by SIM_CLKDIV2\\[USBFRAC, USBDIV\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(USBSRCW::_1)
+        self.variant(USBSRC_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RMIISRC`"]
-pub enum RMIISRCW {
-    #[doc = "EXTAL clock"]
+#[doc = "RMII clock source select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RMIISRC_A {
+    #[doc = "0: EXTAL clock"]
     _0,
-    #[doc = "External bypass clock (ENET_1588_CLKIN)."]
+    #[doc = "1: External bypass clock (ENET_1588_CLKIN)."]
     _1,
 }
-impl RMIISRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RMIISRCW::_0 => false,
-            RMIISRCW::_1 => true,
+impl From<RMIISRC_A> for bool {
+    #[inline(always)]
+    fn from(variant: RMIISRC_A) -> Self {
+        match variant {
+            RMIISRC_A::_0 => false,
+            RMIISRC_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RMIISRCW<'a> {
+#[doc = "Reader of field `RMIISRC`"]
+pub type RMIISRC_R = crate::R<bool, RMIISRC_A>;
+impl RMIISRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RMIISRC_A {
+        match self.bits {
+            false => RMIISRC_A::_0,
+            true => RMIISRC_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RMIISRC_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RMIISRC_A::_1
+    }
+}
+#[doc = "Write proxy for field `RMIISRC`"]
+pub struct RMIISRC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RMIISRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RMIISRCW) -> &'a mut W {
+impl<'a> RMIISRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RMIISRC_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "EXTAL clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RMIISRCW::_0)
+        self.variant(RMIISRC_A::_0)
     }
     #[doc = "External bypass clock (ENET_1588_CLKIN)."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RMIISRCW::_1)
+        self.variant(RMIISRC_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIMESRC`"]
-pub enum TIMESRCW {
-    #[doc = "Core/system clock."]
+#[doc = "IEEE 1588 timestamp clock source select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TIMESRC_A {
+    #[doc = "0: Core/system clock."]
     _00,
-    #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
+    #[doc = "1: MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
     _01,
-    #[doc = "OSCERCLK clock"]
+    #[doc = "2: OSCERCLK clock"]
     _10,
-    #[doc = "External bypass clock (ENET_1588_CLKIN)."]
+    #[doc = "3: External bypass clock (ENET_1588_CLKIN)."]
     _11,
 }
-impl TIMESRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TIMESRCW::_00 => 0,
-            TIMESRCW::_01 => 1,
-            TIMESRCW::_10 => 2,
-            TIMESRCW::_11 => 3,
+impl From<TIMESRC_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TIMESRC_A) -> Self {
+        match variant {
+            TIMESRC_A::_00 => 0,
+            TIMESRC_A::_01 => 1,
+            TIMESRC_A::_10 => 2,
+            TIMESRC_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TIMESRCW<'a> {
+#[doc = "Reader of field `TIMESRC`"]
+pub type TIMESRC_R = crate::R<u8, TIMESRC_A>;
+impl TIMESRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TIMESRC_A {
+        match self.bits {
+            0 => TIMESRC_A::_00,
+            1 => TIMESRC_A::_01,
+            2 => TIMESRC_A::_10,
+            3 => TIMESRC_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == TIMESRC_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == TIMESRC_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == TIMESRC_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == TIMESRC_A::_11
+    }
+}
+#[doc = "Write proxy for field `TIMESRC`"]
+pub struct TIMESRC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMESRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIMESRCW) -> &'a mut W {
+impl<'a> TIMESRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIMESRC_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Core/system clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(TIMESRCW::_00)
+        self.variant(TIMESRC_A::_00)
     }
     #[doc = "MCGFLLCLK , or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(TIMESRCW::_01)
+        self.variant(TIMESRC_A::_01)
     }
     #[doc = "OSCERCLK clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(TIMESRCW::_10)
+        self.variant(TIMESRC_A::_10)
     }
     #[doc = "External bypass clock (ENET_1588_CLKIN)."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(TIMESRCW::_11)
+        self.variant(TIMESRC_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 20)) | (((value as u32) & 0x03) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SDHCSRC`"]
-pub enum SDHCSRCW {
-    #[doc = "Core/system clock."]
+#[doc = "SDHC clock source select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SDHCSRC_A {
+    #[doc = "0: Core/system clock."]
     _00,
-    #[doc = "MCGFLLCLK, or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
+    #[doc = "1: MCGFLLCLK, or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
     _01,
-    #[doc = "OSCERCLK clock"]
+    #[doc = "2: OSCERCLK clock"]
     _10,
-    #[doc = "External bypass clock (SDHC0_CLKIN)"]
+    #[doc = "3: External bypass clock (SDHC0_CLKIN)"]
     _11,
 }
-impl SDHCSRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            SDHCSRCW::_00 => 0,
-            SDHCSRCW::_01 => 1,
-            SDHCSRCW::_10 => 2,
-            SDHCSRCW::_11 => 3,
+impl From<SDHCSRC_A> for u8 {
+    #[inline(always)]
+    fn from(variant: SDHCSRC_A) -> Self {
+        match variant {
+            SDHCSRC_A::_00 => 0,
+            SDHCSRC_A::_01 => 1,
+            SDHCSRC_A::_10 => 2,
+            SDHCSRC_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SDHCSRCW<'a> {
+#[doc = "Reader of field `SDHCSRC`"]
+pub type SDHCSRC_R = crate::R<u8, SDHCSRC_A>;
+impl SDHCSRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SDHCSRC_A {
+        match self.bits {
+            0 => SDHCSRC_A::_00,
+            1 => SDHCSRC_A::_01,
+            2 => SDHCSRC_A::_10,
+            3 => SDHCSRC_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == SDHCSRC_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == SDHCSRC_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == SDHCSRC_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == SDHCSRC_A::_11
+    }
+}
+#[doc = "Write proxy for field `SDHCSRC`"]
+pub struct SDHCSRC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDHCSRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SDHCSRCW) -> &'a mut W {
+impl<'a> SDHCSRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SDHCSRC_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Core/system clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(SDHCSRCW::_00)
+        self.variant(SDHCSRC_A::_00)
     }
     #[doc = "MCGFLLCLK, or MCGPLLCLK , or IRC48M clock as selected by SOPT2\\[PLLFLLSEL\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(SDHCSRCW::_01)
+        self.variant(SDHCSRC_A::_01)
     }
     #[doc = "OSCERCLK clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(SDHCSRCW::_10)
+        self.variant(SDHCSRC_A::_10)
     }
     #[doc = "External bypass clock (SDHC0_CLKIN)"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(SDHCSRCW::_11)
+        self.variant(SDHCSRC_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 28)) | (((value as u32) & 0x03) << 28);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 4 - RTC clock out select"]
-    #[inline]
-    pub fn rtcclkoutsel(&self) -> RTCCLKOUTSELR {
-        RTCCLKOUTSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rtcclkoutsel(&self) -> RTCCLKOUTSEL_R {
+        RTCCLKOUTSEL_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 5:7 - CLKOUT select"]
-    #[inline]
-    pub fn clkoutsel(&self) -> CLKOUTSELR {
-        CLKOUTSELR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn clkoutsel(&self) -> CLKOUTSEL_R {
+        CLKOUTSEL_R::new(((self.bits >> 5) & 0x07) as u8)
     }
     #[doc = "Bits 8:9 - FlexBus security level"]
-    #[inline]
-    pub fn fbsl(&self) -> FBSLR {
-        FBSLR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn fbsl(&self) -> FBSL_R {
+        FBSL_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 11 - PTD7 pad drive strength"]
-    #[inline]
-    pub fn ptd7pad(&self) -> PTD7PADR {
-        PTD7PADR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ptd7pad(&self) -> PTD7PAD_R {
+        PTD7PAD_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Debug trace clock select"]
-    #[inline]
-    pub fn traceclksel(&self) -> TRACECLKSELR {
-        TRACECLKSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn traceclksel(&self) -> TRACECLKSEL_R {
+        TRACECLKSEL_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 16:17 - PLL/FLL clock select"]
-    #[inline]
-    pub fn pllfllsel(&self) -> PLLFLLSELR {
-        PLLFLLSELR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn pllfllsel(&self) -> PLLFLLSEL_R {
+        PLLFLLSEL_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bit 18 - USB clock source select"]
-    #[inline]
-    pub fn usbsrc(&self) -> USBSRCR {
-        USBSRCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usbsrc(&self) -> USBSRC_R {
+        USBSRC_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - RMII clock source select"]
-    #[inline]
-    pub fn rmiisrc(&self) -> RMIISRCR {
-        RMIISRCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rmiisrc(&self) -> RMIISRC_R {
+        RMIISRC_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bits 20:21 - IEEE 1588 timestamp clock source select"]
-    #[inline]
-    pub fn timesrc(&self) -> TIMESRCR {
-        TIMESRCR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn timesrc(&self) -> TIMESRC_R {
+        TIMESRC_R::new(((self.bits >> 20) & 0x03) as u8)
     }
     #[doc = "Bits 28:29 - SDHC clock source select"]
-    #[inline]
-    pub fn sdhcsrc(&self) -> SDHCSRCR {
-        SDHCSRCR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn sdhcsrc(&self) -> SDHCSRC_R {
+        SDHCSRC_R::new(((self.bits >> 28) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 4096 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 4 - RTC clock out select"]
-    #[inline]
-    pub fn rtcclkoutsel(&mut self) -> _RTCCLKOUTSELW {
-        _RTCCLKOUTSELW { w: self }
+    #[inline(always)]
+    pub fn rtcclkoutsel(&mut self) -> RTCCLKOUTSEL_W {
+        RTCCLKOUTSEL_W { w: self }
     }
     #[doc = "Bits 5:7 - CLKOUT select"]
-    #[inline]
-    pub fn clkoutsel(&mut self) -> _CLKOUTSELW {
-        _CLKOUTSELW { w: self }
+    #[inline(always)]
+    pub fn clkoutsel(&mut self) -> CLKOUTSEL_W {
+        CLKOUTSEL_W { w: self }
     }
     #[doc = "Bits 8:9 - FlexBus security level"]
-    #[inline]
-    pub fn fbsl(&mut self) -> _FBSLW {
-        _FBSLW { w: self }
+    #[inline(always)]
+    pub fn fbsl(&mut self) -> FBSL_W {
+        FBSL_W { w: self }
     }
     #[doc = "Bit 11 - PTD7 pad drive strength"]
-    #[inline]
-    pub fn ptd7pad(&mut self) -> _PTD7PADW {
-        _PTD7PADW { w: self }
+    #[inline(always)]
+    pub fn ptd7pad(&mut self) -> PTD7PAD_W {
+        PTD7PAD_W { w: self }
     }
     #[doc = "Bit 12 - Debug trace clock select"]
-    #[inline]
-    pub fn traceclksel(&mut self) -> _TRACECLKSELW {
-        _TRACECLKSELW { w: self }
+    #[inline(always)]
+    pub fn traceclksel(&mut self) -> TRACECLKSEL_W {
+        TRACECLKSEL_W { w: self }
     }
     #[doc = "Bits 16:17 - PLL/FLL clock select"]
-    #[inline]
-    pub fn pllfllsel(&mut self) -> _PLLFLLSELW {
-        _PLLFLLSELW { w: self }
+    #[inline(always)]
+    pub fn pllfllsel(&mut self) -> PLLFLLSEL_W {
+        PLLFLLSEL_W { w: self }
     }
     #[doc = "Bit 18 - USB clock source select"]
-    #[inline]
-    pub fn usbsrc(&mut self) -> _USBSRCW {
-        _USBSRCW { w: self }
+    #[inline(always)]
+    pub fn usbsrc(&mut self) -> USBSRC_W {
+        USBSRC_W { w: self }
     }
     #[doc = "Bit 19 - RMII clock source select"]
-    #[inline]
-    pub fn rmiisrc(&mut self) -> _RMIISRCW {
-        _RMIISRCW { w: self }
+    #[inline(always)]
+    pub fn rmiisrc(&mut self) -> RMIISRC_W {
+        RMIISRC_W { w: self }
     }
     #[doc = "Bits 20:21 - IEEE 1588 timestamp clock source select"]
-    #[inline]
-    pub fn timesrc(&mut self) -> _TIMESRCW {
-        _TIMESRCW { w: self }
+    #[inline(always)]
+    pub fn timesrc(&mut self) -> TIMESRC_W {
+        TIMESRC_W { w: self }
     }
     #[doc = "Bits 28:29 - SDHC clock source select"]
-    #[inline]
-    pub fn sdhcsrc(&mut self) -> _SDHCSRCW {
-        _SDHCSRCW { w: self }
+    #[inline(always)]
+    pub fn sdhcsrc(&mut self) -> SDHCSRC_W {
+        SDHCSRC_W { w: self }
     }
 }

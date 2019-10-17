@@ -1,1188 +1,888 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SOPT7 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SOPT7"]
+pub type R = crate::R<u32, super::SOPT7>;
+#[doc = "Writer for register SOPT7"]
+pub type W = crate::W<u32, super::SOPT7>;
+#[doc = "Register SOPT7 `reset()`'s with value 0"]
+impl crate::ResetValue for super::SOPT7 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `ADC0TRGSEL`"]
+#[doc = "ADC0 trigger select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC0TRGSELR {
-    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
+pub enum ADC0TRGSEL_A {
+    #[doc = "0: PDB external trigger pin input (PDB0_EXTRG)"]
     _0000,
-    #[doc = "High speed comparator 0 output"]
+    #[doc = "1: High speed comparator 0 output"]
     _0001,
-    #[doc = "High speed comparator 1 output"]
+    #[doc = "2: High speed comparator 1 output"]
     _0010,
-    #[doc = "High speed comparator 2 output"]
+    #[doc = "3: High speed comparator 2 output"]
     _0011,
-    #[doc = "PIT trigger 0"]
+    #[doc = "4: PIT trigger 0"]
     _0100,
-    #[doc = "PIT trigger 1"]
+    #[doc = "5: PIT trigger 1"]
     _0101,
-    #[doc = "PIT trigger 2"]
+    #[doc = "6: PIT trigger 2"]
     _0110,
-    #[doc = "PIT trigger 3"]
+    #[doc = "7: PIT trigger 3"]
     _0111,
-    #[doc = "FTM0 trigger"]
+    #[doc = "8: FTM0 trigger"]
     _1000,
-    #[doc = "FTM1 trigger"]
+    #[doc = "9: FTM1 trigger"]
     _1001,
-    #[doc = "FTM2 trigger"]
+    #[doc = "10: FTM2 trigger"]
     _1010,
-    #[doc = "FTM3 trigger"]
+    #[doc = "11: FTM3 trigger"]
     _1011,
-    #[doc = "RTC alarm"]
+    #[doc = "12: RTC alarm"]
     _1100,
-    #[doc = "RTC seconds"]
+    #[doc = "13: RTC seconds"]
     _1101,
-    #[doc = "Low-power timer (LPTMR) trigger"]
+    #[doc = "14: Low-power timer (LPTMR) trigger"]
     _1110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl ADC0TRGSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            ADC0TRGSELR::_0000 => 0,
-            ADC0TRGSELR::_0001 => 1,
-            ADC0TRGSELR::_0010 => 2,
-            ADC0TRGSELR::_0011 => 3,
-            ADC0TRGSELR::_0100 => 4,
-            ADC0TRGSELR::_0101 => 5,
-            ADC0TRGSELR::_0110 => 6,
-            ADC0TRGSELR::_0111 => 7,
-            ADC0TRGSELR::_1000 => 8,
-            ADC0TRGSELR::_1001 => 9,
-            ADC0TRGSELR::_1010 => 10,
-            ADC0TRGSELR::_1011 => 11,
-            ADC0TRGSELR::_1100 => 12,
-            ADC0TRGSELR::_1101 => 13,
-            ADC0TRGSELR::_1110 => 14,
-            ADC0TRGSELR::_Reserved(bits) => bits,
+impl From<ADC0TRGSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: ADC0TRGSEL_A) -> Self {
+        match variant {
+            ADC0TRGSEL_A::_0000 => 0,
+            ADC0TRGSEL_A::_0001 => 1,
+            ADC0TRGSEL_A::_0010 => 2,
+            ADC0TRGSEL_A::_0011 => 3,
+            ADC0TRGSEL_A::_0100 => 4,
+            ADC0TRGSEL_A::_0101 => 5,
+            ADC0TRGSEL_A::_0110 => 6,
+            ADC0TRGSEL_A::_0111 => 7,
+            ADC0TRGSEL_A::_1000 => 8,
+            ADC0TRGSEL_A::_1001 => 9,
+            ADC0TRGSEL_A::_1010 => 10,
+            ADC0TRGSEL_A::_1011 => 11,
+            ADC0TRGSEL_A::_1100 => 12,
+            ADC0TRGSEL_A::_1101 => 13,
+            ADC0TRGSEL_A::_1110 => 14,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> ADC0TRGSELR {
-        match value {
-            0 => ADC0TRGSELR::_0000,
-            1 => ADC0TRGSELR::_0001,
-            2 => ADC0TRGSELR::_0010,
-            3 => ADC0TRGSELR::_0011,
-            4 => ADC0TRGSELR::_0100,
-            5 => ADC0TRGSELR::_0101,
-            6 => ADC0TRGSELR::_0110,
-            7 => ADC0TRGSELR::_0111,
-            8 => ADC0TRGSELR::_1000,
-            9 => ADC0TRGSELR::_1001,
-            10 => ADC0TRGSELR::_1010,
-            11 => ADC0TRGSELR::_1011,
-            12 => ADC0TRGSELR::_1100,
-            13 => ADC0TRGSELR::_1101,
-            14 => ADC0TRGSELR::_1110,
-            i => ADC0TRGSELR::_Reserved(i),
+}
+#[doc = "Reader of field `ADC0TRGSEL`"]
+pub type ADC0TRGSEL_R = crate::R<u8, ADC0TRGSEL_A>;
+impl ADC0TRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, ADC0TRGSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(ADC0TRGSEL_A::_0000),
+            1 => Val(ADC0TRGSEL_A::_0001),
+            2 => Val(ADC0TRGSEL_A::_0010),
+            3 => Val(ADC0TRGSEL_A::_0011),
+            4 => Val(ADC0TRGSEL_A::_0100),
+            5 => Val(ADC0TRGSEL_A::_0101),
+            6 => Val(ADC0TRGSEL_A::_0110),
+            7 => Val(ADC0TRGSEL_A::_0111),
+            8 => Val(ADC0TRGSEL_A::_1000),
+            9 => Val(ADC0TRGSEL_A::_1001),
+            10 => Val(ADC0TRGSEL_A::_1010),
+            11 => Val(ADC0TRGSEL_A::_1011),
+            12 => Val(ADC0TRGSEL_A::_1100),
+            13 => Val(ADC0TRGSEL_A::_1101),
+            14 => Val(ADC0TRGSEL_A::_1110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0000(&self) -> bool {
-        *self == ADC0TRGSELR::_0000
+        *self == ADC0TRGSEL_A::_0000
     }
     #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0001(&self) -> bool {
-        *self == ADC0TRGSELR::_0001
+        *self == ADC0TRGSEL_A::_0001
     }
     #[doc = "Checks if the value of the field is `_0010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0010(&self) -> bool {
-        *self == ADC0TRGSELR::_0010
+        *self == ADC0TRGSEL_A::_0010
     }
     #[doc = "Checks if the value of the field is `_0011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0011(&self) -> bool {
-        *self == ADC0TRGSELR::_0011
+        *self == ADC0TRGSEL_A::_0011
     }
     #[doc = "Checks if the value of the field is `_0100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0100(&self) -> bool {
-        *self == ADC0TRGSELR::_0100
+        *self == ADC0TRGSEL_A::_0100
     }
     #[doc = "Checks if the value of the field is `_0101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0101(&self) -> bool {
-        *self == ADC0TRGSELR::_0101
+        *self == ADC0TRGSEL_A::_0101
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == ADC0TRGSELR::_0110
+        *self == ADC0TRGSEL_A::_0110
     }
     #[doc = "Checks if the value of the field is `_0111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0111(&self) -> bool {
-        *self == ADC0TRGSELR::_0111
+        *self == ADC0TRGSEL_A::_0111
     }
     #[doc = "Checks if the value of the field is `_1000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1000(&self) -> bool {
-        *self == ADC0TRGSELR::_1000
+        *self == ADC0TRGSEL_A::_1000
     }
     #[doc = "Checks if the value of the field is `_1001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1001(&self) -> bool {
-        *self == ADC0TRGSELR::_1001
+        *self == ADC0TRGSEL_A::_1001
     }
     #[doc = "Checks if the value of the field is `_1010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1010(&self) -> bool {
-        *self == ADC0TRGSELR::_1010
+        *self == ADC0TRGSEL_A::_1010
     }
     #[doc = "Checks if the value of the field is `_1011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1011(&self) -> bool {
-        *self == ADC0TRGSELR::_1011
+        *self == ADC0TRGSEL_A::_1011
     }
     #[doc = "Checks if the value of the field is `_1100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1100(&self) -> bool {
-        *self == ADC0TRGSELR::_1100
+        *self == ADC0TRGSEL_A::_1100
     }
     #[doc = "Checks if the value of the field is `_1101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1101(&self) -> bool {
-        *self == ADC0TRGSELR::_1101
+        *self == ADC0TRGSEL_A::_1101
     }
     #[doc = "Checks if the value of the field is `_1110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1110(&self) -> bool {
-        *self == ADC0TRGSELR::_1110
+        *self == ADC0TRGSEL_A::_1110
     }
 }
-#[doc = "Possible values of the field `ADC0PRETRGSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC0PRETRGSELR {
-    #[doc = "Pre-trigger A"]
-    _0,
-    #[doc = "Pre-trigger B"]
-    _1,
+#[doc = "Write proxy for field `ADC0TRGSEL`"]
+pub struct ADC0TRGSEL_W<'a> {
+    w: &'a mut W,
 }
-impl ADC0PRETRGSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+impl<'a> ADC0TRGSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC0TRGSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADC0PRETRGSELR::_0 => false,
-            ADC0PRETRGSELR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADC0PRETRGSELR {
-        match value {
-            false => ADC0PRETRGSELR::_0,
-            true => ADC0PRETRGSELR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ADC0PRETRGSELR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ADC0PRETRGSELR::_1
-    }
-}
-#[doc = "Possible values of the field `ADC0ALTTRGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC0ALTTRGENR {
-    #[doc = "PDB trigger selected for ADC0."]
-    _0,
-    #[doc = "Alternate trigger selected for ADC0."]
-    _1,
-}
-impl ADC0ALTTRGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADC0ALTTRGENR::_0 => false,
-            ADC0ALTTRGENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADC0ALTTRGENR {
-        match value {
-            false => ADC0ALTTRGENR::_0,
-            true => ADC0ALTTRGENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ADC0ALTTRGENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ADC0ALTTRGENR::_1
-    }
-}
-#[doc = "Possible values of the field `ADC1TRGSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC1TRGSELR {
     #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
-    _0000,
+    #[inline(always)]
+    pub fn _0000(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0000)
+    }
     #[doc = "High speed comparator 0 output"]
-    _0001,
+    #[inline(always)]
+    pub fn _0001(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0001)
+    }
     #[doc = "High speed comparator 1 output"]
-    _0010,
+    #[inline(always)]
+    pub fn _0010(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0010)
+    }
     #[doc = "High speed comparator 2 output"]
-    _0011,
+    #[inline(always)]
+    pub fn _0011(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0011)
+    }
     #[doc = "PIT trigger 0"]
-    _0100,
+    #[inline(always)]
+    pub fn _0100(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0100)
+    }
     #[doc = "PIT trigger 1"]
-    _0101,
+    #[inline(always)]
+    pub fn _0101(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0101)
+    }
     #[doc = "PIT trigger 2"]
-    _0110,
+    #[inline(always)]
+    pub fn _0110(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0110)
+    }
     #[doc = "PIT trigger 3"]
-    _0111,
+    #[inline(always)]
+    pub fn _0111(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_0111)
+    }
     #[doc = "FTM0 trigger"]
-    _1000,
+    #[inline(always)]
+    pub fn _1000(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1000)
+    }
     #[doc = "FTM1 trigger"]
-    _1001,
+    #[inline(always)]
+    pub fn _1001(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1001)
+    }
     #[doc = "FTM2 trigger"]
-    _1010,
+    #[inline(always)]
+    pub fn _1010(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1010)
+    }
     #[doc = "FTM3 trigger"]
-    _1011,
+    #[inline(always)]
+    pub fn _1011(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1011)
+    }
     #[doc = "RTC alarm"]
-    _1100,
+    #[inline(always)]
+    pub fn _1100(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1100)
+    }
     #[doc = "RTC seconds"]
-    _1101,
+    #[inline(always)]
+    pub fn _1101(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1101)
+    }
     #[doc = "Low-power timer (LPTMR) trigger"]
-    _1110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+    #[inline(always)]
+    pub fn _1110(self) -> &'a mut W {
+        self.variant(ADC0TRGSEL_A::_1110)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w
+    }
 }
-impl ADC1TRGSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            ADC1TRGSELR::_0000 => 0,
-            ADC1TRGSELR::_0001 => 1,
-            ADC1TRGSELR::_0010 => 2,
-            ADC1TRGSELR::_0011 => 3,
-            ADC1TRGSELR::_0100 => 4,
-            ADC1TRGSELR::_0101 => 5,
-            ADC1TRGSELR::_0110 => 6,
-            ADC1TRGSELR::_0111 => 7,
-            ADC1TRGSELR::_1000 => 8,
-            ADC1TRGSELR::_1001 => 9,
-            ADC1TRGSELR::_1010 => 10,
-            ADC1TRGSELR::_1011 => 11,
-            ADC1TRGSELR::_1100 => 12,
-            ADC1TRGSELR::_1101 => 13,
-            ADC1TRGSELR::_1110 => 14,
-            ADC1TRGSELR::_Reserved(bits) => bits,
+#[doc = "ADC0 pretrigger select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADC0PRETRGSEL_A {
+    #[doc = "0: Pre-trigger A"]
+    _0,
+    #[doc = "1: Pre-trigger B"]
+    _1,
+}
+impl From<ADC0PRETRGSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADC0PRETRGSEL_A) -> Self {
+        match variant {
+            ADC0PRETRGSEL_A::_0 => false,
+            ADC0PRETRGSEL_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> ADC1TRGSELR {
-        match value {
-            0 => ADC1TRGSELR::_0000,
-            1 => ADC1TRGSELR::_0001,
-            2 => ADC1TRGSELR::_0010,
-            3 => ADC1TRGSELR::_0011,
-            4 => ADC1TRGSELR::_0100,
-            5 => ADC1TRGSELR::_0101,
-            6 => ADC1TRGSELR::_0110,
-            7 => ADC1TRGSELR::_0111,
-            8 => ADC1TRGSELR::_1000,
-            9 => ADC1TRGSELR::_1001,
-            10 => ADC1TRGSELR::_1010,
-            11 => ADC1TRGSELR::_1011,
-            12 => ADC1TRGSELR::_1100,
-            13 => ADC1TRGSELR::_1101,
-            14 => ADC1TRGSELR::_1110,
-            i => ADC1TRGSELR::_Reserved(i),
+}
+#[doc = "Reader of field `ADC0PRETRGSEL`"]
+pub type ADC0PRETRGSEL_R = crate::R<bool, ADC0PRETRGSEL_A>;
+impl ADC0PRETRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADC0PRETRGSEL_A {
+        match self.bits {
+            false => ADC0PRETRGSEL_A::_0,
+            true => ADC0PRETRGSEL_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ADC0PRETRGSEL_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ADC0PRETRGSEL_A::_1
+    }
+}
+#[doc = "Write proxy for field `ADC0PRETRGSEL`"]
+pub struct ADC0PRETRGSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ADC0PRETRGSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC0PRETRGSEL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Pre-trigger A"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(ADC0PRETRGSEL_A::_0)
+    }
+    #[doc = "Pre-trigger B"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(ADC0PRETRGSEL_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
+    }
+}
+#[doc = "ADC0 alternate trigger enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADC0ALTTRGEN_A {
+    #[doc = "0: PDB trigger selected for ADC0."]
+    _0,
+    #[doc = "1: Alternate trigger selected for ADC0."]
+    _1,
+}
+impl From<ADC0ALTTRGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADC0ALTTRGEN_A) -> Self {
+        match variant {
+            ADC0ALTTRGEN_A::_0 => false,
+            ADC0ALTTRGEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ADC0ALTTRGEN`"]
+pub type ADC0ALTTRGEN_R = crate::R<bool, ADC0ALTTRGEN_A>;
+impl ADC0ALTTRGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADC0ALTTRGEN_A {
+        match self.bits {
+            false => ADC0ALTTRGEN_A::_0,
+            true => ADC0ALTTRGEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ADC0ALTTRGEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ADC0ALTTRGEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `ADC0ALTTRGEN`"]
+pub struct ADC0ALTTRGEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ADC0ALTTRGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC0ALTTRGEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "PDB trigger selected for ADC0."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(ADC0ALTTRGEN_A::_0)
+    }
+    #[doc = "Alternate trigger selected for ADC0."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(ADC0ALTTRGEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w
+    }
+}
+#[doc = "ADC1 trigger select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADC1TRGSEL_A {
+    #[doc = "0: PDB external trigger pin input (PDB0_EXTRG)"]
+    _0000,
+    #[doc = "1: High speed comparator 0 output"]
+    _0001,
+    #[doc = "2: High speed comparator 1 output"]
+    _0010,
+    #[doc = "3: High speed comparator 2 output"]
+    _0011,
+    #[doc = "4: PIT trigger 0"]
+    _0100,
+    #[doc = "5: PIT trigger 1"]
+    _0101,
+    #[doc = "6: PIT trigger 2"]
+    _0110,
+    #[doc = "7: PIT trigger 3"]
+    _0111,
+    #[doc = "8: FTM0 trigger"]
+    _1000,
+    #[doc = "9: FTM1 trigger"]
+    _1001,
+    #[doc = "10: FTM2 trigger"]
+    _1010,
+    #[doc = "11: FTM3 trigger"]
+    _1011,
+    #[doc = "12: RTC alarm"]
+    _1100,
+    #[doc = "13: RTC seconds"]
+    _1101,
+    #[doc = "14: Low-power timer (LPTMR) trigger"]
+    _1110,
+}
+impl From<ADC1TRGSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: ADC1TRGSEL_A) -> Self {
+        match variant {
+            ADC1TRGSEL_A::_0000 => 0,
+            ADC1TRGSEL_A::_0001 => 1,
+            ADC1TRGSEL_A::_0010 => 2,
+            ADC1TRGSEL_A::_0011 => 3,
+            ADC1TRGSEL_A::_0100 => 4,
+            ADC1TRGSEL_A::_0101 => 5,
+            ADC1TRGSEL_A::_0110 => 6,
+            ADC1TRGSEL_A::_0111 => 7,
+            ADC1TRGSEL_A::_1000 => 8,
+            ADC1TRGSEL_A::_1001 => 9,
+            ADC1TRGSEL_A::_1010 => 10,
+            ADC1TRGSEL_A::_1011 => 11,
+            ADC1TRGSEL_A::_1100 => 12,
+            ADC1TRGSEL_A::_1101 => 13,
+            ADC1TRGSEL_A::_1110 => 14,
+        }
+    }
+}
+#[doc = "Reader of field `ADC1TRGSEL`"]
+pub type ADC1TRGSEL_R = crate::R<u8, ADC1TRGSEL_A>;
+impl ADC1TRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, ADC1TRGSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(ADC1TRGSEL_A::_0000),
+            1 => Val(ADC1TRGSEL_A::_0001),
+            2 => Val(ADC1TRGSEL_A::_0010),
+            3 => Val(ADC1TRGSEL_A::_0011),
+            4 => Val(ADC1TRGSEL_A::_0100),
+            5 => Val(ADC1TRGSEL_A::_0101),
+            6 => Val(ADC1TRGSEL_A::_0110),
+            7 => Val(ADC1TRGSEL_A::_0111),
+            8 => Val(ADC1TRGSEL_A::_1000),
+            9 => Val(ADC1TRGSEL_A::_1001),
+            10 => Val(ADC1TRGSEL_A::_1010),
+            11 => Val(ADC1TRGSEL_A::_1011),
+            12 => Val(ADC1TRGSEL_A::_1100),
+            13 => Val(ADC1TRGSEL_A::_1101),
+            14 => Val(ADC1TRGSEL_A::_1110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0000(&self) -> bool {
-        *self == ADC1TRGSELR::_0000
+        *self == ADC1TRGSEL_A::_0000
     }
     #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0001(&self) -> bool {
-        *self == ADC1TRGSELR::_0001
+        *self == ADC1TRGSEL_A::_0001
     }
     #[doc = "Checks if the value of the field is `_0010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0010(&self) -> bool {
-        *self == ADC1TRGSELR::_0010
+        *self == ADC1TRGSEL_A::_0010
     }
     #[doc = "Checks if the value of the field is `_0011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0011(&self) -> bool {
-        *self == ADC1TRGSELR::_0011
+        *self == ADC1TRGSEL_A::_0011
     }
     #[doc = "Checks if the value of the field is `_0100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0100(&self) -> bool {
-        *self == ADC1TRGSELR::_0100
+        *self == ADC1TRGSEL_A::_0100
     }
     #[doc = "Checks if the value of the field is `_0101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0101(&self) -> bool {
-        *self == ADC1TRGSELR::_0101
+        *self == ADC1TRGSEL_A::_0101
     }
     #[doc = "Checks if the value of the field is `_0110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0110(&self) -> bool {
-        *self == ADC1TRGSELR::_0110
+        *self == ADC1TRGSEL_A::_0110
     }
     #[doc = "Checks if the value of the field is `_0111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0111(&self) -> bool {
-        *self == ADC1TRGSELR::_0111
+        *self == ADC1TRGSEL_A::_0111
     }
     #[doc = "Checks if the value of the field is `_1000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1000(&self) -> bool {
-        *self == ADC1TRGSELR::_1000
+        *self == ADC1TRGSEL_A::_1000
     }
     #[doc = "Checks if the value of the field is `_1001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1001(&self) -> bool {
-        *self == ADC1TRGSELR::_1001
+        *self == ADC1TRGSEL_A::_1001
     }
     #[doc = "Checks if the value of the field is `_1010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1010(&self) -> bool {
-        *self == ADC1TRGSELR::_1010
+        *self == ADC1TRGSEL_A::_1010
     }
     #[doc = "Checks if the value of the field is `_1011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1011(&self) -> bool {
-        *self == ADC1TRGSELR::_1011
+        *self == ADC1TRGSEL_A::_1011
     }
     #[doc = "Checks if the value of the field is `_1100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1100(&self) -> bool {
-        *self == ADC1TRGSELR::_1100
+        *self == ADC1TRGSEL_A::_1100
     }
     #[doc = "Checks if the value of the field is `_1101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1101(&self) -> bool {
-        *self == ADC1TRGSELR::_1101
+        *self == ADC1TRGSEL_A::_1101
     }
     #[doc = "Checks if the value of the field is `_1110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1110(&self) -> bool {
-        *self == ADC1TRGSELR::_1110
+        *self == ADC1TRGSEL_A::_1110
     }
 }
-#[doc = "Possible values of the field `ADC1PRETRGSEL`"]
+#[doc = "Write proxy for field `ADC1TRGSEL`"]
+pub struct ADC1TRGSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ADC1TRGSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC1TRGSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
+    #[inline(always)]
+    pub fn _0000(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0000)
+    }
+    #[doc = "High speed comparator 0 output"]
+    #[inline(always)]
+    pub fn _0001(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0001)
+    }
+    #[doc = "High speed comparator 1 output"]
+    #[inline(always)]
+    pub fn _0010(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0010)
+    }
+    #[doc = "High speed comparator 2 output"]
+    #[inline(always)]
+    pub fn _0011(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0011)
+    }
+    #[doc = "PIT trigger 0"]
+    #[inline(always)]
+    pub fn _0100(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0100)
+    }
+    #[doc = "PIT trigger 1"]
+    #[inline(always)]
+    pub fn _0101(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0101)
+    }
+    #[doc = "PIT trigger 2"]
+    #[inline(always)]
+    pub fn _0110(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0110)
+    }
+    #[doc = "PIT trigger 3"]
+    #[inline(always)]
+    pub fn _0111(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_0111)
+    }
+    #[doc = "FTM0 trigger"]
+    #[inline(always)]
+    pub fn _1000(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1000)
+    }
+    #[doc = "FTM1 trigger"]
+    #[inline(always)]
+    pub fn _1001(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1001)
+    }
+    #[doc = "FTM2 trigger"]
+    #[inline(always)]
+    pub fn _1010(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1010)
+    }
+    #[doc = "FTM3 trigger"]
+    #[inline(always)]
+    pub fn _1011(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1011)
+    }
+    #[doc = "RTC alarm"]
+    #[inline(always)]
+    pub fn _1100(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1100)
+    }
+    #[doc = "RTC seconds"]
+    #[inline(always)]
+    pub fn _1101(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1101)
+    }
+    #[doc = "Low-power timer (LPTMR) trigger"]
+    #[inline(always)]
+    pub fn _1110(self) -> &'a mut W {
+        self.variant(ADC1TRGSEL_A::_1110)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 8)) | (((value as u32) & 0x0f) << 8);
+        self.w
+    }
+}
+#[doc = "ADC1 pre-trigger select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC1PRETRGSELR {
-    #[doc = "Pre-trigger A selected for ADC1."]
+pub enum ADC1PRETRGSEL_A {
+    #[doc = "0: Pre-trigger A selected for ADC1."]
     _0,
-    #[doc = "Pre-trigger B selected for ADC1."]
+    #[doc = "1: Pre-trigger B selected for ADC1."]
     _1,
 }
-impl ADC1PRETRGSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADC1PRETRGSELR::_0 => false,
-            ADC1PRETRGSELR::_1 => true,
+impl From<ADC1PRETRGSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADC1PRETRGSEL_A) -> Self {
+        match variant {
+            ADC1PRETRGSEL_A::_0 => false,
+            ADC1PRETRGSEL_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADC1PRETRGSELR {
-        match value {
-            false => ADC1PRETRGSELR::_0,
-            true => ADC1PRETRGSELR::_1,
+}
+#[doc = "Reader of field `ADC1PRETRGSEL`"]
+pub type ADC1PRETRGSEL_R = crate::R<bool, ADC1PRETRGSEL_A>;
+impl ADC1PRETRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADC1PRETRGSEL_A {
+        match self.bits {
+            false => ADC1PRETRGSEL_A::_0,
+            true => ADC1PRETRGSEL_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ADC1PRETRGSELR::_0
+        *self == ADC1PRETRGSEL_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ADC1PRETRGSELR::_1
+        *self == ADC1PRETRGSEL_A::_1
     }
 }
-#[doc = "Possible values of the field `ADC1ALTTRGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADC1ALTTRGENR {
-    #[doc = "PDB trigger selected for ADC1"]
-    _0,
-    #[doc = "Alternate trigger selected for ADC1 as defined by ADC1TRGSEL."]
-    _1,
+#[doc = "Write proxy for field `ADC1PRETRGSEL`"]
+pub struct ADC1PRETRGSEL_W<'a> {
+    w: &'a mut W,
 }
-impl ADC1ALTTRGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADC1ALTTRGENR::_0 => false,
-            ADC1ALTTRGENR::_1 => true,
+impl<'a> ADC1PRETRGSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC1PRETRGSEL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADC1ALTTRGENR {
-        match value {
-            false => ADC1ALTTRGENR::_0,
-            true => ADC1ALTTRGENR::_1,
+    #[doc = "Pre-trigger A selected for ADC1."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(ADC1PRETRGSEL_A::_0)
+    }
+    #[doc = "Pre-trigger B selected for ADC1."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(ADC1PRETRGSEL_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w
+    }
+}
+#[doc = "ADC1 alternate trigger enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADC1ALTTRGEN_A {
+    #[doc = "0: PDB trigger selected for ADC1"]
+    _0,
+    #[doc = "1: Alternate trigger selected for ADC1 as defined by ADC1TRGSEL."]
+    _1,
+}
+impl From<ADC1ALTTRGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADC1ALTTRGEN_A) -> Self {
+        match variant {
+            ADC1ALTTRGEN_A::_0 => false,
+            ADC1ALTTRGEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ADC1ALTTRGEN`"]
+pub type ADC1ALTTRGEN_R = crate::R<bool, ADC1ALTTRGEN_A>;
+impl ADC1ALTTRGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADC1ALTTRGEN_A {
+        match self.bits {
+            false => ADC1ALTTRGEN_A::_0,
+            true => ADC1ALTTRGEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ADC1ALTTRGENR::_0
+        *self == ADC1ALTTRGEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ADC1ALTTRGENR::_1
+        *self == ADC1ALTTRGEN_A::_1
     }
 }
-#[doc = "Values that can be written to the field `ADC0TRGSEL`"]
-pub enum ADC0TRGSELW {
-    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
-    _0000,
-    #[doc = "High speed comparator 0 output"]
-    _0001,
-    #[doc = "High speed comparator 1 output"]
-    _0010,
-    #[doc = "High speed comparator 2 output"]
-    _0011,
-    #[doc = "PIT trigger 0"]
-    _0100,
-    #[doc = "PIT trigger 1"]
-    _0101,
-    #[doc = "PIT trigger 2"]
-    _0110,
-    #[doc = "PIT trigger 3"]
-    _0111,
-    #[doc = "FTM0 trigger"]
-    _1000,
-    #[doc = "FTM1 trigger"]
-    _1001,
-    #[doc = "FTM2 trigger"]
-    _1010,
-    #[doc = "FTM3 trigger"]
-    _1011,
-    #[doc = "RTC alarm"]
-    _1100,
-    #[doc = "RTC seconds"]
-    _1101,
-    #[doc = "Low-power timer (LPTMR) trigger"]
-    _1110,
-}
-impl ADC0TRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            ADC0TRGSELW::_0000 => 0,
-            ADC0TRGSELW::_0001 => 1,
-            ADC0TRGSELW::_0010 => 2,
-            ADC0TRGSELW::_0011 => 3,
-            ADC0TRGSELW::_0100 => 4,
-            ADC0TRGSELW::_0101 => 5,
-            ADC0TRGSELW::_0110 => 6,
-            ADC0TRGSELW::_0111 => 7,
-            ADC0TRGSELW::_1000 => 8,
-            ADC0TRGSELW::_1001 => 9,
-            ADC0TRGSELW::_1010 => 10,
-            ADC0TRGSELW::_1011 => 11,
-            ADC0TRGSELW::_1100 => 12,
-            ADC0TRGSELW::_1101 => 13,
-            ADC0TRGSELW::_1110 => 14,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC0TRGSELW<'a> {
+#[doc = "Write proxy for field `ADC1ALTTRGEN`"]
+pub struct ADC1ALTTRGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADC0TRGSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC0TRGSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
-    #[inline]
-    pub fn _0000(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0000)
-    }
-    #[doc = "High speed comparator 0 output"]
-    #[inline]
-    pub fn _0001(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0001)
-    }
-    #[doc = "High speed comparator 1 output"]
-    #[inline]
-    pub fn _0010(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0010)
-    }
-    #[doc = "High speed comparator 2 output"]
-    #[inline]
-    pub fn _0011(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0011)
-    }
-    #[doc = "PIT trigger 0"]
-    #[inline]
-    pub fn _0100(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0100)
-    }
-    #[doc = "PIT trigger 1"]
-    #[inline]
-    pub fn _0101(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0101)
-    }
-    #[doc = "PIT trigger 2"]
-    #[inline]
-    pub fn _0110(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0110)
-    }
-    #[doc = "PIT trigger 3"]
-    #[inline]
-    pub fn _0111(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_0111)
-    }
-    #[doc = "FTM0 trigger"]
-    #[inline]
-    pub fn _1000(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1000)
-    }
-    #[doc = "FTM1 trigger"]
-    #[inline]
-    pub fn _1001(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1001)
-    }
-    #[doc = "FTM2 trigger"]
-    #[inline]
-    pub fn _1010(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1010)
-    }
-    #[doc = "FTM3 trigger"]
-    #[inline]
-    pub fn _1011(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1011)
-    }
-    #[doc = "RTC alarm"]
-    #[inline]
-    pub fn _1100(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1100)
-    }
-    #[doc = "RTC seconds"]
-    #[inline]
-    pub fn _1101(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1101)
-    }
-    #[doc = "Low-power timer (LPTMR) trigger"]
-    #[inline]
-    pub fn _1110(self) -> &'a mut W {
-        self.variant(ADC0TRGSELW::_1110)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADC0PRETRGSEL`"]
-pub enum ADC0PRETRGSELW {
-    #[doc = "Pre-trigger A"]
-    _0,
-    #[doc = "Pre-trigger B"]
-    _1,
-}
-impl ADC0PRETRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADC0PRETRGSELW::_0 => false,
-            ADC0PRETRGSELW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC0PRETRGSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADC0PRETRGSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC0PRETRGSELW) -> &'a mut W {
+impl<'a> ADC1ALTTRGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADC1ALTTRGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Pre-trigger A"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(ADC0PRETRGSELW::_0)
-    }
-    #[doc = "Pre-trigger B"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(ADC0PRETRGSELW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADC0ALTTRGEN`"]
-pub enum ADC0ALTTRGENW {
-    #[doc = "PDB trigger selected for ADC0."]
-    _0,
-    #[doc = "Alternate trigger selected for ADC0."]
-    _1,
-}
-impl ADC0ALTTRGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADC0ALTTRGENW::_0 => false,
-            ADC0ALTTRGENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC0ALTTRGENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADC0ALTTRGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC0ALTTRGENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "PDB trigger selected for ADC0."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(ADC0ALTTRGENW::_0)
-    }
-    #[doc = "Alternate trigger selected for ADC0."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(ADC0ALTTRGENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADC1TRGSEL`"]
-pub enum ADC1TRGSELW {
-    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
-    _0000,
-    #[doc = "High speed comparator 0 output"]
-    _0001,
-    #[doc = "High speed comparator 1 output"]
-    _0010,
-    #[doc = "High speed comparator 2 output"]
-    _0011,
-    #[doc = "PIT trigger 0"]
-    _0100,
-    #[doc = "PIT trigger 1"]
-    _0101,
-    #[doc = "PIT trigger 2"]
-    _0110,
-    #[doc = "PIT trigger 3"]
-    _0111,
-    #[doc = "FTM0 trigger"]
-    _1000,
-    #[doc = "FTM1 trigger"]
-    _1001,
-    #[doc = "FTM2 trigger"]
-    _1010,
-    #[doc = "FTM3 trigger"]
-    _1011,
-    #[doc = "RTC alarm"]
-    _1100,
-    #[doc = "RTC seconds"]
-    _1101,
-    #[doc = "Low-power timer (LPTMR) trigger"]
-    _1110,
-}
-impl ADC1TRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            ADC1TRGSELW::_0000 => 0,
-            ADC1TRGSELW::_0001 => 1,
-            ADC1TRGSELW::_0010 => 2,
-            ADC1TRGSELW::_0011 => 3,
-            ADC1TRGSELW::_0100 => 4,
-            ADC1TRGSELW::_0101 => 5,
-            ADC1TRGSELW::_0110 => 6,
-            ADC1TRGSELW::_0111 => 7,
-            ADC1TRGSELW::_1000 => 8,
-            ADC1TRGSELW::_1001 => 9,
-            ADC1TRGSELW::_1010 => 10,
-            ADC1TRGSELW::_1011 => 11,
-            ADC1TRGSELW::_1100 => 12,
-            ADC1TRGSELW::_1101 => 13,
-            ADC1TRGSELW::_1110 => 14,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC1TRGSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADC1TRGSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC1TRGSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "PDB external trigger pin input (PDB0_EXTRG)"]
-    #[inline]
-    pub fn _0000(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0000)
-    }
-    #[doc = "High speed comparator 0 output"]
-    #[inline]
-    pub fn _0001(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0001)
-    }
-    #[doc = "High speed comparator 1 output"]
-    #[inline]
-    pub fn _0010(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0010)
-    }
-    #[doc = "High speed comparator 2 output"]
-    #[inline]
-    pub fn _0011(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0011)
-    }
-    #[doc = "PIT trigger 0"]
-    #[inline]
-    pub fn _0100(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0100)
-    }
-    #[doc = "PIT trigger 1"]
-    #[inline]
-    pub fn _0101(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0101)
-    }
-    #[doc = "PIT trigger 2"]
-    #[inline]
-    pub fn _0110(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0110)
-    }
-    #[doc = "PIT trigger 3"]
-    #[inline]
-    pub fn _0111(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_0111)
-    }
-    #[doc = "FTM0 trigger"]
-    #[inline]
-    pub fn _1000(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1000)
-    }
-    #[doc = "FTM1 trigger"]
-    #[inline]
-    pub fn _1001(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1001)
-    }
-    #[doc = "FTM2 trigger"]
-    #[inline]
-    pub fn _1010(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1010)
-    }
-    #[doc = "FTM3 trigger"]
-    #[inline]
-    pub fn _1011(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1011)
-    }
-    #[doc = "RTC alarm"]
-    #[inline]
-    pub fn _1100(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1100)
-    }
-    #[doc = "RTC seconds"]
-    #[inline]
-    pub fn _1101(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1101)
-    }
-    #[doc = "Low-power timer (LPTMR) trigger"]
-    #[inline]
-    pub fn _1110(self) -> &'a mut W {
-        self.variant(ADC1TRGSELW::_1110)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADC1PRETRGSEL`"]
-pub enum ADC1PRETRGSELW {
-    #[doc = "Pre-trigger A selected for ADC1."]
-    _0,
-    #[doc = "Pre-trigger B selected for ADC1."]
-    _1,
-}
-impl ADC1PRETRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADC1PRETRGSELW::_0 => false,
-            ADC1PRETRGSELW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC1PRETRGSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADC1PRETRGSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC1PRETRGSELW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Pre-trigger A selected for ADC1."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(ADC1PRETRGSELW::_0)
-    }
-    #[doc = "Pre-trigger B selected for ADC1."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(ADC1PRETRGSELW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADC1ALTTRGEN`"]
-pub enum ADC1ALTTRGENW {
-    #[doc = "PDB trigger selected for ADC1"]
-    _0,
-    #[doc = "Alternate trigger selected for ADC1 as defined by ADC1TRGSEL."]
-    _1,
-}
-impl ADC1ALTTRGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADC1ALTTRGENW::_0 => false,
-            ADC1ALTTRGENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADC1ALTTRGENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADC1ALTTRGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADC1ALTTRGENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB trigger selected for ADC1"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ADC1ALTTRGENW::_0)
+        self.variant(ADC1ALTTRGEN_A::_0)
     }
     #[doc = "Alternate trigger selected for ADC1 as defined by ADC1TRGSEL."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ADC1ALTTRGENW::_1)
+        self.variant(ADC1ALTTRGEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - ADC0 trigger select"]
-    #[inline]
-    pub fn adc0trgsel(&self) -> ADC0TRGSELR {
-        ADC0TRGSELR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn adc0trgsel(&self) -> ADC0TRGSEL_R {
+        ADC0TRGSEL_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bit 4 - ADC0 pretrigger select"]
-    #[inline]
-    pub fn adc0pretrgsel(&self) -> ADC0PRETRGSELR {
-        ADC0PRETRGSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn adc0pretrgsel(&self) -> ADC0PRETRGSEL_R {
+        ADC0PRETRGSEL_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 7 - ADC0 alternate trigger enable"]
-    #[inline]
-    pub fn adc0alttrgen(&self) -> ADC0ALTTRGENR {
-        ADC0ALTTRGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn adc0alttrgen(&self) -> ADC0ALTTRGEN_R {
+        ADC0ALTTRGEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:11 - ADC1 trigger select"]
-    #[inline]
-    pub fn adc1trgsel(&self) -> ADC1TRGSELR {
-        ADC1TRGSELR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn adc1trgsel(&self) -> ADC1TRGSEL_R {
+        ADC1TRGSEL_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bit 12 - ADC1 pre-trigger select"]
-    #[inline]
-    pub fn adc1pretrgsel(&self) -> ADC1PRETRGSELR {
-        ADC1PRETRGSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn adc1pretrgsel(&self) -> ADC1PRETRGSEL_R {
+        ADC1PRETRGSEL_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 15 - ADC1 alternate trigger enable"]
-    #[inline]
-    pub fn adc1alttrgen(&self) -> ADC1ALTTRGENR {
-        ADC1ALTTRGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn adc1alttrgen(&self) -> ADC1ALTTRGEN_R {
+        ADC1ALTTRGEN_R::new(((self.bits >> 15) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - ADC0 trigger select"]
-    #[inline]
-    pub fn adc0trgsel(&mut self) -> _ADC0TRGSELW {
-        _ADC0TRGSELW { w: self }
+    #[inline(always)]
+    pub fn adc0trgsel(&mut self) -> ADC0TRGSEL_W {
+        ADC0TRGSEL_W { w: self }
     }
     #[doc = "Bit 4 - ADC0 pretrigger select"]
-    #[inline]
-    pub fn adc0pretrgsel(&mut self) -> _ADC0PRETRGSELW {
-        _ADC0PRETRGSELW { w: self }
+    #[inline(always)]
+    pub fn adc0pretrgsel(&mut self) -> ADC0PRETRGSEL_W {
+        ADC0PRETRGSEL_W { w: self }
     }
     #[doc = "Bit 7 - ADC0 alternate trigger enable"]
-    #[inline]
-    pub fn adc0alttrgen(&mut self) -> _ADC0ALTTRGENW {
-        _ADC0ALTTRGENW { w: self }
+    #[inline(always)]
+    pub fn adc0alttrgen(&mut self) -> ADC0ALTTRGEN_W {
+        ADC0ALTTRGEN_W { w: self }
     }
     #[doc = "Bits 8:11 - ADC1 trigger select"]
-    #[inline]
-    pub fn adc1trgsel(&mut self) -> _ADC1TRGSELW {
-        _ADC1TRGSELW { w: self }
+    #[inline(always)]
+    pub fn adc1trgsel(&mut self) -> ADC1TRGSEL_W {
+        ADC1TRGSEL_W { w: self }
     }
     #[doc = "Bit 12 - ADC1 pre-trigger select"]
-    #[inline]
-    pub fn adc1pretrgsel(&mut self) -> _ADC1PRETRGSELW {
-        _ADC1PRETRGSELW { w: self }
+    #[inline(always)]
+    pub fn adc1pretrgsel(&mut self) -> ADC1PRETRGSEL_W {
+        ADC1PRETRGSEL_W { w: self }
     }
     #[doc = "Bit 15 - ADC1 alternate trigger enable"]
-    #[inline]
-    pub fn adc1alttrgen(&mut self) -> _ADC1ALTTRGENW {
-        _ADC1ALTTRGENW { w: self }
+    #[inline(always)]
+    pub fn adc1alttrgen(&mut self) -> ADC1ALTTRGEN_W {
+        ADC1ALTTRGEN_W { w: self }
     }
 }

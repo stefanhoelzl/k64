@@ -1,265 +1,152 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RGD_WORD3 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RGD%s_WORD3"]
+pub type R = crate::R<u32, super::RGD_WORD3>;
+#[doc = "Writer for register RGD%s_WORD3"]
+pub type W = crate::W<u32, super::RGD_WORD3>;
+#[doc = "Register RGD%s_WORD3 `reset()`'s with value 0x01"]
+impl crate::ResetValue for super::RGD_WORD3 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x01
     }
 }
-#[doc = "Possible values of the field `VLD`"]
+#[doc = "Valid\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VLDR {
-    #[doc = "Region descriptor is invalid"]
+pub enum VLD_A {
+    #[doc = "0: Region descriptor is invalid"]
     _0,
-    #[doc = "Region descriptor is valid"]
+    #[doc = "1: Region descriptor is valid"]
     _1,
 }
-impl VLDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            VLDR::_0 => false,
-            VLDR::_1 => true,
+impl From<VLD_A> for bool {
+    #[inline(always)]
+    fn from(variant: VLD_A) -> Self {
+        match variant {
+            VLD_A::_0 => false,
+            VLD_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> VLDR {
-        match value {
-            false => VLDR::_0,
-            true => VLDR::_1,
+}
+#[doc = "Reader of field `VLD`"]
+pub type VLD_R = crate::R<bool, VLD_A>;
+impl VLD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VLD_A {
+        match self.bits {
+            false => VLD_A::_0,
+            true => VLD_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == VLDR::_0
+        *self == VLD_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == VLDR::_1
+        *self == VLD_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct PIDMASKR {
-    bits: u8,
-}
-impl PIDMASKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PIDR {
-    bits: u8,
-}
-impl PIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `VLD`"]
-pub enum VLDW {
-    #[doc = "Region descriptor is invalid"]
-    _0,
-    #[doc = "Region descriptor is valid"]
-    _1,
-}
-impl VLDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            VLDW::_0 => false,
-            VLDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VLDW<'a> {
+#[doc = "Write proxy for field `VLD`"]
+pub struct VLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VLDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VLDW) -> &'a mut W {
+impl<'a> VLD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VLD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Region descriptor is invalid"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(VLDW::_0)
+        self.variant(VLD_A::_0)
     }
     #[doc = "Region descriptor is valid"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(VLDW::_1)
+        self.variant(VLD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PIDMASKW<'a> {
+#[doc = "Reader of field `PIDMASK`"]
+pub type PIDMASK_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PIDMASK`"]
+pub struct PIDMASK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PIDMASKW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PIDMASK_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 255;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 16)) | (((value as u32) & 0xff) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PIDW<'a> {
+#[doc = "Reader of field `PID`"]
+pub type PID_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PID`"]
+pub struct PID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PIDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PID_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 255;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 24)) | (((value as u32) & 0xff) << 24);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Valid"]
-    #[inline]
-    pub fn vld(&self) -> VLDR {
-        VLDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn vld(&self) -> VLD_R {
+        VLD_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 16:23 - Process Identifier Mask"]
-    #[inline]
-    pub fn pidmask(&self) -> PIDMASKR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PIDMASKR { bits }
+    #[inline(always)]
+    pub fn pidmask(&self) -> PIDMASK_R {
+        PIDMASK_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 24:31 - Process Identifier"]
-    #[inline]
-    pub fn pid(&self) -> PIDR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PIDR { bits }
+    #[inline(always)]
+    pub fn pid(&self) -> PID_R {
+        PID_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 1 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Valid"]
-    #[inline]
-    pub fn vld(&mut self) -> _VLDW {
-        _VLDW { w: self }
+    #[inline(always)]
+    pub fn vld(&mut self) -> VLD_W {
+        VLD_W { w: self }
     }
     #[doc = "Bits 16:23 - Process Identifier Mask"]
-    #[inline]
-    pub fn pidmask(&mut self) -> _PIDMASKW {
-        _PIDMASKW { w: self }
+    #[inline(always)]
+    pub fn pidmask(&mut self) -> PIDMASK_W {
+        PIDMASK_W { w: self }
     }
     #[doc = "Bits 24:31 - Process Identifier"]
-    #[inline]
-    pub fn pid(&mut self) -> _PIDW {
-        _PIDW { w: self }
+    #[inline(always)]
+    pub fn pid(&mut self) -> PID_W {
+        PID_W { w: self }
     }
 }

@@ -1,659 +1,456 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RACC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RACC"]
+pub type R = crate::R<u32, super::RACC>;
+#[doc = "Writer for register RACC"]
+pub type W = crate::W<u32, super::RACC>;
+#[doc = "Register RACC `reset()`'s with value 0"]
+impl crate::ResetValue for super::RACC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PADREM`"]
+#[doc = "Enable Padding Removal For Short IP Frames\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PADREMR {
-    #[doc = "Padding not removed."]
+pub enum PADREM_A {
+    #[doc = "0: Padding not removed."]
     _0,
-    #[doc = "Any bytes following the IP payload section of the frame are removed from the frame."]
+    #[doc = "1: Any bytes following the IP payload section of the frame are removed from the frame."]
     _1,
 }
-impl PADREMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PADREMR::_0 => false,
-            PADREMR::_1 => true,
+impl From<PADREM_A> for bool {
+    #[inline(always)]
+    fn from(variant: PADREM_A) -> Self {
+        match variant {
+            PADREM_A::_0 => false,
+            PADREM_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PADREMR {
-        match value {
-            false => PADREMR::_0,
-            true => PADREMR::_1,
+}
+#[doc = "Reader of field `PADREM`"]
+pub type PADREM_R = crate::R<bool, PADREM_A>;
+impl PADREM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PADREM_A {
+        match self.bits {
+            false => PADREM_A::_0,
+            true => PADREM_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PADREMR::_0
+        *self == PADREM_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PADREMR::_1
+        *self == PADREM_A::_1
     }
 }
-#[doc = "Possible values of the field `IPDIS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IPDISR {
-    #[doc = "Frames with wrong IPv4 header checksum are not discarded."]
-    _0,
-    #[doc = "If an IPv4 frame is received with a mismatching header checksum, the frame is discarded. IPv6 has no header checksum and is not affected by this setting. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
-    _1,
-}
-impl IPDISR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IPDISR::_0 => false,
-            IPDISR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IPDISR {
-        match value {
-            false => IPDISR::_0,
-            true => IPDISR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IPDISR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IPDISR::_1
-    }
-}
-#[doc = "Possible values of the field `PRODIS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PRODISR {
-    #[doc = "Frames with wrong checksum are not discarded."]
-    _0,
-    #[doc = "If a TCP/IP, UDP/IP, or ICMP/IP frame is received that has a wrong TCP, UDP, or ICMP checksum, the frame is discarded. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
-    _1,
-}
-impl PRODISR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PRODISR::_0 => false,
-            PRODISR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PRODISR {
-        match value {
-            false => PRODISR::_0,
-            true => PRODISR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PRODISR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PRODISR::_1
-    }
-}
-#[doc = "Possible values of the field `LINEDIS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINEDISR {
-    #[doc = "Frames with errors are not discarded."]
-    _0,
-    #[doc = "Any frame received with a CRC, length, or PHY error is automatically discarded and not forwarded to the user application interface."]
-    _1,
-}
-impl LINEDISR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LINEDISR::_0 => false,
-            LINEDISR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LINEDISR {
-        match value {
-            false => LINEDISR::_0,
-            true => LINEDISR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LINEDISR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LINEDISR::_1
-    }
-}
-#[doc = "Possible values of the field `SHIFT16`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SHIFT16R {
-    #[doc = "Disabled."]
-    _0,
-    #[doc = "Instructs the MAC to write two additional bytes in front of each frame received into the RX FIFO."]
-    _1,
-}
-impl SHIFT16R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SHIFT16R::_0 => false,
-            SHIFT16R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SHIFT16R {
-        match value {
-            false => SHIFT16R::_0,
-            true => SHIFT16R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SHIFT16R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SHIFT16R::_1
-    }
-}
-#[doc = "Values that can be written to the field `PADREM`"]
-pub enum PADREMW {
-    #[doc = "Padding not removed."]
-    _0,
-    #[doc = "Any bytes following the IP payload section of the frame are removed from the frame."]
-    _1,
-}
-impl PADREMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PADREMW::_0 => false,
-            PADREMW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PADREMW<'a> {
+#[doc = "Write proxy for field `PADREM`"]
+pub struct PADREM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PADREMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PADREMW) -> &'a mut W {
+impl<'a> PADREM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PADREM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Padding not removed."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PADREMW::_0)
+        self.variant(PADREM_A::_0)
     }
     #[doc = "Any bytes following the IP payload section of the frame are removed from the frame."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PADREMW::_1)
+        self.variant(PADREM_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IPDIS`"]
-pub enum IPDISW {
+#[doc = "Enable Discard Of Frames With Wrong IPv4 Header Checksum\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IPDIS_A {
+    #[doc = "0: Frames with wrong IPv4 header checksum are not discarded."]
+    _0,
+    #[doc = "1: If an IPv4 frame is received with a mismatching header checksum, the frame is discarded. IPv6 has no header checksum and is not affected by this setting. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
+    _1,
+}
+impl From<IPDIS_A> for bool {
+    #[inline(always)]
+    fn from(variant: IPDIS_A) -> Self {
+        match variant {
+            IPDIS_A::_0 => false,
+            IPDIS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `IPDIS`"]
+pub type IPDIS_R = crate::R<bool, IPDIS_A>;
+impl IPDIS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IPDIS_A {
+        match self.bits {
+            false => IPDIS_A::_0,
+            true => IPDIS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IPDIS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IPDIS_A::_1
+    }
+}
+#[doc = "Write proxy for field `IPDIS`"]
+pub struct IPDIS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> IPDIS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IPDIS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Frames with wrong IPv4 header checksum are not discarded."]
-    _0,
-    #[doc = "If an IPv4 frame is received with a mismatching header checksum, the frame is discarded. IPv6 has no header checksum and is not affected by this setting. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
-    _1,
-}
-impl IPDISW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IPDISW::_0 => false,
-            IPDISW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IPDISW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _IPDISW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IPDISW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Frames with wrong IPv4 header checksum are not discarded."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IPDISW::_0)
+        self.variant(IPDIS_A::_0)
     }
     #[doc = "If an IPv4 frame is received with a mismatching header checksum, the frame is discarded. IPv6 has no header checksum and is not affected by this setting. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IPDISW::_1)
+        self.variant(IPDIS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PRODIS`"]
-pub enum PRODISW {
-    #[doc = "Frames with wrong checksum are not discarded."]
+#[doc = "Enable Discard Of Frames With Wrong Protocol Checksum\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PRODIS_A {
+    #[doc = "0: Frames with wrong checksum are not discarded."]
     _0,
-    #[doc = "If a TCP/IP, UDP/IP, or ICMP/IP frame is received that has a wrong TCP, UDP, or ICMP checksum, the frame is discarded. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
+    #[doc = "1: If a TCP/IP, UDP/IP, or ICMP/IP frame is received that has a wrong TCP, UDP, or ICMP checksum, the frame is discarded. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
     _1,
 }
-impl PRODISW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PRODISW::_0 => false,
-            PRODISW::_1 => true,
+impl From<PRODIS_A> for bool {
+    #[inline(always)]
+    fn from(variant: PRODIS_A) -> Self {
+        match variant {
+            PRODIS_A::_0 => false,
+            PRODIS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PRODISW<'a> {
+#[doc = "Reader of field `PRODIS`"]
+pub type PRODIS_R = crate::R<bool, PRODIS_A>;
+impl PRODIS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PRODIS_A {
+        match self.bits {
+            false => PRODIS_A::_0,
+            true => PRODIS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PRODIS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PRODIS_A::_1
+    }
+}
+#[doc = "Write proxy for field `PRODIS`"]
+pub struct PRODIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PRODISW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PRODISW) -> &'a mut W {
+impl<'a> PRODIS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PRODIS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Frames with wrong checksum are not discarded."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PRODISW::_0)
+        self.variant(PRODIS_A::_0)
     }
     #[doc = "If a TCP/IP, UDP/IP, or ICMP/IP frame is received that has a wrong TCP, UDP, or ICMP checksum, the frame is discarded. Discarding is only available when the RX FIFO operates in store and forward mode (RSFL cleared)."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PRODISW::_1)
+        self.variant(PRODIS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LINEDIS`"]
-pub enum LINEDISW {
-    #[doc = "Frames with errors are not discarded."]
+#[doc = "Enable Discard Of Frames With MAC Layer Errors\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LINEDIS_A {
+    #[doc = "0: Frames with errors are not discarded."]
     _0,
-    #[doc = "Any frame received with a CRC, length, or PHY error is automatically discarded and not forwarded to the user application interface."]
+    #[doc = "1: Any frame received with a CRC, length, or PHY error is automatically discarded and not forwarded to the user application interface."]
     _1,
 }
-impl LINEDISW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINEDISW::_0 => false,
-            LINEDISW::_1 => true,
+impl From<LINEDIS_A> for bool {
+    #[inline(always)]
+    fn from(variant: LINEDIS_A) -> Self {
+        match variant {
+            LINEDIS_A::_0 => false,
+            LINEDIS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LINEDISW<'a> {
+#[doc = "Reader of field `LINEDIS`"]
+pub type LINEDIS_R = crate::R<bool, LINEDIS_A>;
+impl LINEDIS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINEDIS_A {
+        match self.bits {
+            false => LINEDIS_A::_0,
+            true => LINEDIS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LINEDIS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LINEDIS_A::_1
+    }
+}
+#[doc = "Write proxy for field `LINEDIS`"]
+pub struct LINEDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINEDISW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LINEDISW) -> &'a mut W {
+impl<'a> LINEDIS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LINEDIS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Frames with errors are not discarded."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LINEDISW::_0)
+        self.variant(LINEDIS_A::_0)
     }
     #[doc = "Any frame received with a CRC, length, or PHY error is automatically discarded and not forwarded to the user application interface."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LINEDISW::_1)
+        self.variant(LINEDIS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SHIFT16`"]
-pub enum SHIFT16W {
-    #[doc = "Disabled."]
+#[doc = "RX FIFO Shift-16\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SHIFT16_A {
+    #[doc = "0: Disabled."]
     _0,
-    #[doc = "Instructs the MAC to write two additional bytes in front of each frame received into the RX FIFO."]
+    #[doc = "1: Instructs the MAC to write two additional bytes in front of each frame received into the RX FIFO."]
     _1,
 }
-impl SHIFT16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SHIFT16W::_0 => false,
-            SHIFT16W::_1 => true,
+impl From<SHIFT16_A> for bool {
+    #[inline(always)]
+    fn from(variant: SHIFT16_A) -> Self {
+        match variant {
+            SHIFT16_A::_0 => false,
+            SHIFT16_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SHIFT16W<'a> {
+#[doc = "Reader of field `SHIFT16`"]
+pub type SHIFT16_R = crate::R<bool, SHIFT16_A>;
+impl SHIFT16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SHIFT16_A {
+        match self.bits {
+            false => SHIFT16_A::_0,
+            true => SHIFT16_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SHIFT16_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SHIFT16_A::_1
+    }
+}
+#[doc = "Write proxy for field `SHIFT16`"]
+pub struct SHIFT16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHIFT16W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SHIFT16W) -> &'a mut W {
+impl<'a> SHIFT16_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SHIFT16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SHIFT16W::_0)
+        self.variant(SHIFT16_A::_0)
     }
     #[doc = "Instructs the MAC to write two additional bytes in front of each frame received into the RX FIFO."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SHIFT16W::_1)
+        self.variant(SHIFT16_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enable Padding Removal For Short IP Frames"]
-    #[inline]
-    pub fn padrem(&self) -> PADREMR {
-        PADREMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn padrem(&self) -> PADREM_R {
+        PADREM_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Enable Discard Of Frames With Wrong IPv4 Header Checksum"]
-    #[inline]
-    pub fn ipdis(&self) -> IPDISR {
-        IPDISR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ipdis(&self) -> IPDIS_R {
+        IPDIS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Enable Discard Of Frames With Wrong Protocol Checksum"]
-    #[inline]
-    pub fn prodis(&self) -> PRODISR {
-        PRODISR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn prodis(&self) -> PRODIS_R {
+        PRODIS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Enable Discard Of Frames With MAC Layer Errors"]
-    #[inline]
-    pub fn linedis(&self) -> LINEDISR {
-        LINEDISR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn linedis(&self) -> LINEDIS_R {
+        LINEDIS_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - RX FIFO Shift-16"]
-    #[inline]
-    pub fn shift16(&self) -> SHIFT16R {
-        SHIFT16R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn shift16(&self) -> SHIFT16_R {
+        SHIFT16_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enable Padding Removal For Short IP Frames"]
-    #[inline]
-    pub fn padrem(&mut self) -> _PADREMW {
-        _PADREMW { w: self }
+    #[inline(always)]
+    pub fn padrem(&mut self) -> PADREM_W {
+        PADREM_W { w: self }
     }
     #[doc = "Bit 1 - Enable Discard Of Frames With Wrong IPv4 Header Checksum"]
-    #[inline]
-    pub fn ipdis(&mut self) -> _IPDISW {
-        _IPDISW { w: self }
+    #[inline(always)]
+    pub fn ipdis(&mut self) -> IPDIS_W {
+        IPDIS_W { w: self }
     }
     #[doc = "Bit 2 - Enable Discard Of Frames With Wrong Protocol Checksum"]
-    #[inline]
-    pub fn prodis(&mut self) -> _PRODISW {
-        _PRODISW { w: self }
+    #[inline(always)]
+    pub fn prodis(&mut self) -> PRODIS_W {
+        PRODIS_W { w: self }
     }
     #[doc = "Bit 6 - Enable Discard Of Frames With MAC Layer Errors"]
-    #[inline]
-    pub fn linedis(&mut self) -> _LINEDISW {
-        _LINEDISW { w: self }
+    #[inline(always)]
+    pub fn linedis(&mut self) -> LINEDIS_W {
+        LINEDIS_W { w: self }
     }
     #[doc = "Bit 7 - RX FIFO Shift-16"]
-    #[inline]
-    pub fn shift16(&mut self) -> _SHIFT16W {
-        _SHIFT16W { w: self }
+    #[inline(always)]
+    pub fn shift16(&mut self) -> SHIFT16_W {
+        SHIFT16_W { w: self }
     }
 }

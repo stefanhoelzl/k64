@@ -1,319 +1,211 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::IR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IR"]
+pub type R = crate::R<u8, super::IR>;
+#[doc = "Writer for register IR"]
+pub type W = crate::W<u8, super::IR>;
+#[doc = "Register IR `reset()`'s with value 0"]
+impl crate::ResetValue for super::IR {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TNP`"]
+#[doc = "Transmitter narrow pulse\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TNPR {
-    #[doc = "3/16."]
+pub enum TNP_A {
+    #[doc = "0: 3/16."]
     _00,
-    #[doc = "1/16."]
+    #[doc = "1: 1/16."]
     _01,
-    #[doc = "1/32."]
+    #[doc = "2: 1/32."]
     _10,
-    #[doc = "1/4."]
+    #[doc = "3: 1/4."]
     _11,
 }
-impl TNPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TNPR::_00 => 0,
-            TNPR::_01 => 1,
-            TNPR::_10 => 2,
-            TNPR::_11 => 3,
+impl From<TNP_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TNP_A) -> Self {
+        match variant {
+            TNP_A::_00 => 0,
+            TNP_A::_01 => 1,
+            TNP_A::_10 => 2,
+            TNP_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TNPR {
-        match value {
-            0 => TNPR::_00,
-            1 => TNPR::_01,
-            2 => TNPR::_10,
-            3 => TNPR::_11,
+}
+#[doc = "Reader of field `TNP`"]
+pub type TNP_R = crate::R<u8, TNP_A>;
+impl TNP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TNP_A {
+        match self.bits {
+            0 => TNP_A::_00,
+            1 => TNP_A::_01,
+            2 => TNP_A::_10,
+            3 => TNP_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == TNPR::_00
+        *self == TNP_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == TNPR::_01
+        *self == TNP_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == TNPR::_10
+        *self == TNP_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == TNPR::_11
+        *self == TNP_A::_11
     }
 }
-#[doc = "Possible values of the field `IREN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IRENR {
-    #[doc = "IR disabled."]
-    _0,
-    #[doc = "IR enabled."]
-    _1,
-}
-impl IRENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IRENR::_0 => false,
-            IRENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IRENR {
-        match value {
-            false => IRENR::_0,
-            true => IRENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IRENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IRENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `TNP`"]
-pub enum TNPW {
-    #[doc = "3/16."]
-    _00,
-    #[doc = "1/16."]
-    _01,
-    #[doc = "1/32."]
-    _10,
-    #[doc = "1/4."]
-    _11,
-}
-impl TNPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TNPW::_00 => 0,
-            TNPW::_01 => 1,
-            TNPW::_10 => 2,
-            TNPW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TNPW<'a> {
+#[doc = "Write proxy for field `TNP`"]
+pub struct TNP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TNPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TNPW) -> &'a mut W {
+impl<'a> TNP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TNP_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "3/16."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(TNPW::_00)
+        self.variant(TNP_A::_00)
     }
     #[doc = "1/16."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(TNPW::_01)
+        self.variant(TNP_A::_01)
     }
     #[doc = "1/32."]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(TNPW::_10)
+        self.variant(TNP_A::_10)
     }
     #[doc = "1/4."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(TNPW::_11)
+        self.variant(TNP_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u8) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IREN`"]
-pub enum IRENW {
-    #[doc = "IR disabled."]
+#[doc = "Infrared enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IREN_A {
+    #[doc = "0: IR disabled."]
     _0,
-    #[doc = "IR enabled."]
+    #[doc = "1: IR enabled."]
     _1,
 }
-impl IRENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IRENW::_0 => false,
-            IRENW::_1 => true,
+impl From<IREN_A> for bool {
+    #[inline(always)]
+    fn from(variant: IREN_A) -> Self {
+        match variant {
+            IREN_A::_0 => false,
+            IREN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _IRENW<'a> {
+#[doc = "Reader of field `IREN`"]
+pub type IREN_R = crate::R<bool, IREN_A>;
+impl IREN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IREN_A {
+        match self.bits {
+            false => IREN_A::_0,
+            true => IREN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IREN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IREN_A::_1
+    }
+}
+#[doc = "Write proxy for field `IREN`"]
+pub struct IREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IRENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IRENW) -> &'a mut W {
+impl<'a> IREN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IREN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "IR disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IRENW::_0)
+        self.variant(IREN_A::_0)
     }
     #[doc = "IR enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IRENW::_1)
+        self.variant(IREN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Transmitter narrow pulse"]
-    #[inline]
-    pub fn tnp(&self) -> TNPR {
-        TNPR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn tnp(&self) -> TNP_R {
+        TNP_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bit 2 - Infrared enable"]
-    #[inline]
-    pub fn iren(&self) -> IRENR {
-        IRENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn iren(&self) -> IREN_R {
+        IREN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Transmitter narrow pulse"]
-    #[inline]
-    pub fn tnp(&mut self) -> _TNPW {
-        _TNPW { w: self }
+    #[inline(always)]
+    pub fn tnp(&mut self) -> TNP_W {
+        TNP_W { w: self }
     }
     #[doc = "Bit 2 - Infrared enable"]
-    #[inline]
-    pub fn iren(&mut self) -> _IRENW {
-        _IRENW { w: self }
+    #[inline(always)]
+    pub fn iren(&mut self) -> IREN_W {
+        IREN_W { w: self }
     }
 }

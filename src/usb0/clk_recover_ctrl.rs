@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::CLK_RECOVER_CTRL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CLK_RECOVER_CTRL"]
+pub type R = crate::R<u8, super::CLK_RECOVER_CTRL>;
+#[doc = "Writer for register CLK_RECOVER_CTRL"]
+pub type W = crate::W<u8, super::CLK_RECOVER_CTRL>;
+#[doc = "Register CLK_RECOVER_CTRL `reset()`'s with value 0"]
+impl crate::ResetValue for super::CLK_RECOVER_CTRL {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RESTART_IFRTRIM_EN`"]
+#[doc = "Restart from IFR trim value\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RESTART_IFRTRIM_ENR {
-    #[doc = "Trim fine adjustment always works based on the previous updated trim fine value (default)"]
+pub enum RESTART_IFRTRIM_EN_A {
+    #[doc = "0: Trim fine adjustment always works based on the previous updated trim fine value (default)"]
     _0,
-    #[doc = "Trim fine restarts from the IFR trim value whenever bus_reset/bus_resume is detected or module enable is desasserted"]
+    #[doc = "1: Trim fine restarts from the IFR trim value whenever bus_reset/bus_resume is detected or module enable is desasserted"]
     _1,
 }
-impl RESTART_IFRTRIM_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RESTART_IFRTRIM_ENR::_0 => false,
-            RESTART_IFRTRIM_ENR::_1 => true,
+impl From<RESTART_IFRTRIM_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: RESTART_IFRTRIM_EN_A) -> Self {
+        match variant {
+            RESTART_IFRTRIM_EN_A::_0 => false,
+            RESTART_IFRTRIM_EN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RESTART_IFRTRIM_ENR {
-        match value {
-            false => RESTART_IFRTRIM_ENR::_0,
-            true => RESTART_IFRTRIM_ENR::_1,
+}
+#[doc = "Reader of field `RESTART_IFRTRIM_EN`"]
+pub type RESTART_IFRTRIM_EN_R = crate::R<bool, RESTART_IFRTRIM_EN_A>;
+impl RESTART_IFRTRIM_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RESTART_IFRTRIM_EN_A {
+        match self.bits {
+            false => RESTART_IFRTRIM_EN_A::_0,
+            true => RESTART_IFRTRIM_EN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RESTART_IFRTRIM_ENR::_0
+        *self == RESTART_IFRTRIM_EN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RESTART_IFRTRIM_ENR::_1
+        *self == RESTART_IFRTRIM_EN_A::_1
     }
 }
-#[doc = "Possible values of the field `RESET_RESUME_ROUGH_EN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RESET_RESUME_ROUGH_ENR {
-    #[doc = "Always works in tracking phase after the 1st time rough to track transition (default)"]
-    _0,
-    #[doc = "Go back to rough stage whenever bus reset or bus resume occurs"]
-    _1,
-}
-impl RESET_RESUME_ROUGH_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RESET_RESUME_ROUGH_ENR::_0 => false,
-            RESET_RESUME_ROUGH_ENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RESET_RESUME_ROUGH_ENR {
-        match value {
-            false => RESET_RESUME_ROUGH_ENR::_0,
-            true => RESET_RESUME_ROUGH_ENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RESET_RESUME_ROUGH_ENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RESET_RESUME_ROUGH_ENR::_1
-    }
-}
-#[doc = "Possible values of the field `CLOCK_RECOVER_EN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLOCK_RECOVER_ENR {
-    #[doc = "Disable clock recovery block (default)"]
-    _0,
-    #[doc = "Enable clock recovery block"]
-    _1,
-}
-impl CLOCK_RECOVER_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CLOCK_RECOVER_ENR::_0 => false,
-            CLOCK_RECOVER_ENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CLOCK_RECOVER_ENR {
-        match value {
-            false => CLOCK_RECOVER_ENR::_0,
-            true => CLOCK_RECOVER_ENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CLOCK_RECOVER_ENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CLOCK_RECOVER_ENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `RESTART_IFRTRIM_EN`"]
-pub enum RESTART_IFRTRIM_ENW {
-    #[doc = "Trim fine adjustment always works based on the previous updated trim fine value (default)"]
-    _0,
-    #[doc = "Trim fine restarts from the IFR trim value whenever bus_reset/bus_resume is detected or module enable is desasserted"]
-    _1,
-}
-impl RESTART_IFRTRIM_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RESTART_IFRTRIM_ENW::_0 => false,
-            RESTART_IFRTRIM_ENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RESTART_IFRTRIM_ENW<'a> {
+#[doc = "Write proxy for field `RESTART_IFRTRIM_EN`"]
+pub struct RESTART_IFRTRIM_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESTART_IFRTRIM_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RESTART_IFRTRIM_ENW) -> &'a mut W {
+impl<'a> RESTART_IFRTRIM_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RESTART_IFRTRIM_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Trim fine adjustment always works based on the previous updated trim fine value (default)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RESTART_IFRTRIM_ENW::_0)
+        self.variant(RESTART_IFRTRIM_EN_A::_0)
     }
     #[doc = "Trim fine restarts from the IFR trim value whenever bus_reset/bus_resume is detected or module enable is desasserted"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RESTART_IFRTRIM_ENW::_1)
+        self.variant(RESTART_IFRTRIM_EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RESET_RESUME_ROUGH_EN`"]
-pub enum RESET_RESUME_ROUGH_ENW {
-    #[doc = "Always works in tracking phase after the 1st time rough to track transition (default)"]
+#[doc = "Reset/resume to rough phase enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RESET_RESUME_ROUGH_EN_A {
+    #[doc = "0: Always works in tracking phase after the 1st time rough to track transition (default)"]
     _0,
-    #[doc = "Go back to rough stage whenever bus reset or bus resume occurs"]
+    #[doc = "1: Go back to rough stage whenever bus reset or bus resume occurs"]
     _1,
 }
-impl RESET_RESUME_ROUGH_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RESET_RESUME_ROUGH_ENW::_0 => false,
-            RESET_RESUME_ROUGH_ENW::_1 => true,
+impl From<RESET_RESUME_ROUGH_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: RESET_RESUME_ROUGH_EN_A) -> Self {
+        match variant {
+            RESET_RESUME_ROUGH_EN_A::_0 => false,
+            RESET_RESUME_ROUGH_EN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RESET_RESUME_ROUGH_ENW<'a> {
+#[doc = "Reader of field `RESET_RESUME_ROUGH_EN`"]
+pub type RESET_RESUME_ROUGH_EN_R = crate::R<bool, RESET_RESUME_ROUGH_EN_A>;
+impl RESET_RESUME_ROUGH_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RESET_RESUME_ROUGH_EN_A {
+        match self.bits {
+            false => RESET_RESUME_ROUGH_EN_A::_0,
+            true => RESET_RESUME_ROUGH_EN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RESET_RESUME_ROUGH_EN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RESET_RESUME_ROUGH_EN_A::_1
+    }
+}
+#[doc = "Write proxy for field `RESET_RESUME_ROUGH_EN`"]
+pub struct RESET_RESUME_ROUGH_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESET_RESUME_ROUGH_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RESET_RESUME_ROUGH_ENW) -> &'a mut W {
+impl<'a> RESET_RESUME_ROUGH_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RESET_RESUME_ROUGH_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Always works in tracking phase after the 1st time rough to track transition (default)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RESET_RESUME_ROUGH_ENW::_0)
+        self.variant(RESET_RESUME_ROUGH_EN_A::_0)
     }
     #[doc = "Go back to rough stage whenever bus reset or bus resume occurs"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RESET_RESUME_ROUGH_ENW::_1)
+        self.variant(RESET_RESUME_ROUGH_EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CLOCK_RECOVER_EN`"]
-pub enum CLOCK_RECOVER_ENW {
-    #[doc = "Disable clock recovery block (default)"]
+#[doc = "Crystal-less USB enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLOCK_RECOVER_EN_A {
+    #[doc = "0: Disable clock recovery block (default)"]
     _0,
-    #[doc = "Enable clock recovery block"]
+    #[doc = "1: Enable clock recovery block"]
     _1,
 }
-impl CLOCK_RECOVER_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CLOCK_RECOVER_ENW::_0 => false,
-            CLOCK_RECOVER_ENW::_1 => true,
+impl From<CLOCK_RECOVER_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: CLOCK_RECOVER_EN_A) -> Self {
+        match variant {
+            CLOCK_RECOVER_EN_A::_0 => false,
+            CLOCK_RECOVER_EN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CLOCK_RECOVER_ENW<'a> {
+#[doc = "Reader of field `CLOCK_RECOVER_EN`"]
+pub type CLOCK_RECOVER_EN_R = crate::R<bool, CLOCK_RECOVER_EN_A>;
+impl CLOCK_RECOVER_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLOCK_RECOVER_EN_A {
+        match self.bits {
+            false => CLOCK_RECOVER_EN_A::_0,
+            true => CLOCK_RECOVER_EN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CLOCK_RECOVER_EN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CLOCK_RECOVER_EN_A::_1
+    }
+}
+#[doc = "Write proxy for field `CLOCK_RECOVER_EN`"]
+pub struct CLOCK_RECOVER_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLOCK_RECOVER_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLOCK_RECOVER_ENW) -> &'a mut W {
+impl<'a> CLOCK_RECOVER_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLOCK_RECOVER_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disable clock recovery block (default)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CLOCK_RECOVER_ENW::_0)
+        self.variant(CLOCK_RECOVER_EN_A::_0)
     }
     #[doc = "Enable clock recovery block"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CLOCK_RECOVER_ENW::_1)
+        self.variant(CLOCK_RECOVER_EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 5 - Restart from IFR trim value"]
-    #[inline]
-    pub fn restart_ifrtrim_en(&self) -> RESTART_IFRTRIM_ENR {
-        RESTART_IFRTRIM_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn restart_ifrtrim_en(&self) -> RESTART_IFRTRIM_EN_R {
+        RESTART_IFRTRIM_EN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Reset/resume to rough phase enable"]
-    #[inline]
-    pub fn reset_resume_rough_en(&self) -> RESET_RESUME_ROUGH_ENR {
-        RESET_RESUME_ROUGH_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn reset_resume_rough_en(&self) -> RESET_RESUME_ROUGH_EN_R {
+        RESET_RESUME_ROUGH_EN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Crystal-less USB enable"]
-    #[inline]
-    pub fn clock_recover_en(&self) -> CLOCK_RECOVER_ENR {
-        CLOCK_RECOVER_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn clock_recover_en(&self) -> CLOCK_RECOVER_EN_R {
+        CLOCK_RECOVER_EN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 5 - Restart from IFR trim value"]
-    #[inline]
-    pub fn restart_ifrtrim_en(&mut self) -> _RESTART_IFRTRIM_ENW {
-        _RESTART_IFRTRIM_ENW { w: self }
+    #[inline(always)]
+    pub fn restart_ifrtrim_en(&mut self) -> RESTART_IFRTRIM_EN_W {
+        RESTART_IFRTRIM_EN_W { w: self }
     }
     #[doc = "Bit 6 - Reset/resume to rough phase enable"]
-    #[inline]
-    pub fn reset_resume_rough_en(&mut self) -> _RESET_RESUME_ROUGH_ENW {
-        _RESET_RESUME_ROUGH_ENW { w: self }
+    #[inline(always)]
+    pub fn reset_resume_rough_en(&mut self) -> RESET_RESUME_ROUGH_EN_W {
+        RESET_RESUME_ROUGH_EN_W { w: self }
     }
     #[doc = "Bit 7 - Crystal-less USB enable"]
-    #[inline]
-    pub fn clock_recover_en(&mut self) -> _CLOCK_RECOVER_ENW {
-        _CLOCK_RECOVER_ENW { w: self }
+    #[inline(always)]
+    pub fn clock_recover_en(&mut self) -> CLOCK_RECOVER_EN_W {
+        CLOCK_RECOVER_EN_W { w: self }
     }
 }

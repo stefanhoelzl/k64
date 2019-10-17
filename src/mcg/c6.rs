@@ -1,1033 +1,779 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C6 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C6"]
+pub type R = crate::R<u8, super::C6>;
+#[doc = "Writer for register C6"]
+pub type W = crate::W<u8, super::C6>;
+#[doc = "Register C6 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C6 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `VDIV0`"]
+#[doc = "VCO 0 Divider\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VDIV0R {
-    #[doc = "Multiply Factor is 24"]
+pub enum VDIV0_A {
+    #[doc = "0: Multiply Factor is 24"]
     _0,
-    #[doc = "Multiply Factor is 25"]
+    #[doc = "1: Multiply Factor is 25"]
     _1,
-    #[doc = "Multiply Factor is 26"]
+    #[doc = "2: Multiply Factor is 26"]
     _2,
-    #[doc = "Multiply Factor is 27"]
+    #[doc = "3: Multiply Factor is 27"]
     _3,
-    #[doc = "Multiply Factor is 28"]
+    #[doc = "4: Multiply Factor is 28"]
     _4,
-    #[doc = "Multiply Factor is 29"]
+    #[doc = "5: Multiply Factor is 29"]
     _5,
-    #[doc = "Multiply Factor is 30"]
+    #[doc = "6: Multiply Factor is 30"]
     _6,
-    #[doc = "Multiply Factor is 31"]
+    #[doc = "7: Multiply Factor is 31"]
     _7,
-    #[doc = "Multiply Factor is 32"]
+    #[doc = "8: Multiply Factor is 32"]
     _8,
-    #[doc = "Multiply Factor is 33"]
+    #[doc = "9: Multiply Factor is 33"]
     _9,
-    #[doc = "Multiply Factor is 34"]
+    #[doc = "10: Multiply Factor is 34"]
     _10,
-    #[doc = "Multiply Factor is 35"]
+    #[doc = "11: Multiply Factor is 35"]
     _11,
-    #[doc = "Multiply Factor is 36"]
+    #[doc = "12: Multiply Factor is 36"]
     _12,
-    #[doc = "Multiply Factor is 37"]
+    #[doc = "13: Multiply Factor is 37"]
     _13,
-    #[doc = "Multiply Factor is 38"]
+    #[doc = "14: Multiply Factor is 38"]
     _14,
-    #[doc = "Multiply Factor is 39"]
+    #[doc = "15: Multiply Factor is 39"]
     _15,
-    #[doc = "Multiply Factor is 40"]
+    #[doc = "16: Multiply Factor is 40"]
     _16,
-    #[doc = "Multiply Factor is 41"]
+    #[doc = "17: Multiply Factor is 41"]
     _17,
-    #[doc = "Multiply Factor is 42"]
+    #[doc = "18: Multiply Factor is 42"]
     _18,
-    #[doc = "Multiply Factor is 43"]
+    #[doc = "19: Multiply Factor is 43"]
     _19,
-    #[doc = "Multiply Factor is 44"]
+    #[doc = "20: Multiply Factor is 44"]
     _20,
-    #[doc = "Multiply Factor is 45"]
+    #[doc = "21: Multiply Factor is 45"]
     _21,
-    #[doc = "Multiply Factor is 46"]
+    #[doc = "22: Multiply Factor is 46"]
     _22,
-    #[doc = "Multiply Factor is 47"]
+    #[doc = "23: Multiply Factor is 47"]
     _23,
-    #[doc = "Multiply Factor is 48"]
+    #[doc = "24: Multiply Factor is 48"]
     _24,
-    #[doc = "Multiply Factor is 49"]
+    #[doc = "25: Multiply Factor is 49"]
     _25,
-    #[doc = "Multiply Factor is 50"]
+    #[doc = "26: Multiply Factor is 50"]
     _26,
-    #[doc = "Multiply Factor is 51"]
+    #[doc = "27: Multiply Factor is 51"]
     _27,
-    #[doc = "Multiply Factor is 52"]
+    #[doc = "28: Multiply Factor is 52"]
     _28,
-    #[doc = "Multiply Factor is 53"]
+    #[doc = "29: Multiply Factor is 53"]
     _29,
-    #[doc = "Multiply Factor is 54"]
+    #[doc = "30: Multiply Factor is 54"]
     _30,
-    #[doc = "Multiply Factor is 55"]
+    #[doc = "31: Multiply Factor is 55"]
     _31,
 }
-impl VDIV0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VDIV0R::_0 => 0,
-            VDIV0R::_1 => 1,
-            VDIV0R::_2 => 2,
-            VDIV0R::_3 => 3,
-            VDIV0R::_4 => 4,
-            VDIV0R::_5 => 5,
-            VDIV0R::_6 => 6,
-            VDIV0R::_7 => 7,
-            VDIV0R::_8 => 8,
-            VDIV0R::_9 => 9,
-            VDIV0R::_10 => 10,
-            VDIV0R::_11 => 11,
-            VDIV0R::_12 => 12,
-            VDIV0R::_13 => 13,
-            VDIV0R::_14 => 14,
-            VDIV0R::_15 => 15,
-            VDIV0R::_16 => 16,
-            VDIV0R::_17 => 17,
-            VDIV0R::_18 => 18,
-            VDIV0R::_19 => 19,
-            VDIV0R::_20 => 20,
-            VDIV0R::_21 => 21,
-            VDIV0R::_22 => 22,
-            VDIV0R::_23 => 23,
-            VDIV0R::_24 => 24,
-            VDIV0R::_25 => 25,
-            VDIV0R::_26 => 26,
-            VDIV0R::_27 => 27,
-            VDIV0R::_28 => 28,
-            VDIV0R::_29 => 29,
-            VDIV0R::_30 => 30,
-            VDIV0R::_31 => 31,
+impl From<VDIV0_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VDIV0_A) -> Self {
+        match variant {
+            VDIV0_A::_0 => 0,
+            VDIV0_A::_1 => 1,
+            VDIV0_A::_2 => 2,
+            VDIV0_A::_3 => 3,
+            VDIV0_A::_4 => 4,
+            VDIV0_A::_5 => 5,
+            VDIV0_A::_6 => 6,
+            VDIV0_A::_7 => 7,
+            VDIV0_A::_8 => 8,
+            VDIV0_A::_9 => 9,
+            VDIV0_A::_10 => 10,
+            VDIV0_A::_11 => 11,
+            VDIV0_A::_12 => 12,
+            VDIV0_A::_13 => 13,
+            VDIV0_A::_14 => 14,
+            VDIV0_A::_15 => 15,
+            VDIV0_A::_16 => 16,
+            VDIV0_A::_17 => 17,
+            VDIV0_A::_18 => 18,
+            VDIV0_A::_19 => 19,
+            VDIV0_A::_20 => 20,
+            VDIV0_A::_21 => 21,
+            VDIV0_A::_22 => 22,
+            VDIV0_A::_23 => 23,
+            VDIV0_A::_24 => 24,
+            VDIV0_A::_25 => 25,
+            VDIV0_A::_26 => 26,
+            VDIV0_A::_27 => 27,
+            VDIV0_A::_28 => 28,
+            VDIV0_A::_29 => 29,
+            VDIV0_A::_30 => 30,
+            VDIV0_A::_31 => 31,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VDIV0R {
-        match value {
-            0 => VDIV0R::_0,
-            1 => VDIV0R::_1,
-            2 => VDIV0R::_2,
-            3 => VDIV0R::_3,
-            4 => VDIV0R::_4,
-            5 => VDIV0R::_5,
-            6 => VDIV0R::_6,
-            7 => VDIV0R::_7,
-            8 => VDIV0R::_8,
-            9 => VDIV0R::_9,
-            10 => VDIV0R::_10,
-            11 => VDIV0R::_11,
-            12 => VDIV0R::_12,
-            13 => VDIV0R::_13,
-            14 => VDIV0R::_14,
-            15 => VDIV0R::_15,
-            16 => VDIV0R::_16,
-            17 => VDIV0R::_17,
-            18 => VDIV0R::_18,
-            19 => VDIV0R::_19,
-            20 => VDIV0R::_20,
-            21 => VDIV0R::_21,
-            22 => VDIV0R::_22,
-            23 => VDIV0R::_23,
-            24 => VDIV0R::_24,
-            25 => VDIV0R::_25,
-            26 => VDIV0R::_26,
-            27 => VDIV0R::_27,
-            28 => VDIV0R::_28,
-            29 => VDIV0R::_29,
-            30 => VDIV0R::_30,
-            31 => VDIV0R::_31,
+}
+#[doc = "Reader of field `VDIV0`"]
+pub type VDIV0_R = crate::R<u8, VDIV0_A>;
+impl VDIV0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VDIV0_A {
+        match self.bits {
+            0 => VDIV0_A::_0,
+            1 => VDIV0_A::_1,
+            2 => VDIV0_A::_2,
+            3 => VDIV0_A::_3,
+            4 => VDIV0_A::_4,
+            5 => VDIV0_A::_5,
+            6 => VDIV0_A::_6,
+            7 => VDIV0_A::_7,
+            8 => VDIV0_A::_8,
+            9 => VDIV0_A::_9,
+            10 => VDIV0_A::_10,
+            11 => VDIV0_A::_11,
+            12 => VDIV0_A::_12,
+            13 => VDIV0_A::_13,
+            14 => VDIV0_A::_14,
+            15 => VDIV0_A::_15,
+            16 => VDIV0_A::_16,
+            17 => VDIV0_A::_17,
+            18 => VDIV0_A::_18,
+            19 => VDIV0_A::_19,
+            20 => VDIV0_A::_20,
+            21 => VDIV0_A::_21,
+            22 => VDIV0_A::_22,
+            23 => VDIV0_A::_23,
+            24 => VDIV0_A::_24,
+            25 => VDIV0_A::_25,
+            26 => VDIV0_A::_26,
+            27 => VDIV0_A::_27,
+            28 => VDIV0_A::_28,
+            29 => VDIV0_A::_29,
+            30 => VDIV0_A::_30,
+            31 => VDIV0_A::_31,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == VDIV0R::_0
+        *self == VDIV0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == VDIV0R::_1
+        *self == VDIV0_A::_1
     }
     #[doc = "Checks if the value of the field is `_2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_2(&self) -> bool {
-        *self == VDIV0R::_2
+        *self == VDIV0_A::_2
     }
     #[doc = "Checks if the value of the field is `_3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_3(&self) -> bool {
-        *self == VDIV0R::_3
+        *self == VDIV0_A::_3
     }
     #[doc = "Checks if the value of the field is `_4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_4(&self) -> bool {
-        *self == VDIV0R::_4
+        *self == VDIV0_A::_4
     }
     #[doc = "Checks if the value of the field is `_5`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_5(&self) -> bool {
-        *self == VDIV0R::_5
+        *self == VDIV0_A::_5
     }
     #[doc = "Checks if the value of the field is `_6`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_6(&self) -> bool {
-        *self == VDIV0R::_6
+        *self == VDIV0_A::_6
     }
     #[doc = "Checks if the value of the field is `_7`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_7(&self) -> bool {
-        *self == VDIV0R::_7
+        *self == VDIV0_A::_7
     }
     #[doc = "Checks if the value of the field is `_8`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_8(&self) -> bool {
-        *self == VDIV0R::_8
+        *self == VDIV0_A::_8
     }
     #[doc = "Checks if the value of the field is `_9`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_9(&self) -> bool {
-        *self == VDIV0R::_9
+        *self == VDIV0_A::_9
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == VDIV0R::_10
+        *self == VDIV0_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == VDIV0R::_11
+        *self == VDIV0_A::_11
     }
     #[doc = "Checks if the value of the field is `_12`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_12(&self) -> bool {
-        *self == VDIV0R::_12
+        *self == VDIV0_A::_12
     }
     #[doc = "Checks if the value of the field is `_13`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_13(&self) -> bool {
-        *self == VDIV0R::_13
+        *self == VDIV0_A::_13
     }
     #[doc = "Checks if the value of the field is `_14`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_14(&self) -> bool {
-        *self == VDIV0R::_14
+        *self == VDIV0_A::_14
     }
     #[doc = "Checks if the value of the field is `_15`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_15(&self) -> bool {
-        *self == VDIV0R::_15
+        *self == VDIV0_A::_15
     }
     #[doc = "Checks if the value of the field is `_16`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_16(&self) -> bool {
-        *self == VDIV0R::_16
+        *self == VDIV0_A::_16
     }
     #[doc = "Checks if the value of the field is `_17`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_17(&self) -> bool {
-        *self == VDIV0R::_17
+        *self == VDIV0_A::_17
     }
     #[doc = "Checks if the value of the field is `_18`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_18(&self) -> bool {
-        *self == VDIV0R::_18
+        *self == VDIV0_A::_18
     }
     #[doc = "Checks if the value of the field is `_19`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_19(&self) -> bool {
-        *self == VDIV0R::_19
+        *self == VDIV0_A::_19
     }
     #[doc = "Checks if the value of the field is `_20`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_20(&self) -> bool {
-        *self == VDIV0R::_20
+        *self == VDIV0_A::_20
     }
     #[doc = "Checks if the value of the field is `_21`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_21(&self) -> bool {
-        *self == VDIV0R::_21
+        *self == VDIV0_A::_21
     }
     #[doc = "Checks if the value of the field is `_22`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_22(&self) -> bool {
-        *self == VDIV0R::_22
+        *self == VDIV0_A::_22
     }
     #[doc = "Checks if the value of the field is `_23`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_23(&self) -> bool {
-        *self == VDIV0R::_23
+        *self == VDIV0_A::_23
     }
     #[doc = "Checks if the value of the field is `_24`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_24(&self) -> bool {
-        *self == VDIV0R::_24
+        *self == VDIV0_A::_24
     }
     #[doc = "Checks if the value of the field is `_25`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_25(&self) -> bool {
-        *self == VDIV0R::_25
+        *self == VDIV0_A::_25
     }
     #[doc = "Checks if the value of the field is `_26`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_26(&self) -> bool {
-        *self == VDIV0R::_26
+        *self == VDIV0_A::_26
     }
     #[doc = "Checks if the value of the field is `_27`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_27(&self) -> bool {
-        *self == VDIV0R::_27
+        *self == VDIV0_A::_27
     }
     #[doc = "Checks if the value of the field is `_28`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_28(&self) -> bool {
-        *self == VDIV0R::_28
+        *self == VDIV0_A::_28
     }
     #[doc = "Checks if the value of the field is `_29`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_29(&self) -> bool {
-        *self == VDIV0R::_29
+        *self == VDIV0_A::_29
     }
     #[doc = "Checks if the value of the field is `_30`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_30(&self) -> bool {
-        *self == VDIV0R::_30
+        *self == VDIV0_A::_30
     }
     #[doc = "Checks if the value of the field is `_31`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_31(&self) -> bool {
-        *self == VDIV0R::_31
+        *self == VDIV0_A::_31
     }
 }
-#[doc = "Possible values of the field `CME0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CME0R {
-    #[doc = "External clock monitor is disabled for OSC0."]
-    _0,
-    #[doc = "External clock monitor is enabled for OSC0."]
-    _1,
-}
-impl CME0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CME0R::_0 => false,
-            CME0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CME0R {
-        match value {
-            false => CME0R::_0,
-            true => CME0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CME0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CME0R::_1
-    }
-}
-#[doc = "Possible values of the field `PLLS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLSR {
-    #[doc = "FLL is selected."]
-    _0,
-    #[doc = "PLL is selected (PRDIV 0 need to be programmed to the correct divider to generate a PLL reference clock in the range of 2-4 MHz prior to setting the PLLS bit)."]
-    _1,
-}
-impl PLLSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PLLSR::_0 => false,
-            PLLSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PLLSR {
-        match value {
-            false => PLLSR::_0,
-            true => PLLSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PLLSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PLLSR::_1
-    }
-}
-#[doc = "Possible values of the field `LOLIE0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOLIE0R {
-    #[doc = "No interrupt request is generated on loss of lock."]
-    _0,
-    #[doc = "Generate an interrupt request on loss of lock."]
-    _1,
-}
-impl LOLIE0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOLIE0R::_0 => false,
-            LOLIE0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOLIE0R {
-        match value {
-            false => LOLIE0R::_0,
-            true => LOLIE0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LOLIE0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LOLIE0R::_1
-    }
-}
-#[doc = "Values that can be written to the field `VDIV0`"]
-pub enum VDIV0W {
-    #[doc = "Multiply Factor is 24"]
-    _0,
-    #[doc = "Multiply Factor is 25"]
-    _1,
-    #[doc = "Multiply Factor is 26"]
-    _2,
-    #[doc = "Multiply Factor is 27"]
-    _3,
-    #[doc = "Multiply Factor is 28"]
-    _4,
-    #[doc = "Multiply Factor is 29"]
-    _5,
-    #[doc = "Multiply Factor is 30"]
-    _6,
-    #[doc = "Multiply Factor is 31"]
-    _7,
-    #[doc = "Multiply Factor is 32"]
-    _8,
-    #[doc = "Multiply Factor is 33"]
-    _9,
-    #[doc = "Multiply Factor is 34"]
-    _10,
-    #[doc = "Multiply Factor is 35"]
-    _11,
-    #[doc = "Multiply Factor is 36"]
-    _12,
-    #[doc = "Multiply Factor is 37"]
-    _13,
-    #[doc = "Multiply Factor is 38"]
-    _14,
-    #[doc = "Multiply Factor is 39"]
-    _15,
-    #[doc = "Multiply Factor is 40"]
-    _16,
-    #[doc = "Multiply Factor is 41"]
-    _17,
-    #[doc = "Multiply Factor is 42"]
-    _18,
-    #[doc = "Multiply Factor is 43"]
-    _19,
-    #[doc = "Multiply Factor is 44"]
-    _20,
-    #[doc = "Multiply Factor is 45"]
-    _21,
-    #[doc = "Multiply Factor is 46"]
-    _22,
-    #[doc = "Multiply Factor is 47"]
-    _23,
-    #[doc = "Multiply Factor is 48"]
-    _24,
-    #[doc = "Multiply Factor is 49"]
-    _25,
-    #[doc = "Multiply Factor is 50"]
-    _26,
-    #[doc = "Multiply Factor is 51"]
-    _27,
-    #[doc = "Multiply Factor is 52"]
-    _28,
-    #[doc = "Multiply Factor is 53"]
-    _29,
-    #[doc = "Multiply Factor is 54"]
-    _30,
-    #[doc = "Multiply Factor is 55"]
-    _31,
-}
-impl VDIV0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            VDIV0W::_0 => 0,
-            VDIV0W::_1 => 1,
-            VDIV0W::_2 => 2,
-            VDIV0W::_3 => 3,
-            VDIV0W::_4 => 4,
-            VDIV0W::_5 => 5,
-            VDIV0W::_6 => 6,
-            VDIV0W::_7 => 7,
-            VDIV0W::_8 => 8,
-            VDIV0W::_9 => 9,
-            VDIV0W::_10 => 10,
-            VDIV0W::_11 => 11,
-            VDIV0W::_12 => 12,
-            VDIV0W::_13 => 13,
-            VDIV0W::_14 => 14,
-            VDIV0W::_15 => 15,
-            VDIV0W::_16 => 16,
-            VDIV0W::_17 => 17,
-            VDIV0W::_18 => 18,
-            VDIV0W::_19 => 19,
-            VDIV0W::_20 => 20,
-            VDIV0W::_21 => 21,
-            VDIV0W::_22 => 22,
-            VDIV0W::_23 => 23,
-            VDIV0W::_24 => 24,
-            VDIV0W::_25 => 25,
-            VDIV0W::_26 => 26,
-            VDIV0W::_27 => 27,
-            VDIV0W::_28 => 28,
-            VDIV0W::_29 => 29,
-            VDIV0W::_30 => 30,
-            VDIV0W::_31 => 31,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VDIV0W<'a> {
+#[doc = "Write proxy for field `VDIV0`"]
+pub struct VDIV0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VDIV0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VDIV0W) -> &'a mut W {
+impl<'a> VDIV0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VDIV0_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Multiply Factor is 24"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(VDIV0W::_0)
+        self.variant(VDIV0_A::_0)
     }
     #[doc = "Multiply Factor is 25"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(VDIV0W::_1)
+        self.variant(VDIV0_A::_1)
     }
     #[doc = "Multiply Factor is 26"]
-    #[inline]
+    #[inline(always)]
     pub fn _2(self) -> &'a mut W {
-        self.variant(VDIV0W::_2)
+        self.variant(VDIV0_A::_2)
     }
     #[doc = "Multiply Factor is 27"]
-    #[inline]
+    #[inline(always)]
     pub fn _3(self) -> &'a mut W {
-        self.variant(VDIV0W::_3)
+        self.variant(VDIV0_A::_3)
     }
     #[doc = "Multiply Factor is 28"]
-    #[inline]
+    #[inline(always)]
     pub fn _4(self) -> &'a mut W {
-        self.variant(VDIV0W::_4)
+        self.variant(VDIV0_A::_4)
     }
     #[doc = "Multiply Factor is 29"]
-    #[inline]
+    #[inline(always)]
     pub fn _5(self) -> &'a mut W {
-        self.variant(VDIV0W::_5)
+        self.variant(VDIV0_A::_5)
     }
     #[doc = "Multiply Factor is 30"]
-    #[inline]
+    #[inline(always)]
     pub fn _6(self) -> &'a mut W {
-        self.variant(VDIV0W::_6)
+        self.variant(VDIV0_A::_6)
     }
     #[doc = "Multiply Factor is 31"]
-    #[inline]
+    #[inline(always)]
     pub fn _7(self) -> &'a mut W {
-        self.variant(VDIV0W::_7)
+        self.variant(VDIV0_A::_7)
     }
     #[doc = "Multiply Factor is 32"]
-    #[inline]
+    #[inline(always)]
     pub fn _8(self) -> &'a mut W {
-        self.variant(VDIV0W::_8)
+        self.variant(VDIV0_A::_8)
     }
     #[doc = "Multiply Factor is 33"]
-    #[inline]
+    #[inline(always)]
     pub fn _9(self) -> &'a mut W {
-        self.variant(VDIV0W::_9)
+        self.variant(VDIV0_A::_9)
     }
     #[doc = "Multiply Factor is 34"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(VDIV0W::_10)
+        self.variant(VDIV0_A::_10)
     }
     #[doc = "Multiply Factor is 35"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(VDIV0W::_11)
+        self.variant(VDIV0_A::_11)
     }
     #[doc = "Multiply Factor is 36"]
-    #[inline]
+    #[inline(always)]
     pub fn _12(self) -> &'a mut W {
-        self.variant(VDIV0W::_12)
+        self.variant(VDIV0_A::_12)
     }
     #[doc = "Multiply Factor is 37"]
-    #[inline]
+    #[inline(always)]
     pub fn _13(self) -> &'a mut W {
-        self.variant(VDIV0W::_13)
+        self.variant(VDIV0_A::_13)
     }
     #[doc = "Multiply Factor is 38"]
-    #[inline]
+    #[inline(always)]
     pub fn _14(self) -> &'a mut W {
-        self.variant(VDIV0W::_14)
+        self.variant(VDIV0_A::_14)
     }
     #[doc = "Multiply Factor is 39"]
-    #[inline]
+    #[inline(always)]
     pub fn _15(self) -> &'a mut W {
-        self.variant(VDIV0W::_15)
+        self.variant(VDIV0_A::_15)
     }
     #[doc = "Multiply Factor is 40"]
-    #[inline]
+    #[inline(always)]
     pub fn _16(self) -> &'a mut W {
-        self.variant(VDIV0W::_16)
+        self.variant(VDIV0_A::_16)
     }
     #[doc = "Multiply Factor is 41"]
-    #[inline]
+    #[inline(always)]
     pub fn _17(self) -> &'a mut W {
-        self.variant(VDIV0W::_17)
+        self.variant(VDIV0_A::_17)
     }
     #[doc = "Multiply Factor is 42"]
-    #[inline]
+    #[inline(always)]
     pub fn _18(self) -> &'a mut W {
-        self.variant(VDIV0W::_18)
+        self.variant(VDIV0_A::_18)
     }
     #[doc = "Multiply Factor is 43"]
-    #[inline]
+    #[inline(always)]
     pub fn _19(self) -> &'a mut W {
-        self.variant(VDIV0W::_19)
+        self.variant(VDIV0_A::_19)
     }
     #[doc = "Multiply Factor is 44"]
-    #[inline]
+    #[inline(always)]
     pub fn _20(self) -> &'a mut W {
-        self.variant(VDIV0W::_20)
+        self.variant(VDIV0_A::_20)
     }
     #[doc = "Multiply Factor is 45"]
-    #[inline]
+    #[inline(always)]
     pub fn _21(self) -> &'a mut W {
-        self.variant(VDIV0W::_21)
+        self.variant(VDIV0_A::_21)
     }
     #[doc = "Multiply Factor is 46"]
-    #[inline]
+    #[inline(always)]
     pub fn _22(self) -> &'a mut W {
-        self.variant(VDIV0W::_22)
+        self.variant(VDIV0_A::_22)
     }
     #[doc = "Multiply Factor is 47"]
-    #[inline]
+    #[inline(always)]
     pub fn _23(self) -> &'a mut W {
-        self.variant(VDIV0W::_23)
+        self.variant(VDIV0_A::_23)
     }
     #[doc = "Multiply Factor is 48"]
-    #[inline]
+    #[inline(always)]
     pub fn _24(self) -> &'a mut W {
-        self.variant(VDIV0W::_24)
+        self.variant(VDIV0_A::_24)
     }
     #[doc = "Multiply Factor is 49"]
-    #[inline]
+    #[inline(always)]
     pub fn _25(self) -> &'a mut W {
-        self.variant(VDIV0W::_25)
+        self.variant(VDIV0_A::_25)
     }
     #[doc = "Multiply Factor is 50"]
-    #[inline]
+    #[inline(always)]
     pub fn _26(self) -> &'a mut W {
-        self.variant(VDIV0W::_26)
+        self.variant(VDIV0_A::_26)
     }
     #[doc = "Multiply Factor is 51"]
-    #[inline]
+    #[inline(always)]
     pub fn _27(self) -> &'a mut W {
-        self.variant(VDIV0W::_27)
+        self.variant(VDIV0_A::_27)
     }
     #[doc = "Multiply Factor is 52"]
-    #[inline]
+    #[inline(always)]
     pub fn _28(self) -> &'a mut W {
-        self.variant(VDIV0W::_28)
+        self.variant(VDIV0_A::_28)
     }
     #[doc = "Multiply Factor is 53"]
-    #[inline]
+    #[inline(always)]
     pub fn _29(self) -> &'a mut W {
-        self.variant(VDIV0W::_29)
+        self.variant(VDIV0_A::_29)
     }
     #[doc = "Multiply Factor is 54"]
-    #[inline]
+    #[inline(always)]
     pub fn _30(self) -> &'a mut W {
-        self.variant(VDIV0W::_30)
+        self.variant(VDIV0_A::_30)
     }
     #[doc = "Multiply Factor is 55"]
-    #[inline]
+    #[inline(always)]
     pub fn _31(self) -> &'a mut W {
-        self.variant(VDIV0W::_31)
+        self.variant(VDIV0_A::_31)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u8) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CME0`"]
-pub enum CME0W {
+#[doc = "Clock Monitor Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CME0_A {
+    #[doc = "0: External clock monitor is disabled for OSC0."]
+    _0,
+    #[doc = "1: External clock monitor is enabled for OSC0."]
+    _1,
+}
+impl From<CME0_A> for bool {
+    #[inline(always)]
+    fn from(variant: CME0_A) -> Self {
+        match variant {
+            CME0_A::_0 => false,
+            CME0_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CME0`"]
+pub type CME0_R = crate::R<bool, CME0_A>;
+impl CME0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CME0_A {
+        match self.bits {
+            false => CME0_A::_0,
+            true => CME0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CME0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CME0_A::_1
+    }
+}
+#[doc = "Write proxy for field `CME0`"]
+pub struct CME0_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CME0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CME0_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "External clock monitor is disabled for OSC0."]
-    _0,
-    #[doc = "External clock monitor is enabled for OSC0."]
-    _1,
-}
-impl CME0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CME0W::_0 => false,
-            CME0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CME0W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CME0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CME0W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "External clock monitor is disabled for OSC0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CME0W::_0)
+        self.variant(CME0_A::_0)
     }
     #[doc = "External clock monitor is enabled for OSC0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CME0W::_1)
+        self.variant(CME0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PLLS`"]
-pub enum PLLSW {
-    #[doc = "FLL is selected."]
+#[doc = "PLL Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PLLS_A {
+    #[doc = "0: FLL is selected."]
     _0,
-    #[doc = "PLL is selected (PRDIV 0 need to be programmed to the correct divider to generate a PLL reference clock in the range of 2-4 MHz prior to setting the PLLS bit)."]
+    #[doc = "1: PLL is selected (PRDIV 0 need to be programmed to the correct divider to generate a PLL reference clock in the range of 2-4 MHz prior to setting the PLLS bit)."]
     _1,
 }
-impl PLLSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PLLSW::_0 => false,
-            PLLSW::_1 => true,
+impl From<PLLS_A> for bool {
+    #[inline(always)]
+    fn from(variant: PLLS_A) -> Self {
+        match variant {
+            PLLS_A::_0 => false,
+            PLLS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLSW<'a> {
+#[doc = "Reader of field `PLLS`"]
+pub type PLLS_R = crate::R<bool, PLLS_A>;
+impl PLLS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLLS_A {
+        match self.bits {
+            false => PLLS_A::_0,
+            true => PLLS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PLLS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PLLS_A::_1
+    }
+}
+#[doc = "Write proxy for field `PLLS`"]
+pub struct PLLS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLLSW) -> &'a mut W {
+impl<'a> PLLS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLLS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "FLL is selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PLLSW::_0)
+        self.variant(PLLS_A::_0)
     }
     #[doc = "PLL is selected (PRDIV 0 need to be programmed to the correct divider to generate a PLL reference clock in the range of 2-4 MHz prior to setting the PLLS bit)."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PLLSW::_1)
+        self.variant(PLLS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LOLIE0`"]
-pub enum LOLIE0W {
-    #[doc = "No interrupt request is generated on loss of lock."]
+#[doc = "Loss of Lock Interrrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LOLIE0_A {
+    #[doc = "0: No interrupt request is generated on loss of lock."]
     _0,
-    #[doc = "Generate an interrupt request on loss of lock."]
+    #[doc = "1: Generate an interrupt request on loss of lock."]
     _1,
 }
-impl LOLIE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOLIE0W::_0 => false,
-            LOLIE0W::_1 => true,
+impl From<LOLIE0_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOLIE0_A) -> Self {
+        match variant {
+            LOLIE0_A::_0 => false,
+            LOLIE0_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LOLIE0W<'a> {
+#[doc = "Reader of field `LOLIE0`"]
+pub type LOLIE0_R = crate::R<bool, LOLIE0_A>;
+impl LOLIE0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOLIE0_A {
+        match self.bits {
+            false => LOLIE0_A::_0,
+            true => LOLIE0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LOLIE0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LOLIE0_A::_1
+    }
+}
+#[doc = "Write proxy for field `LOLIE0`"]
+pub struct LOLIE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOLIE0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOLIE0W) -> &'a mut W {
+impl<'a> LOLIE0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOLIE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No interrupt request is generated on loss of lock."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOLIE0W::_0)
+        self.variant(LOLIE0_A::_0)
     }
     #[doc = "Generate an interrupt request on loss of lock."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOLIE0W::_1)
+        self.variant(LOLIE0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - VCO 0 Divider"]
-    #[inline]
-    pub fn vdiv0(&self) -> VDIV0R {
-        VDIV0R::_from({
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn vdiv0(&self) -> VDIV0_R {
+        VDIV0_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 5 - Clock Monitor Enable"]
-    #[inline]
-    pub fn cme0(&self) -> CME0R {
-        CME0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn cme0(&self) -> CME0_R {
+        CME0_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - PLL Select"]
-    #[inline]
-    pub fn plls(&self) -> PLLSR {
-        PLLSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn plls(&self) -> PLLS_R {
+        PLLS_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Loss of Lock Interrrupt Enable"]
-    #[inline]
-    pub fn lolie0(&self) -> LOLIE0R {
-        LOLIE0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lolie0(&self) -> LOLIE0_R {
+        LOLIE0_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - VCO 0 Divider"]
-    #[inline]
-    pub fn vdiv0(&mut self) -> _VDIV0W {
-        _VDIV0W { w: self }
+    #[inline(always)]
+    pub fn vdiv0(&mut self) -> VDIV0_W {
+        VDIV0_W { w: self }
     }
     #[doc = "Bit 5 - Clock Monitor Enable"]
-    #[inline]
-    pub fn cme0(&mut self) -> _CME0W {
-        _CME0W { w: self }
+    #[inline(always)]
+    pub fn cme0(&mut self) -> CME0_W {
+        CME0_W { w: self }
     }
     #[doc = "Bit 6 - PLL Select"]
-    #[inline]
-    pub fn plls(&mut self) -> _PLLSW {
-        _PLLSW { w: self }
+    #[inline(always)]
+    pub fn plls(&mut self) -> PLLS_W {
+        PLLS_W { w: self }
     }
     #[doc = "Bit 7 - Loss of Lock Interrrupt Enable"]
-    #[inline]
-    pub fn lolie0(&mut self) -> _LOLIE0W {
-        _LOLIE0W { w: self }
+    #[inline(always)]
+    pub fn lolie0(&mut self) -> LOLIE0_W {
+        LOLIE0_W { w: self }
     }
 }

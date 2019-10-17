@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::RST {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RST"]
+pub type R = crate::R<u8, super::RST>;
+#[doc = "Writer for register RST"]
+pub type W = crate::W<u8, super::RST>;
+#[doc = "Register RST `reset()`'s with value 0x02"]
+impl crate::ResetValue for super::RST {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x02
     }
 }
-#[doc = "Possible values of the field `RSTFILT`"]
+#[doc = "Digital Filter On RESET Pin\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RSTFILTR {
-    #[doc = "Filter not enabled"]
+pub enum RSTFILT_A {
+    #[doc = "0: Filter not enabled"]
     _0,
-    #[doc = "Filter enabled"]
+    #[doc = "1: Filter enabled"]
     _1,
 }
-impl RSTFILTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RSTFILTR::_0 => false,
-            RSTFILTR::_1 => true,
+impl From<RSTFILT_A> for bool {
+    #[inline(always)]
+    fn from(variant: RSTFILT_A) -> Self {
+        match variant {
+            RSTFILT_A::_0 => false,
+            RSTFILT_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RSTFILTR {
-        match value {
-            false => RSTFILTR::_0,
-            true => RSTFILTR::_1,
+}
+#[doc = "Reader of field `RSTFILT`"]
+pub type RSTFILT_R = crate::R<bool, RSTFILT_A>;
+impl RSTFILT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RSTFILT_A {
+        match self.bits {
+            false => RSTFILT_A::_0,
+            true => RSTFILT_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RSTFILTR::_0
+        *self == RSTFILT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RSTFILTR::_1
+        *self == RSTFILT_A::_1
     }
 }
-#[doc = "Possible values of the field `LLRSTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LLRSTER {
-    #[doc = "RESET pin not enabled as a leakage mode exit source"]
-    _0,
-    #[doc = "RESET pin enabled as a low leakage mode exit source"]
-    _1,
-}
-impl LLRSTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LLRSTER::_0 => false,
-            LLRSTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LLRSTER {
-        match value {
-            false => LLRSTER::_0,
-            true => LLRSTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LLRSTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LLRSTER::_1
-    }
-}
-#[doc = "Values that can be written to the field `RSTFILT`"]
-pub enum RSTFILTW {
-    #[doc = "Filter not enabled"]
-    _0,
-    #[doc = "Filter enabled"]
-    _1,
-}
-impl RSTFILTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RSTFILTW::_0 => false,
-            RSTFILTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RSTFILTW<'a> {
+#[doc = "Write proxy for field `RSTFILT`"]
+pub struct RSTFILT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSTFILTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RSTFILTW) -> &'a mut W {
+impl<'a> RSTFILT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RSTFILT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Filter not enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RSTFILTW::_0)
+        self.variant(RSTFILT_A::_0)
     }
     #[doc = "Filter enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RSTFILTW::_1)
+        self.variant(RSTFILT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LLRSTE`"]
-pub enum LLRSTEW {
-    #[doc = "RESET pin not enabled as a leakage mode exit source"]
+#[doc = "Low-Leakage Mode RESET Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LLRSTE_A {
+    #[doc = "0: RESET pin not enabled as a leakage mode exit source"]
     _0,
-    #[doc = "RESET pin enabled as a low leakage mode exit source"]
+    #[doc = "1: RESET pin enabled as a low leakage mode exit source"]
     _1,
 }
-impl LLRSTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LLRSTEW::_0 => false,
-            LLRSTEW::_1 => true,
+impl From<LLRSTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: LLRSTE_A) -> Self {
+        match variant {
+            LLRSTE_A::_0 => false,
+            LLRSTE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LLRSTEW<'a> {
+#[doc = "Reader of field `LLRSTE`"]
+pub type LLRSTE_R = crate::R<bool, LLRSTE_A>;
+impl LLRSTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LLRSTE_A {
+        match self.bits {
+            false => LLRSTE_A::_0,
+            true => LLRSTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LLRSTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LLRSTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `LLRSTE`"]
+pub struct LLRSTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LLRSTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LLRSTEW) -> &'a mut W {
+impl<'a> LLRSTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LLRSTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "RESET pin not enabled as a leakage mode exit source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LLRSTEW::_0)
+        self.variant(LLRSTE_A::_0)
     }
     #[doc = "RESET pin enabled as a low leakage mode exit source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LLRSTEW::_1)
+        self.variant(LLRSTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Digital Filter On RESET Pin"]
-    #[inline]
-    pub fn rstfilt(&self) -> RSTFILTR {
-        RSTFILTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rstfilt(&self) -> RSTFILT_R {
+        RSTFILT_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Low-Leakage Mode RESET Enable"]
-    #[inline]
-    pub fn llrste(&self) -> LLRSTER {
-        LLRSTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn llrste(&self) -> LLRSTE_R {
+        LLRSTE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 2 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Digital Filter On RESET Pin"]
-    #[inline]
-    pub fn rstfilt(&mut self) -> _RSTFILTW {
-        _RSTFILTW { w: self }
+    #[inline(always)]
+    pub fn rstfilt(&mut self) -> RSTFILT_W {
+        RSTFILT_W { w: self }
     }
     #[doc = "Bit 1 - Low-Leakage Mode RESET Enable"]
-    #[inline]
-    pub fn llrste(&mut self) -> _LLRSTEW {
-        _LLRSTEW { w: self }
+    #[inline(always)]
+    pub fn llrste(&mut self) -> LLRSTE_W {
+        LLRSTE_W { w: self }
     }
 }

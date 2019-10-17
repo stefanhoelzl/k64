@@ -1,821 +1,568 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register C2"]
+pub type R = crate::R<u8, super::C2>;
+#[doc = "Writer for register C2"]
+pub type W = crate::W<u8, super::C2>;
+#[doc = "Register C2 `reset()`'s with value 0x80"]
+impl crate::ResetValue for super::C2 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x80
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Internal Reference Clock Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IRCS_A {
+    #[doc = "0: Slow internal reference clock selected."]
+    _0,
+    #[doc = "1: Fast internal reference clock selected."]
+    _1,
+}
+impl From<IRCS_A> for bool {
+    #[inline(always)]
+    fn from(variant: IRCS_A) -> Self {
+        match variant {
+            IRCS_A::_0 => false,
+            IRCS_A::_1 => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `IRCS`"]
+pub type IRCS_R = crate::R<bool, IRCS_A>;
+impl IRCS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IRCS_A {
+        match self.bits {
+            false => IRCS_A::_0,
+            true => IRCS_A::_1,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IRCS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IRCS_A::_1
     }
 }
-#[doc = "Possible values of the field `IRCS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IRCSR {
+#[doc = "Write proxy for field `IRCS`"]
+pub struct IRCS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> IRCS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IRCS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Slow internal reference clock selected."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(IRCS_A::_0)
+    }
     #[doc = "Fast internal reference clock selected."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(IRCS_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
+        self.w
+    }
+}
+#[doc = "Low Power Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LP_A {
+    #[doc = "0: FLL or PLL is not disabled in bypass modes."]
+    _0,
+    #[doc = "1: FLL or PLL is disabled in bypass modes (lower power)"]
     _1,
 }
-impl IRCSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IRCSR::_0 => false,
-            IRCSR::_1 => true,
+impl From<LP_A> for bool {
+    #[inline(always)]
+    fn from(variant: LP_A) -> Self {
+        match variant {
+            LP_A::_0 => false,
+            LP_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IRCSR {
-        match value {
-            false => IRCSR::_0,
-            true => IRCSR::_1,
+}
+#[doc = "Reader of field `LP`"]
+pub type LP_R = crate::R<bool, LP_A>;
+impl LP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LP_A {
+        match self.bits {
+            false => LP_A::_0,
+            true => LP_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IRCSR::_0
+        *self == LP_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IRCSR::_1
+        *self == LP_A::_1
     }
 }
-#[doc = "Possible values of the field `LP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPR {
+#[doc = "Write proxy for field `LP`"]
+pub struct LP_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> LP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LP_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "FLL or PLL is not disabled in bypass modes."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(LP_A::_0)
+    }
     #[doc = "FLL or PLL is disabled in bypass modes (lower power)"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(LP_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
+        self.w
+    }
+}
+#[doc = "External Reference Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EREFS_A {
+    #[doc = "0: External reference clock requested."]
+    _0,
+    #[doc = "1: Oscillator requested."]
     _1,
 }
-impl LPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LPR::_0 => false,
-            LPR::_1 => true,
+impl From<EREFS_A> for bool {
+    #[inline(always)]
+    fn from(variant: EREFS_A) -> Self {
+        match variant {
+            EREFS_A::_0 => false,
+            EREFS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LPR {
-        match value {
-            false => LPR::_0,
-            true => LPR::_1,
+}
+#[doc = "Reader of field `EREFS`"]
+pub type EREFS_R = crate::R<bool, EREFS_A>;
+impl EREFS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EREFS_A {
+        match self.bits {
+            false => EREFS_A::_0,
+            true => EREFS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LPR::_0
+        *self == EREFS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LPR::_1
+        *self == EREFS_A::_1
     }
 }
-#[doc = "Possible values of the field `EREFS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EREFSR {
+#[doc = "Write proxy for field `EREFS`"]
+pub struct EREFS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> EREFS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EREFS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "External reference clock requested."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(EREFS_A::_0)
+    }
     #[doc = "Oscillator requested."]
-    _1,
-}
-impl EREFSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(EREFS_A::_1)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EREFSR::_0 => false,
-            EREFSR::_1 => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EREFSR {
-        match value {
-            false => EREFSR::_0,
-            true => EREFSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == EREFSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == EREFSR::_1
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
+        self.w
     }
 }
-#[doc = "Possible values of the field `HGO`"]
+#[doc = "High Gain Oscillator Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HGOR {
-    #[doc = "Configure crystal oscillator for low-power operation."]
+pub enum HGO_A {
+    #[doc = "0: Configure crystal oscillator for low-power operation."]
     _0,
-    #[doc = "Configure crystal oscillator for high-gain operation."]
+    #[doc = "1: Configure crystal oscillator for high-gain operation."]
     _1,
 }
-impl HGOR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HGOR::_0 => false,
-            HGOR::_1 => true,
+impl From<HGO_A> for bool {
+    #[inline(always)]
+    fn from(variant: HGO_A) -> Self {
+        match variant {
+            HGO_A::_0 => false,
+            HGO_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HGOR {
-        match value {
-            false => HGOR::_0,
-            true => HGOR::_1,
+}
+#[doc = "Reader of field `HGO`"]
+pub type HGO_R = crate::R<bool, HGO_A>;
+impl HGO_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HGO_A {
+        match self.bits {
+            false => HGO_A::_0,
+            true => HGO_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == HGOR::_0
+        *self == HGO_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == HGOR::_1
+        *self == HGO_A::_1
     }
 }
-#[doc = "Possible values of the field `RANGE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RANGER {
-    #[doc = "Encoding 0 - Low frequency range selected for the crystal oscillator ."]
-    _00,
-    #[doc = "Encoding 1 - High frequency range selected for the crystal oscillator ."]
-    _01,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `HGO`"]
+pub struct HGO_W<'a> {
+    w: &'a mut W,
 }
-impl RANGER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            RANGER::_00 => 0,
-            RANGER::_01 => 1,
-            RANGER::_Reserved(bits) => bits,
+impl<'a> HGO_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HGO_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> RANGER {
-        match value {
-            0 => RANGER::_00,
-            1 => RANGER::_01,
-            i => RANGER::_Reserved(i),
+    #[doc = "Configure crystal oscillator for low-power operation."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(HGO_A::_0)
+    }
+    #[doc = "Configure crystal oscillator for high-gain operation."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(HGO_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "Frequency Range Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RANGE_A {
+    #[doc = "0: Encoding 0 - Low frequency range selected for the crystal oscillator ."]
+    _00,
+    #[doc = "1: Encoding 1 - High frequency range selected for the crystal oscillator ."]
+    _01,
+}
+impl From<RANGE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: RANGE_A) -> Self {
+        match variant {
+            RANGE_A::_00 => 0,
+            RANGE_A::_01 => 1,
+        }
+    }
+}
+#[doc = "Reader of field `RANGE`"]
+pub type RANGE_R = crate::R<u8, RANGE_A>;
+impl RANGE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, RANGE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(RANGE_A::_00),
+            1 => Val(RANGE_A::_01),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == RANGER::_00
+        *self == RANGE_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == RANGER::_01
+        *self == RANGE_A::_01
     }
 }
-#[doc = r" Value of the field"]
-pub struct FCFTRIMR {
-    bits: bool,
+#[doc = "Write proxy for field `RANGE`"]
+pub struct RANGE_W<'a> {
+    w: &'a mut W,
 }
-impl FCFTRIMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> RANGE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RANGE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = "Encoding 0 - Low frequency range selected for the crystal oscillator ."]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(RANGE_A::_00)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = "Encoding 1 - High frequency range selected for the crystal oscillator ."]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(RANGE_A::_01)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u8) & 0x03) << 4);
+        self.w
     }
 }
-#[doc = "Possible values of the field `LOCRE0`"]
+#[doc = "Reader of field `FCFTRIM`"]
+pub type FCFTRIM_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FCFTRIM`"]
+pub struct FCFTRIM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FCFTRIM_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
+        self.w
+    }
+}
+#[doc = "Loss of Clock Reset Enable\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOCRE0R {
-    #[doc = "Interrupt request is generated on a loss of OSC0 external reference clock."]
+pub enum LOCRE0_A {
+    #[doc = "0: Interrupt request is generated on a loss of OSC0 external reference clock."]
     _0,
-    #[doc = "Generate a reset request on a loss of OSC0 external reference clock."]
+    #[doc = "1: Generate a reset request on a loss of OSC0 external reference clock."]
     _1,
 }
-impl LOCRE0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOCRE0R::_0 => false,
-            LOCRE0R::_1 => true,
+impl From<LOCRE0_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOCRE0_A) -> Self {
+        match variant {
+            LOCRE0_A::_0 => false,
+            LOCRE0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOCRE0R {
-        match value {
-            false => LOCRE0R::_0,
-            true => LOCRE0R::_1,
+}
+#[doc = "Reader of field `LOCRE0`"]
+pub type LOCRE0_R = crate::R<bool, LOCRE0_A>;
+impl LOCRE0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOCRE0_A {
+        match self.bits {
+            false => LOCRE0_A::_0,
+            true => LOCRE0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LOCRE0R::_0
+        *self == LOCRE0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LOCRE0R::_1
+        *self == LOCRE0_A::_1
     }
 }
-#[doc = "Values that can be written to the field `IRCS`"]
-pub enum IRCSW {
-    #[doc = "Slow internal reference clock selected."]
-    _0,
-    #[doc = "Fast internal reference clock selected."]
-    _1,
-}
-impl IRCSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IRCSW::_0 => false,
-            IRCSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IRCSW<'a> {
+#[doc = "Write proxy for field `LOCRE0`"]
+pub struct LOCRE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IRCSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IRCSW) -> &'a mut W {
+impl<'a> LOCRE0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOCRE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Slow internal reference clock selected."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(IRCSW::_0)
-    }
-    #[doc = "Fast internal reference clock selected."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(IRCSW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `LP`"]
-pub enum LPW {
-    #[doc = "FLL or PLL is not disabled in bypass modes."]
-    _0,
-    #[doc = "FLL or PLL is disabled in bypass modes (lower power)"]
-    _1,
-}
-impl LPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LPW::_0 => false,
-            LPW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _LPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "FLL or PLL is not disabled in bypass modes."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(LPW::_0)
-    }
-    #[doc = "FLL or PLL is disabled in bypass modes (lower power)"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(LPW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `EREFS`"]
-pub enum EREFSW {
-    #[doc = "External reference clock requested."]
-    _0,
-    #[doc = "Oscillator requested."]
-    _1,
-}
-impl EREFSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EREFSW::_0 => false,
-            EREFSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EREFSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _EREFSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EREFSW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "External reference clock requested."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(EREFSW::_0)
-    }
-    #[doc = "Oscillator requested."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(EREFSW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `HGO`"]
-pub enum HGOW {
-    #[doc = "Configure crystal oscillator for low-power operation."]
-    _0,
-    #[doc = "Configure crystal oscillator for high-gain operation."]
-    _1,
-}
-impl HGOW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HGOW::_0 => false,
-            HGOW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HGOW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HGOW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HGOW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Configure crystal oscillator for low-power operation."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(HGOW::_0)
-    }
-    #[doc = "Configure crystal oscillator for high-gain operation."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(HGOW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RANGE`"]
-pub enum RANGEW {
-    #[doc = "Encoding 0 - Low frequency range selected for the crystal oscillator ."]
-    _00,
-    #[doc = "Encoding 1 - High frequency range selected for the crystal oscillator ."]
-    _01,
-}
-impl RANGEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            RANGEW::_00 => 0,
-            RANGEW::_01 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RANGEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RANGEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RANGEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Encoding 0 - Low frequency range selected for the crystal oscillator ."]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(RANGEW::_00)
-    }
-    #[doc = "Encoding 1 - High frequency range selected for the crystal oscillator ."]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(RANGEW::_01)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FCFTRIMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FCFTRIMW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `LOCRE0`"]
-pub enum LOCRE0W {
-    #[doc = "Interrupt request is generated on a loss of OSC0 external reference clock."]
-    _0,
-    #[doc = "Generate a reset request on a loss of OSC0 external reference clock."]
-    _1,
-}
-impl LOCRE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOCRE0W::_0 => false,
-            LOCRE0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LOCRE0W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _LOCRE0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOCRE0W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Interrupt request is generated on a loss of OSC0 external reference clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOCRE0W::_0)
+        self.variant(LOCRE0_A::_0)
     }
     #[doc = "Generate a reset request on a loss of OSC0 external reference clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOCRE0W::_1)
+        self.variant(LOCRE0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Internal Reference Clock Select"]
-    #[inline]
-    pub fn ircs(&self) -> IRCSR {
-        IRCSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ircs(&self) -> IRCS_R {
+        IRCS_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Low Power Select"]
-    #[inline]
-    pub fn lp(&self) -> LPR {
-        LPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lp(&self) -> LP_R {
+        LP_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - External Reference Select"]
-    #[inline]
-    pub fn erefs(&self) -> EREFSR {
-        EREFSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn erefs(&self) -> EREFS_R {
+        EREFS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - High Gain Oscillator Select"]
-    #[inline]
-    pub fn hgo(&self) -> HGOR {
-        HGOR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn hgo(&self) -> HGO_R {
+        HGO_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 4:5 - Frequency Range Select"]
-    #[inline]
-    pub fn range(&self) -> RANGER {
-        RANGER::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn range(&self) -> RANGE_R {
+        RANGE_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bit 6 - Fast Internal Reference Clock Fine Trim"]
-    #[inline]
-    pub fn fcftrim(&self) -> FCFTRIMR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        FCFTRIMR { bits }
+    #[inline(always)]
+    pub fn fcftrim(&self) -> FCFTRIM_R {
+        FCFTRIM_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Loss of Clock Reset Enable"]
-    #[inline]
-    pub fn locre0(&self) -> LOCRE0R {
-        LOCRE0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn locre0(&self) -> LOCRE0_R {
+        LOCRE0_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 128 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Internal Reference Clock Select"]
-    #[inline]
-    pub fn ircs(&mut self) -> _IRCSW {
-        _IRCSW { w: self }
+    #[inline(always)]
+    pub fn ircs(&mut self) -> IRCS_W {
+        IRCS_W { w: self }
     }
     #[doc = "Bit 1 - Low Power Select"]
-    #[inline]
-    pub fn lp(&mut self) -> _LPW {
-        _LPW { w: self }
+    #[inline(always)]
+    pub fn lp(&mut self) -> LP_W {
+        LP_W { w: self }
     }
     #[doc = "Bit 2 - External Reference Select"]
-    #[inline]
-    pub fn erefs(&mut self) -> _EREFSW {
-        _EREFSW { w: self }
+    #[inline(always)]
+    pub fn erefs(&mut self) -> EREFS_W {
+        EREFS_W { w: self }
     }
     #[doc = "Bit 3 - High Gain Oscillator Select"]
-    #[inline]
-    pub fn hgo(&mut self) -> _HGOW {
-        _HGOW { w: self }
+    #[inline(always)]
+    pub fn hgo(&mut self) -> HGO_W {
+        HGO_W { w: self }
     }
     #[doc = "Bits 4:5 - Frequency Range Select"]
-    #[inline]
-    pub fn range(&mut self) -> _RANGEW {
-        _RANGEW { w: self }
+    #[inline(always)]
+    pub fn range(&mut self) -> RANGE_W {
+        RANGE_W { w: self }
     }
     #[doc = "Bit 6 - Fast Internal Reference Clock Fine Trim"]
-    #[inline]
-    pub fn fcftrim(&mut self) -> _FCFTRIMW {
-        _FCFTRIMW { w: self }
+    #[inline(always)]
+    pub fn fcftrim(&mut self) -> FCFTRIM_W {
+        FCFTRIM_W { w: self }
     }
     #[doc = "Bit 7 - Loss of Clock Reset Enable"]
-    #[inline]
-    pub fn locre0(&mut self) -> _LOCRE0W {
-        _LOCRE0W { w: self }
+    #[inline(always)]
+    pub fn locre0(&mut self) -> LOCRE0_W {
+        LOCRE0_W { w: self }
     }
 }

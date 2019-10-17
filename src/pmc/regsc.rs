@@ -1,477 +1,324 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::REGSC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register REGSC"]
+pub type R = crate::R<u8, super::REGSC>;
+#[doc = "Writer for register REGSC"]
+pub type W = crate::W<u8, super::REGSC>;
+#[doc = "Register REGSC `reset()`'s with value 0x04"]
+impl crate::ResetValue for super::REGSC {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x04
     }
 }
-#[doc = "Possible values of the field `BGBE`"]
+#[doc = "Bandgap Buffer Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BGBER {
-    #[doc = "Bandgap buffer not enabled"]
+pub enum BGBE_A {
+    #[doc = "0: Bandgap buffer not enabled"]
     _0,
-    #[doc = "Bandgap buffer enabled"]
+    #[doc = "1: Bandgap buffer enabled"]
     _1,
 }
-impl BGBER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BGBER::_0 => false,
-            BGBER::_1 => true,
+impl From<BGBE_A> for bool {
+    #[inline(always)]
+    fn from(variant: BGBE_A) -> Self {
+        match variant {
+            BGBE_A::_0 => false,
+            BGBE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BGBER {
-        match value {
-            false => BGBER::_0,
-            true => BGBER::_1,
+}
+#[doc = "Reader of field `BGBE`"]
+pub type BGBE_R = crate::R<bool, BGBE_A>;
+impl BGBE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BGBE_A {
+        match self.bits {
+            false => BGBE_A::_0,
+            true => BGBE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == BGBER::_0
+        *self == BGBE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == BGBER::_1
+        *self == BGBE_A::_1
     }
 }
-#[doc = "Possible values of the field `REGONS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REGONSR {
-    #[doc = "Regulator is in stop regulation or in transition to/from it"]
-    _0,
-    #[doc = "Regulator is in run regulation"]
-    _1,
-}
-impl REGONSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            REGONSR::_0 => false,
-            REGONSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> REGONSR {
-        match value {
-            false => REGONSR::_0,
-            true => REGONSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == REGONSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == REGONSR::_1
-    }
-}
-#[doc = "Possible values of the field `ACKISO`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ACKISOR {
-    #[doc = "Peripherals and I/O pads are in normal run state."]
-    _0,
-    #[doc = "Certain peripherals and I/O pads are in an isolated and latched state."]
-    _1,
-}
-impl ACKISOR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ACKISOR::_0 => false,
-            ACKISOR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ACKISOR {
-        match value {
-            false => ACKISOR::_0,
-            true => ACKISOR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ACKISOR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ACKISOR::_1
-    }
-}
-#[doc = "Possible values of the field `BGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BGENR {
-    #[doc = "Bandgap voltage reference is disabled in VLPx , LLS , and VLLSx modes."]
-    _0,
-    #[doc = "Bandgap voltage reference is enabled in VLPx , LLS , and VLLSx modes."]
-    _1,
-}
-impl BGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BGENR::_0 => false,
-            BGENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BGENR {
-        match value {
-            false => BGENR::_0,
-            true => BGENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BGENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BGENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `BGBE`"]
-pub enum BGBEW {
-    #[doc = "Bandgap buffer not enabled"]
-    _0,
-    #[doc = "Bandgap buffer enabled"]
-    _1,
-}
-impl BGBEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BGBEW::_0 => false,
-            BGBEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BGBEW<'a> {
+#[doc = "Write proxy for field `BGBE`"]
+pub struct BGBE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BGBEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BGBEW) -> &'a mut W {
+impl<'a> BGBE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BGBE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Bandgap buffer not enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BGBEW::_0)
+        self.variant(BGBE_A::_0)
     }
     #[doc = "Bandgap buffer enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BGBEW::_1)
+        self.variant(BGBE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ACKISO`"]
-pub enum ACKISOW {
-    #[doc = "Peripherals and I/O pads are in normal run state."]
+#[doc = "Regulator In Run Regulation Status\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum REGONS_A {
+    #[doc = "0: Regulator is in stop regulation or in transition to/from it"]
     _0,
-    #[doc = "Certain peripherals and I/O pads are in an isolated and latched state."]
+    #[doc = "1: Regulator is in run regulation"]
     _1,
 }
-impl ACKISOW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ACKISOW::_0 => false,
-            ACKISOW::_1 => true,
+impl From<REGONS_A> for bool {
+    #[inline(always)]
+    fn from(variant: REGONS_A) -> Self {
+        match variant {
+            REGONS_A::_0 => false,
+            REGONS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ACKISOW<'a> {
+#[doc = "Reader of field `REGONS`"]
+pub type REGONS_R = crate::R<bool, REGONS_A>;
+impl REGONS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> REGONS_A {
+        match self.bits {
+            false => REGONS_A::_0,
+            true => REGONS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == REGONS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == REGONS_A::_1
+    }
+}
+#[doc = "Acknowledge Isolation\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ACKISO_A {
+    #[doc = "0: Peripherals and I/O pads are in normal run state."]
+    _0,
+    #[doc = "1: Certain peripherals and I/O pads are in an isolated and latched state."]
+    _1,
+}
+impl From<ACKISO_A> for bool {
+    #[inline(always)]
+    fn from(variant: ACKISO_A) -> Self {
+        match variant {
+            ACKISO_A::_0 => false,
+            ACKISO_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ACKISO`"]
+pub type ACKISO_R = crate::R<bool, ACKISO_A>;
+impl ACKISO_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ACKISO_A {
+        match self.bits {
+            false => ACKISO_A::_0,
+            true => ACKISO_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ACKISO_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ACKISO_A::_1
+    }
+}
+#[doc = "Write proxy for field `ACKISO`"]
+pub struct ACKISO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKISOW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ACKISOW) -> &'a mut W {
+impl<'a> ACKISO_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ACKISO_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Peripherals and I/O pads are in normal run state."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ACKISOW::_0)
+        self.variant(ACKISO_A::_0)
     }
     #[doc = "Certain peripherals and I/O pads are in an isolated and latched state."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ACKISOW::_1)
+        self.variant(ACKISO_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BGEN`"]
-pub enum BGENW {
-    #[doc = "Bandgap voltage reference is disabled in VLPx , LLS , and VLLSx modes."]
+#[doc = "Bandgap Enable In VLPx Operation\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BGEN_A {
+    #[doc = "0: Bandgap voltage reference is disabled in VLPx , LLS , and VLLSx modes."]
     _0,
-    #[doc = "Bandgap voltage reference is enabled in VLPx , LLS , and VLLSx modes."]
+    #[doc = "1: Bandgap voltage reference is enabled in VLPx , LLS , and VLLSx modes."]
     _1,
 }
-impl BGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BGENW::_0 => false,
-            BGENW::_1 => true,
+impl From<BGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: BGEN_A) -> Self {
+        match variant {
+            BGEN_A::_0 => false,
+            BGEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BGENW<'a> {
+#[doc = "Reader of field `BGEN`"]
+pub type BGEN_R = crate::R<bool, BGEN_A>;
+impl BGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BGEN_A {
+        match self.bits {
+            false => BGEN_A::_0,
+            true => BGEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BGEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BGEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `BGEN`"]
+pub struct BGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BGENW) -> &'a mut W {
+impl<'a> BGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Bandgap voltage reference is disabled in VLPx , LLS , and VLLSx modes."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BGENW::_0)
+        self.variant(BGEN_A::_0)
     }
     #[doc = "Bandgap voltage reference is enabled in VLPx , LLS , and VLLSx modes."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BGENW::_1)
+        self.variant(BGEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Bandgap Buffer Enable"]
-    #[inline]
-    pub fn bgbe(&self) -> BGBER {
-        BGBER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn bgbe(&self) -> BGBE_R {
+        BGBE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 2 - Regulator In Run Regulation Status"]
-    #[inline]
-    pub fn regons(&self) -> REGONSR {
-        REGONSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn regons(&self) -> REGONS_R {
+        REGONS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Acknowledge Isolation"]
-    #[inline]
-    pub fn ackiso(&self) -> ACKISOR {
-        ACKISOR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ackiso(&self) -> ACKISO_R {
+        ACKISO_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Bandgap Enable In VLPx Operation"]
-    #[inline]
-    pub fn bgen(&self) -> BGENR {
-        BGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn bgen(&self) -> BGEN_R {
+        BGEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 4 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Bandgap Buffer Enable"]
-    #[inline]
-    pub fn bgbe(&mut self) -> _BGBEW {
-        _BGBEW { w: self }
+    #[inline(always)]
+    pub fn bgbe(&mut self) -> BGBE_W {
+        BGBE_W { w: self }
     }
     #[doc = "Bit 3 - Acknowledge Isolation"]
-    #[inline]
-    pub fn ackiso(&mut self) -> _ACKISOW {
-        _ACKISOW { w: self }
+    #[inline(always)]
+    pub fn ackiso(&mut self) -> ACKISO_W {
+        ACKISO_W { w: self }
     }
     #[doc = "Bit 4 - Bandgap Enable In VLPx Operation"]
-    #[inline]
-    pub fn bgen(&mut self) -> _BGENW {
-        _BGENW { w: self }
+    #[inline(always)]
+    pub fn bgen(&mut self) -> BGEN_W {
+        BGEN_W { w: self }
     }
 }
