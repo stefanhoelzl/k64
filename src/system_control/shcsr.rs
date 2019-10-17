@@ -1,1730 +1,1248 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SHCSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SHCSR"]
+pub type R = crate::R<u32, super::SHCSR>;
+#[doc = "Writer for register SHCSR"]
+pub type W = crate::W<u32, super::SHCSR>;
+#[doc = "Register SHCSR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SHCSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `MEMFAULTACT`"]
+#[doc = "no description available\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MEMFAULTACTR {
-    #[doc = "exception is not active"]
+pub enum MEMFAULTACT_A {
+    #[doc = "0: exception is not active"]
     _0,
-    #[doc = "exception is active"]
+    #[doc = "1: exception is active"]
     _1,
 }
-impl MEMFAULTACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MEMFAULTACTR::_0 => false,
-            MEMFAULTACTR::_1 => true,
+impl From<MEMFAULTACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: MEMFAULTACT_A) -> Self {
+        match variant {
+            MEMFAULTACT_A::_0 => false,
+            MEMFAULTACT_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MEMFAULTACTR {
-        match value {
-            false => MEMFAULTACTR::_0,
-            true => MEMFAULTACTR::_1,
+}
+#[doc = "Reader of field `MEMFAULTACT`"]
+pub type MEMFAULTACT_R = crate::R<bool, MEMFAULTACT_A>;
+impl MEMFAULTACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MEMFAULTACT_A {
+        match self.bits {
+            false => MEMFAULTACT_A::_0,
+            true => MEMFAULTACT_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == MEMFAULTACTR::_0
+        *self == MEMFAULTACT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == MEMFAULTACTR::_1
+        *self == MEMFAULTACT_A::_1
     }
 }
-#[doc = "Possible values of the field `BUSFAULTACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUSFAULTACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl BUSFAULTACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUSFAULTACTR::_0 => false,
-            BUSFAULTACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUSFAULTACTR {
-        match value {
-            false => BUSFAULTACTR::_0,
-            true => BUSFAULTACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUSFAULTACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUSFAULTACTR::_1
-    }
-}
-#[doc = "Possible values of the field `USGFAULTACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USGFAULTACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl USGFAULTACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USGFAULTACTR::_0 => false,
-            USGFAULTACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USGFAULTACTR {
-        match value {
-            false => USGFAULTACTR::_0,
-            true => USGFAULTACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == USGFAULTACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == USGFAULTACTR::_1
-    }
-}
-#[doc = "Possible values of the field `SVCALLACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SVCALLACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl SVCALLACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SVCALLACTR::_0 => false,
-            SVCALLACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SVCALLACTR {
-        match value {
-            false => SVCALLACTR::_0,
-            true => SVCALLACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SVCALLACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SVCALLACTR::_1
-    }
-}
-#[doc = "Possible values of the field `MONITORACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MONITORACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl MONITORACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MONITORACTR::_0 => false,
-            MONITORACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MONITORACTR {
-        match value {
-            false => MONITORACTR::_0,
-            true => MONITORACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MONITORACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MONITORACTR::_1
-    }
-}
-#[doc = "Possible values of the field `PENDSVACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PENDSVACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl PENDSVACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PENDSVACTR::_0 => false,
-            PENDSVACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PENDSVACTR {
-        match value {
-            false => PENDSVACTR::_0,
-            true => PENDSVACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PENDSVACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PENDSVACTR::_1
-    }
-}
-#[doc = "Possible values of the field `SYSTICKACT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SYSTICKACTR {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl SYSTICKACTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SYSTICKACTR::_0 => false,
-            SYSTICKACTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SYSTICKACTR {
-        match value {
-            false => SYSTICKACTR::_0,
-            true => SYSTICKACTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SYSTICKACTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SYSTICKACTR::_1
-    }
-}
-#[doc = "Possible values of the field `USGFAULTPENDED`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USGFAULTPENDEDR {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl USGFAULTPENDEDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USGFAULTPENDEDR::_0 => false,
-            USGFAULTPENDEDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USGFAULTPENDEDR {
-        match value {
-            false => USGFAULTPENDEDR::_0,
-            true => USGFAULTPENDEDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == USGFAULTPENDEDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == USGFAULTPENDEDR::_1
-    }
-}
-#[doc = "Possible values of the field `MEMFAULTPENDED`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MEMFAULTPENDEDR {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl MEMFAULTPENDEDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MEMFAULTPENDEDR::_0 => false,
-            MEMFAULTPENDEDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MEMFAULTPENDEDR {
-        match value {
-            false => MEMFAULTPENDEDR::_0,
-            true => MEMFAULTPENDEDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MEMFAULTPENDEDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MEMFAULTPENDEDR::_1
-    }
-}
-#[doc = "Possible values of the field `BUSFAULTPENDED`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUSFAULTPENDEDR {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl BUSFAULTPENDEDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUSFAULTPENDEDR::_0 => false,
-            BUSFAULTPENDEDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUSFAULTPENDEDR {
-        match value {
-            false => BUSFAULTPENDEDR::_0,
-            true => BUSFAULTPENDEDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUSFAULTPENDEDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUSFAULTPENDEDR::_1
-    }
-}
-#[doc = "Possible values of the field `SVCALLPENDED`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SVCALLPENDEDR {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl SVCALLPENDEDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SVCALLPENDEDR::_0 => false,
-            SVCALLPENDEDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SVCALLPENDEDR {
-        match value {
-            false => SVCALLPENDEDR::_0,
-            true => SVCALLPENDEDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SVCALLPENDEDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SVCALLPENDEDR::_1
-    }
-}
-#[doc = "Possible values of the field `MEMFAULTENA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MEMFAULTENAR {
-    #[doc = "disable the exception"]
-    _0,
-    #[doc = "enable the exception"]
-    _1,
-}
-impl MEMFAULTENAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MEMFAULTENAR::_0 => false,
-            MEMFAULTENAR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MEMFAULTENAR {
-        match value {
-            false => MEMFAULTENAR::_0,
-            true => MEMFAULTENAR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MEMFAULTENAR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MEMFAULTENAR::_1
-    }
-}
-#[doc = "Possible values of the field `BUSFAULTENA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUSFAULTENAR {
-    #[doc = "disable the exception"]
-    _0,
-    #[doc = "enable the exception"]
-    _1,
-}
-impl BUSFAULTENAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUSFAULTENAR::_0 => false,
-            BUSFAULTENAR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUSFAULTENAR {
-        match value {
-            false => BUSFAULTENAR::_0,
-            true => BUSFAULTENAR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUSFAULTENAR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUSFAULTENAR::_1
-    }
-}
-#[doc = "Possible values of the field `USGFAULTENA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USGFAULTENAR {
-    #[doc = "disable the exception"]
-    _0,
-    #[doc = "enable the exception"]
-    _1,
-}
-impl USGFAULTENAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            USGFAULTENAR::_0 => false,
-            USGFAULTENAR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> USGFAULTENAR {
-        match value {
-            false => USGFAULTENAR::_0,
-            true => USGFAULTENAR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == USGFAULTENAR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == USGFAULTENAR::_1
-    }
-}
-#[doc = "Values that can be written to the field `MEMFAULTACT`"]
-pub enum MEMFAULTACTW {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl MEMFAULTACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MEMFAULTACTW::_0 => false,
-            MEMFAULTACTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MEMFAULTACTW<'a> {
+#[doc = "Write proxy for field `MEMFAULTACT`"]
+pub struct MEMFAULTACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMFAULTACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MEMFAULTACTW) -> &'a mut W {
+impl<'a> MEMFAULTACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MEMFAULTACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MEMFAULTACTW::_0)
+        self.variant(MEMFAULTACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MEMFAULTACTW::_1)
+        self.variant(MEMFAULTACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUSFAULTACT`"]
-pub enum BUSFAULTACTW {
-    #[doc = "exception is not active"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUSFAULTACT_A {
+    #[doc = "0: exception is not active"]
     _0,
-    #[doc = "exception is active"]
+    #[doc = "1: exception is active"]
     _1,
 }
-impl BUSFAULTACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUSFAULTACTW::_0 => false,
-            BUSFAULTACTW::_1 => true,
+impl From<BUSFAULTACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUSFAULTACT_A) -> Self {
+        match variant {
+            BUSFAULTACT_A::_0 => false,
+            BUSFAULTACT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUSFAULTACTW<'a> {
+#[doc = "Reader of field `BUSFAULTACT`"]
+pub type BUSFAULTACT_R = crate::R<bool, BUSFAULTACT_A>;
+impl BUSFAULTACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUSFAULTACT_A {
+        match self.bits {
+            false => BUSFAULTACT_A::_0,
+            true => BUSFAULTACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUSFAULTACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUSFAULTACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUSFAULTACT`"]
+pub struct BUSFAULTACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUSFAULTACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUSFAULTACTW) -> &'a mut W {
+impl<'a> BUSFAULTACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUSFAULTACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUSFAULTACTW::_0)
+        self.variant(BUSFAULTACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUSFAULTACTW::_1)
+        self.variant(BUSFAULTACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USGFAULTACT`"]
-pub enum USGFAULTACTW {
-    #[doc = "exception is not active"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum USGFAULTACT_A {
+    #[doc = "0: exception is not active"]
     _0,
-    #[doc = "exception is active"]
+    #[doc = "1: exception is active"]
     _1,
 }
-impl USGFAULTACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USGFAULTACTW::_0 => false,
-            USGFAULTACTW::_1 => true,
+impl From<USGFAULTACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: USGFAULTACT_A) -> Self {
+        match variant {
+            USGFAULTACT_A::_0 => false,
+            USGFAULTACT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _USGFAULTACTW<'a> {
+#[doc = "Reader of field `USGFAULTACT`"]
+pub type USGFAULTACT_R = crate::R<bool, USGFAULTACT_A>;
+impl USGFAULTACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USGFAULTACT_A {
+        match self.bits {
+            false => USGFAULTACT_A::_0,
+            true => USGFAULTACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == USGFAULTACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == USGFAULTACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `USGFAULTACT`"]
+pub struct USGFAULTACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USGFAULTACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USGFAULTACTW) -> &'a mut W {
+impl<'a> USGFAULTACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USGFAULTACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(USGFAULTACTW::_0)
+        self.variant(USGFAULTACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(USGFAULTACTW::_1)
+        self.variant(USGFAULTACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SVCALLACT`"]
-pub enum SVCALLACTW {
-    #[doc = "exception is not active"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SVCALLACT_A {
+    #[doc = "0: exception is not active"]
     _0,
-    #[doc = "exception is active"]
+    #[doc = "1: exception is active"]
     _1,
 }
-impl SVCALLACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SVCALLACTW::_0 => false,
-            SVCALLACTW::_1 => true,
+impl From<SVCALLACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: SVCALLACT_A) -> Self {
+        match variant {
+            SVCALLACT_A::_0 => false,
+            SVCALLACT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SVCALLACTW<'a> {
+#[doc = "Reader of field `SVCALLACT`"]
+pub type SVCALLACT_R = crate::R<bool, SVCALLACT_A>;
+impl SVCALLACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SVCALLACT_A {
+        match self.bits {
+            false => SVCALLACT_A::_0,
+            true => SVCALLACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SVCALLACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SVCALLACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `SVCALLACT`"]
+pub struct SVCALLACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SVCALLACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SVCALLACTW) -> &'a mut W {
+impl<'a> SVCALLACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SVCALLACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SVCALLACTW::_0)
+        self.variant(SVCALLACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SVCALLACTW::_1)
+        self.variant(SVCALLACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MONITORACT`"]
-pub enum MONITORACTW {
-    #[doc = "exception is not active"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MONITORACT_A {
+    #[doc = "0: exception is not active"]
     _0,
-    #[doc = "exception is active"]
+    #[doc = "1: exception is active"]
     _1,
 }
-impl MONITORACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MONITORACTW::_0 => false,
-            MONITORACTW::_1 => true,
+impl From<MONITORACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: MONITORACT_A) -> Self {
+        match variant {
+            MONITORACT_A::_0 => false,
+            MONITORACT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MONITORACTW<'a> {
+#[doc = "Reader of field `MONITORACT`"]
+pub type MONITORACT_R = crate::R<bool, MONITORACT_A>;
+impl MONITORACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MONITORACT_A {
+        match self.bits {
+            false => MONITORACT_A::_0,
+            true => MONITORACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MONITORACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MONITORACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `MONITORACT`"]
+pub struct MONITORACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MONITORACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MONITORACTW) -> &'a mut W {
+impl<'a> MONITORACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MONITORACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "exception is not active"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(MONITORACTW::_0)
-    }
-    #[doc = "exception is active"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(MONITORACTW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PENDSVACT`"]
-pub enum PENDSVACTW {
-    #[doc = "exception is not active"]
-    _0,
-    #[doc = "exception is active"]
-    _1,
-}
-impl PENDSVACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PENDSVACTW::_0 => false,
-            PENDSVACTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PENDSVACTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PENDSVACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PENDSVACTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PENDSVACTW::_0)
+        self.variant(MONITORACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PENDSVACTW::_1)
+        self.variant(MONITORACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SYSTICKACT`"]
-pub enum SYSTICKACTW {
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PENDSVACT_A {
+    #[doc = "0: exception is not active"]
+    _0,
+    #[doc = "1: exception is active"]
+    _1,
+}
+impl From<PENDSVACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: PENDSVACT_A) -> Self {
+        match variant {
+            PENDSVACT_A::_0 => false,
+            PENDSVACT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PENDSVACT`"]
+pub type PENDSVACT_R = crate::R<bool, PENDSVACT_A>;
+impl PENDSVACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PENDSVACT_A {
+        match self.bits {
+            false => PENDSVACT_A::_0,
+            true => PENDSVACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PENDSVACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PENDSVACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `PENDSVACT`"]
+pub struct PENDSVACT_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PENDSVACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PENDSVACT_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "exception is not active"]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PENDSVACT_A::_0)
+    }
     #[doc = "exception is active"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PENDSVACT_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w
+    }
+}
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SYSTICKACT_A {
+    #[doc = "0: exception is not active"]
+    _0,
+    #[doc = "1: exception is active"]
     _1,
 }
-impl SYSTICKACTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SYSTICKACTW::_0 => false,
-            SYSTICKACTW::_1 => true,
+impl From<SYSTICKACT_A> for bool {
+    #[inline(always)]
+    fn from(variant: SYSTICKACT_A) -> Self {
+        match variant {
+            SYSTICKACT_A::_0 => false,
+            SYSTICKACT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SYSTICKACTW<'a> {
+#[doc = "Reader of field `SYSTICKACT`"]
+pub type SYSTICKACT_R = crate::R<bool, SYSTICKACT_A>;
+impl SYSTICKACT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SYSTICKACT_A {
+        match self.bits {
+            false => SYSTICKACT_A::_0,
+            true => SYSTICKACT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SYSTICKACT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SYSTICKACT_A::_1
+    }
+}
+#[doc = "Write proxy for field `SYSTICKACT`"]
+pub struct SYSTICKACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYSTICKACTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SYSTICKACTW) -> &'a mut W {
+impl<'a> SYSTICKACT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SYSTICKACT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not active"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SYSTICKACTW::_0)
+        self.variant(SYSTICKACT_A::_0)
     }
     #[doc = "exception is active"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SYSTICKACTW::_1)
+        self.variant(SYSTICKACT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USGFAULTPENDED`"]
-pub enum USGFAULTPENDEDW {
-    #[doc = "exception is not pending"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum USGFAULTPENDED_A {
+    #[doc = "0: exception is not pending"]
     _0,
-    #[doc = "exception is pending"]
+    #[doc = "1: exception is pending"]
     _1,
 }
-impl USGFAULTPENDEDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USGFAULTPENDEDW::_0 => false,
-            USGFAULTPENDEDW::_1 => true,
+impl From<USGFAULTPENDED_A> for bool {
+    #[inline(always)]
+    fn from(variant: USGFAULTPENDED_A) -> Self {
+        match variant {
+            USGFAULTPENDED_A::_0 => false,
+            USGFAULTPENDED_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _USGFAULTPENDEDW<'a> {
+#[doc = "Reader of field `USGFAULTPENDED`"]
+pub type USGFAULTPENDED_R = crate::R<bool, USGFAULTPENDED_A>;
+impl USGFAULTPENDED_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USGFAULTPENDED_A {
+        match self.bits {
+            false => USGFAULTPENDED_A::_0,
+            true => USGFAULTPENDED_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == USGFAULTPENDED_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == USGFAULTPENDED_A::_1
+    }
+}
+#[doc = "Write proxy for field `USGFAULTPENDED`"]
+pub struct USGFAULTPENDED_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USGFAULTPENDEDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USGFAULTPENDEDW) -> &'a mut W {
+impl<'a> USGFAULTPENDED_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USGFAULTPENDED_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "exception is not pending"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(USGFAULTPENDEDW::_0)
-    }
-    #[doc = "exception is pending"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(USGFAULTPENDEDW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `MEMFAULTPENDED`"]
-pub enum MEMFAULTPENDEDW {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl MEMFAULTPENDEDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MEMFAULTPENDEDW::_0 => false,
-            MEMFAULTPENDEDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MEMFAULTPENDEDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MEMFAULTPENDEDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MEMFAULTPENDEDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "exception is not pending"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(MEMFAULTPENDEDW::_0)
-    }
-    #[doc = "exception is pending"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(MEMFAULTPENDEDW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `BUSFAULTPENDED`"]
-pub enum BUSFAULTPENDEDW {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl BUSFAULTPENDEDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUSFAULTPENDEDW::_0 => false,
-            BUSFAULTPENDEDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BUSFAULTPENDEDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BUSFAULTPENDEDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUSFAULTPENDEDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "exception is not pending"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(BUSFAULTPENDEDW::_0)
-    }
-    #[doc = "exception is pending"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(BUSFAULTPENDEDW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SVCALLPENDED`"]
-pub enum SVCALLPENDEDW {
-    #[doc = "exception is not pending"]
-    _0,
-    #[doc = "exception is pending"]
-    _1,
-}
-impl SVCALLPENDEDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SVCALLPENDEDW::_0 => false,
-            SVCALLPENDEDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SVCALLPENDEDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SVCALLPENDEDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SVCALLPENDEDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "exception is not pending"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SVCALLPENDEDW::_0)
+        self.variant(USGFAULTPENDED_A::_0)
     }
     #[doc = "exception is pending"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SVCALLPENDEDW::_1)
+        self.variant(USGFAULTPENDED_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MEMFAULTENA`"]
-pub enum MEMFAULTENAW {
-    #[doc = "disable the exception"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MEMFAULTPENDED_A {
+    #[doc = "0: exception is not pending"]
     _0,
-    #[doc = "enable the exception"]
+    #[doc = "1: exception is pending"]
     _1,
 }
-impl MEMFAULTENAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MEMFAULTENAW::_0 => false,
-            MEMFAULTENAW::_1 => true,
+impl From<MEMFAULTPENDED_A> for bool {
+    #[inline(always)]
+    fn from(variant: MEMFAULTPENDED_A) -> Self {
+        match variant {
+            MEMFAULTPENDED_A::_0 => false,
+            MEMFAULTPENDED_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MEMFAULTENAW<'a> {
+#[doc = "Reader of field `MEMFAULTPENDED`"]
+pub type MEMFAULTPENDED_R = crate::R<bool, MEMFAULTPENDED_A>;
+impl MEMFAULTPENDED_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MEMFAULTPENDED_A {
+        match self.bits {
+            false => MEMFAULTPENDED_A::_0,
+            true => MEMFAULTPENDED_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MEMFAULTPENDED_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MEMFAULTPENDED_A::_1
+    }
+}
+#[doc = "Write proxy for field `MEMFAULTPENDED`"]
+pub struct MEMFAULTPENDED_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMFAULTENAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MEMFAULTENAW) -> &'a mut W {
+impl<'a> MEMFAULTPENDED_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MEMFAULTPENDED_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "exception is not pending"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(MEMFAULTPENDED_A::_0)
+    }
+    #[doc = "exception is pending"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(MEMFAULTPENDED_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w
+    }
+}
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUSFAULTPENDED_A {
+    #[doc = "0: exception is not pending"]
+    _0,
+    #[doc = "1: exception is pending"]
+    _1,
+}
+impl From<BUSFAULTPENDED_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUSFAULTPENDED_A) -> Self {
+        match variant {
+            BUSFAULTPENDED_A::_0 => false,
+            BUSFAULTPENDED_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `BUSFAULTPENDED`"]
+pub type BUSFAULTPENDED_R = crate::R<bool, BUSFAULTPENDED_A>;
+impl BUSFAULTPENDED_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUSFAULTPENDED_A {
+        match self.bits {
+            false => BUSFAULTPENDED_A::_0,
+            true => BUSFAULTPENDED_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUSFAULTPENDED_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUSFAULTPENDED_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUSFAULTPENDED`"]
+pub struct BUSFAULTPENDED_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> BUSFAULTPENDED_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUSFAULTPENDED_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "exception is not pending"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(BUSFAULTPENDED_A::_0)
+    }
+    #[doc = "exception is pending"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(BUSFAULTPENDED_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w
+    }
+}
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SVCALLPENDED_A {
+    #[doc = "0: exception is not pending"]
+    _0,
+    #[doc = "1: exception is pending"]
+    _1,
+}
+impl From<SVCALLPENDED_A> for bool {
+    #[inline(always)]
+    fn from(variant: SVCALLPENDED_A) -> Self {
+        match variant {
+            SVCALLPENDED_A::_0 => false,
+            SVCALLPENDED_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SVCALLPENDED`"]
+pub type SVCALLPENDED_R = crate::R<bool, SVCALLPENDED_A>;
+impl SVCALLPENDED_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SVCALLPENDED_A {
+        match self.bits {
+            false => SVCALLPENDED_A::_0,
+            true => SVCALLPENDED_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SVCALLPENDED_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SVCALLPENDED_A::_1
+    }
+}
+#[doc = "Write proxy for field `SVCALLPENDED`"]
+pub struct SVCALLPENDED_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> SVCALLPENDED_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SVCALLPENDED_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "exception is not pending"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(SVCALLPENDED_A::_0)
+    }
+    #[doc = "exception is pending"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(SVCALLPENDED_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w
+    }
+}
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MEMFAULTENA_A {
+    #[doc = "0: disable the exception"]
+    _0,
+    #[doc = "1: enable the exception"]
+    _1,
+}
+impl From<MEMFAULTENA_A> for bool {
+    #[inline(always)]
+    fn from(variant: MEMFAULTENA_A) -> Self {
+        match variant {
+            MEMFAULTENA_A::_0 => false,
+            MEMFAULTENA_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `MEMFAULTENA`"]
+pub type MEMFAULTENA_R = crate::R<bool, MEMFAULTENA_A>;
+impl MEMFAULTENA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MEMFAULTENA_A {
+        match self.bits {
+            false => MEMFAULTENA_A::_0,
+            true => MEMFAULTENA_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MEMFAULTENA_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MEMFAULTENA_A::_1
+    }
+}
+#[doc = "Write proxy for field `MEMFAULTENA`"]
+pub struct MEMFAULTENA_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> MEMFAULTENA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MEMFAULTENA_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
     #[doc = "disable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MEMFAULTENAW::_0)
+        self.variant(MEMFAULTENA_A::_0)
     }
     #[doc = "enable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MEMFAULTENAW::_1)
+        self.variant(MEMFAULTENA_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUSFAULTENA`"]
-pub enum BUSFAULTENAW {
-    #[doc = "disable the exception"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUSFAULTENA_A {
+    #[doc = "0: disable the exception"]
     _0,
-    #[doc = "enable the exception"]
+    #[doc = "1: enable the exception"]
     _1,
 }
-impl BUSFAULTENAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUSFAULTENAW::_0 => false,
-            BUSFAULTENAW::_1 => true,
+impl From<BUSFAULTENA_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUSFAULTENA_A) -> Self {
+        match variant {
+            BUSFAULTENA_A::_0 => false,
+            BUSFAULTENA_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUSFAULTENAW<'a> {
+#[doc = "Reader of field `BUSFAULTENA`"]
+pub type BUSFAULTENA_R = crate::R<bool, BUSFAULTENA_A>;
+impl BUSFAULTENA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUSFAULTENA_A {
+        match self.bits {
+            false => BUSFAULTENA_A::_0,
+            true => BUSFAULTENA_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUSFAULTENA_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUSFAULTENA_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUSFAULTENA`"]
+pub struct BUSFAULTENA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUSFAULTENAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUSFAULTENAW) -> &'a mut W {
+impl<'a> BUSFAULTENA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUSFAULTENA_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "disable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUSFAULTENAW::_0)
+        self.variant(BUSFAULTENA_A::_0)
     }
     #[doc = "enable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUSFAULTENAW::_1)
+        self.variant(BUSFAULTENA_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USGFAULTENA`"]
-pub enum USGFAULTENAW {
-    #[doc = "disable the exception"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum USGFAULTENA_A {
+    #[doc = "0: disable the exception"]
     _0,
-    #[doc = "enable the exception"]
+    #[doc = "1: enable the exception"]
     _1,
 }
-impl USGFAULTENAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USGFAULTENAW::_0 => false,
-            USGFAULTENAW::_1 => true,
+impl From<USGFAULTENA_A> for bool {
+    #[inline(always)]
+    fn from(variant: USGFAULTENA_A) -> Self {
+        match variant {
+            USGFAULTENA_A::_0 => false,
+            USGFAULTENA_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _USGFAULTENAW<'a> {
+#[doc = "Reader of field `USGFAULTENA`"]
+pub type USGFAULTENA_R = crate::R<bool, USGFAULTENA_A>;
+impl USGFAULTENA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USGFAULTENA_A {
+        match self.bits {
+            false => USGFAULTENA_A::_0,
+            true => USGFAULTENA_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == USGFAULTENA_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == USGFAULTENA_A::_1
+    }
+}
+#[doc = "Write proxy for field `USGFAULTENA`"]
+pub struct USGFAULTENA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USGFAULTENAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USGFAULTENAW) -> &'a mut W {
+impl<'a> USGFAULTENA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USGFAULTENA_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "disable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(USGFAULTENAW::_0)
+        self.variant(USGFAULTENA_A::_0)
     }
     #[doc = "enable the exception"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(USGFAULTENAW::_1)
+        self.variant(USGFAULTENA_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - no description available"]
-    #[inline]
-    pub fn memfaultact(&self) -> MEMFAULTACTR {
-        MEMFAULTACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn memfaultact(&self) -> MEMFAULTACT_R {
+        MEMFAULTACT_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - no description available"]
-    #[inline]
-    pub fn busfaultact(&self) -> BUSFAULTACTR {
-        BUSFAULTACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn busfaultact(&self) -> BUSFAULTACT_R {
+        BUSFAULTACT_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 3 - no description available"]
-    #[inline]
-    pub fn usgfaultact(&self) -> USGFAULTACTR {
-        USGFAULTACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usgfaultact(&self) -> USGFAULTACT_R {
+        USGFAULTACT_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 7 - no description available"]
-    #[inline]
-    pub fn svcallact(&self) -> SVCALLACTR {
-        SVCALLACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn svcallact(&self) -> SVCALLACT_R {
+        SVCALLACT_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - no description available"]
-    #[inline]
-    pub fn monitoract(&self) -> MONITORACTR {
-        MONITORACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn monitoract(&self) -> MONITORACT_R {
+        MONITORACT_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 10 - no description available"]
-    #[inline]
-    pub fn pendsvact(&self) -> PENDSVACTR {
-        PENDSVACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pendsvact(&self) -> PENDSVACT_R {
+        PENDSVACT_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - no description available"]
-    #[inline]
-    pub fn systickact(&self) -> SYSTICKACTR {
-        SYSTICKACTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn systickact(&self) -> SYSTICKACT_R {
+        SYSTICKACT_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - no description available"]
-    #[inline]
-    pub fn usgfaultpended(&self) -> USGFAULTPENDEDR {
-        USGFAULTPENDEDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usgfaultpended(&self) -> USGFAULTPENDED_R {
+        USGFAULTPENDED_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - no description available"]
-    #[inline]
-    pub fn memfaultpended(&self) -> MEMFAULTPENDEDR {
-        MEMFAULTPENDEDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn memfaultpended(&self) -> MEMFAULTPENDED_R {
+        MEMFAULTPENDED_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - no description available"]
-    #[inline]
-    pub fn busfaultpended(&self) -> BUSFAULTPENDEDR {
-        BUSFAULTPENDEDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn busfaultpended(&self) -> BUSFAULTPENDED_R {
+        BUSFAULTPENDED_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - no description available"]
-    #[inline]
-    pub fn svcallpended(&self) -> SVCALLPENDEDR {
-        SVCALLPENDEDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn svcallpended(&self) -> SVCALLPENDED_R {
+        SVCALLPENDED_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - no description available"]
-    #[inline]
-    pub fn memfaultena(&self) -> MEMFAULTENAR {
-        MEMFAULTENAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn memfaultena(&self) -> MEMFAULTENA_R {
+        MEMFAULTENA_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - no description available"]
-    #[inline]
-    pub fn busfaultena(&self) -> BUSFAULTENAR {
-        BUSFAULTENAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn busfaultena(&self) -> BUSFAULTENA_R {
+        BUSFAULTENA_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - no description available"]
-    #[inline]
-    pub fn usgfaultena(&self) -> USGFAULTENAR {
-        USGFAULTENAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usgfaultena(&self) -> USGFAULTENA_R {
+        USGFAULTENA_R::new(((self.bits >> 18) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - no description available"]
-    #[inline]
-    pub fn memfaultact(&mut self) -> _MEMFAULTACTW {
-        _MEMFAULTACTW { w: self }
+    #[inline(always)]
+    pub fn memfaultact(&mut self) -> MEMFAULTACT_W {
+        MEMFAULTACT_W { w: self }
     }
     #[doc = "Bit 1 - no description available"]
-    #[inline]
-    pub fn busfaultact(&mut self) -> _BUSFAULTACTW {
-        _BUSFAULTACTW { w: self }
+    #[inline(always)]
+    pub fn busfaultact(&mut self) -> BUSFAULTACT_W {
+        BUSFAULTACT_W { w: self }
     }
     #[doc = "Bit 3 - no description available"]
-    #[inline]
-    pub fn usgfaultact(&mut self) -> _USGFAULTACTW {
-        _USGFAULTACTW { w: self }
+    #[inline(always)]
+    pub fn usgfaultact(&mut self) -> USGFAULTACT_W {
+        USGFAULTACT_W { w: self }
     }
     #[doc = "Bit 7 - no description available"]
-    #[inline]
-    pub fn svcallact(&mut self) -> _SVCALLACTW {
-        _SVCALLACTW { w: self }
+    #[inline(always)]
+    pub fn svcallact(&mut self) -> SVCALLACT_W {
+        SVCALLACT_W { w: self }
     }
     #[doc = "Bit 8 - no description available"]
-    #[inline]
-    pub fn monitoract(&mut self) -> _MONITORACTW {
-        _MONITORACTW { w: self }
+    #[inline(always)]
+    pub fn monitoract(&mut self) -> MONITORACT_W {
+        MONITORACT_W { w: self }
     }
     #[doc = "Bit 10 - no description available"]
-    #[inline]
-    pub fn pendsvact(&mut self) -> _PENDSVACTW {
-        _PENDSVACTW { w: self }
+    #[inline(always)]
+    pub fn pendsvact(&mut self) -> PENDSVACT_W {
+        PENDSVACT_W { w: self }
     }
     #[doc = "Bit 11 - no description available"]
-    #[inline]
-    pub fn systickact(&mut self) -> _SYSTICKACTW {
-        _SYSTICKACTW { w: self }
+    #[inline(always)]
+    pub fn systickact(&mut self) -> SYSTICKACT_W {
+        SYSTICKACT_W { w: self }
     }
     #[doc = "Bit 12 - no description available"]
-    #[inline]
-    pub fn usgfaultpended(&mut self) -> _USGFAULTPENDEDW {
-        _USGFAULTPENDEDW { w: self }
+    #[inline(always)]
+    pub fn usgfaultpended(&mut self) -> USGFAULTPENDED_W {
+        USGFAULTPENDED_W { w: self }
     }
     #[doc = "Bit 13 - no description available"]
-    #[inline]
-    pub fn memfaultpended(&mut self) -> _MEMFAULTPENDEDW {
-        _MEMFAULTPENDEDW { w: self }
+    #[inline(always)]
+    pub fn memfaultpended(&mut self) -> MEMFAULTPENDED_W {
+        MEMFAULTPENDED_W { w: self }
     }
     #[doc = "Bit 14 - no description available"]
-    #[inline]
-    pub fn busfaultpended(&mut self) -> _BUSFAULTPENDEDW {
-        _BUSFAULTPENDEDW { w: self }
+    #[inline(always)]
+    pub fn busfaultpended(&mut self) -> BUSFAULTPENDED_W {
+        BUSFAULTPENDED_W { w: self }
     }
     #[doc = "Bit 15 - no description available"]
-    #[inline]
-    pub fn svcallpended(&mut self) -> _SVCALLPENDEDW {
-        _SVCALLPENDEDW { w: self }
+    #[inline(always)]
+    pub fn svcallpended(&mut self) -> SVCALLPENDED_W {
+        SVCALLPENDED_W { w: self }
     }
     #[doc = "Bit 16 - no description available"]
-    #[inline]
-    pub fn memfaultena(&mut self) -> _MEMFAULTENAW {
-        _MEMFAULTENAW { w: self }
+    #[inline(always)]
+    pub fn memfaultena(&mut self) -> MEMFAULTENA_W {
+        MEMFAULTENA_W { w: self }
     }
     #[doc = "Bit 17 - no description available"]
-    #[inline]
-    pub fn busfaultena(&mut self) -> _BUSFAULTENAW {
-        _BUSFAULTENAW { w: self }
+    #[inline(always)]
+    pub fn busfaultena(&mut self) -> BUSFAULTENA_W {
+        BUSFAULTENA_W { w: self }
     }
     #[doc = "Bit 18 - no description available"]
-    #[inline]
-    pub fn usgfaultena(&mut self) -> _USGFAULTENAW {
-        _USGFAULTENAW { w: self }
+    #[inline(always)]
+    pub fn usgfaultena(&mut self) -> USGFAULTENA_W {
+        USGFAULTENA_W { w: self }
     }
 }

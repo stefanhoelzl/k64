@@ -1,897 +1,632 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::IS7816 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IS7816"]
+pub type R = crate::R<u8, super::IS7816>;
+#[doc = "Writer for register IS7816"]
+pub type W = crate::W<u8, super::IS7816>;
+#[doc = "Register IS7816 `reset()`'s with value 0"]
+impl crate::ResetValue for super::IS7816 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RXT`"]
+#[doc = "Receive Threshold Exceeded Interrupt\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXTR {
-    #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is less than or equal to the value in ET7816\\[RXTHRESHOLD\\]."]
+pub enum RXT_A {
+    #[doc = "0: The number of consecutive NACKS generated as a result of parity errors and buffer overruns is less than or equal to the value in ET7816\\[RXTHRESHOLD\\]."]
     _0,
-    #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is greater than the value in ET7816\\[RXTHRESHOLD\\]."]
+    #[doc = "1: The number of consecutive NACKS generated as a result of parity errors and buffer overruns is greater than the value in ET7816\\[RXTHRESHOLD\\]."]
     _1,
 }
-impl RXTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXTR::_0 => false,
-            RXTR::_1 => true,
+impl From<RXT_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXT_A) -> Self {
+        match variant {
+            RXT_A::_0 => false,
+            RXT_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXTR {
-        match value {
-            false => RXTR::_0,
-            true => RXTR::_1,
+}
+#[doc = "Reader of field `RXT`"]
+pub type RXT_R = crate::R<bool, RXT_A>;
+impl RXT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXT_A {
+        match self.bits {
+            false => RXT_A::_0,
+            true => RXT_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RXTR::_0
+        *self == RXT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RXTR::_1
+        *self == RXT_A::_1
     }
 }
-#[doc = "Possible values of the field `TXT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXTR {
-    #[doc = "The number of retries and corresponding NACKS does not exceed the value in ET7816\\[TXTHRESHOLD\\]."]
-    _0,
-    #[doc = "The number of retries and corresponding NACKS exceeds the value in ET7816\\[TXTHRESHOLD\\]."]
-    _1,
-}
-impl TXTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXTR::_0 => false,
-            TXTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXTR {
-        match value {
-            false => TXTR::_0,
-            true => TXTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXTR::_1
-    }
-}
-#[doc = "Possible values of the field `GTV`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GTVR {
-    #[doc = "A guard time (GT, CGT, or BGT) has not been violated."]
-    _0,
-    #[doc = "A guard time (GT, CGT, or BGT) has been violated."]
-    _1,
-}
-impl GTVR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GTVR::_0 => false,
-            GTVR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GTVR {
-        match value {
-            false => GTVR::_0,
-            true => GTVR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == GTVR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == GTVR::_1
-    }
-}
-#[doc = "Possible values of the field `INITD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum INITDR {
-    #[doc = "A valid initial character has not been received."]
-    _0,
-    #[doc = "A valid initial character has been received."]
-    _1,
-}
-impl INITDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            INITDR::_0 => false,
-            INITDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> INITDR {
-        match value {
-            false => INITDR::_0,
-            true => INITDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == INITDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == INITDR::_1
-    }
-}
-#[doc = "Possible values of the field `BWT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BWTR {
-    #[doc = "Block wait time (BWT) has not been violated."]
-    _0,
-    #[doc = "Block wait time (BWT) has been violated."]
-    _1,
-}
-impl BWTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BWTR::_0 => false,
-            BWTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BWTR {
-        match value {
-            false => BWTR::_0,
-            true => BWTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BWTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BWTR::_1
-    }
-}
-#[doc = "Possible values of the field `CWT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CWTR {
-    #[doc = "Character wait time (CWT) has not been violated."]
-    _0,
-    #[doc = "Character wait time (CWT) has been violated."]
-    _1,
-}
-impl CWTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CWTR::_0 => false,
-            CWTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CWTR {
-        match value {
-            false => CWTR::_0,
-            true => CWTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CWTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CWTR::_1
-    }
-}
-#[doc = "Possible values of the field `WT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WTR {
-    #[doc = "Wait time (WT) has not been violated."]
-    _0,
-    #[doc = "Wait time (WT) has been violated."]
-    _1,
-}
-impl WTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WTR::_0 => false,
-            WTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WTR {
-        match value {
-            false => WTR::_0,
-            true => WTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WTR::_1
-    }
-}
-#[doc = "Values that can be written to the field `RXT`"]
-pub enum RXTW {
-    #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is less than or equal to the value in ET7816\\[RXTHRESHOLD\\]."]
-    _0,
-    #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is greater than the value in ET7816\\[RXTHRESHOLD\\]."]
-    _1,
-}
-impl RXTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXTW::_0 => false,
-            RXTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RXTW<'a> {
+#[doc = "Write proxy for field `RXT`"]
+pub struct RXT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXTW) -> &'a mut W {
+impl<'a> RXT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is less than or equal to the value in ET7816\\[RXTHRESHOLD\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXTW::_0)
+        self.variant(RXT_A::_0)
     }
     #[doc = "The number of consecutive NACKS generated as a result of parity errors and buffer overruns is greater than the value in ET7816\\[RXTHRESHOLD\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXTW::_1)
+        self.variant(RXT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TXT`"]
-pub enum TXTW {
+#[doc = "Transmit Threshold Exceeded Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXT_A {
+    #[doc = "0: The number of retries and corresponding NACKS does not exceed the value in ET7816\\[TXTHRESHOLD\\]."]
+    _0,
+    #[doc = "1: The number of retries and corresponding NACKS exceeds the value in ET7816\\[TXTHRESHOLD\\]."]
+    _1,
+}
+impl From<TXT_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXT_A) -> Self {
+        match variant {
+            TXT_A::_0 => false,
+            TXT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TXT`"]
+pub type TXT_R = crate::R<bool, TXT_A>;
+impl TXT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXT_A {
+        match self.bits {
+            false => TXT_A::_0,
+            true => TXT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXT_A::_1
+    }
+}
+#[doc = "Write proxy for field `TXT`"]
+pub struct TXT_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TXT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TXT_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The number of retries and corresponding NACKS does not exceed the value in ET7816\\[TXTHRESHOLD\\]."]
-    _0,
-    #[doc = "The number of retries and corresponding NACKS exceeds the value in ET7816\\[TXTHRESHOLD\\]."]
-    _1,
-}
-impl TXTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TXTW::_0 => false,
-            TXTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TXTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TXTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TXTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The number of retries and corresponding NACKS does not exceed the value in ET7816\\[TXTHRESHOLD\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TXTW::_0)
+        self.variant(TXT_A::_0)
     }
     #[doc = "The number of retries and corresponding NACKS exceeds the value in ET7816\\[TXTHRESHOLD\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TXTW::_1)
+        self.variant(TXT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `GTV`"]
-pub enum GTVW {
-    #[doc = "A guard time (GT, CGT, or BGT) has not been violated."]
+#[doc = "Guard Timer Violated Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GTV_A {
+    #[doc = "0: A guard time (GT, CGT, or BGT) has not been violated."]
     _0,
-    #[doc = "A guard time (GT, CGT, or BGT) has been violated."]
+    #[doc = "1: A guard time (GT, CGT, or BGT) has been violated."]
     _1,
 }
-impl GTVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GTVW::_0 => false,
-            GTVW::_1 => true,
+impl From<GTV_A> for bool {
+    #[inline(always)]
+    fn from(variant: GTV_A) -> Self {
+        match variant {
+            GTV_A::_0 => false,
+            GTV_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _GTVW<'a> {
+#[doc = "Reader of field `GTV`"]
+pub type GTV_R = crate::R<bool, GTV_A>;
+impl GTV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GTV_A {
+        match self.bits {
+            false => GTV_A::_0,
+            true => GTV_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == GTV_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == GTV_A::_1
+    }
+}
+#[doc = "Write proxy for field `GTV`"]
+pub struct GTV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GTVW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GTVW) -> &'a mut W {
+impl<'a> GTV_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GTV_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "A guard time (GT, CGT, or BGT) has not been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(GTVW::_0)
+        self.variant(GTV_A::_0)
     }
     #[doc = "A guard time (GT, CGT, or BGT) has been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(GTVW::_1)
+        self.variant(GTV_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `INITD`"]
-pub enum INITDW {
+#[doc = "Initial Character Detected Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum INITD_A {
+    #[doc = "0: A valid initial character has not been received."]
+    _0,
+    #[doc = "1: A valid initial character has been received."]
+    _1,
+}
+impl From<INITD_A> for bool {
+    #[inline(always)]
+    fn from(variant: INITD_A) -> Self {
+        match variant {
+            INITD_A::_0 => false,
+            INITD_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `INITD`"]
+pub type INITD_R = crate::R<bool, INITD_A>;
+impl INITD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> INITD_A {
+        match self.bits {
+            false => INITD_A::_0,
+            true => INITD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == INITD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == INITD_A::_1
+    }
+}
+#[doc = "Write proxy for field `INITD`"]
+pub struct INITD_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> INITD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: INITD_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "A valid initial character has not been received."]
-    _0,
-    #[doc = "A valid initial character has been received."]
-    _1,
-}
-impl INITDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            INITDW::_0 => false,
-            INITDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _INITDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _INITDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: INITDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "A valid initial character has not been received."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(INITDW::_0)
+        self.variant(INITD_A::_0)
     }
     #[doc = "A valid initial character has been received."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(INITDW::_1)
+        self.variant(INITD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BWT`"]
-pub enum BWTW {
-    #[doc = "Block wait time (BWT) has not been violated."]
+#[doc = "Block Wait Timer Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BWT_A {
+    #[doc = "0: Block wait time (BWT) has not been violated."]
     _0,
-    #[doc = "Block wait time (BWT) has been violated."]
+    #[doc = "1: Block wait time (BWT) has been violated."]
     _1,
 }
-impl BWTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BWTW::_0 => false,
-            BWTW::_1 => true,
+impl From<BWT_A> for bool {
+    #[inline(always)]
+    fn from(variant: BWT_A) -> Self {
+        match variant {
+            BWT_A::_0 => false,
+            BWT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BWTW<'a> {
+#[doc = "Reader of field `BWT`"]
+pub type BWT_R = crate::R<bool, BWT_A>;
+impl BWT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BWT_A {
+        match self.bits {
+            false => BWT_A::_0,
+            true => BWT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BWT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BWT_A::_1
+    }
+}
+#[doc = "Write proxy for field `BWT`"]
+pub struct BWT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BWTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BWTW) -> &'a mut W {
+impl<'a> BWT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BWT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Block wait time (BWT) has not been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BWTW::_0)
+        self.variant(BWT_A::_0)
     }
     #[doc = "Block wait time (BWT) has been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BWTW::_1)
+        self.variant(BWT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CWT`"]
-pub enum CWTW {
-    #[doc = "Character wait time (CWT) has not been violated."]
+#[doc = "Character Wait Timer Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CWT_A {
+    #[doc = "0: Character wait time (CWT) has not been violated."]
     _0,
-    #[doc = "Character wait time (CWT) has been violated."]
+    #[doc = "1: Character wait time (CWT) has been violated."]
     _1,
 }
-impl CWTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CWTW::_0 => false,
-            CWTW::_1 => true,
+impl From<CWT_A> for bool {
+    #[inline(always)]
+    fn from(variant: CWT_A) -> Self {
+        match variant {
+            CWT_A::_0 => false,
+            CWT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CWTW<'a> {
+#[doc = "Reader of field `CWT`"]
+pub type CWT_R = crate::R<bool, CWT_A>;
+impl CWT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CWT_A {
+        match self.bits {
+            false => CWT_A::_0,
+            true => CWT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CWT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CWT_A::_1
+    }
+}
+#[doc = "Write proxy for field `CWT`"]
+pub struct CWT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CWTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CWTW) -> &'a mut W {
+impl<'a> CWT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CWT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Character wait time (CWT) has not been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CWTW::_0)
+        self.variant(CWT_A::_0)
     }
     #[doc = "Character wait time (CWT) has been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CWTW::_1)
+        self.variant(CWT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WT`"]
-pub enum WTW {
-    #[doc = "Wait time (WT) has not been violated."]
+#[doc = "Wait Timer Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WT_A {
+    #[doc = "0: Wait time (WT) has not been violated."]
     _0,
-    #[doc = "Wait time (WT) has been violated."]
+    #[doc = "1: Wait time (WT) has been violated."]
     _1,
 }
-impl WTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WTW::_0 => false,
-            WTW::_1 => true,
+impl From<WT_A> for bool {
+    #[inline(always)]
+    fn from(variant: WT_A) -> Self {
+        match variant {
+            WT_A::_0 => false,
+            WT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WTW<'a> {
+#[doc = "Reader of field `WT`"]
+pub type WT_R = crate::R<bool, WT_A>;
+impl WT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WT_A {
+        match self.bits {
+            false => WT_A::_0,
+            true => WT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WT_A::_1
+    }
+}
+#[doc = "Write proxy for field `WT`"]
+pub struct WT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WTW) -> &'a mut W {
+impl<'a> WT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Wait time (WT) has not been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WTW::_0)
+        self.variant(WT_A::_0)
     }
     #[doc = "Wait time (WT) has been violated."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WTW::_1)
+        self.variant(WT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Receive Threshold Exceeded Interrupt"]
-    #[inline]
-    pub fn rxt(&self) -> RXTR {
-        RXTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxt(&self) -> RXT_R {
+        RXT_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transmit Threshold Exceeded Interrupt"]
-    #[inline]
-    pub fn txt(&self) -> TXTR {
-        TXTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn txt(&self) -> TXT_R {
+        TXT_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Guard Timer Violated Interrupt"]
-    #[inline]
-    pub fn gtv(&self) -> GTVR {
-        GTVR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn gtv(&self) -> GTV_R {
+        GTV_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Initial Character Detected Interrupt"]
-    #[inline]
-    pub fn initd(&self) -> INITDR {
-        INITDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn initd(&self) -> INITD_R {
+        INITD_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Block Wait Timer Interrupt"]
-    #[inline]
-    pub fn bwt(&self) -> BWTR {
-        BWTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn bwt(&self) -> BWT_R {
+        BWT_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Character Wait Timer Interrupt"]
-    #[inline]
-    pub fn cwt(&self) -> CWTR {
-        CWTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn cwt(&self) -> CWT_R {
+        CWT_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Wait Timer Interrupt"]
-    #[inline]
-    pub fn wt(&self) -> WTR {
-        WTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wt(&self) -> WT_R {
+        WT_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Receive Threshold Exceeded Interrupt"]
-    #[inline]
-    pub fn rxt(&mut self) -> _RXTW {
-        _RXTW { w: self }
+    #[inline(always)]
+    pub fn rxt(&mut self) -> RXT_W {
+        RXT_W { w: self }
     }
     #[doc = "Bit 1 - Transmit Threshold Exceeded Interrupt"]
-    #[inline]
-    pub fn txt(&mut self) -> _TXTW {
-        _TXTW { w: self }
+    #[inline(always)]
+    pub fn txt(&mut self) -> TXT_W {
+        TXT_W { w: self }
     }
     #[doc = "Bit 2 - Guard Timer Violated Interrupt"]
-    #[inline]
-    pub fn gtv(&mut self) -> _GTVW {
-        _GTVW { w: self }
+    #[inline(always)]
+    pub fn gtv(&mut self) -> GTV_W {
+        GTV_W { w: self }
     }
     #[doc = "Bit 4 - Initial Character Detected Interrupt"]
-    #[inline]
-    pub fn initd(&mut self) -> _INITDW {
-        _INITDW { w: self }
+    #[inline(always)]
+    pub fn initd(&mut self) -> INITD_W {
+        INITD_W { w: self }
     }
     #[doc = "Bit 5 - Block Wait Timer Interrupt"]
-    #[inline]
-    pub fn bwt(&mut self) -> _BWTW {
-        _BWTW { w: self }
+    #[inline(always)]
+    pub fn bwt(&mut self) -> BWT_W {
+        BWT_W { w: self }
     }
     #[doc = "Bit 6 - Character Wait Timer Interrupt"]
-    #[inline]
-    pub fn cwt(&mut self) -> _CWTW {
-        _CWTW { w: self }
+    #[inline(always)]
+    pub fn cwt(&mut self) -> CWT_W {
+        CWT_W { w: self }
     }
     #[doc = "Bit 7 - Wait Timer Interrupt"]
-    #[inline]
-    pub fn wt(&mut self) -> _WTW {
-        _WTW { w: self }
+    #[inline(always)]
+    pub fn wt(&mut self) -> WT_W {
+        WT_W { w: self }
     }
 }

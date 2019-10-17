@@ -1,118 +1,62 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::FCFG2 {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MAXADDR1R {
-    bits: u8,
-}
-impl MAXADDR1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `PFLSH`"]
+#[doc = "Reader of register FCFG2"]
+pub type R = crate::R<u32, super::FCFG2>;
+#[doc = "Reader of field `MAXADDR1`"]
+pub type MAXADDR1_R = crate::R<u8, u8>;
+#[doc = "Program flash only\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PFLSHR {
-    #[doc = "Device supports FlexNVM"]
+pub enum PFLSH_A {
+    #[doc = "0: Device supports FlexNVM"]
     _0,
-    #[doc = "Program Flash only, device does not support FlexNVM"]
+    #[doc = "1: Program Flash only, device does not support FlexNVM"]
     _1,
 }
-impl PFLSHR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PFLSHR::_0 => false,
-            PFLSHR::_1 => true,
+impl From<PFLSH_A> for bool {
+    #[inline(always)]
+    fn from(variant: PFLSH_A) -> Self {
+        match variant {
+            PFLSH_A::_0 => false,
+            PFLSH_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PFLSHR {
-        match value {
-            false => PFLSHR::_0,
-            true => PFLSHR::_1,
+}
+#[doc = "Reader of field `PFLSH`"]
+pub type PFLSH_R = crate::R<bool, PFLSH_A>;
+impl PFLSH_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PFLSH_A {
+        match self.bits {
+            false => PFLSH_A::_0,
+            true => PFLSH_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PFLSHR::_0
+        *self == PFLSH_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PFLSHR::_1
+        *self == PFLSH_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct MAXADDR0R {
-    bits: u8,
-}
-impl MAXADDR0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of field `MAXADDR0`"]
+pub type MAXADDR0_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 16:22 - Max address block 1"]
-    #[inline]
-    pub fn maxaddr1(&self) -> MAXADDR1R {
-        let bits = {
-            const MASK: u8 = 127;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MAXADDR1R { bits }
+    #[inline(always)]
+    pub fn maxaddr1(&self) -> MAXADDR1_R {
+        MAXADDR1_R::new(((self.bits >> 16) & 0x7f) as u8)
     }
     #[doc = "Bit 23 - Program flash only"]
-    #[inline]
-    pub fn pflsh(&self) -> PFLSHR {
-        PFLSHR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pflsh(&self) -> PFLSH_R {
+        PFLSH_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bits 24:30 - Max address block 0"]
-    #[inline]
-    pub fn maxaddr0(&self) -> MAXADDR0R {
-        let bits = {
-            const MASK: u8 = 127;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MAXADDR0R { bits }
+    #[inline(always)]
+    pub fn maxaddr0(&self) -> MAXADDR0_R {
+        MAXADDR0_R::new(((self.bits >> 24) & 0x7f) as u8)
     }
 }

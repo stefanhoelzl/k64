@@ -1,622 +1,416 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CTRL2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CTRL2"]
+pub type R = crate::R<u32, super::CTRL2>;
+#[doc = "Writer for register CTRL2"]
+pub type W = crate::W<u32, super::CTRL2>;
+#[doc = "Register CTRL2 `reset()`'s with value 0x00b0_0000"]
+impl crate::ResetValue for super::CTRL2 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x00b0_0000
     }
 }
-#[doc = "Possible values of the field `EACEN`"]
+#[doc = "Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EACENR {
-    #[doc = "Rx Mailbox filter's IDE bit is always compared and RTR is never compared despite mask bits."]
+pub enum EACEN_A {
+    #[doc = "0: Rx Mailbox filter's IDE bit is always compared and RTR is never compared despite mask bits."]
     _0,
-    #[doc = "Enables the comparison of both Rx Mailbox filter's IDE and RTR bit with their corresponding bits within the incoming frame. Mask bits do apply."]
+    #[doc = "1: Enables the comparison of both Rx Mailbox filter's IDE and RTR bit with their corresponding bits within the incoming frame. Mask bits do apply."]
     _1,
 }
-impl EACENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EACENR::_0 => false,
-            EACENR::_1 => true,
+impl From<EACEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: EACEN_A) -> Self {
+        match variant {
+            EACEN_A::_0 => false,
+            EACEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EACENR {
-        match value {
-            false => EACENR::_0,
-            true => EACENR::_1,
+}
+#[doc = "Reader of field `EACEN`"]
+pub type EACEN_R = crate::R<bool, EACEN_A>;
+impl EACEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EACEN_A {
+        match self.bits {
+            false => EACEN_A::_0,
+            true => EACEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EACENR::_0
+        *self == EACEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EACENR::_1
+        *self == EACEN_A::_1
     }
 }
-#[doc = "Possible values of the field `RRS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RRSR {
-    #[doc = "Remote Response Frame is generated."]
-    _0,
-    #[doc = "Remote Request Frame is stored."]
-    _1,
-}
-impl RRSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RRSR::_0 => false,
-            RRSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RRSR {
-        match value {
-            false => RRSR::_0,
-            true => RRSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RRSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RRSR::_1
-    }
-}
-#[doc = "Possible values of the field `MRP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MRPR {
-    #[doc = "Matching starts from Rx FIFO and continues on Mailboxes."]
-    _0,
-    #[doc = "Matching starts from Mailboxes and continues on Rx FIFO."]
-    _1,
-}
-impl MRPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MRPR::_0 => false,
-            MRPR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MRPR {
-        match value {
-            false => MRPR::_0,
-            true => MRPR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MRPR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MRPR::_1
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TASDR {
-    bits: u8,
-}
-impl TASDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RFFNR {
-    bits: u8,
-}
-impl RFFNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `WRMFRZ`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WRMFRZR {
-    #[doc = "Maintain the write access restrictions."]
-    _0,
-    #[doc = "Enable unrestricted write access to FlexCAN memory."]
-    _1,
-}
-impl WRMFRZR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WRMFRZR::_0 => false,
-            WRMFRZR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WRMFRZR {
-        match value {
-            false => WRMFRZR::_0,
-            true => WRMFRZR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WRMFRZR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WRMFRZR::_1
-    }
-}
-#[doc = "Values that can be written to the field `EACEN`"]
-pub enum EACENW {
-    #[doc = "Rx Mailbox filter's IDE bit is always compared and RTR is never compared despite mask bits."]
-    _0,
-    #[doc = "Enables the comparison of both Rx Mailbox filter's IDE and RTR bit with their corresponding bits within the incoming frame. Mask bits do apply."]
-    _1,
-}
-impl EACENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EACENW::_0 => false,
-            EACENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EACENW<'a> {
+#[doc = "Write proxy for field `EACEN`"]
+pub struct EACEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EACENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EACENW) -> &'a mut W {
+impl<'a> EACEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EACEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Rx Mailbox filter's IDE bit is always compared and RTR is never compared despite mask bits."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EACENW::_0)
+        self.variant(EACEN_A::_0)
     }
     #[doc = "Enables the comparison of both Rx Mailbox filter's IDE and RTR bit with their corresponding bits within the incoming frame. Mask bits do apply."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EACENW::_1)
+        self.variant(EACEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RRS`"]
-pub enum RRSW {
-    #[doc = "Remote Response Frame is generated."]
+#[doc = "Remote Request Storing\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RRS_A {
+    #[doc = "0: Remote Response Frame is generated."]
     _0,
-    #[doc = "Remote Request Frame is stored."]
+    #[doc = "1: Remote Request Frame is stored."]
     _1,
 }
-impl RRSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RRSW::_0 => false,
-            RRSW::_1 => true,
+impl From<RRS_A> for bool {
+    #[inline(always)]
+    fn from(variant: RRS_A) -> Self {
+        match variant {
+            RRS_A::_0 => false,
+            RRS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RRSW<'a> {
+#[doc = "Reader of field `RRS`"]
+pub type RRS_R = crate::R<bool, RRS_A>;
+impl RRS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RRS_A {
+        match self.bits {
+            false => RRS_A::_0,
+            true => RRS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RRS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RRS_A::_1
+    }
+}
+#[doc = "Write proxy for field `RRS`"]
+pub struct RRS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RRSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RRSW) -> &'a mut W {
+impl<'a> RRS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RRS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Remote Response Frame is generated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RRSW::_0)
+        self.variant(RRS_A::_0)
     }
     #[doc = "Remote Request Frame is stored."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RRSW::_1)
+        self.variant(RRS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MRP`"]
-pub enum MRPW {
-    #[doc = "Matching starts from Rx FIFO and continues on Mailboxes."]
+#[doc = "Mailboxes Reception Priority\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MRP_A {
+    #[doc = "0: Matching starts from Rx FIFO and continues on Mailboxes."]
     _0,
-    #[doc = "Matching starts from Mailboxes and continues on Rx FIFO."]
+    #[doc = "1: Matching starts from Mailboxes and continues on Rx FIFO."]
     _1,
 }
-impl MRPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MRPW::_0 => false,
-            MRPW::_1 => true,
+impl From<MRP_A> for bool {
+    #[inline(always)]
+    fn from(variant: MRP_A) -> Self {
+        match variant {
+            MRP_A::_0 => false,
+            MRP_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MRPW<'a> {
+#[doc = "Reader of field `MRP`"]
+pub type MRP_R = crate::R<bool, MRP_A>;
+impl MRP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MRP_A {
+        match self.bits {
+            false => MRP_A::_0,
+            true => MRP_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MRP_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MRP_A::_1
+    }
+}
+#[doc = "Write proxy for field `MRP`"]
+pub struct MRP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MRPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MRPW) -> &'a mut W {
+impl<'a> MRP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MRP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Matching starts from Rx FIFO and continues on Mailboxes."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MRPW::_0)
+        self.variant(MRP_A::_0)
     }
     #[doc = "Matching starts from Mailboxes and continues on Rx FIFO."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MRPW::_1)
+        self.variant(MRP_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _TASDW<'a> {
+#[doc = "Reader of field `TASD`"]
+pub type TASD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TASD`"]
+pub struct TASD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TASDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TASD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 19)) | (((value as u32) & 0x1f) << 19);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RFFNW<'a> {
+#[doc = "Reader of field `RFFN`"]
+pub type RFFN_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `RFFN`"]
+pub struct RFFN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFFNW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> RFFN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WRMFRZ`"]
-pub enum WRMFRZW {
-    #[doc = "Maintain the write access restrictions."]
+#[doc = "Write-Access To Memory In Freeze Mode\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WRMFRZ_A {
+    #[doc = "0: Maintain the write access restrictions."]
     _0,
-    #[doc = "Enable unrestricted write access to FlexCAN memory."]
+    #[doc = "1: Enable unrestricted write access to FlexCAN memory."]
     _1,
 }
-impl WRMFRZW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WRMFRZW::_0 => false,
-            WRMFRZW::_1 => true,
+impl From<WRMFRZ_A> for bool {
+    #[inline(always)]
+    fn from(variant: WRMFRZ_A) -> Self {
+        match variant {
+            WRMFRZ_A::_0 => false,
+            WRMFRZ_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WRMFRZW<'a> {
+#[doc = "Reader of field `WRMFRZ`"]
+pub type WRMFRZ_R = crate::R<bool, WRMFRZ_A>;
+impl WRMFRZ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WRMFRZ_A {
+        match self.bits {
+            false => WRMFRZ_A::_0,
+            true => WRMFRZ_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WRMFRZ_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WRMFRZ_A::_1
+    }
+}
+#[doc = "Write proxy for field `WRMFRZ`"]
+pub struct WRMFRZ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WRMFRZW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WRMFRZW) -> &'a mut W {
+impl<'a> WRMFRZ_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WRMFRZ_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Maintain the write access restrictions."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WRMFRZW::_0)
+        self.variant(WRMFRZ_A::_0)
     }
     #[doc = "Enable unrestricted write access to FlexCAN memory."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WRMFRZW::_1)
+        self.variant(WRMFRZ_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 16 - Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
-    #[inline]
-    pub fn eacen(&self) -> EACENR {
-        EACENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn eacen(&self) -> EACEN_R {
+        EACEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Remote Request Storing"]
-    #[inline]
-    pub fn rrs(&self) -> RRSR {
-        RRSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rrs(&self) -> RRS_R {
+        RRS_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Mailboxes Reception Priority"]
-    #[inline]
-    pub fn mrp(&self) -> MRPR {
-        MRPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mrp(&self) -> MRP_R {
+        MRP_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bits 19:23 - Tx Arbitration Start Delay"]
-    #[inline]
-    pub fn tasd(&self) -> TASDR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        TASDR { bits }
+    #[inline(always)]
+    pub fn tasd(&self) -> TASD_R {
+        TASD_R::new(((self.bits >> 19) & 0x1f) as u8)
     }
     #[doc = "Bits 24:27 - Number Of Rx FIFO Filters"]
-    #[inline]
-    pub fn rffn(&self) -> RFFNR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        RFFNR { bits }
+    #[inline(always)]
+    pub fn rffn(&self) -> RFFN_R {
+        RFFN_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bit 28 - Write-Access To Memory In Freeze Mode"]
-    #[inline]
-    pub fn wrmfrz(&self) -> WRMFRZR {
-        WRMFRZR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wrmfrz(&self) -> WRMFRZ_R {
+        WRMFRZ_R::new(((self.bits >> 28) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 11534336 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 16 - Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
-    #[inline]
-    pub fn eacen(&mut self) -> _EACENW {
-        _EACENW { w: self }
+    #[inline(always)]
+    pub fn eacen(&mut self) -> EACEN_W {
+        EACEN_W { w: self }
     }
     #[doc = "Bit 17 - Remote Request Storing"]
-    #[inline]
-    pub fn rrs(&mut self) -> _RRSW {
-        _RRSW { w: self }
+    #[inline(always)]
+    pub fn rrs(&mut self) -> RRS_W {
+        RRS_W { w: self }
     }
     #[doc = "Bit 18 - Mailboxes Reception Priority"]
-    #[inline]
-    pub fn mrp(&mut self) -> _MRPW {
-        _MRPW { w: self }
+    #[inline(always)]
+    pub fn mrp(&mut self) -> MRP_W {
+        MRP_W { w: self }
     }
     #[doc = "Bits 19:23 - Tx Arbitration Start Delay"]
-    #[inline]
-    pub fn tasd(&mut self) -> _TASDW {
-        _TASDW { w: self }
+    #[inline(always)]
+    pub fn tasd(&mut self) -> TASD_W {
+        TASD_W { w: self }
     }
     #[doc = "Bits 24:27 - Number Of Rx FIFO Filters"]
-    #[inline]
-    pub fn rffn(&mut self) -> _RFFNW {
-        _RFFNW { w: self }
+    #[inline(always)]
+    pub fn rffn(&mut self) -> RFFN_W {
+        RFFN_W { w: self }
     }
     #[doc = "Bit 28 - Write-Access To Memory In Freeze Mode"]
-    #[inline]
-    pub fn wrmfrz(&mut self) -> _WRMFRZW {
-        _WRMFRZW { w: self }
+    #[inline(always)]
+    pub fn wrmfrz(&mut self) -> WRMFRZ_W {
+        WRMFRZ_W { w: self }
     }
 }

@@ -1,659 +1,456 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C5 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C5"]
+pub type R = crate::R<u8, super::C5>;
+#[doc = "Writer for register C5"]
+pub type W = crate::W<u8, super::C5>;
+#[doc = "Register C5 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C5 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `LBKDDMAS`"]
+#[doc = "LIN Break Detect DMA Select Bit\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LBKDDMASR {
-    #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF interrupt signal is asserted to request an interrupt service."]
+pub enum LBKDDMAS_A {
+    #[doc = "0: If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF interrupt signal is asserted to request an interrupt service."]
     _0,
-    #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF DMA request signal is asserted to request a DMA transfer."]
+    #[doc = "1: If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF DMA request signal is asserted to request a DMA transfer."]
     _1,
 }
-impl LBKDDMASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LBKDDMASR::_0 => false,
-            LBKDDMASR::_1 => true,
+impl From<LBKDDMAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: LBKDDMAS_A) -> Self {
+        match variant {
+            LBKDDMAS_A::_0 => false,
+            LBKDDMAS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LBKDDMASR {
-        match value {
-            false => LBKDDMASR::_0,
-            true => LBKDDMASR::_1,
+}
+#[doc = "Reader of field `LBKDDMAS`"]
+pub type LBKDDMAS_R = crate::R<bool, LBKDDMAS_A>;
+impl LBKDDMAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LBKDDMAS_A {
+        match self.bits {
+            false => LBKDDMAS_A::_0,
+            true => LBKDDMAS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LBKDDMASR::_0
+        *self == LBKDDMAS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LBKDDMASR::_1
+        *self == LBKDDMAS_A::_1
     }
 }
-#[doc = "Possible values of the field `ILDMAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ILDMASR {
-    #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE interrupt request signal is asserted to request an interrupt service."]
-    _0,
-    #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl ILDMASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ILDMASR::_0 => false,
-            ILDMASR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ILDMASR {
-        match value {
-            false => ILDMASR::_0,
-            true => ILDMASR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ILDMASR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ILDMASR::_1
-    }
-}
-#[doc = "Possible values of the field `RDMAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RDMASR {
-    #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDFR interrupt request signal is asserted to request an interrupt service."]
-    _0,
-    #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDRF DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl RDMASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RDMASR::_0 => false,
-            RDMASR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RDMASR {
-        match value {
-            false => RDMASR::_0,
-            true => RDMASR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RDMASR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RDMASR::_1
-    }
-}
-#[doc = "Possible values of the field `TCDMAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCDMASR {
-    #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC interrupt request signal is asserted to request an interrupt service."]
-    _0,
-    #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl TCDMASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TCDMASR::_0 => false,
-            TCDMASR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TCDMASR {
-        match value {
-            false => TCDMASR::_0,
-            true => TCDMASR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TCDMASR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TCDMASR::_1
-    }
-}
-#[doc = "Possible values of the field `TDMAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TDMASR {
-    #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE interrupt request signal is asserted to request interrupt service."]
-    _0,
-    #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl TDMASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TDMASR::_0 => false,
-            TDMASR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TDMASR {
-        match value {
-            false => TDMASR::_0,
-            true => TDMASR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TDMASR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TDMASR::_1
-    }
-}
-#[doc = "Values that can be written to the field `LBKDDMAS`"]
-pub enum LBKDDMASW {
-    #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF interrupt signal is asserted to request an interrupt service."]
-    _0,
-    #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl LBKDDMASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LBKDDMASW::_0 => false,
-            LBKDDMASW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LBKDDMASW<'a> {
+#[doc = "Write proxy for field `LBKDDMAS`"]
+pub struct LBKDDMAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LBKDDMASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LBKDDMASW) -> &'a mut W {
+impl<'a> LBKDDMAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LBKDDMAS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF interrupt signal is asserted to request an interrupt service."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LBKDDMASW::_0)
+        self.variant(LBKDDMAS_A::_0)
     }
     #[doc = "If BDH\\[LBKDIE\\] and S2\\[LBKDIF\\] are set, the LBKDIF DMA request signal is asserted to request a DMA transfer."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LBKDDMASW::_1)
+        self.variant(LBKDDMAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ILDMAS`"]
-pub enum ILDMASW {
+#[doc = "Idle Line DMA Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ILDMAS_A {
+    #[doc = "0: If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE interrupt request signal is asserted to request an interrupt service."]
+    _0,
+    #[doc = "1: If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE DMA request signal is asserted to request a DMA transfer."]
+    _1,
+}
+impl From<ILDMAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: ILDMAS_A) -> Self {
+        match variant {
+            ILDMAS_A::_0 => false,
+            ILDMAS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ILDMAS`"]
+pub type ILDMAS_R = crate::R<bool, ILDMAS_A>;
+impl ILDMAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ILDMAS_A {
+        match self.bits {
+            false => ILDMAS_A::_0,
+            true => ILDMAS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ILDMAS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ILDMAS_A::_1
+    }
+}
+#[doc = "Write proxy for field `ILDMAS`"]
+pub struct ILDMAS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ILDMAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ILDMAS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE interrupt request signal is asserted to request an interrupt service."]
-    _0,
-    #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE DMA request signal is asserted to request a DMA transfer."]
-    _1,
-}
-impl ILDMASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ILDMASW::_0 => false,
-            ILDMASW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ILDMASW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ILDMASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ILDMASW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE interrupt request signal is asserted to request an interrupt service."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ILDMASW::_0)
+        self.variant(ILDMAS_A::_0)
     }
     #[doc = "If C2\\[ILIE\\] and S1\\[IDLE\\] are set, the IDLE DMA request signal is asserted to request a DMA transfer."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ILDMASW::_1)
+        self.variant(ILDMAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RDMAS`"]
-pub enum RDMASW {
-    #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDFR interrupt request signal is asserted to request an interrupt service."]
+#[doc = "Receiver Full DMA Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RDMAS_A {
+    #[doc = "0: If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDFR interrupt request signal is asserted to request an interrupt service."]
     _0,
-    #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDRF DMA request signal is asserted to request a DMA transfer."]
+    #[doc = "1: If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDRF DMA request signal is asserted to request a DMA transfer."]
     _1,
 }
-impl RDMASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RDMASW::_0 => false,
-            RDMASW::_1 => true,
+impl From<RDMAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: RDMAS_A) -> Self {
+        match variant {
+            RDMAS_A::_0 => false,
+            RDMAS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RDMASW<'a> {
+#[doc = "Reader of field `RDMAS`"]
+pub type RDMAS_R = crate::R<bool, RDMAS_A>;
+impl RDMAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RDMAS_A {
+        match self.bits {
+            false => RDMAS_A::_0,
+            true => RDMAS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RDMAS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RDMAS_A::_1
+    }
+}
+#[doc = "Write proxy for field `RDMAS`"]
+pub struct RDMAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDMASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RDMASW) -> &'a mut W {
+impl<'a> RDMAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RDMAS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDFR interrupt request signal is asserted to request an interrupt service."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RDMASW::_0)
+        self.variant(RDMAS_A::_0)
     }
     #[doc = "If C2\\[RIE\\] and S1\\[RDRF\\] are set, the RDRF DMA request signal is asserted to request a DMA transfer."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RDMASW::_1)
+        self.variant(RDMAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TCDMAS`"]
-pub enum TCDMASW {
-    #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC interrupt request signal is asserted to request an interrupt service."]
+#[doc = "Transmission Complete DMA Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TCDMAS_A {
+    #[doc = "0: If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC interrupt request signal is asserted to request an interrupt service."]
     _0,
-    #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC DMA request signal is asserted to request a DMA transfer."]
+    #[doc = "1: If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC DMA request signal is asserted to request a DMA transfer."]
     _1,
 }
-impl TCDMASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TCDMASW::_0 => false,
-            TCDMASW::_1 => true,
+impl From<TCDMAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: TCDMAS_A) -> Self {
+        match variant {
+            TCDMAS_A::_0 => false,
+            TCDMAS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TCDMASW<'a> {
+#[doc = "Reader of field `TCDMAS`"]
+pub type TCDMAS_R = crate::R<bool, TCDMAS_A>;
+impl TCDMAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TCDMAS_A {
+        match self.bits {
+            false => TCDMAS_A::_0,
+            true => TCDMAS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TCDMAS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TCDMAS_A::_1
+    }
+}
+#[doc = "Write proxy for field `TCDMAS`"]
+pub struct TCDMAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TCDMASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TCDMASW) -> &'a mut W {
+impl<'a> TCDMAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TCDMAS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC interrupt request signal is asserted to request an interrupt service."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TCDMASW::_0)
+        self.variant(TCDMAS_A::_0)
     }
     #[doc = "If C2\\[TCIE\\] is set and the S1\\[TC\\] flag is set, the TC DMA request signal is asserted to request a DMA transfer."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TCDMASW::_1)
+        self.variant(TCDMAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TDMAS`"]
-pub enum TDMASW {
-    #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE interrupt request signal is asserted to request interrupt service."]
+#[doc = "Transmitter DMA Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TDMAS_A {
+    #[doc = "0: If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE interrupt request signal is asserted to request interrupt service."]
     _0,
-    #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE DMA request signal is asserted to request a DMA transfer."]
+    #[doc = "1: If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE DMA request signal is asserted to request a DMA transfer."]
     _1,
 }
-impl TDMASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TDMASW::_0 => false,
-            TDMASW::_1 => true,
+impl From<TDMAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: TDMAS_A) -> Self {
+        match variant {
+            TDMAS_A::_0 => false,
+            TDMAS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TDMASW<'a> {
+#[doc = "Reader of field `TDMAS`"]
+pub type TDMAS_R = crate::R<bool, TDMAS_A>;
+impl TDMAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TDMAS_A {
+        match self.bits {
+            false => TDMAS_A::_0,
+            true => TDMAS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TDMAS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TDMAS_A::_1
+    }
+}
+#[doc = "Write proxy for field `TDMAS`"]
+pub struct TDMAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDMASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TDMASW) -> &'a mut W {
+impl<'a> TDMAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TDMAS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE interrupt request signal is asserted to request interrupt service."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TDMASW::_0)
+        self.variant(TDMAS_A::_0)
     }
     #[doc = "If C2\\[TIE\\] is set and the S1\\[TDRE\\] flag is set, the TDRE DMA request signal is asserted to request a DMA transfer."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TDMASW::_1)
+        self.variant(TDMAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 3 - LIN Break Detect DMA Select Bit"]
-    #[inline]
-    pub fn lbkddmas(&self) -> LBKDDMASR {
-        LBKDDMASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lbkddmas(&self) -> LBKDDMAS_R {
+        LBKDDMAS_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Idle Line DMA Select"]
-    #[inline]
-    pub fn ildmas(&self) -> ILDMASR {
-        ILDMASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ildmas(&self) -> ILDMAS_R {
+        ILDMAS_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Receiver Full DMA Select"]
-    #[inline]
-    pub fn rdmas(&self) -> RDMASR {
-        RDMASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rdmas(&self) -> RDMAS_R {
+        RDMAS_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Transmission Complete DMA Select"]
-    #[inline]
-    pub fn tcdmas(&self) -> TCDMASR {
-        TCDMASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn tcdmas(&self) -> TCDMAS_R {
+        TCDMAS_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Transmitter DMA Select"]
-    #[inline]
-    pub fn tdmas(&self) -> TDMASR {
-        TDMASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn tdmas(&self) -> TDMAS_R {
+        TDMAS_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 3 - LIN Break Detect DMA Select Bit"]
-    #[inline]
-    pub fn lbkddmas(&mut self) -> _LBKDDMASW {
-        _LBKDDMASW { w: self }
+    #[inline(always)]
+    pub fn lbkddmas(&mut self) -> LBKDDMAS_W {
+        LBKDDMAS_W { w: self }
     }
     #[doc = "Bit 4 - Idle Line DMA Select"]
-    #[inline]
-    pub fn ildmas(&mut self) -> _ILDMASW {
-        _ILDMASW { w: self }
+    #[inline(always)]
+    pub fn ildmas(&mut self) -> ILDMAS_W {
+        ILDMAS_W { w: self }
     }
     #[doc = "Bit 5 - Receiver Full DMA Select"]
-    #[inline]
-    pub fn rdmas(&mut self) -> _RDMASW {
-        _RDMASW { w: self }
+    #[inline(always)]
+    pub fn rdmas(&mut self) -> RDMAS_W {
+        RDMAS_W { w: self }
     }
     #[doc = "Bit 6 - Transmission Complete DMA Select"]
-    #[inline]
-    pub fn tcdmas(&mut self) -> _TCDMASW {
-        _TCDMASW { w: self }
+    #[inline(always)]
+    pub fn tcdmas(&mut self) -> TCDMAS_W {
+        TCDMAS_W { w: self }
     }
     #[doc = "Bit 7 - Transmitter DMA Select"]
-    #[inline]
-    pub fn tdmas(&mut self) -> _TDMASW {
-        _TDMASW { w: self }
+    #[inline(always)]
+    pub fn tdmas(&mut self) -> TDMAS_W {
+        TDMAS_W { w: self }
     }
 }

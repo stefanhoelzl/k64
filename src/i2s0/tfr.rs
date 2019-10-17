@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::TFR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RFPR {
-    bits: u8,
-}
-impl RFPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct WFPR {
-    bits: u8,
-}
-impl WFPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register TFR%s"]
+pub type R = crate::R<u32, super::TFR>;
+#[doc = "Reader of field `RFP`"]
+pub type RFP_R = crate::R<u8, u8>;
+#[doc = "Reader of field `WFP`"]
+pub type WFP_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Read FIFO Pointer"]
-    #[inline]
-    pub fn rfp(&self) -> RFPR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        RFPR { bits }
+    #[inline(always)]
+    pub fn rfp(&self) -> RFP_R {
+        RFP_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 16:19 - Write FIFO Pointer"]
-    #[inline]
-    pub fn wfp(&self) -> WFPR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        WFPR { bits }
+    #[inline(always)]
+    pub fn wfp(&self) -> WFP_R {
+        WFP_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
 }

@@ -1,656 +1,419 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TCR"]
+pub type R = crate::R<u32, super::TCR>;
+#[doc = "Writer for register TCR"]
+pub type W = crate::W<u32, super::TCR>;
+#[doc = "Register TCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct GTSR {
-    bits: bool,
+#[doc = "Reader of field `GTS`"]
+pub type GTS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `GTS`"]
+pub struct GTS_W<'a> {
+    w: &'a mut W,
 }
-impl GTSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> GTS_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FDENR {
-    bits: bool,
-}
-impl FDENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
     }
 }
-#[doc = "Possible values of the field `TFC_PAUSE`"]
+#[doc = "Reader of field `FDEN`"]
+pub type FDEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FDEN`"]
+pub struct FDEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FDEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "Transmit Frame Control Pause\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFC_PAUSER {
-    #[doc = "No PAUSE frame transmitted."]
+pub enum TFC_PAUSE_A {
+    #[doc = "0: No PAUSE frame transmitted."]
     _0,
-    #[doc = "The MAC stops transmission of data frames after the current transmission is complete."]
+    #[doc = "1: The MAC stops transmission of data frames after the current transmission is complete."]
     _1,
 }
-impl TFC_PAUSER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TFC_PAUSER::_0 => false,
-            TFC_PAUSER::_1 => true,
+impl From<TFC_PAUSE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TFC_PAUSE_A) -> Self {
+        match variant {
+            TFC_PAUSE_A::_0 => false,
+            TFC_PAUSE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TFC_PAUSER {
-        match value {
-            false => TFC_PAUSER::_0,
-            true => TFC_PAUSER::_1,
+}
+#[doc = "Reader of field `TFC_PAUSE`"]
+pub type TFC_PAUSE_R = crate::R<bool, TFC_PAUSE_A>;
+impl TFC_PAUSE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TFC_PAUSE_A {
+        match self.bits {
+            false => TFC_PAUSE_A::_0,
+            true => TFC_PAUSE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == TFC_PAUSER::_0
+        *self == TFC_PAUSE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == TFC_PAUSER::_1
+        *self == TFC_PAUSE_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct RFC_PAUSER {
-    bits: bool,
+#[doc = "Write proxy for field `TFC_PAUSE`"]
+pub struct TFC_PAUSE_W<'a> {
+    w: &'a mut W,
 }
-impl RFC_PAUSER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Possible values of the field `ADDSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADDSELR {
-    #[doc = "Node MAC address programmed on PADDR1/2 registers."]
-    _000,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl ADDSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            ADDSELR::_000 => 0,
-            ADDSELR::_Reserved(bits) => bits,
+impl<'a> TFC_PAUSE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TFC_PAUSE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> ADDSELR {
-        match value {
-            0 => ADDSELR::_000,
-            i => ADDSELR::_Reserved(i),
+    #[doc = "No PAUSE frame transmitted."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(TFC_PAUSE_A::_0)
+    }
+    #[doc = "The MAC stops transmission of data frames after the current transmission is complete."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(TFC_PAUSE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "Reader of field `RFC_PAUSE`"]
+pub type RFC_PAUSE_R = crate::R<bool, bool>;
+#[doc = "Source MAC Address Select On Transmit\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADDSEL_A {
+    #[doc = "0: Node MAC address programmed on PADDR1/2 registers."]
+    _000,
+}
+impl From<ADDSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: ADDSEL_A) -> Self {
+        match variant {
+            ADDSEL_A::_000 => 0,
+        }
+    }
+}
+#[doc = "Reader of field `ADDSEL`"]
+pub type ADDSEL_R = crate::R<u8, ADDSEL_A>;
+impl ADDSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, ADDSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(ADDSEL_A::_000),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == ADDSELR::_000
+        *self == ADDSEL_A::_000
     }
 }
-#[doc = "Possible values of the field `ADDINS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADDINSR {
-    #[doc = "The source MAC address is not modified by the MAC."]
-    _0,
-    #[doc = "The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL."]
-    _1,
-}
-impl ADDINSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ADDINSR::_0 => false,
-            ADDINSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ADDINSR {
-        match value {
-            false => ADDINSR::_0,
-            true => ADDINSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ADDINSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ADDINSR::_1
-    }
-}
-#[doc = "Possible values of the field `CRCFWD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CRCFWDR {
-    #[doc = "TxBD\\[TC\\] controls whether the frame has a CRC from the application."]
-    _0,
-    #[doc = "The transmitter does not append any CRC to transmitted frames, as it is expecting a frame with CRC from the application."]
-    _1,
-}
-impl CRCFWDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CRCFWDR::_0 => false,
-            CRCFWDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CRCFWDR {
-        match value {
-            false => CRCFWDR::_0,
-            true => CRCFWDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CRCFWDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CRCFWDR::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _GTSW<'a> {
+#[doc = "Write proxy for field `ADDSEL`"]
+pub struct ADDSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GTSW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FDENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FDENW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TFC_PAUSE`"]
-pub enum TFC_PAUSEW {
-    #[doc = "No PAUSE frame transmitted."]
-    _0,
-    #[doc = "The MAC stops transmission of data frames after the current transmission is complete."]
-    _1,
-}
-impl TFC_PAUSEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TFC_PAUSEW::_0 => false,
-            TFC_PAUSEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TFC_PAUSEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TFC_PAUSEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TFC_PAUSEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No PAUSE frame transmitted."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(TFC_PAUSEW::_0)
-    }
-    #[doc = "The MAC stops transmission of data frames after the current transmission is complete."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(TFC_PAUSEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ADDSEL`"]
-pub enum ADDSELW {
-    #[doc = "Node MAC address programmed on PADDR1/2 registers."]
-    _000,
-}
-impl ADDSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            ADDSELW::_000 => 0,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ADDSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ADDSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADDSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> ADDSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADDSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Node MAC address programmed on PADDR1/2 registers."]
-    #[inline]
+    #[inline(always)]
     pub fn _000(self) -> &'a mut W {
-        self.variant(ADDSELW::_000)
+        self.variant(ADDSEL_A::_000)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 5)) | (((value as u32) & 0x07) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ADDINS`"]
-pub enum ADDINSW {
-    #[doc = "The source MAC address is not modified by the MAC."]
+#[doc = "Set MAC Address On Transmit\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ADDINS_A {
+    #[doc = "0: The source MAC address is not modified by the MAC."]
     _0,
-    #[doc = "The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL."]
+    #[doc = "1: The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL."]
     _1,
 }
-impl ADDINSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADDINSW::_0 => false,
-            ADDINSW::_1 => true,
+impl From<ADDINS_A> for bool {
+    #[inline(always)]
+    fn from(variant: ADDINS_A) -> Self {
+        match variant {
+            ADDINS_A::_0 => false,
+            ADDINS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ADDINSW<'a> {
+#[doc = "Reader of field `ADDINS`"]
+pub type ADDINS_R = crate::R<bool, ADDINS_A>;
+impl ADDINS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADDINS_A {
+        match self.bits {
+            false => ADDINS_A::_0,
+            true => ADDINS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ADDINS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ADDINS_A::_1
+    }
+}
+#[doc = "Write proxy for field `ADDINS`"]
+pub struct ADDINS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADDINSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADDINSW) -> &'a mut W {
+impl<'a> ADDINS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADDINS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The source MAC address is not modified by the MAC."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ADDINSW::_0)
+        self.variant(ADDINS_A::_0)
     }
     #[doc = "The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ADDINSW::_1)
+        self.variant(ADDINS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CRCFWD`"]
-pub enum CRCFWDW {
-    #[doc = "TxBD\\[TC\\] controls whether the frame has a CRC from the application."]
+#[doc = "Forward Frame From Application With CRC\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CRCFWD_A {
+    #[doc = "0: TxBD\\[TC\\] controls whether the frame has a CRC from the application."]
     _0,
-    #[doc = "The transmitter does not append any CRC to transmitted frames, as it is expecting a frame with CRC from the application."]
+    #[doc = "1: The transmitter does not append any CRC to transmitted frames, as it is expecting a frame with CRC from the application."]
     _1,
 }
-impl CRCFWDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CRCFWDW::_0 => false,
-            CRCFWDW::_1 => true,
+impl From<CRCFWD_A> for bool {
+    #[inline(always)]
+    fn from(variant: CRCFWD_A) -> Self {
+        match variant {
+            CRCFWD_A::_0 => false,
+            CRCFWD_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CRCFWDW<'a> {
+#[doc = "Reader of field `CRCFWD`"]
+pub type CRCFWD_R = crate::R<bool, CRCFWD_A>;
+impl CRCFWD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CRCFWD_A {
+        match self.bits {
+            false => CRCFWD_A::_0,
+            true => CRCFWD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CRCFWD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CRCFWD_A::_1
+    }
+}
+#[doc = "Write proxy for field `CRCFWD`"]
+pub struct CRCFWD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRCFWDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CRCFWDW) -> &'a mut W {
+impl<'a> CRCFWD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CRCFWD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "TxBD\\[TC\\] controls whether the frame has a CRC from the application."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CRCFWDW::_0)
+        self.variant(CRCFWD_A::_0)
     }
     #[doc = "The transmitter does not append any CRC to transmitted frames, as it is expecting a frame with CRC from the application."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CRCFWDW::_1)
+        self.variant(CRCFWD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Graceful Transmit Stop"]
-    #[inline]
-    pub fn gts(&self) -> GTSR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        GTSR { bits }
+    #[inline(always)]
+    pub fn gts(&self) -> GTS_R {
+        GTS_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 2 - Full-Duplex Enable"]
-    #[inline]
-    pub fn fden(&self) -> FDENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        FDENR { bits }
+    #[inline(always)]
+    pub fn fden(&self) -> FDEN_R {
+        FDEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Transmit Frame Control Pause"]
-    #[inline]
-    pub fn tfc_pause(&self) -> TFC_PAUSER {
-        TFC_PAUSER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tfc_pause(&self) -> TFC_PAUSE_R {
+        TFC_PAUSE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Receive Frame Control Pause"]
-    #[inline]
-    pub fn rfc_pause(&self) -> RFC_PAUSER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RFC_PAUSER { bits }
+    #[inline(always)]
+    pub fn rfc_pause(&self) -> RFC_PAUSE_R {
+        RFC_PAUSE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 5:7 - Source MAC Address Select On Transmit"]
-    #[inline]
-    pub fn addsel(&self) -> ADDSELR {
-        ADDSELR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn addsel(&self) -> ADDSEL_R {
+        ADDSEL_R::new(((self.bits >> 5) & 0x07) as u8)
     }
     #[doc = "Bit 8 - Set MAC Address On Transmit"]
-    #[inline]
-    pub fn addins(&self) -> ADDINSR {
-        ADDINSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn addins(&self) -> ADDINS_R {
+        ADDINS_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Forward Frame From Application With CRC"]
-    #[inline]
-    pub fn crcfwd(&self) -> CRCFWDR {
-        CRCFWDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn crcfwd(&self) -> CRCFWD_R {
+        CRCFWD_R::new(((self.bits >> 9) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Graceful Transmit Stop"]
-    #[inline]
-    pub fn gts(&mut self) -> _GTSW {
-        _GTSW { w: self }
+    #[inline(always)]
+    pub fn gts(&mut self) -> GTS_W {
+        GTS_W { w: self }
     }
     #[doc = "Bit 2 - Full-Duplex Enable"]
-    #[inline]
-    pub fn fden(&mut self) -> _FDENW {
-        _FDENW { w: self }
+    #[inline(always)]
+    pub fn fden(&mut self) -> FDEN_W {
+        FDEN_W { w: self }
     }
     #[doc = "Bit 3 - Transmit Frame Control Pause"]
-    #[inline]
-    pub fn tfc_pause(&mut self) -> _TFC_PAUSEW {
-        _TFC_PAUSEW { w: self }
+    #[inline(always)]
+    pub fn tfc_pause(&mut self) -> TFC_PAUSE_W {
+        TFC_PAUSE_W { w: self }
     }
     #[doc = "Bits 5:7 - Source MAC Address Select On Transmit"]
-    #[inline]
-    pub fn addsel(&mut self) -> _ADDSELW {
-        _ADDSELW { w: self }
+    #[inline(always)]
+    pub fn addsel(&mut self) -> ADDSEL_W {
+        ADDSEL_W { w: self }
     }
     #[doc = "Bit 8 - Set MAC Address On Transmit"]
-    #[inline]
-    pub fn addins(&mut self) -> _ADDINSW {
-        _ADDINSW { w: self }
+    #[inline(always)]
+    pub fn addins(&mut self) -> ADDINS_W {
+        ADDINS_W { w: self }
     }
     #[doc = "Bit 9 - Forward Frame From Application With CRC"]
-    #[inline]
-    pub fn crcfwd(&mut self) -> _CRCFWDW {
-        _CRCFWDW { w: self }
+    #[inline(always)]
+    pub fn crcfwd(&mut self) -> CRCFWD_W {
+        CRCFWD_W { w: self }
     }
 }

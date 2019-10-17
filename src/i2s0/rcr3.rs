@@ -1,343 +1,216 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RCR3 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RCR3"]
+pub type R = crate::R<u32, super::RCR3>;
+#[doc = "Writer for register RCR3"]
+pub type W = crate::W<u32, super::RCR3>;
+#[doc = "Register RCR3 `reset()`'s with value 0"]
+impl crate::ResetValue for super::RCR3 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct WDFLR {
-    bits: u8,
-}
-impl WDFLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `RCE0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RCE0R {
-    #[doc = "Receive data channel N is disabled."]
-    _0,
-    #[doc = "Receive data channel N is enabled."]
-    _1,
-}
-impl RCE0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RCE0R::_0 => false,
-            RCE0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RCE0R {
-        match value {
-            false => RCE0R::_0,
-            true => RCE0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RCE0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RCE0R::_1
-    }
-}
-#[doc = "Possible values of the field `RCE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RCE1R {
-    #[doc = "Receive data channel N is disabled."]
-    _0,
-    #[doc = "Receive data channel N is enabled."]
-    _1,
-}
-impl RCE1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RCE1R::_0 => false,
-            RCE1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RCE1R {
-        match value {
-            false => RCE1R::_0,
-            true => RCE1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RCE1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RCE1R::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WDFLW<'a> {
+#[doc = "Reader of field `WDFL`"]
+pub type WDFL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `WDFL`"]
+pub struct WDFL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDFLW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> WDFL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u32) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RCE0`"]
-pub enum RCE0W {
-    #[doc = "Receive data channel N is disabled."]
+#[doc = "Receive Channel Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RCE0_A {
+    #[doc = "0: Receive data channel N is disabled."]
     _0,
-    #[doc = "Receive data channel N is enabled."]
+    #[doc = "1: Receive data channel N is enabled."]
     _1,
 }
-impl RCE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RCE0W::_0 => false,
-            RCE0W::_1 => true,
+impl From<RCE0_A> for bool {
+    #[inline(always)]
+    fn from(variant: RCE0_A) -> Self {
+        match variant {
+            RCE0_A::_0 => false,
+            RCE0_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RCE0W<'a> {
+#[doc = "Reader of field `RCE0`"]
+pub type RCE0_R = crate::R<bool, RCE0_A>;
+impl RCE0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RCE0_A {
+        match self.bits {
+            false => RCE0_A::_0,
+            true => RCE0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RCE0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RCE0_A::_1
+    }
+}
+#[doc = "Write proxy for field `RCE0`"]
+pub struct RCE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RCE0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RCE0W) -> &'a mut W {
+impl<'a> RCE0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RCE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Receive data channel N is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RCE0W::_0)
+        self.variant(RCE0_A::_0)
     }
     #[doc = "Receive data channel N is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RCE0W::_1)
+        self.variant(RCE0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RCE1`"]
-pub enum RCE1W {
-    #[doc = "Receive data channel N is disabled."]
+#[doc = "Receive Channel Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RCE1_A {
+    #[doc = "0: Receive data channel N is disabled."]
     _0,
-    #[doc = "Receive data channel N is enabled."]
+    #[doc = "1: Receive data channel N is enabled."]
     _1,
 }
-impl RCE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RCE1W::_0 => false,
-            RCE1W::_1 => true,
+impl From<RCE1_A> for bool {
+    #[inline(always)]
+    fn from(variant: RCE1_A) -> Self {
+        match variant {
+            RCE1_A::_0 => false,
+            RCE1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RCE1W<'a> {
+#[doc = "Reader of field `RCE1`"]
+pub type RCE1_R = crate::R<bool, RCE1_A>;
+impl RCE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RCE1_A {
+        match self.bits {
+            false => RCE1_A::_0,
+            true => RCE1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RCE1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RCE1_A::_1
+    }
+}
+#[doc = "Write proxy for field `RCE1`"]
+pub struct RCE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RCE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RCE1W) -> &'a mut W {
+impl<'a> RCE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RCE1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Receive data channel N is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RCE1W::_0)
+        self.variant(RCE1_A::_0)
     }
     #[doc = "Receive data channel N is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RCE1W::_1)
+        self.variant(RCE1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Word Flag Configuration"]
-    #[inline]
-    pub fn wdfl(&self) -> WDFLR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        WDFLR { bits }
+    #[inline(always)]
+    pub fn wdfl(&self) -> WDFL_R {
+        WDFL_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 16 - Receive Channel Enable"]
-    #[inline]
-    pub fn rce0(&self) -> RCE0R {
-        RCE0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rce0(&self) -> RCE0_R {
+        RCE0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Receive Channel Enable"]
-    #[inline]
-    pub fn rce1(&self) -> RCE1R {
-        RCE1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rce1(&self) -> RCE1_R {
+        RCE1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Word Flag Configuration"]
-    #[inline]
-    pub fn wdfl(&mut self) -> _WDFLW {
-        _WDFLW { w: self }
+    #[inline(always)]
+    pub fn wdfl(&mut self) -> WDFL_W {
+        WDFL_W { w: self }
     }
     #[doc = "Bit 16 - Receive Channel Enable"]
-    #[inline]
-    pub fn rce0(&mut self) -> _RCE0W {
-        _RCE0W { w: self }
+    #[inline(always)]
+    pub fn rce0(&mut self) -> RCE0_W {
+        RCE0_W { w: self }
     }
     #[doc = "Bit 17 - Receive Channel Enable"]
-    #[inline]
-    pub fn rce1(&mut self) -> _RCE1W {
-        _RCE1W { w: self }
+    #[inline(always)]
+    pub fn rce1(&mut self) -> RCE1_W {
+        RCE1_W { w: self }
     }
 }

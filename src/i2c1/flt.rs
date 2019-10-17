@@ -1,626 +1,432 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::FLT {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register FLT"]
+pub type R = crate::R<u8, super::FLT>;
+#[doc = "Writer for register FLT"]
+pub type W = crate::W<u8, super::FLT>;
+#[doc = "Register FLT `reset()`'s with value 0"]
+impl crate::ResetValue for super::FLT {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `FLT`"]
+#[doc = "I2C Programmable Filter Factor\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FLTR {
-    #[doc = "No filter/bypass"]
+pub enum FLT_A {
+    #[doc = "0: No filter/bypass"]
     _0,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl FLTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FLTR::_0 => 0,
-            FLTR::_Reserved(bits) => bits,
+impl From<FLT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FLT_A) -> Self {
+        match variant {
+            FLT_A::_0 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FLTR {
-        match value {
-            0 => FLTR::_0,
-            i => FLTR::_Reserved(i),
+}
+#[doc = "Reader of field `FLT`"]
+pub type FLT_R = crate::R<u8, FLT_A>;
+impl FLT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FLT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(FLT_A::_0),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == FLTR::_0
+        *self == FLT_A::_0
     }
 }
-#[doc = "Possible values of the field `STARTF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STARTFR {
-    #[doc = "No start happens on I2C bus"]
-    _0,
-    #[doc = "Start detected on I2C bus"]
-    _1,
-}
-impl STARTFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            STARTFR::_0 => false,
-            STARTFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> STARTFR {
-        match value {
-            false => STARTFR::_0,
-            true => STARTFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == STARTFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == STARTFR::_1
-    }
-}
-#[doc = "Possible values of the field `SSIE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SSIER {
-    #[doc = "Stop or start detection interrupt is disabled"]
-    _0,
-    #[doc = "Stop or start detection interrupt is enabled"]
-    _1,
-}
-impl SSIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SSIER::_0 => false,
-            SSIER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SSIER {
-        match value {
-            false => SSIER::_0,
-            true => SSIER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SSIER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SSIER::_1
-    }
-}
-#[doc = "Possible values of the field `STOPF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STOPFR {
-    #[doc = "No stop happens on I2C bus"]
-    _0,
-    #[doc = "Stop detected on I2C bus"]
-    _1,
-}
-impl STOPFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            STOPFR::_0 => false,
-            STOPFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> STOPFR {
-        match value {
-            false => STOPFR::_0,
-            true => STOPFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == STOPFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == STOPFR::_1
-    }
-}
-#[doc = "Possible values of the field `SHEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SHENR {
-    #[doc = "Stop holdoff is disabled. The MCU's entry to stop mode is not gated."]
-    _0,
-    #[doc = "Stop holdoff is enabled."]
-    _1,
-}
-impl SHENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SHENR::_0 => false,
-            SHENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SHENR {
-        match value {
-            false => SHENR::_0,
-            true => SHENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SHENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SHENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `FLT`"]
-pub enum FLTW {
-    #[doc = "No filter/bypass"]
-    _0,
-}
-impl FLTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FLTW::_0 => 0,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FLTW<'a> {
+#[doc = "Write proxy for field `FLT`"]
+pub struct FLT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FLTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FLTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> FLT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FLT_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "No filter/bypass"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(FLTW::_0)
+        self.variant(FLT_A::_0)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u8) & 0x0f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `STARTF`"]
-pub enum STARTFW {
+#[doc = "I2C Bus Start Detect Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum STARTF_A {
+    #[doc = "0: No start happens on I2C bus"]
+    _0,
+    #[doc = "1: Start detected on I2C bus"]
+    _1,
+}
+impl From<STARTF_A> for bool {
+    #[inline(always)]
+    fn from(variant: STARTF_A) -> Self {
+        match variant {
+            STARTF_A::_0 => false,
+            STARTF_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `STARTF`"]
+pub type STARTF_R = crate::R<bool, STARTF_A>;
+impl STARTF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STARTF_A {
+        match self.bits {
+            false => STARTF_A::_0,
+            true => STARTF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == STARTF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == STARTF_A::_1
+    }
+}
+#[doc = "Write proxy for field `STARTF`"]
+pub struct STARTF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> STARTF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: STARTF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No start happens on I2C bus"]
-    _0,
-    #[doc = "Start detected on I2C bus"]
-    _1,
-}
-impl STARTFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            STARTFW::_0 => false,
-            STARTFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _STARTFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _STARTFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: STARTFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No start happens on I2C bus"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(STARTFW::_0)
+        self.variant(STARTF_A::_0)
     }
     #[doc = "Start detected on I2C bus"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(STARTFW::_1)
+        self.variant(STARTF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SSIE`"]
-pub enum SSIEW {
-    #[doc = "Stop or start detection interrupt is disabled"]
+#[doc = "I2C Bus Stop or Start Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SSIE_A {
+    #[doc = "0: Stop or start detection interrupt is disabled"]
     _0,
-    #[doc = "Stop or start detection interrupt is enabled"]
+    #[doc = "1: Stop or start detection interrupt is enabled"]
     _1,
 }
-impl SSIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SSIEW::_0 => false,
-            SSIEW::_1 => true,
+impl From<SSIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: SSIE_A) -> Self {
+        match variant {
+            SSIE_A::_0 => false,
+            SSIE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SSIEW<'a> {
+#[doc = "Reader of field `SSIE`"]
+pub type SSIE_R = crate::R<bool, SSIE_A>;
+impl SSIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SSIE_A {
+        match self.bits {
+            false => SSIE_A::_0,
+            true => SSIE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SSIE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SSIE_A::_1
+    }
+}
+#[doc = "Write proxy for field `SSIE`"]
+pub struct SSIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SSIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SSIEW) -> &'a mut W {
+impl<'a> SSIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SSIE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Stop or start detection interrupt is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SSIEW::_0)
+        self.variant(SSIE_A::_0)
     }
     #[doc = "Stop or start detection interrupt is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SSIEW::_1)
+        self.variant(SSIE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `STOPF`"]
-pub enum STOPFW {
-    #[doc = "No stop happens on I2C bus"]
+#[doc = "I2C Bus Stop Detect Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum STOPF_A {
+    #[doc = "0: No stop happens on I2C bus"]
     _0,
-    #[doc = "Stop detected on I2C bus"]
+    #[doc = "1: Stop detected on I2C bus"]
     _1,
 }
-impl STOPFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            STOPFW::_0 => false,
-            STOPFW::_1 => true,
+impl From<STOPF_A> for bool {
+    #[inline(always)]
+    fn from(variant: STOPF_A) -> Self {
+        match variant {
+            STOPF_A::_0 => false,
+            STOPF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _STOPFW<'a> {
+#[doc = "Reader of field `STOPF`"]
+pub type STOPF_R = crate::R<bool, STOPF_A>;
+impl STOPF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STOPF_A {
+        match self.bits {
+            false => STOPF_A::_0,
+            true => STOPF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == STOPF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == STOPF_A::_1
+    }
+}
+#[doc = "Write proxy for field `STOPF`"]
+pub struct STOPF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STOPFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: STOPFW) -> &'a mut W {
+impl<'a> STOPF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: STOPF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No stop happens on I2C bus"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(STOPFW::_0)
+        self.variant(STOPF_A::_0)
     }
     #[doc = "Stop detected on I2C bus"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(STOPFW::_1)
+        self.variant(STOPF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SHEN`"]
-pub enum SHENW {
-    #[doc = "Stop holdoff is disabled. The MCU's entry to stop mode is not gated."]
+#[doc = "Stop Hold Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SHEN_A {
+    #[doc = "0: Stop holdoff is disabled. The MCU's entry to stop mode is not gated."]
     _0,
-    #[doc = "Stop holdoff is enabled."]
+    #[doc = "1: Stop holdoff is enabled."]
     _1,
 }
-impl SHENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SHENW::_0 => false,
-            SHENW::_1 => true,
+impl From<SHEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: SHEN_A) -> Self {
+        match variant {
+            SHEN_A::_0 => false,
+            SHEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SHENW<'a> {
+#[doc = "Reader of field `SHEN`"]
+pub type SHEN_R = crate::R<bool, SHEN_A>;
+impl SHEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SHEN_A {
+        match self.bits {
+            false => SHEN_A::_0,
+            true => SHEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SHEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SHEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `SHEN`"]
+pub struct SHEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SHENW) -> &'a mut W {
+impl<'a> SHEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SHEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Stop holdoff is disabled. The MCU's entry to stop mode is not gated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SHENW::_0)
+        self.variant(SHEN_A::_0)
     }
     #[doc = "Stop holdoff is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SHENW::_1)
+        self.variant(SHEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - I2C Programmable Filter Factor"]
-    #[inline]
-    pub fn flt(&self) -> FLTR {
-        FLTR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn flt(&self) -> FLT_R {
+        FLT_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bit 4 - I2C Bus Start Detect Flag"]
-    #[inline]
-    pub fn startf(&self) -> STARTFR {
-        STARTFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn startf(&self) -> STARTF_R {
+        STARTF_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - I2C Bus Stop or Start Interrupt Enable"]
-    #[inline]
-    pub fn ssie(&self) -> SSIER {
-        SSIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ssie(&self) -> SSIE_R {
+        SSIE_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - I2C Bus Stop Detect Flag"]
-    #[inline]
-    pub fn stopf(&self) -> STOPFR {
-        STOPFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn stopf(&self) -> STOPF_R {
+        STOPF_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Stop Hold Enable"]
-    #[inline]
-    pub fn shen(&self) -> SHENR {
-        SHENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn shen(&self) -> SHEN_R {
+        SHEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - I2C Programmable Filter Factor"]
-    #[inline]
-    pub fn flt(&mut self) -> _FLTW {
-        _FLTW { w: self }
+    #[inline(always)]
+    pub fn flt(&mut self) -> FLT_W {
+        FLT_W { w: self }
     }
     #[doc = "Bit 4 - I2C Bus Start Detect Flag"]
-    #[inline]
-    pub fn startf(&mut self) -> _STARTFW {
-        _STARTFW { w: self }
+    #[inline(always)]
+    pub fn startf(&mut self) -> STARTF_W {
+        STARTF_W { w: self }
     }
     #[doc = "Bit 5 - I2C Bus Stop or Start Interrupt Enable"]
-    #[inline]
-    pub fn ssie(&mut self) -> _SSIEW {
-        _SSIEW { w: self }
+    #[inline(always)]
+    pub fn ssie(&mut self) -> SSIE_W {
+        SSIE_W { w: self }
     }
     #[doc = "Bit 6 - I2C Bus Stop Detect Flag"]
-    #[inline]
-    pub fn stopf(&mut self) -> _STOPFW {
-        _STOPFW { w: self }
+    #[inline(always)]
+    pub fn stopf(&mut self) -> STOPF_W {
+        STOPF_W { w: self }
     }
     #[doc = "Bit 7 - Stop Hold Enable"]
-    #[inline]
-    pub fn shen(&mut self) -> _SHENW {
-        _SHENW { w: self }
+    #[inline(always)]
+    pub fn shen(&mut self) -> SHEN_W {
+        SHEN_W { w: self }
     }
 }

@@ -1,207 +1,133 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::EDR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `ERW`"]
+#[doc = "Reader of register EDR%s"]
+pub type R = crate::R<u32, super::EDR>;
+#[doc = "Error Read/Write\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ERWR {
-    #[doc = "Read"]
+pub enum ERW_A {
+    #[doc = "0: Read"]
     _0,
-    #[doc = "Write"]
+    #[doc = "1: Write"]
     _1,
 }
-impl ERWR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ERWR::_0 => false,
-            ERWR::_1 => true,
+impl From<ERW_A> for bool {
+    #[inline(always)]
+    fn from(variant: ERW_A) -> Self {
+        match variant {
+            ERW_A::_0 => false,
+            ERW_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ERWR {
-        match value {
-            false => ERWR::_0,
-            true => ERWR::_1,
+}
+#[doc = "Reader of field `ERW`"]
+pub type ERW_R = crate::R<bool, ERW_A>;
+impl ERW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ERW_A {
+        match self.bits {
+            false => ERW_A::_0,
+            true => ERW_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ERWR::_0
+        *self == ERW_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ERWR::_1
+        *self == ERW_A::_1
     }
 }
-#[doc = "Possible values of the field `EATTR`"]
+#[doc = "Error Attributes\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EATTRR {
-    #[doc = "User mode, instruction access"]
+pub enum EATTR_A {
+    #[doc = "0: User mode, instruction access"]
     _000,
-    #[doc = "User mode, data access"]
+    #[doc = "1: User mode, data access"]
     _001,
-    #[doc = "Supervisor mode, instruction access"]
+    #[doc = "2: Supervisor mode, instruction access"]
     _010,
-    #[doc = "Supervisor mode, data access"]
+    #[doc = "3: Supervisor mode, data access"]
     _011,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl EATTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            EATTRR::_000 => 0,
-            EATTRR::_001 => 1,
-            EATTRR::_010 => 2,
-            EATTRR::_011 => 3,
-            EATTRR::_Reserved(bits) => bits,
+impl From<EATTR_A> for u8 {
+    #[inline(always)]
+    fn from(variant: EATTR_A) -> Self {
+        match variant {
+            EATTR_A::_000 => 0,
+            EATTR_A::_001 => 1,
+            EATTR_A::_010 => 2,
+            EATTR_A::_011 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> EATTRR {
-        match value {
-            0 => EATTRR::_000,
-            1 => EATTRR::_001,
-            2 => EATTRR::_010,
-            3 => EATTRR::_011,
-            i => EATTRR::_Reserved(i),
+}
+#[doc = "Reader of field `EATTR`"]
+pub type EATTR_R = crate::R<u8, EATTR_A>;
+impl EATTR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, EATTR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(EATTR_A::_000),
+            1 => Val(EATTR_A::_001),
+            2 => Val(EATTR_A::_010),
+            3 => Val(EATTR_A::_011),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == EATTRR::_000
+        *self == EATTR_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == EATTRR::_001
+        *self == EATTR_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == EATTRR::_010
+        *self == EATTR_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == EATTRR::_011
+        *self == EATTR_A::_011
     }
 }
-#[doc = r" Value of the field"]
-pub struct EMNR {
-    bits: u8,
-}
-impl EMNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EPIDR {
-    bits: u8,
-}
-impl EPIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EACDR {
-    bits: u16,
-}
-impl EACDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of field `EMN`"]
+pub type EMN_R = crate::R<u8, u8>;
+#[doc = "Reader of field `EPID`"]
+pub type EPID_R = crate::R<u8, u8>;
+#[doc = "Reader of field `EACD`"]
+pub type EACD_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Error Read/Write"]
-    #[inline]
-    pub fn erw(&self) -> ERWR {
-        ERWR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn erw(&self) -> ERW_R {
+        ERW_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:3 - Error Attributes"]
-    #[inline]
-    pub fn eattr(&self) -> EATTRR {
-        EATTRR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn eattr(&self) -> EATTR_R {
+        EATTR_R::new(((self.bits >> 1) & 0x07) as u8)
     }
     #[doc = "Bits 4:7 - Error Master Number"]
-    #[inline]
-    pub fn emn(&self) -> EMNR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        EMNR { bits }
+    #[inline(always)]
+    pub fn emn(&self) -> EMN_R {
+        EMN_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
     #[doc = "Bits 8:15 - Error Process Identification"]
-    #[inline]
-    pub fn epid(&self) -> EPIDR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        EPIDR { bits }
+    #[inline(always)]
+    pub fn epid(&self) -> EPID_R {
+        EPID_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:31 - Error Access Control Detail"]
-    #[inline]
-    pub fn eacd(&self) -> EACDR {
-        let bits = {
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        EACDR { bits }
+    #[inline(always)]
+    pub fn eacd(&self) -> EACD_R {
+        EACD_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }

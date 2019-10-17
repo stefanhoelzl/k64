@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TACC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TACC"]
+pub type R = crate::R<u32, super::TACC>;
+#[doc = "Writer for register TACC"]
+pub type W = crate::W<u32, super::TACC>;
+#[doc = "Register TACC `reset()`'s with value 0"]
+impl crate::ResetValue for super::TACC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `SHIFT16`"]
+#[doc = "TX FIFO Shift-16\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SHIFT16R {
-    #[doc = "Disabled."]
+pub enum SHIFT16_A {
+    #[doc = "0: Disabled."]
     _0,
-    #[doc = "Indicates to the transmit data FIFO that the written frames contain two additional octets before the frame data. This means the actual frame begins at bit 16 of the first word written into the FIFO. This function allows putting the frame payload on a 32-bit boundary in memory, as the 14-byte Ethernet header is extended to a 16-byte header."]
+    #[doc = "1: Indicates to the transmit data FIFO that the written frames contain two additional octets before the frame data. This means the actual frame begins at bit 16 of the first word written into the FIFO. This function allows putting the frame payload on a 32-bit boundary in memory, as the 14-byte Ethernet header is extended to a 16-byte header."]
     _1,
 }
-impl SHIFT16R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SHIFT16R::_0 => false,
-            SHIFT16R::_1 => true,
+impl From<SHIFT16_A> for bool {
+    #[inline(always)]
+    fn from(variant: SHIFT16_A) -> Self {
+        match variant {
+            SHIFT16_A::_0 => false,
+            SHIFT16_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SHIFT16R {
-        match value {
-            false => SHIFT16R::_0,
-            true => SHIFT16R::_1,
+}
+#[doc = "Reader of field `SHIFT16`"]
+pub type SHIFT16_R = crate::R<bool, SHIFT16_A>;
+impl SHIFT16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SHIFT16_A {
+        match self.bits {
+            false => SHIFT16_A::_0,
+            true => SHIFT16_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SHIFT16R::_0
+        *self == SHIFT16_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SHIFT16R::_1
+        *self == SHIFT16_A::_1
     }
 }
-#[doc = "Possible values of the field `IPCHK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IPCHKR {
-    #[doc = "Checksum is not inserted."]
-    _0,
-    #[doc = "If an IP frame is transmitted, the checksum is inserted automatically. The IP header checksum field must be cleared. If a non-IP frame is transmitted the frame is not modified."]
-    _1,
-}
-impl IPCHKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IPCHKR::_0 => false,
-            IPCHKR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IPCHKR {
-        match value {
-            false => IPCHKR::_0,
-            true => IPCHKR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IPCHKR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IPCHKR::_1
-    }
-}
-#[doc = "Possible values of the field `PROCHK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PROCHKR {
-    #[doc = "Checksum not inserted."]
-    _0,
-    #[doc = "If an IP frame with a known protocol is transmitted, the checksum is inserted automatically into the frame. The checksum field must be cleared. The other frames are not modified."]
-    _1,
-}
-impl PROCHKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PROCHKR::_0 => false,
-            PROCHKR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PROCHKR {
-        match value {
-            false => PROCHKR::_0,
-            true => PROCHKR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PROCHKR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PROCHKR::_1
-    }
-}
-#[doc = "Values that can be written to the field `SHIFT16`"]
-pub enum SHIFT16W {
-    #[doc = "Disabled."]
-    _0,
-    #[doc = "Indicates to the transmit data FIFO that the written frames contain two additional octets before the frame data. This means the actual frame begins at bit 16 of the first word written into the FIFO. This function allows putting the frame payload on a 32-bit boundary in memory, as the 14-byte Ethernet header is extended to a 16-byte header."]
-    _1,
-}
-impl SHIFT16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SHIFT16W::_0 => false,
-            SHIFT16W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SHIFT16W<'a> {
+#[doc = "Write proxy for field `SHIFT16`"]
+pub struct SHIFT16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHIFT16W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SHIFT16W) -> &'a mut W {
+impl<'a> SHIFT16_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SHIFT16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SHIFT16W::_0)
+        self.variant(SHIFT16_A::_0)
     }
     #[doc = "Indicates to the transmit data FIFO that the written frames contain two additional octets before the frame data. This means the actual frame begins at bit 16 of the first word written into the FIFO. This function allows putting the frame payload on a 32-bit boundary in memory, as the 14-byte Ethernet header is extended to a 16-byte header."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SHIFT16W::_1)
+        self.variant(SHIFT16_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IPCHK`"]
-pub enum IPCHKW {
-    #[doc = "Checksum is not inserted."]
+#[doc = "Enables insertion of IP header checksum.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IPCHK_A {
+    #[doc = "0: Checksum is not inserted."]
     _0,
-    #[doc = "If an IP frame is transmitted, the checksum is inserted automatically. The IP header checksum field must be cleared. If a non-IP frame is transmitted the frame is not modified."]
+    #[doc = "1: If an IP frame is transmitted, the checksum is inserted automatically. The IP header checksum field must be cleared. If a non-IP frame is transmitted the frame is not modified."]
     _1,
 }
-impl IPCHKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IPCHKW::_0 => false,
-            IPCHKW::_1 => true,
+impl From<IPCHK_A> for bool {
+    #[inline(always)]
+    fn from(variant: IPCHK_A) -> Self {
+        match variant {
+            IPCHK_A::_0 => false,
+            IPCHK_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _IPCHKW<'a> {
+#[doc = "Reader of field `IPCHK`"]
+pub type IPCHK_R = crate::R<bool, IPCHK_A>;
+impl IPCHK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IPCHK_A {
+        match self.bits {
+            false => IPCHK_A::_0,
+            true => IPCHK_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IPCHK_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IPCHK_A::_1
+    }
+}
+#[doc = "Write proxy for field `IPCHK`"]
+pub struct IPCHK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IPCHKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IPCHKW) -> &'a mut W {
+impl<'a> IPCHK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IPCHK_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Checksum is not inserted."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IPCHKW::_0)
+        self.variant(IPCHK_A::_0)
     }
     #[doc = "If an IP frame is transmitted, the checksum is inserted automatically. The IP header checksum field must be cleared. If a non-IP frame is transmitted the frame is not modified."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IPCHKW::_1)
+        self.variant(IPCHK_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PROCHK`"]
-pub enum PROCHKW {
-    #[doc = "Checksum not inserted."]
+#[doc = "Enables insertion of protocol checksum.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PROCHK_A {
+    #[doc = "0: Checksum not inserted."]
     _0,
-    #[doc = "If an IP frame with a known protocol is transmitted, the checksum is inserted automatically into the frame. The checksum field must be cleared. The other frames are not modified."]
+    #[doc = "1: If an IP frame with a known protocol is transmitted, the checksum is inserted automatically into the frame. The checksum field must be cleared. The other frames are not modified."]
     _1,
 }
-impl PROCHKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PROCHKW::_0 => false,
-            PROCHKW::_1 => true,
+impl From<PROCHK_A> for bool {
+    #[inline(always)]
+    fn from(variant: PROCHK_A) -> Self {
+        match variant {
+            PROCHK_A::_0 => false,
+            PROCHK_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PROCHKW<'a> {
+#[doc = "Reader of field `PROCHK`"]
+pub type PROCHK_R = crate::R<bool, PROCHK_A>;
+impl PROCHK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PROCHK_A {
+        match self.bits {
+            false => PROCHK_A::_0,
+            true => PROCHK_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PROCHK_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PROCHK_A::_1
+    }
+}
+#[doc = "Write proxy for field `PROCHK`"]
+pub struct PROCHK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PROCHKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PROCHKW) -> &'a mut W {
+impl<'a> PROCHK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PROCHK_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Checksum not inserted."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PROCHKW::_0)
+        self.variant(PROCHK_A::_0)
     }
     #[doc = "If an IP frame with a known protocol is transmitted, the checksum is inserted automatically into the frame. The checksum field must be cleared. The other frames are not modified."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PROCHKW::_1)
+        self.variant(PROCHK_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - TX FIFO Shift-16"]
-    #[inline]
-    pub fn shift16(&self) -> SHIFT16R {
-        SHIFT16R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn shift16(&self) -> SHIFT16_R {
+        SHIFT16_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 3 - Enables insertion of IP header checksum."]
-    #[inline]
-    pub fn ipchk(&self) -> IPCHKR {
-        IPCHKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ipchk(&self) -> IPCHK_R {
+        IPCHK_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Enables insertion of protocol checksum."]
-    #[inline]
-    pub fn prochk(&self) -> PROCHKR {
-        PROCHKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn prochk(&self) -> PROCHK_R {
+        PROCHK_R::new(((self.bits >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - TX FIFO Shift-16"]
-    #[inline]
-    pub fn shift16(&mut self) -> _SHIFT16W {
-        _SHIFT16W { w: self }
+    #[inline(always)]
+    pub fn shift16(&mut self) -> SHIFT16_W {
+        SHIFT16_W { w: self }
     }
     #[doc = "Bit 3 - Enables insertion of IP header checksum."]
-    #[inline]
-    pub fn ipchk(&mut self) -> _IPCHKW {
-        _IPCHKW { w: self }
+    #[inline(always)]
+    pub fn ipchk(&mut self) -> IPCHK_W {
+        IPCHK_W { w: self }
     }
     #[doc = "Bit 4 - Enables insertion of protocol checksum."]
-    #[inline]
-    pub fn prochk(&mut self) -> _PROCHKW {
-        _PROCHKW { w: self }
+    #[inline(always)]
+    pub fn prochk(&mut self) -> PROCHK_W {
+        PROCHK_W { w: self }
     }
 }

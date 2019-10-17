@@ -1,391 +1,307 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::SR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `SECV`"]
+#[doc = "Reader of register SR"]
+pub type R = crate::R<u32, super::SR>;
+#[doc = "Security Violation\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SECVR {
-    #[doc = "No security violation"]
+pub enum SECV_A {
+    #[doc = "0: No security violation"]
     _0,
-    #[doc = "Security violation"]
+    #[doc = "1: Security violation"]
     _1,
 }
-impl SECVR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SECVR::_0 => false,
-            SECVR::_1 => true,
+impl From<SECV_A> for bool {
+    #[inline(always)]
+    fn from(variant: SECV_A) -> Self {
+        match variant {
+            SECV_A::_0 => false,
+            SECV_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SECVR {
-        match value {
-            false => SECVR::_0,
-            true => SECVR::_1,
+}
+#[doc = "Reader of field `SECV`"]
+pub type SECV_R = crate::R<bool, SECV_A>;
+impl SECV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SECV_A {
+        match self.bits {
+            false => SECV_A::_0,
+            true => SECV_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SECVR::_0
+        *self == SECV_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SECVR::_1
+        *self == SECV_A::_1
     }
 }
-#[doc = "Possible values of the field `LRS`"]
+#[doc = "Last Read Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LRSR {
-    #[doc = "No underflow"]
+pub enum LRS_A {
+    #[doc = "0: No underflow"]
     _0,
-    #[doc = "Underflow"]
+    #[doc = "1: Underflow"]
     _1,
 }
-impl LRSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LRSR::_0 => false,
-            LRSR::_1 => true,
+impl From<LRS_A> for bool {
+    #[inline(always)]
+    fn from(variant: LRS_A) -> Self {
+        match variant {
+            LRS_A::_0 => false,
+            LRS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LRSR {
-        match value {
-            false => LRSR::_0,
-            true => LRSR::_1,
+}
+#[doc = "Reader of field `LRS`"]
+pub type LRS_R = crate::R<bool, LRS_A>;
+impl LRS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LRS_A {
+        match self.bits {
+            false => LRS_A::_0,
+            true => LRS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LRSR::_0
+        *self == LRS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LRSR::_1
+        *self == LRS_A::_1
     }
 }
-#[doc = "Possible values of the field `ORU`"]
+#[doc = "Output Register Underflow\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ORUR {
-    #[doc = "No underflow"]
+pub enum ORU_A {
+    #[doc = "0: No underflow"]
     _0,
-    #[doc = "Underflow"]
+    #[doc = "1: Underflow"]
     _1,
 }
-impl ORUR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ORUR::_0 => false,
-            ORUR::_1 => true,
+impl From<ORU_A> for bool {
+    #[inline(always)]
+    fn from(variant: ORU_A) -> Self {
+        match variant {
+            ORU_A::_0 => false,
+            ORU_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ORUR {
-        match value {
-            false => ORUR::_0,
-            true => ORUR::_1,
+}
+#[doc = "Reader of field `ORU`"]
+pub type ORU_R = crate::R<bool, ORU_A>;
+impl ORU_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ORU_A {
+        match self.bits {
+            false => ORU_A::_0,
+            true => ORU_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ORUR::_0
+        *self == ORU_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ORUR::_1
+        *self == ORU_A::_1
     }
 }
-#[doc = "Possible values of the field `ERRI`"]
+#[doc = "Error Interrupt\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ERRIR {
-    #[doc = "No underflow"]
+pub enum ERRI_A {
+    #[doc = "0: No underflow"]
     _0,
-    #[doc = "Underflow"]
+    #[doc = "1: Underflow"]
     _1,
 }
-impl ERRIR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ERRIR::_0 => false,
-            ERRIR::_1 => true,
+impl From<ERRI_A> for bool {
+    #[inline(always)]
+    fn from(variant: ERRI_A) -> Self {
+        match variant {
+            ERRI_A::_0 => false,
+            ERRI_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ERRIR {
-        match value {
-            false => ERRIR::_0,
-            true => ERRIR::_1,
+}
+#[doc = "Reader of field `ERRI`"]
+pub type ERRI_R = crate::R<bool, ERRI_A>;
+impl ERRI_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ERRI_A {
+        match self.bits {
+            false => ERRI_A::_0,
+            true => ERRI_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ERRIR::_0
+        *self == ERRI_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ERRIR::_1
+        *self == ERRI_A::_1
     }
 }
-#[doc = "Possible values of the field `SLP`"]
+#[doc = "Sleep\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SLPR {
-    #[doc = "Normal mode"]
+pub enum SLP_A {
+    #[doc = "0: Normal mode"]
     _0,
-    #[doc = "Sleep (low-power) mode"]
+    #[doc = "1: Sleep (low-power) mode"]
     _1,
 }
-impl SLPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SLPR::_0 => false,
-            SLPR::_1 => true,
+impl From<SLP_A> for bool {
+    #[inline(always)]
+    fn from(variant: SLP_A) -> Self {
+        match variant {
+            SLP_A::_0 => false,
+            SLP_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SLPR {
-        match value {
-            false => SLPR::_0,
-            true => SLPR::_1,
+}
+#[doc = "Reader of field `SLP`"]
+pub type SLP_R = crate::R<bool, SLP_A>;
+impl SLP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SLP_A {
+        match self.bits {
+            false => SLP_A::_0,
+            true => SLP_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SLPR::_0
+        *self == SLP_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SLPR::_1
+        *self == SLP_A::_1
     }
 }
-#[doc = "Possible values of the field `OREG_LVL`"]
+#[doc = "Output Register Level\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OREG_LVLR {
-    #[doc = "No words (empty)"]
+pub enum OREG_LVL_A {
+    #[doc = "0: No words (empty)"]
     _0,
-    #[doc = "One word (valid)"]
+    #[doc = "1: One word (valid)"]
     _1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl OREG_LVLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            OREG_LVLR::_0 => 0,
-            OREG_LVLR::_1 => 1,
-            OREG_LVLR::_Reserved(bits) => bits,
+impl From<OREG_LVL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: OREG_LVL_A) -> Self {
+        match variant {
+            OREG_LVL_A::_0 => 0,
+            OREG_LVL_A::_1 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> OREG_LVLR {
-        match value {
-            0 => OREG_LVLR::_0,
-            1 => OREG_LVLR::_1,
-            i => OREG_LVLR::_Reserved(i),
+}
+#[doc = "Reader of field `OREG_LVL`"]
+pub type OREG_LVL_R = crate::R<u8, OREG_LVL_A>;
+impl OREG_LVL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, OREG_LVL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(OREG_LVL_A::_0),
+            1 => Val(OREG_LVL_A::_1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == OREG_LVLR::_0
+        *self == OREG_LVL_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == OREG_LVLR::_1
+        *self == OREG_LVL_A::_1
     }
 }
-#[doc = "Possible values of the field `OREG_SIZE`"]
+#[doc = "Output Register Size\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OREG_SIZER {
-    #[doc = "One word (this value is fixed)"]
+pub enum OREG_SIZE_A {
+    #[doc = "1: One word (this value is fixed)"]
     _1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl OREG_SIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            OREG_SIZER::_1 => 1,
-            OREG_SIZER::_Reserved(bits) => bits,
+impl From<OREG_SIZE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: OREG_SIZE_A) -> Self {
+        match variant {
+            OREG_SIZE_A::_1 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> OREG_SIZER {
-        match value {
-            1 => OREG_SIZER::_1,
-            i => OREG_SIZER::_Reserved(i),
+}
+#[doc = "Reader of field `OREG_SIZE`"]
+pub type OREG_SIZE_R = crate::R<u8, OREG_SIZE_A>;
+impl OREG_SIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, OREG_SIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            1 => Val(OREG_SIZE_A::_1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == OREG_SIZER::_1
+        *self == OREG_SIZE_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Security Violation"]
-    #[inline]
-    pub fn secv(&self) -> SECVR {
-        SECVR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn secv(&self) -> SECV_R {
+        SECV_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Last Read Status"]
-    #[inline]
-    pub fn lrs(&self) -> LRSR {
-        LRSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn lrs(&self) -> LRS_R {
+        LRS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Output Register Underflow"]
-    #[inline]
-    pub fn oru(&self) -> ORUR {
-        ORUR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn oru(&self) -> ORU_R {
+        ORU_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Error Interrupt"]
-    #[inline]
-    pub fn erri(&self) -> ERRIR {
-        ERRIR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn erri(&self) -> ERRI_R {
+        ERRI_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Sleep"]
-    #[inline]
-    pub fn slp(&self) -> SLPR {
-        SLPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn slp(&self) -> SLP_R {
+        SLP_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 8:15 - Output Register Level"]
-    #[inline]
-    pub fn oreg_lvl(&self) -> OREG_LVLR {
-        OREG_LVLR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn oreg_lvl(&self) -> OREG_LVL_R {
+        OREG_LVL_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - Output Register Size"]
-    #[inline]
-    pub fn oreg_size(&self) -> OREG_SIZER {
-        OREG_SIZER::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn oreg_size(&self) -> OREG_SIZE_R {
+        OREG_SIZE_R::new(((self.bits >> 16) & 0xff) as u8)
     }
 }

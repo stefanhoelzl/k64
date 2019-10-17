@@ -1,729 +1,525 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CRS {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CRS%s"]
+pub type R = crate::R<u32, super::CRS>;
+#[doc = "Writer for register CRS%s"]
+pub type W = crate::W<u32, super::CRS>;
+#[doc = "Register CRS%s `reset()`'s with value 0"]
+impl crate::ResetValue for super::CRS {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PARK`"]
+#[doc = "Park\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PARKR {
-    #[doc = "Park on master port M0"]
+pub enum PARK_A {
+    #[doc = "0: Park on master port M0"]
     _000,
-    #[doc = "Park on master port M1"]
+    #[doc = "1: Park on master port M1"]
     _001,
-    #[doc = "Park on master port M2"]
+    #[doc = "2: Park on master port M2"]
     _010,
-    #[doc = "Park on master port M3"]
+    #[doc = "3: Park on master port M3"]
     _011,
-    #[doc = "Park on master port M4"]
+    #[doc = "4: Park on master port M4"]
     _100,
-    #[doc = "Park on master port M5"]
+    #[doc = "5: Park on master port M5"]
     _101,
-    #[doc = "Park on master port M6"]
+    #[doc = "6: Park on master port M6"]
     _110,
-    #[doc = "Park on master port M7"]
+    #[doc = "7: Park on master port M7"]
     _111,
 }
-impl PARKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PARKR::_000 => 0,
-            PARKR::_001 => 1,
-            PARKR::_010 => 2,
-            PARKR::_011 => 3,
-            PARKR::_100 => 4,
-            PARKR::_101 => 5,
-            PARKR::_110 => 6,
-            PARKR::_111 => 7,
+impl From<PARK_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PARK_A) -> Self {
+        match variant {
+            PARK_A::_000 => 0,
+            PARK_A::_001 => 1,
+            PARK_A::_010 => 2,
+            PARK_A::_011 => 3,
+            PARK_A::_100 => 4,
+            PARK_A::_101 => 5,
+            PARK_A::_110 => 6,
+            PARK_A::_111 => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PARKR {
-        match value {
-            0 => PARKR::_000,
-            1 => PARKR::_001,
-            2 => PARKR::_010,
-            3 => PARKR::_011,
-            4 => PARKR::_100,
-            5 => PARKR::_101,
-            6 => PARKR::_110,
-            7 => PARKR::_111,
+}
+#[doc = "Reader of field `PARK`"]
+pub type PARK_R = crate::R<u8, PARK_A>;
+impl PARK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PARK_A {
+        match self.bits {
+            0 => PARK_A::_000,
+            1 => PARK_A::_001,
+            2 => PARK_A::_010,
+            3 => PARK_A::_011,
+            4 => PARK_A::_100,
+            5 => PARK_A::_101,
+            6 => PARK_A::_110,
+            7 => PARK_A::_111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == PARKR::_000
+        *self == PARK_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == PARKR::_001
+        *self == PARK_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == PARKR::_010
+        *self == PARK_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == PARKR::_011
+        *self == PARK_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == PARKR::_100
+        *self == PARK_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == PARKR::_101
+        *self == PARK_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == PARKR::_110
+        *self == PARK_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == PARKR::_111
+        *self == PARK_A::_111
     }
 }
-#[doc = "Possible values of the field `PCTL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCTLR {
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the master port defined by the PARK field"]
-    _00,
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the last master to be in control of the slave port"]
-    _01,
-    #[doc = "When no master makes a request, the slave port is not parked on a master and the arbiter drives all outputs to a constant safe state"]
-    _10,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `PARK`"]
+pub struct PARK_W<'a> {
+    w: &'a mut W,
 }
-impl PCTLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PCTLR::_00 => 0,
-            PCTLR::_01 => 1,
-            PCTLR::_10 => 2,
-            PCTLR::_Reserved(bits) => bits,
+impl<'a> PARK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PARK_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PCTLR {
-        match value {
-            0 => PCTLR::_00,
-            1 => PCTLR::_01,
-            2 => PCTLR::_10,
-            i => PCTLR::_Reserved(i),
+    #[doc = "Park on master port M0"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(PARK_A::_000)
+    }
+    #[doc = "Park on master port M1"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(PARK_A::_001)
+    }
+    #[doc = "Park on master port M2"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(PARK_A::_010)
+    }
+    #[doc = "Park on master port M3"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(PARK_A::_011)
+    }
+    #[doc = "Park on master port M4"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(PARK_A::_100)
+    }
+    #[doc = "Park on master port M5"]
+    #[inline(always)]
+    pub fn _101(self) -> &'a mut W {
+        self.variant(PARK_A::_101)
+    }
+    #[doc = "Park on master port M6"]
+    #[inline(always)]
+    pub fn _110(self) -> &'a mut W {
+        self.variant(PARK_A::_110)
+    }
+    #[doc = "Park on master port M7"]
+    #[inline(always)]
+    pub fn _111(self) -> &'a mut W {
+        self.variant(PARK_A::_111)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w
+    }
+}
+#[doc = "Parking Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCTL_A {
+    #[doc = "0: When no master makes a request, the arbiter parks the slave port on the master port defined by the PARK field"]
+    _00,
+    #[doc = "1: When no master makes a request, the arbiter parks the slave port on the last master to be in control of the slave port"]
+    _01,
+    #[doc = "2: When no master makes a request, the slave port is not parked on a master and the arbiter drives all outputs to a constant safe state"]
+    _10,
+}
+impl From<PCTL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PCTL_A) -> Self {
+        match variant {
+            PCTL_A::_00 => 0,
+            PCTL_A::_01 => 1,
+            PCTL_A::_10 => 2,
+        }
+    }
+}
+#[doc = "Reader of field `PCTL`"]
+pub type PCTL_R = crate::R<u8, PCTL_A>;
+impl PCTL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PCTL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PCTL_A::_00),
+            1 => Val(PCTL_A::_01),
+            2 => Val(PCTL_A::_10),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == PCTLR::_00
+        *self == PCTL_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == PCTLR::_01
+        *self == PCTL_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == PCTLR::_10
+        *self == PCTL_A::_10
     }
 }
-#[doc = "Possible values of the field `ARB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ARBR {
-    #[doc = "Fixed priority"]
-    _00,
-    #[doc = "Round-robin, or rotating, priority"]
-    _01,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `PCTL`"]
+pub struct PCTL_W<'a> {
+    w: &'a mut W,
 }
-impl ARBR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            ARBR::_00 => 0,
-            ARBR::_01 => 1,
-            ARBR::_Reserved(bits) => bits,
+impl<'a> PCTL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCTL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "When no master makes a request, the arbiter parks the slave port on the master port defined by the PARK field"]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(PCTL_A::_00)
+    }
+    #[doc = "When no master makes a request, the arbiter parks the slave port on the last master to be in control of the slave port"]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(PCTL_A::_01)
+    }
+    #[doc = "When no master makes a request, the slave port is not parked on a master and the arbiter drives all outputs to a constant safe state"]
+    #[inline(always)]
+    pub fn _10(self) -> &'a mut W {
+        self.variant(PCTL_A::_10)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w
+    }
+}
+#[doc = "Arbitration Mode\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ARB_A {
+    #[doc = "0: Fixed priority"]
+    _00,
+    #[doc = "1: Round-robin, or rotating, priority"]
+    _01,
+}
+impl From<ARB_A> for u8 {
+    #[inline(always)]
+    fn from(variant: ARB_A) -> Self {
+        match variant {
+            ARB_A::_00 => 0,
+            ARB_A::_01 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> ARBR {
-        match value {
-            0 => ARBR::_00,
-            1 => ARBR::_01,
-            i => ARBR::_Reserved(i),
+}
+#[doc = "Reader of field `ARB`"]
+pub type ARB_R = crate::R<u8, ARB_A>;
+impl ARB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, ARB_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(ARB_A::_00),
+            1 => Val(ARB_A::_01),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == ARBR::_00
+        *self == ARB_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == ARBR::_01
+        *self == ARB_A::_01
     }
 }
-#[doc = "Possible values of the field `HLP`"]
+#[doc = "Write proxy for field `ARB`"]
+pub struct ARB_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ARB_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ARB_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Fixed priority"]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(ARB_A::_00)
+    }
+    #[doc = "Round-robin, or rotating, priority"]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(ARB_A::_01)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
+        self.w
+    }
+}
+#[doc = "Halt Low Priority\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HLPR {
-    #[doc = "The low power mode request has the highest priority for arbitration on this slave port"]
+pub enum HLP_A {
+    #[doc = "0: The low power mode request has the highest priority for arbitration on this slave port"]
     _0,
-    #[doc = "The low power mode request has the lowest initial priority for arbitration on this slave port"]
+    #[doc = "1: The low power mode request has the lowest initial priority for arbitration on this slave port"]
     _1,
 }
-impl HLPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HLPR::_0 => false,
-            HLPR::_1 => true,
+impl From<HLP_A> for bool {
+    #[inline(always)]
+    fn from(variant: HLP_A) -> Self {
+        match variant {
+            HLP_A::_0 => false,
+            HLP_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HLPR {
-        match value {
-            false => HLPR::_0,
-            true => HLPR::_1,
+}
+#[doc = "Reader of field `HLP`"]
+pub type HLP_R = crate::R<bool, HLP_A>;
+impl HLP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HLP_A {
+        match self.bits {
+            false => HLP_A::_0,
+            true => HLP_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == HLPR::_0
+        *self == HLP_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == HLPR::_1
+        *self == HLP_A::_1
     }
 }
-#[doc = "Possible values of the field `RO`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ROR {
-    #[doc = "The slave port's registers are writeable"]
-    _0,
-    #[doc = "The slave port's registers are read-only and cannot be written. Attempted writes have no effect on the registers and result in a bus error response."]
-    _1,
+#[doc = "Write proxy for field `HLP`"]
+pub struct HLP_W<'a> {
+    w: &'a mut W,
 }
-impl ROR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ROR::_0 => false,
-            ROR::_1 => true,
+impl<'a> HLP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HLP_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ROR {
-        match value {
-            false => ROR::_0,
-            true => ROR::_1,
+    #[doc = "The low power mode request has the highest priority for arbitration on this slave port"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(HLP_A::_0)
+    }
+    #[doc = "The low power mode request has the lowest initial priority for arbitration on this slave port"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(HLP_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w
+    }
+}
+#[doc = "Read Only\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RO_A {
+    #[doc = "0: The slave port's registers are writeable"]
+    _0,
+    #[doc = "1: The slave port's registers are read-only and cannot be written. Attempted writes have no effect on the registers and result in a bus error response."]
+    _1,
+}
+impl From<RO_A> for bool {
+    #[inline(always)]
+    fn from(variant: RO_A) -> Self {
+        match variant {
+            RO_A::_0 => false,
+            RO_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `RO`"]
+pub type RO_R = crate::R<bool, RO_A>;
+impl RO_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RO_A {
+        match self.bits {
+            false => RO_A::_0,
+            true => RO_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ROR::_0
+        *self == RO_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ROR::_1
+        *self == RO_A::_1
     }
 }
-#[doc = "Values that can be written to the field `PARK`"]
-pub enum PARKW {
-    #[doc = "Park on master port M0"]
-    _000,
-    #[doc = "Park on master port M1"]
-    _001,
-    #[doc = "Park on master port M2"]
-    _010,
-    #[doc = "Park on master port M3"]
-    _011,
-    #[doc = "Park on master port M4"]
-    _100,
-    #[doc = "Park on master port M5"]
-    _101,
-    #[doc = "Park on master port M6"]
-    _110,
-    #[doc = "Park on master port M7"]
-    _111,
-}
-impl PARKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PARKW::_000 => 0,
-            PARKW::_001 => 1,
-            PARKW::_010 => 2,
-            PARKW::_011 => 3,
-            PARKW::_100 => 4,
-            PARKW::_101 => 5,
-            PARKW::_110 => 6,
-            PARKW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PARKW<'a> {
+#[doc = "Write proxy for field `RO`"]
+pub struct RO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PARKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PARKW) -> &'a mut W {
+impl<'a> RO_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RO_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Park on master port M0"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(PARKW::_000)
-    }
-    #[doc = "Park on master port M1"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(PARKW::_001)
-    }
-    #[doc = "Park on master port M2"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(PARKW::_010)
-    }
-    #[doc = "Park on master port M3"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(PARKW::_011)
-    }
-    #[doc = "Park on master port M4"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(PARKW::_100)
-    }
-    #[doc = "Park on master port M5"]
-    #[inline]
-    pub fn _101(self) -> &'a mut W {
-        self.variant(PARKW::_101)
-    }
-    #[doc = "Park on master port M6"]
-    #[inline]
-    pub fn _110(self) -> &'a mut W {
-        self.variant(PARKW::_110)
-    }
-    #[doc = "Park on master port M7"]
-    #[inline]
-    pub fn _111(self) -> &'a mut W {
-        self.variant(PARKW::_111)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCTL`"]
-pub enum PCTLW {
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the master port defined by the PARK field"]
-    _00,
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the last master to be in control of the slave port"]
-    _01,
-    #[doc = "When no master makes a request, the slave port is not parked on a master and the arbiter drives all outputs to a constant safe state"]
-    _10,
-}
-impl PCTLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PCTLW::_00 => 0,
-            PCTLW::_01 => 1,
-            PCTLW::_10 => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCTLW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCTLW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCTLW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the master port defined by the PARK field"]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(PCTLW::_00)
-    }
-    #[doc = "When no master makes a request, the arbiter parks the slave port on the last master to be in control of the slave port"]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(PCTLW::_01)
-    }
-    #[doc = "When no master makes a request, the slave port is not parked on a master and the arbiter drives all outputs to a constant safe state"]
-    #[inline]
-    pub fn _10(self) -> &'a mut W {
-        self.variant(PCTLW::_10)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ARB`"]
-pub enum ARBW {
-    #[doc = "Fixed priority"]
-    _00,
-    #[doc = "Round-robin, or rotating, priority"]
-    _01,
-}
-impl ARBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            ARBW::_00 => 0,
-            ARBW::_01 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ARBW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ARBW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ARBW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Fixed priority"]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(ARBW::_00)
-    }
-    #[doc = "Round-robin, or rotating, priority"]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(ARBW::_01)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `HLP`"]
-pub enum HLPW {
-    #[doc = "The low power mode request has the highest priority for arbitration on this slave port"]
-    _0,
-    #[doc = "The low power mode request has the lowest initial priority for arbitration on this slave port"]
-    _1,
-}
-impl HLPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HLPW::_0 => false,
-            HLPW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HLPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HLPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HLPW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The low power mode request has the highest priority for arbitration on this slave port"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(HLPW::_0)
-    }
-    #[doc = "The low power mode request has the lowest initial priority for arbitration on this slave port"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(HLPW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RO`"]
-pub enum ROW {
-    #[doc = "The slave port's registers are writeable"]
-    _0,
-    #[doc = "The slave port's registers are read-only and cannot be written. Attempted writes have no effect on the registers and result in a bus error response."]
-    _1,
-}
-impl ROW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ROW::_0 => false,
-            ROW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ROW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ROW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ROW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The slave port's registers are writeable"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ROW::_0)
+        self.variant(RO_A::_0)
     }
     #[doc = "The slave port's registers are read-only and cannot be written. Attempted writes have no effect on the registers and result in a bus error response."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ROW::_1)
+        self.variant(RO_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Park"]
-    #[inline]
-    pub fn park(&self) -> PARKR {
-        PARKR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn park(&self) -> PARK_R {
+        PARK_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 4:5 - Parking Control"]
-    #[inline]
-    pub fn pctl(&self) -> PCTLR {
-        PCTLR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn pctl(&self) -> PCTL_R {
+        PCTL_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 8:9 - Arbitration Mode"]
-    #[inline]
-    pub fn arb(&self) -> ARBR {
-        ARBR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn arb(&self) -> ARB_R {
+        ARB_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 30 - Halt Low Priority"]
-    #[inline]
-    pub fn hlp(&self) -> HLPR {
-        HLPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hlp(&self) -> HLP_R {
+        HLP_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Read Only"]
-    #[inline]
-    pub fn ro(&self) -> ROR {
-        ROR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ro(&self) -> RO_R {
+        RO_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Park"]
-    #[inline]
-    pub fn park(&mut self) -> _PARKW {
-        _PARKW { w: self }
+    #[inline(always)]
+    pub fn park(&mut self) -> PARK_W {
+        PARK_W { w: self }
     }
     #[doc = "Bits 4:5 - Parking Control"]
-    #[inline]
-    pub fn pctl(&mut self) -> _PCTLW {
-        _PCTLW { w: self }
+    #[inline(always)]
+    pub fn pctl(&mut self) -> PCTL_W {
+        PCTL_W { w: self }
     }
     #[doc = "Bits 8:9 - Arbitration Mode"]
-    #[inline]
-    pub fn arb(&mut self) -> _ARBW {
-        _ARBW { w: self }
+    #[inline(always)]
+    pub fn arb(&mut self) -> ARB_W {
+        ARB_W { w: self }
     }
     #[doc = "Bit 30 - Halt Low Priority"]
-    #[inline]
-    pub fn hlp(&mut self) -> _HLPW {
-        _HLPW { w: self }
+    #[inline(always)]
+    pub fn hlp(&mut self) -> HLP_W {
+        HLP_W { w: self }
     }
     #[doc = "Bit 31 - Read Only"]
-    #[inline]
-    pub fn ro(&mut self) -> _ROW {
-        _ROW { w: self }
+    #[inline(always)]
+    pub fn ro(&mut self) -> RO_W {
+        RO_W { w: self }
     }
 }

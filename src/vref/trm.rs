@@ -1,286 +1,182 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::TRM {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TRM"]
+pub type R = crate::R<u8, super::TRM>;
+#[doc = "Writer for register TRM"]
+pub type W = crate::W<u8, super::TRM>;
+#[doc = "Register TRM `reset()`'s with value 0"]
+impl crate::ResetValue for super::TRM {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TRIM`"]
+#[doc = "Trim bits\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRIMR {
-    #[doc = "Min"]
+pub enum TRIM_A {
+    #[doc = "0: Min"]
     _000000,
-    #[doc = "Max"]
+    #[doc = "63: Max"]
     _111111,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl TRIMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TRIMR::_000000 => 0,
-            TRIMR::_111111 => 63,
-            TRIMR::_Reserved(bits) => bits,
+impl From<TRIM_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TRIM_A) -> Self {
+        match variant {
+            TRIM_A::_000000 => 0,
+            TRIM_A::_111111 => 63,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TRIMR {
-        match value {
-            0 => TRIMR::_000000,
-            63 => TRIMR::_111111,
-            i => TRIMR::_Reserved(i),
+}
+#[doc = "Reader of field `TRIM`"]
+pub type TRIM_R = crate::R<u8, TRIM_A>;
+impl TRIM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TRIM_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TRIM_A::_000000),
+            63 => Val(TRIM_A::_111111),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000000(&self) -> bool {
-        *self == TRIMR::_000000
+        *self == TRIM_A::_000000
     }
     #[doc = "Checks if the value of the field is `_111111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111111(&self) -> bool {
-        *self == TRIMR::_111111
+        *self == TRIM_A::_111111
     }
 }
-#[doc = "Possible values of the field `CHOPEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHOPENR {
-    #[doc = "Chop oscillator is disabled."]
-    _0,
-    #[doc = "Chop oscillator is enabled."]
-    _1,
-}
-impl CHOPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CHOPENR::_0 => false,
-            CHOPENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CHOPENR {
-        match value {
-            false => CHOPENR::_0,
-            true => CHOPENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CHOPENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CHOPENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `TRIM`"]
-pub enum TRIMW {
-    #[doc = "Min"]
-    _000000,
-    #[doc = "Max"]
-    _111111,
-}
-impl TRIMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TRIMW::_000000 => 0,
-            TRIMW::_111111 => 63,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TRIMW<'a> {
+#[doc = "Write proxy for field `TRIM`"]
+pub struct TRIM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRIMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TRIMW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> TRIM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TRIM_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Min"]
-    #[inline]
+    #[inline(always)]
     pub fn _000000(self) -> &'a mut W {
-        self.variant(TRIMW::_000000)
+        self.variant(TRIM_A::_000000)
     }
     #[doc = "Max"]
-    #[inline]
+    #[inline(always)]
     pub fn _111111(self) -> &'a mut W {
-        self.variant(TRIMW::_111111)
+        self.variant(TRIM_A::_111111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 63;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x3f) | ((value as u8) & 0x3f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CHOPEN`"]
-pub enum CHOPENW {
-    #[doc = "Chop oscillator is disabled."]
+#[doc = "Chop oscillator enable. When set, internal chopping operation is enabled and the internal analog offset will be minimized.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CHOPEN_A {
+    #[doc = "0: Chop oscillator is disabled."]
     _0,
-    #[doc = "Chop oscillator is enabled."]
+    #[doc = "1: Chop oscillator is enabled."]
     _1,
 }
-impl CHOPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CHOPENW::_0 => false,
-            CHOPENW::_1 => true,
+impl From<CHOPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: CHOPEN_A) -> Self {
+        match variant {
+            CHOPEN_A::_0 => false,
+            CHOPEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CHOPENW<'a> {
+#[doc = "Reader of field `CHOPEN`"]
+pub type CHOPEN_R = crate::R<bool, CHOPEN_A>;
+impl CHOPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CHOPEN_A {
+        match self.bits {
+            false => CHOPEN_A::_0,
+            true => CHOPEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CHOPEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CHOPEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `CHOPEN`"]
+pub struct CHOPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHOPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CHOPENW) -> &'a mut W {
+impl<'a> CHOPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CHOPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Chop oscillator is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CHOPENW::_0)
+        self.variant(CHOPEN_A::_0)
     }
     #[doc = "Chop oscillator is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CHOPENW::_1)
+        self.variant(CHOPEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:5 - Trim bits"]
-    #[inline]
-    pub fn trim(&self) -> TRIMR {
-        TRIMR::_from({
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn trim(&self) -> TRIM_R {
+        TRIM_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bit 6 - Chop oscillator enable. When set, internal chopping operation is enabled and the internal analog offset will be minimized."]
-    #[inline]
-    pub fn chopen(&self) -> CHOPENR {
-        CHOPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn chopen(&self) -> CHOPEN_R {
+        CHOPEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:5 - Trim bits"]
-    #[inline]
-    pub fn trim(&mut self) -> _TRIMW {
-        _TRIMW { w: self }
+    #[inline(always)]
+    pub fn trim(&mut self) -> TRIM_W {
+        TRIM_W { w: self }
     }
     #[doc = "Bit 6 - Chop oscillator enable. When set, internal chopping operation is enabled and the internal analog offset will be minimized."]
-    #[inline]
-    pub fn chopen(&mut self) -> _CHOPENW {
-        _CHOPENW { w: self }
+    #[inline(always)]
+    pub fn chopen(&mut self) -> CHOPEN_W {
+        CHOPEN_W { w: self }
     }
 }

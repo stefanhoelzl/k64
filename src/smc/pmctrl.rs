@@ -1,496 +1,346 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::PMCTRL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PMCTRL"]
+pub type R = crate::R<u8, super::PMCTRL>;
+#[doc = "Writer for register PMCTRL"]
+pub type W = crate::W<u8, super::PMCTRL>;
+#[doc = "Register PMCTRL `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMCTRL {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `STOPM`"]
+#[doc = "Stop Mode Control\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STOPMR {
-    #[doc = "Normal Stop (STOP)"]
+pub enum STOPM_A {
+    #[doc = "0: Normal Stop (STOP)"]
     _000,
-    #[doc = "Very-Low-Power Stop (VLPS)"]
+    #[doc = "2: Very-Low-Power Stop (VLPS)"]
     _010,
-    #[doc = "Low-Leakage Stop (LLS)"]
+    #[doc = "3: Low-Leakage Stop (LLS)"]
     _011,
-    #[doc = "Very-Low-Leakage Stop (VLLSx)"]
+    #[doc = "4: Very-Low-Leakage Stop (VLLSx)"]
     _100,
-    #[doc = "Reseved"]
+    #[doc = "6: Reseved"]
     _110,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl STOPMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            STOPMR::_000 => 0,
-            STOPMR::_010 => 2,
-            STOPMR::_011 => 3,
-            STOPMR::_100 => 4,
-            STOPMR::_110 => 6,
-            STOPMR::_Reserved(bits) => bits,
+impl From<STOPM_A> for u8 {
+    #[inline(always)]
+    fn from(variant: STOPM_A) -> Self {
+        match variant {
+            STOPM_A::_000 => 0,
+            STOPM_A::_010 => 2,
+            STOPM_A::_011 => 3,
+            STOPM_A::_100 => 4,
+            STOPM_A::_110 => 6,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> STOPMR {
-        match value {
-            0 => STOPMR::_000,
-            2 => STOPMR::_010,
-            3 => STOPMR::_011,
-            4 => STOPMR::_100,
-            6 => STOPMR::_110,
-            i => STOPMR::_Reserved(i),
+}
+#[doc = "Reader of field `STOPM`"]
+pub type STOPM_R = crate::R<u8, STOPM_A>;
+impl STOPM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, STOPM_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(STOPM_A::_000),
+            2 => Val(STOPM_A::_010),
+            3 => Val(STOPM_A::_011),
+            4 => Val(STOPM_A::_100),
+            6 => Val(STOPM_A::_110),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == STOPMR::_000
+        *self == STOPM_A::_000
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == STOPMR::_010
+        *self == STOPM_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == STOPMR::_011
+        *self == STOPM_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == STOPMR::_100
+        *self == STOPM_A::_100
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == STOPMR::_110
+        *self == STOPM_A::_110
     }
 }
-#[doc = "Possible values of the field `STOPA`"]
+#[doc = "Write proxy for field `STOPM`"]
+pub struct STOPM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> STOPM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: STOPM_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Normal Stop (STOP)"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(STOPM_A::_000)
+    }
+    #[doc = "Very-Low-Power Stop (VLPS)"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(STOPM_A::_010)
+    }
+    #[doc = "Low-Leakage Stop (LLS)"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(STOPM_A::_011)
+    }
+    #[doc = "Very-Low-Leakage Stop (VLLSx)"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(STOPM_A::_100)
+    }
+    #[doc = "Reseved"]
+    #[inline(always)]
+    pub fn _110(self) -> &'a mut W {
+        self.variant(STOPM_A::_110)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u8) & 0x07);
+        self.w
+    }
+}
+#[doc = "Stop Aborted\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STOPAR {
-    #[doc = "The previous stop mode entry was successsful."]
+pub enum STOPA_A {
+    #[doc = "0: The previous stop mode entry was successsful."]
     _0,
-    #[doc = "The previous stop mode entry was aborted."]
+    #[doc = "1: The previous stop mode entry was aborted."]
     _1,
 }
-impl STOPAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            STOPAR::_0 => false,
-            STOPAR::_1 => true,
+impl From<STOPA_A> for bool {
+    #[inline(always)]
+    fn from(variant: STOPA_A) -> Self {
+        match variant {
+            STOPA_A::_0 => false,
+            STOPA_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> STOPAR {
-        match value {
-            false => STOPAR::_0,
-            true => STOPAR::_1,
+}
+#[doc = "Reader of field `STOPA`"]
+pub type STOPA_R = crate::R<bool, STOPA_A>;
+impl STOPA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STOPA_A {
+        match self.bits {
+            false => STOPA_A::_0,
+            true => STOPA_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == STOPAR::_0
+        *self == STOPA_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == STOPAR::_1
+        *self == STOPA_A::_1
     }
 }
-#[doc = "Possible values of the field `RUNM`"]
+#[doc = "Run Mode Control\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RUNMR {
-    #[doc = "Normal Run mode (RUN)"]
+pub enum RUNM_A {
+    #[doc = "0: Normal Run mode (RUN)"]
     _00,
-    #[doc = "Very-Low-Power Run mode (VLPR)"]
+    #[doc = "2: Very-Low-Power Run mode (VLPR)"]
     _10,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl RUNMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            RUNMR::_00 => 0,
-            RUNMR::_10 => 2,
-            RUNMR::_Reserved(bits) => bits,
+impl From<RUNM_A> for u8 {
+    #[inline(always)]
+    fn from(variant: RUNM_A) -> Self {
+        match variant {
+            RUNM_A::_00 => 0,
+            RUNM_A::_10 => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> RUNMR {
-        match value {
-            0 => RUNMR::_00,
-            2 => RUNMR::_10,
-            i => RUNMR::_Reserved(i),
+}
+#[doc = "Reader of field `RUNM`"]
+pub type RUNM_R = crate::R<u8, RUNM_A>;
+impl RUNM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, RUNM_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(RUNM_A::_00),
+            2 => Val(RUNM_A::_10),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == RUNMR::_00
+        *self == RUNM_A::_00
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == RUNMR::_10
+        *self == RUNM_A::_10
     }
 }
-#[doc = "Possible values of the field `LPWUI`"]
+#[doc = "Write proxy for field `RUNM`"]
+pub struct RUNM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> RUNM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RUNM_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Normal Run mode (RUN)"]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(RUNM_A::_00)
+    }
+    #[doc = "Very-Low-Power Run mode (VLPR)"]
+    #[inline(always)]
+    pub fn _10(self) -> &'a mut W {
+        self.variant(RUNM_A::_10)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 5)) | (((value as u8) & 0x03) << 5);
+        self.w
+    }
+}
+#[doc = "Low-Power Wake Up On Interrupt\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPWUIR {
-    #[doc = "The system remains in a VLP mode on an interrupt"]
+pub enum LPWUI_A {
+    #[doc = "0: The system remains in a VLP mode on an interrupt"]
     _0,
-    #[doc = "The system exits to Normal RUN mode on an interrupt"]
+    #[doc = "1: The system exits to Normal RUN mode on an interrupt"]
     _1,
 }
-impl LPWUIR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LPWUIR::_0 => false,
-            LPWUIR::_1 => true,
+impl From<LPWUI_A> for bool {
+    #[inline(always)]
+    fn from(variant: LPWUI_A) -> Self {
+        match variant {
+            LPWUI_A::_0 => false,
+            LPWUI_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LPWUIR {
-        match value {
-            false => LPWUIR::_0,
-            true => LPWUIR::_1,
+}
+#[doc = "Reader of field `LPWUI`"]
+pub type LPWUI_R = crate::R<bool, LPWUI_A>;
+impl LPWUI_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LPWUI_A {
+        match self.bits {
+            false => LPWUI_A::_0,
+            true => LPWUI_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LPWUIR::_0
+        *self == LPWUI_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LPWUIR::_1
+        *self == LPWUI_A::_1
     }
 }
-#[doc = "Values that can be written to the field `STOPM`"]
-pub enum STOPMW {
-    #[doc = "Normal Stop (STOP)"]
-    _000,
-    #[doc = "Very-Low-Power Stop (VLPS)"]
-    _010,
-    #[doc = "Low-Leakage Stop (LLS)"]
-    _011,
-    #[doc = "Very-Low-Leakage Stop (VLLSx)"]
-    _100,
-    #[doc = "Reseved"]
-    _110,
-}
-impl STOPMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            STOPMW::_000 => 0,
-            STOPMW::_010 => 2,
-            STOPMW::_011 => 3,
-            STOPMW::_100 => 4,
-            STOPMW::_110 => 6,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _STOPMW<'a> {
+#[doc = "Write proxy for field `LPWUI`"]
+pub struct LPWUI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STOPMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: STOPMW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Normal Stop (STOP)"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(STOPMW::_000)
-    }
-    #[doc = "Very-Low-Power Stop (VLPS)"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(STOPMW::_010)
-    }
-    #[doc = "Low-Leakage Stop (LLS)"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(STOPMW::_011)
-    }
-    #[doc = "Very-Low-Leakage Stop (VLLSx)"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(STOPMW::_100)
-    }
-    #[doc = "Reseved"]
-    #[inline]
-    pub fn _110(self) -> &'a mut W {
-        self.variant(STOPMW::_110)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RUNM`"]
-pub enum RUNMW {
-    #[doc = "Normal Run mode (RUN)"]
-    _00,
-    #[doc = "Very-Low-Power Run mode (VLPR)"]
-    _10,
-}
-impl RUNMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            RUNMW::_00 => 0,
-            RUNMW::_10 => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RUNMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RUNMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RUNMW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Normal Run mode (RUN)"]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(RUNMW::_00)
-    }
-    #[doc = "Very-Low-Power Run mode (VLPR)"]
-    #[inline]
-    pub fn _10(self) -> &'a mut W {
-        self.variant(RUNMW::_10)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `LPWUI`"]
-pub enum LPWUIW {
-    #[doc = "The system remains in a VLP mode on an interrupt"]
-    _0,
-    #[doc = "The system exits to Normal RUN mode on an interrupt"]
-    _1,
-}
-impl LPWUIW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LPWUIW::_0 => false,
-            LPWUIW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LPWUIW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _LPWUIW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPWUIW) -> &'a mut W {
+impl<'a> LPWUI_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LPWUI_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The system remains in a VLP mode on an interrupt"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LPWUIW::_0)
+        self.variant(LPWUI_A::_0)
     }
     #[doc = "The system exits to Normal RUN mode on an interrupt"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LPWUIW::_1)
+        self.variant(LPWUI_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Stop Mode Control"]
-    #[inline]
-    pub fn stopm(&self) -> STOPMR {
-        STOPMR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn stopm(&self) -> STOPM_R {
+        STOPM_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bit 3 - Stop Aborted"]
-    #[inline]
-    pub fn stopa(&self) -> STOPAR {
-        STOPAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn stopa(&self) -> STOPA_R {
+        STOPA_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 5:6 - Run Mode Control"]
-    #[inline]
-    pub fn runm(&self) -> RUNMR {
-        RUNMR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn runm(&self) -> RUNM_R {
+        RUNM_R::new(((self.bits >> 5) & 0x03) as u8)
     }
     #[doc = "Bit 7 - Low-Power Wake Up On Interrupt"]
-    #[inline]
-    pub fn lpwui(&self) -> LPWUIR {
-        LPWUIR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lpwui(&self) -> LPWUI_R {
+        LPWUI_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Stop Mode Control"]
-    #[inline]
-    pub fn stopm(&mut self) -> _STOPMW {
-        _STOPMW { w: self }
+    #[inline(always)]
+    pub fn stopm(&mut self) -> STOPM_W {
+        STOPM_W { w: self }
     }
     #[doc = "Bits 5:6 - Run Mode Control"]
-    #[inline]
-    pub fn runm(&mut self) -> _RUNMW {
-        _RUNMW { w: self }
+    #[inline(always)]
+    pub fn runm(&mut self) -> RUNM_W {
+        RUNM_W { w: self }
     }
     #[doc = "Bit 7 - Low-Power Wake Up On Interrupt"]
-    #[inline]
-    pub fn lpwui(&mut self) -> _LPWUIW {
-        _LPWUIW { w: self }
+    #[inline(always)]
+    pub fn lpwui(&mut self) -> LPWUI_W {
+        LPWUI_W { w: self }
     }
 }

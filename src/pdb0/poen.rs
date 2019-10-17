@@ -1,1016 +1,720 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::POEN {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register POEN"]
+pub type R = crate::R<u32, super::POEN>;
+#[doc = "Writer for register POEN"]
+pub type W = crate::W<u32, super::POEN>;
+#[doc = "Register POEN `reset()`'s with value 0"]
+impl crate::ResetValue for super::POEN {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `POEN0`"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN0R {
-    #[doc = "PDB Pulse-Out disabled"]
+pub enum POEN0_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN0R::_0 => false,
-            POEN0R::_1 => true,
+impl From<POEN0_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN0_A) -> Self {
+        match variant {
+            POEN0_A::_0 => false,
+            POEN0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN0R {
-        match value {
-            false => POEN0R::_0,
-            true => POEN0R::_1,
+}
+#[doc = "Reader of field `POEN0`"]
+pub type POEN0_R = crate::R<bool, POEN0_A>;
+impl POEN0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN0_A {
+        match self.bits {
+            false => POEN0_A::_0,
+            true => POEN0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == POEN0R::_0
+        *self == POEN0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == POEN0R::_1
+        *self == POEN0_A::_1
     }
 }
-#[doc = "Possible values of the field `POEN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN1R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN1R::_0 => false,
-            POEN1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN1R {
-        match value {
-            false => POEN1R::_0,
-            true => POEN1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN1R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN2R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN2R::_0 => false,
-            POEN2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN2R {
-        match value {
-            false => POEN2R::_0,
-            true => POEN2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN2R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN3R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN3R::_0 => false,
-            POEN3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN3R {
-        match value {
-            false => POEN3R::_0,
-            true => POEN3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN3R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN4R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN4R::_0 => false,
-            POEN4R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN4R {
-        match value {
-            false => POEN4R::_0,
-            true => POEN4R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN4R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN4R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN5R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN5R::_0 => false,
-            POEN5R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN5R {
-        match value {
-            false => POEN5R::_0,
-            true => POEN5R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN5R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN5R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN6R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN6R::_0 => false,
-            POEN6R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN6R {
-        match value {
-            false => POEN6R::_0,
-            true => POEN6R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN6R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN6R::_1
-    }
-}
-#[doc = "Possible values of the field `POEN7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POEN7R {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POEN7R::_0 => false,
-            POEN7R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POEN7R {
-        match value {
-            false => POEN7R::_0,
-            true => POEN7R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == POEN7R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == POEN7R::_1
-    }
-}
-#[doc = "Values that can be written to the field `POEN0`"]
-pub enum POEN0W {
-    #[doc = "PDB Pulse-Out disabled"]
-    _0,
-    #[doc = "PDB Pulse-Out enabled"]
-    _1,
-}
-impl POEN0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN0W::_0 => false,
-            POEN0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _POEN0W<'a> {
+#[doc = "Write proxy for field `POEN0`"]
+pub struct POEN0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN0W) -> &'a mut W {
+impl<'a> POEN0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN0W::_0)
+        self.variant(POEN0_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN0W::_1)
+        self.variant(POEN0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN1`"]
-pub enum POEN1W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN1_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN1W::_0 => false,
-            POEN1W::_1 => true,
+impl From<POEN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN1_A) -> Self {
+        match variant {
+            POEN1_A::_0 => false,
+            POEN1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN1W<'a> {
+#[doc = "Reader of field `POEN1`"]
+pub type POEN1_R = crate::R<bool, POEN1_A>;
+impl POEN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN1_A {
+        match self.bits {
+            false => POEN1_A::_0,
+            true => POEN1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN1_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN1`"]
+pub struct POEN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN1W) -> &'a mut W {
+impl<'a> POEN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN1W::_0)
+        self.variant(POEN1_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN1W::_1)
+        self.variant(POEN1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN2`"]
-pub enum POEN2W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN2_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN2W::_0 => false,
-            POEN2W::_1 => true,
+impl From<POEN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN2_A) -> Self {
+        match variant {
+            POEN2_A::_0 => false,
+            POEN2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN2W<'a> {
+#[doc = "Reader of field `POEN2`"]
+pub type POEN2_R = crate::R<bool, POEN2_A>;
+impl POEN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN2_A {
+        match self.bits {
+            false => POEN2_A::_0,
+            true => POEN2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN2_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN2`"]
+pub struct POEN2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN2W) -> &'a mut W {
+impl<'a> POEN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN2W::_0)
+        self.variant(POEN2_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN2W::_1)
+        self.variant(POEN2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN3`"]
-pub enum POEN3W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN3_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN3W::_0 => false,
-            POEN3W::_1 => true,
+impl From<POEN3_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN3_A) -> Self {
+        match variant {
+            POEN3_A::_0 => false,
+            POEN3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN3W<'a> {
+#[doc = "Reader of field `POEN3`"]
+pub type POEN3_R = crate::R<bool, POEN3_A>;
+impl POEN3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN3_A {
+        match self.bits {
+            false => POEN3_A::_0,
+            true => POEN3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN3_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN3`"]
+pub struct POEN3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN3W) -> &'a mut W {
+impl<'a> POEN3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN3W::_0)
+        self.variant(POEN3_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN3W::_1)
+        self.variant(POEN3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN4`"]
-pub enum POEN4W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN4_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN4W::_0 => false,
-            POEN4W::_1 => true,
+impl From<POEN4_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN4_A) -> Self {
+        match variant {
+            POEN4_A::_0 => false,
+            POEN4_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN4W<'a> {
+#[doc = "Reader of field `POEN4`"]
+pub type POEN4_R = crate::R<bool, POEN4_A>;
+impl POEN4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN4_A {
+        match self.bits {
+            false => POEN4_A::_0,
+            true => POEN4_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN4_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN4_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN4`"]
+pub struct POEN4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN4W) -> &'a mut W {
+impl<'a> POEN4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN4W::_0)
+        self.variant(POEN4_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN4W::_1)
+        self.variant(POEN4_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN5`"]
-pub enum POEN5W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN5_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN5W::_0 => false,
-            POEN5W::_1 => true,
+impl From<POEN5_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN5_A) -> Self {
+        match variant {
+            POEN5_A::_0 => false,
+            POEN5_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN5W<'a> {
+#[doc = "Reader of field `POEN5`"]
+pub type POEN5_R = crate::R<bool, POEN5_A>;
+impl POEN5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN5_A {
+        match self.bits {
+            false => POEN5_A::_0,
+            true => POEN5_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN5_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN5_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN5`"]
+pub struct POEN5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN5W) -> &'a mut W {
+impl<'a> POEN5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN5W::_0)
+        self.variant(POEN5_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN5W::_1)
+        self.variant(POEN5_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN6`"]
-pub enum POEN6W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN6_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN6W::_0 => false,
-            POEN6W::_1 => true,
+impl From<POEN6_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN6_A) -> Self {
+        match variant {
+            POEN6_A::_0 => false,
+            POEN6_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN6W<'a> {
+#[doc = "Reader of field `POEN6`"]
+pub type POEN6_R = crate::R<bool, POEN6_A>;
+impl POEN6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN6_A {
+        match self.bits {
+            false => POEN6_A::_0,
+            true => POEN6_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN6_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN6_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN6`"]
+pub struct POEN6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN6W) -> &'a mut W {
+impl<'a> POEN6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN6W::_0)
+        self.variant(POEN6_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN6W::_1)
+        self.variant(POEN6_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `POEN7`"]
-pub enum POEN7W {
-    #[doc = "PDB Pulse-Out disabled"]
+#[doc = "PDB Pulse-Out Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum POEN7_A {
+    #[doc = "0: PDB Pulse-Out disabled"]
     _0,
-    #[doc = "PDB Pulse-Out enabled"]
+    #[doc = "1: PDB Pulse-Out enabled"]
     _1,
 }
-impl POEN7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POEN7W::_0 => false,
-            POEN7W::_1 => true,
+impl From<POEN7_A> for bool {
+    #[inline(always)]
+    fn from(variant: POEN7_A) -> Self {
+        match variant {
+            POEN7_A::_0 => false,
+            POEN7_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _POEN7W<'a> {
+#[doc = "Reader of field `POEN7`"]
+pub type POEN7_R = crate::R<bool, POEN7_A>;
+impl POEN7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POEN7_A {
+        match self.bits {
+            false => POEN7_A::_0,
+            true => POEN7_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == POEN7_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == POEN7_A::_1
+    }
+}
+#[doc = "Write proxy for field `POEN7`"]
+pub struct POEN7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POEN7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POEN7W) -> &'a mut W {
+impl<'a> POEN7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POEN7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PDB Pulse-Out disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(POEN7W::_0)
+        self.variant(POEN7_A::_0)
     }
     #[doc = "PDB Pulse-Out enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(POEN7W::_1)
+        self.variant(POEN7_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen0(&self) -> POEN0R {
-        POEN0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen0(&self) -> POEN0_R {
+        POEN0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen1(&self) -> POEN1R {
-        POEN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen1(&self) -> POEN1_R {
+        POEN1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen2(&self) -> POEN2R {
-        POEN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen2(&self) -> POEN2_R {
+        POEN2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen3(&self) -> POEN3R {
-        POEN3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen3(&self) -> POEN3_R {
+        POEN3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen4(&self) -> POEN4R {
-        POEN4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen4(&self) -> POEN4_R {
+        POEN4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen5(&self) -> POEN5R {
-        POEN5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen5(&self) -> POEN5_R {
+        POEN5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen6(&self) -> POEN6R {
-        POEN6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen6(&self) -> POEN6_R {
+        POEN6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen7(&self) -> POEN7R {
-        POEN7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn poen7(&self) -> POEN7_R {
+        POEN7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen0(&mut self) -> _POEN0W {
-        _POEN0W { w: self }
+    #[inline(always)]
+    pub fn poen0(&mut self) -> POEN0_W {
+        POEN0_W { w: self }
     }
     #[doc = "Bit 1 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen1(&mut self) -> _POEN1W {
-        _POEN1W { w: self }
+    #[inline(always)]
+    pub fn poen1(&mut self) -> POEN1_W {
+        POEN1_W { w: self }
     }
     #[doc = "Bit 2 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen2(&mut self) -> _POEN2W {
-        _POEN2W { w: self }
+    #[inline(always)]
+    pub fn poen2(&mut self) -> POEN2_W {
+        POEN2_W { w: self }
     }
     #[doc = "Bit 3 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen3(&mut self) -> _POEN3W {
-        _POEN3W { w: self }
+    #[inline(always)]
+    pub fn poen3(&mut self) -> POEN3_W {
+        POEN3_W { w: self }
     }
     #[doc = "Bit 4 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen4(&mut self) -> _POEN4W {
-        _POEN4W { w: self }
+    #[inline(always)]
+    pub fn poen4(&mut self) -> POEN4_W {
+        POEN4_W { w: self }
     }
     #[doc = "Bit 5 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen5(&mut self) -> _POEN5W {
-        _POEN5W { w: self }
+    #[inline(always)]
+    pub fn poen5(&mut self) -> POEN5_W {
+        POEN5_W { w: self }
     }
     #[doc = "Bit 6 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen6(&mut self) -> _POEN6W {
-        _POEN6W { w: self }
+    #[inline(always)]
+    pub fn poen6(&mut self) -> POEN6_W {
+        POEN6_W { w: self }
     }
     #[doc = "Bit 7 - PDB Pulse-Out Enable"]
-    #[inline]
-    pub fn poen7(&mut self) -> _POEN7W {
-        _POEN7W { w: self }
+    #[inline(always)]
+    pub fn poen7(&mut self) -> POEN7_W {
+        POEN7_W { w: self }
     }
 }

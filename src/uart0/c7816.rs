@@ -1,659 +1,456 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C7816 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C7816"]
+pub type R = crate::R<u8, super::C7816>;
+#[doc = "Writer for register C7816"]
+pub type W = crate::W<u8, super::C7816>;
+#[doc = "Register C7816 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C7816 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `ISO_7816E`"]
+#[doc = "ISO-7816 Functionality Enabled\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ISO_7816ER {
-    #[doc = "ISO-7816 functionality is turned off/not enabled."]
+pub enum ISO_7816E_A {
+    #[doc = "0: ISO-7816 functionality is turned off/not enabled."]
     _0,
-    #[doc = "ISO-7816 functionality is turned on/enabled."]
+    #[doc = "1: ISO-7816 functionality is turned on/enabled."]
     _1,
 }
-impl ISO_7816ER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ISO_7816ER::_0 => false,
-            ISO_7816ER::_1 => true,
+impl From<ISO_7816E_A> for bool {
+    #[inline(always)]
+    fn from(variant: ISO_7816E_A) -> Self {
+        match variant {
+            ISO_7816E_A::_0 => false,
+            ISO_7816E_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ISO_7816ER {
-        match value {
-            false => ISO_7816ER::_0,
-            true => ISO_7816ER::_1,
+}
+#[doc = "Reader of field `ISO_7816E`"]
+pub type ISO_7816E_R = crate::R<bool, ISO_7816E_A>;
+impl ISO_7816E_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ISO_7816E_A {
+        match self.bits {
+            false => ISO_7816E_A::_0,
+            true => ISO_7816E_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ISO_7816ER::_0
+        *self == ISO_7816E_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ISO_7816ER::_1
+        *self == ISO_7816E_A::_1
     }
 }
-#[doc = "Possible values of the field `TTYPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TTYPER {
-    #[doc = "T = 0 per the ISO-7816 specification."]
-    _0,
-    #[doc = "T = 1 per the ISO-7816 specification."]
-    _1,
-}
-impl TTYPER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TTYPER::_0 => false,
-            TTYPER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TTYPER {
-        match value {
-            false => TTYPER::_0,
-            true => TTYPER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TTYPER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TTYPER::_1
-    }
-}
-#[doc = "Possible values of the field `INIT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum INITR {
-    #[doc = "Normal operating mode. Receiver does not seek to identify initial character."]
-    _0,
-    #[doc = "Receiver searches for initial character."]
-    _1,
-}
-impl INITR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            INITR::_0 => false,
-            INITR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> INITR {
-        match value {
-            false => INITR::_0,
-            true => INITR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == INITR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == INITR::_1
-    }
-}
-#[doc = "Possible values of the field `ANACK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ANACKR {
-    #[doc = "No NACK is automatically generated."]
-    _0,
-    #[doc = "A NACK is automatically generated if a parity error is detected or if an invalid initial character is detected."]
-    _1,
-}
-impl ANACKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ANACKR::_0 => false,
-            ANACKR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ANACKR {
-        match value {
-            false => ANACKR::_0,
-            true => ANACKR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ANACKR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ANACKR::_1
-    }
-}
-#[doc = "Possible values of the field `ONACK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ONACKR {
-    #[doc = "The received data does not generate a NACK when the receipt of the data results in an overflow event."]
-    _0,
-    #[doc = "If the receiver buffer overflows, a NACK is automatically sent on a received character."]
-    _1,
-}
-impl ONACKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ONACKR::_0 => false,
-            ONACKR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ONACKR {
-        match value {
-            false => ONACKR::_0,
-            true => ONACKR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ONACKR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ONACKR::_1
-    }
-}
-#[doc = "Values that can be written to the field `ISO_7816E`"]
-pub enum ISO_7816EW {
-    #[doc = "ISO-7816 functionality is turned off/not enabled."]
-    _0,
-    #[doc = "ISO-7816 functionality is turned on/enabled."]
-    _1,
-}
-impl ISO_7816EW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ISO_7816EW::_0 => false,
-            ISO_7816EW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ISO_7816EW<'a> {
+#[doc = "Write proxy for field `ISO_7816E`"]
+pub struct ISO_7816E_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISO_7816EW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ISO_7816EW) -> &'a mut W {
+impl<'a> ISO_7816E_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ISO_7816E_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "ISO-7816 functionality is turned off/not enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ISO_7816EW::_0)
+        self.variant(ISO_7816E_A::_0)
     }
     #[doc = "ISO-7816 functionality is turned on/enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ISO_7816EW::_1)
+        self.variant(ISO_7816E_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TTYPE`"]
-pub enum TTYPEW {
+#[doc = "Transfer Type\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TTYPE_A {
+    #[doc = "0: T = 0 per the ISO-7816 specification."]
+    _0,
+    #[doc = "1: T = 1 per the ISO-7816 specification."]
+    _1,
+}
+impl From<TTYPE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TTYPE_A) -> Self {
+        match variant {
+            TTYPE_A::_0 => false,
+            TTYPE_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TTYPE`"]
+pub type TTYPE_R = crate::R<bool, TTYPE_A>;
+impl TTYPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TTYPE_A {
+        match self.bits {
+            false => TTYPE_A::_0,
+            true => TTYPE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TTYPE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TTYPE_A::_1
+    }
+}
+#[doc = "Write proxy for field `TTYPE`"]
+pub struct TTYPE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TTYPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TTYPE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "T = 0 per the ISO-7816 specification."]
-    _0,
-    #[doc = "T = 1 per the ISO-7816 specification."]
-    _1,
-}
-impl TTYPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TTYPEW::_0 => false,
-            TTYPEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TTYPEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TTYPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TTYPEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "T = 0 per the ISO-7816 specification."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TTYPEW::_0)
+        self.variant(TTYPE_A::_0)
     }
     #[doc = "T = 1 per the ISO-7816 specification."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TTYPEW::_1)
+        self.variant(TTYPE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `INIT`"]
-pub enum INITW {
-    #[doc = "Normal operating mode. Receiver does not seek to identify initial character."]
+#[doc = "Detect Initial Character\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum INIT_A {
+    #[doc = "0: Normal operating mode. Receiver does not seek to identify initial character."]
     _0,
-    #[doc = "Receiver searches for initial character."]
+    #[doc = "1: Receiver searches for initial character."]
     _1,
 }
-impl INITW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            INITW::_0 => false,
-            INITW::_1 => true,
+impl From<INIT_A> for bool {
+    #[inline(always)]
+    fn from(variant: INIT_A) -> Self {
+        match variant {
+            INIT_A::_0 => false,
+            INIT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _INITW<'a> {
+#[doc = "Reader of field `INIT`"]
+pub type INIT_R = crate::R<bool, INIT_A>;
+impl INIT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> INIT_A {
+        match self.bits {
+            false => INIT_A::_0,
+            true => INIT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == INIT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == INIT_A::_1
+    }
+}
+#[doc = "Write proxy for field `INIT`"]
+pub struct INIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INITW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: INITW) -> &'a mut W {
+impl<'a> INIT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: INIT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operating mode. Receiver does not seek to identify initial character."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(INITW::_0)
+        self.variant(INIT_A::_0)
     }
     #[doc = "Receiver searches for initial character."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(INITW::_1)
+        self.variant(INIT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ANACK`"]
-pub enum ANACKW {
-    #[doc = "No NACK is automatically generated."]
+#[doc = "Generate NACK on Error\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ANACK_A {
+    #[doc = "0: No NACK is automatically generated."]
     _0,
-    #[doc = "A NACK is automatically generated if a parity error is detected or if an invalid initial character is detected."]
+    #[doc = "1: A NACK is automatically generated if a parity error is detected or if an invalid initial character is detected."]
     _1,
 }
-impl ANACKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ANACKW::_0 => false,
-            ANACKW::_1 => true,
+impl From<ANACK_A> for bool {
+    #[inline(always)]
+    fn from(variant: ANACK_A) -> Self {
+        match variant {
+            ANACK_A::_0 => false,
+            ANACK_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ANACKW<'a> {
+#[doc = "Reader of field `ANACK`"]
+pub type ANACK_R = crate::R<bool, ANACK_A>;
+impl ANACK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ANACK_A {
+        match self.bits {
+            false => ANACK_A::_0,
+            true => ANACK_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ANACK_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ANACK_A::_1
+    }
+}
+#[doc = "Write proxy for field `ANACK`"]
+pub struct ANACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ANACKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ANACKW) -> &'a mut W {
+impl<'a> ANACK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ANACK_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No NACK is automatically generated."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ANACKW::_0)
+        self.variant(ANACK_A::_0)
     }
     #[doc = "A NACK is automatically generated if a parity error is detected or if an invalid initial character is detected."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ANACKW::_1)
+        self.variant(ANACK_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ONACK`"]
-pub enum ONACKW {
-    #[doc = "The received data does not generate a NACK when the receipt of the data results in an overflow event."]
+#[doc = "Generate NACK on Overflow\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ONACK_A {
+    #[doc = "0: The received data does not generate a NACK when the receipt of the data results in an overflow event."]
     _0,
-    #[doc = "If the receiver buffer overflows, a NACK is automatically sent on a received character."]
+    #[doc = "1: If the receiver buffer overflows, a NACK is automatically sent on a received character."]
     _1,
 }
-impl ONACKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ONACKW::_0 => false,
-            ONACKW::_1 => true,
+impl From<ONACK_A> for bool {
+    #[inline(always)]
+    fn from(variant: ONACK_A) -> Self {
+        match variant {
+            ONACK_A::_0 => false,
+            ONACK_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ONACKW<'a> {
+#[doc = "Reader of field `ONACK`"]
+pub type ONACK_R = crate::R<bool, ONACK_A>;
+impl ONACK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ONACK_A {
+        match self.bits {
+            false => ONACK_A::_0,
+            true => ONACK_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ONACK_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ONACK_A::_1
+    }
+}
+#[doc = "Write proxy for field `ONACK`"]
+pub struct ONACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONACKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ONACKW) -> &'a mut W {
+impl<'a> ONACK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ONACK_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The received data does not generate a NACK when the receipt of the data results in an overflow event."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ONACKW::_0)
+        self.variant(ONACK_A::_0)
     }
     #[doc = "If the receiver buffer overflows, a NACK is automatically sent on a received character."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ONACKW::_1)
+        self.variant(ONACK_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - ISO-7816 Functionality Enabled"]
-    #[inline]
-    pub fn iso_7816e(&self) -> ISO_7816ER {
-        ISO_7816ER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn iso_7816e(&self) -> ISO_7816E_R {
+        ISO_7816E_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transfer Type"]
-    #[inline]
-    pub fn ttype(&self) -> TTYPER {
-        TTYPER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ttype(&self) -> TTYPE_R {
+        TTYPE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Detect Initial Character"]
-    #[inline]
-    pub fn init(&self) -> INITR {
-        INITR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn init(&self) -> INIT_R {
+        INIT_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Generate NACK on Error"]
-    #[inline]
-    pub fn anack(&self) -> ANACKR {
-        ANACKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn anack(&self) -> ANACK_R {
+        ANACK_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Generate NACK on Overflow"]
-    #[inline]
-    pub fn onack(&self) -> ONACKR {
-        ONACKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn onack(&self) -> ONACK_R {
+        ONACK_R::new(((self.bits >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - ISO-7816 Functionality Enabled"]
-    #[inline]
-    pub fn iso_7816e(&mut self) -> _ISO_7816EW {
-        _ISO_7816EW { w: self }
+    #[inline(always)]
+    pub fn iso_7816e(&mut self) -> ISO_7816E_W {
+        ISO_7816E_W { w: self }
     }
     #[doc = "Bit 1 - Transfer Type"]
-    #[inline]
-    pub fn ttype(&mut self) -> _TTYPEW {
-        _TTYPEW { w: self }
+    #[inline(always)]
+    pub fn ttype(&mut self) -> TTYPE_W {
+        TTYPE_W { w: self }
     }
     #[doc = "Bit 2 - Detect Initial Character"]
-    #[inline]
-    pub fn init(&mut self) -> _INITW {
-        _INITW { w: self }
+    #[inline(always)]
+    pub fn init(&mut self) -> INIT_W {
+        INIT_W { w: self }
     }
     #[doc = "Bit 3 - Generate NACK on Error"]
-    #[inline]
-    pub fn anack(&mut self) -> _ANACKW {
-        _ANACKW { w: self }
+    #[inline(always)]
+    pub fn anack(&mut self) -> ANACK_W {
+        ANACK_W { w: self }
     }
     #[doc = "Bit 4 - Generate NACK on Overflow"]
-    #[inline]
-    pub fn onack(&mut self) -> _ONACKW {
-        _ONACKW { w: self }
+    #[inline(always)]
+    pub fn onack(&mut self) -> ONACK_W {
+        ONACK_W { w: self }
     }
 }

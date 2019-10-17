@@ -1,405 +1,270 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CSMR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CSMR%s"]
+pub type R = crate::R<u32, super::CSMR>;
+#[doc = "Writer for register CSMR%s"]
+pub type W = crate::W<u32, super::CSMR>;
+#[doc = "Register CSMR%s `reset()`'s with value 0"]
+impl crate::ResetValue for super::CSMR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `V`"]
+#[doc = "Valid\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VR {
-    #[doc = "Chip-select is invalid."]
+pub enum V_A {
+    #[doc = "0: Chip-select is invalid."]
     _0,
-    #[doc = "Chip-select is valid."]
+    #[doc = "1: Chip-select is valid."]
     _1,
 }
-impl VR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            VR::_0 => false,
-            VR::_1 => true,
+impl From<V_A> for bool {
+    #[inline(always)]
+    fn from(variant: V_A) -> Self {
+        match variant {
+            V_A::_0 => false,
+            V_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> VR {
-        match value {
-            false => VR::_0,
-            true => VR::_1,
+}
+#[doc = "Reader of field `V`"]
+pub type V_R = crate::R<bool, V_A>;
+impl V_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> V_A {
+        match self.bits {
+            false => V_A::_0,
+            true => V_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == VR::_0
+        *self == V_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == VR::_1
+        *self == V_A::_1
     }
 }
-#[doc = "Possible values of the field `WP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WPR {
-    #[doc = "Write accesses are allowed."]
-    _0,
-    #[doc = "Write accesses are not allowed. Attempting to write to the range of addresses for which the WP bit is set results in a bus error termination of the internal cycle and no external cycle."]
-    _1,
-}
-impl WPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WPR::_0 => false,
-            WPR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WPR {
-        match value {
-            false => WPR::_0,
-            true => WPR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WPR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WPR::_1
-    }
-}
-#[doc = "Possible values of the field `BAM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BAMR {
-    #[doc = "The corresponding address bit in CSAR is used in the chip-select decode."]
-    _0,
-    #[doc = "The corresponding address bit in CSAR is a don't care in the chip-select decode."]
-    _1,
-    #[doc = r" Reserved"]
-    _Reserved(u16),
-}
-impl BAMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        match *self {
-            BAMR::_0 => 0,
-            BAMR::_1 => 1,
-            BAMR::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u16) -> BAMR {
-        match value {
-            0 => BAMR::_0,
-            1 => BAMR::_1,
-            i => BAMR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BAMR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BAMR::_1
-    }
-}
-#[doc = "Values that can be written to the field `V`"]
-pub enum VW {
-    #[doc = "Chip-select is invalid."]
-    _0,
-    #[doc = "Chip-select is valid."]
-    _1,
-}
-impl VW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            VW::_0 => false,
-            VW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VW<'a> {
+#[doc = "Write proxy for field `V`"]
+pub struct V_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VW) -> &'a mut W {
+impl<'a> V_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: V_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Chip-select is invalid."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(VW::_0)
+        self.variant(V_A::_0)
     }
     #[doc = "Chip-select is valid."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(VW::_1)
+        self.variant(V_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WP`"]
-pub enum WPW {
-    #[doc = "Write accesses are allowed."]
+#[doc = "Write Protect\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WP_A {
+    #[doc = "0: Write accesses are allowed."]
     _0,
-    #[doc = "Write accesses are not allowed. Attempting to write to the range of addresses for which the WP bit is set results in a bus error termination of the internal cycle and no external cycle."]
+    #[doc = "1: Write accesses are not allowed. Attempting to write to the range of addresses for which the WP bit is set results in a bus error termination of the internal cycle and no external cycle."]
     _1,
 }
-impl WPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WPW::_0 => false,
-            WPW::_1 => true,
+impl From<WP_A> for bool {
+    #[inline(always)]
+    fn from(variant: WP_A) -> Self {
+        match variant {
+            WP_A::_0 => false,
+            WP_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WPW<'a> {
+#[doc = "Reader of field `WP`"]
+pub type WP_R = crate::R<bool, WP_A>;
+impl WP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WP_A {
+        match self.bits {
+            false => WP_A::_0,
+            true => WP_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WP_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WP_A::_1
+    }
+}
+#[doc = "Write proxy for field `WP`"]
+pub struct WP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WPW) -> &'a mut W {
+impl<'a> WP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Write accesses are allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WPW::_0)
+        self.variant(WP_A::_0)
     }
     #[doc = "Write accesses are not allowed. Attempting to write to the range of addresses for which the WP bit is set results in a bus error termination of the internal cycle and no external cycle."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WPW::_1)
+        self.variant(WP_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BAM`"]
-pub enum BAMW {
-    #[doc = "The corresponding address bit in CSAR is used in the chip-select decode."]
+#[doc = "Base Address Mask\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BAM_A {
+    #[doc = "0: The corresponding address bit in CSAR is used in the chip-select decode."]
     _0,
-    #[doc = "The corresponding address bit in CSAR is a don't care in the chip-select decode."]
+    #[doc = "1: The corresponding address bit in CSAR is a don't care in the chip-select decode."]
     _1,
 }
-impl BAMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u16 {
-        match *self {
-            BAMW::_0 => 0,
-            BAMW::_1 => 1,
+impl From<BAM_A> for u16 {
+    #[inline(always)]
+    fn from(variant: BAM_A) -> Self {
+        match variant {
+            BAM_A::_0 => 0,
+            BAM_A::_1 => 1,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BAMW<'a> {
+#[doc = "Reader of field `BAM`"]
+pub type BAM_R = crate::R<u16, BAM_A>;
+impl BAM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u16, BAM_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(BAM_A::_0),
+            1 => Val(BAM_A::_1),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BAM_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BAM_A::_1
+    }
+}
+#[doc = "Write proxy for field `BAM`"]
+pub struct BAM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BAMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BAMW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> BAM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BAM_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The corresponding address bit in CSAR is used in the chip-select decode."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BAMW::_0)
+        self.variant(BAM_A::_0)
     }
     #[doc = "The corresponding address bit in CSAR is a don't care in the chip-select decode."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BAMW::_1)
+        self.variant(BAM_A::_1)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 65535;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xffff << 16)) | (((value as u32) & 0xffff) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Valid"]
-    #[inline]
-    pub fn v(&self) -> VR {
-        VR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn v(&self) -> V_R {
+        V_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 8 - Write Protect"]
-    #[inline]
-    pub fn wp(&self) -> WPR {
-        WPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wp(&self) -> WP_R {
+        WP_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bits 16:31 - Base Address Mask"]
-    #[inline]
-    pub fn bam(&self) -> BAMR {
-        BAMR::_from({
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        })
+    #[inline(always)]
+    pub fn bam(&self) -> BAM_R {
+        BAM_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Valid"]
-    #[inline]
-    pub fn v(&mut self) -> _VW {
-        _VW { w: self }
+    #[inline(always)]
+    pub fn v(&mut self) -> V_W {
+        V_W { w: self }
     }
     #[doc = "Bit 8 - Write Protect"]
-    #[inline]
-    pub fn wp(&mut self) -> _WPW {
-        _WPW { w: self }
+    #[inline(always)]
+    pub fn wp(&mut self) -> WP_W {
+        WP_W { w: self }
     }
     #[doc = "Bits 16:31 - Base Address Mask"]
-    #[inline]
-    pub fn bam(&mut self) -> _BAMW {
-        _BAMW { w: self }
+    #[inline(always)]
+    pub fn bam(&mut self) -> BAM_W {
+        BAM_W { w: self }
     }
 }

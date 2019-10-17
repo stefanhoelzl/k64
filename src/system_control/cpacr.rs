@@ -1,336 +1,230 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CPACR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CPACR"]
+pub type R = crate::R<u32, super::CPACR>;
+#[doc = "Writer for register CPACR"]
+pub type W = crate::W<u32, super::CPACR>;
+#[doc = "Register CPACR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CPACR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `CP10`"]
+#[doc = "Access privileges for coprocessor 10.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CP10R {
-    #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
+pub enum CP10_A {
+    #[doc = "0: Access denied. Any attempted access generates a NOCP UsageFault"]
     _00,
-    #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
+    #[doc = "1: Privileged access only. An unprivileged access generates a NOCP fault."]
     _01,
-    #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
+    #[doc = "2: Reserved. The result of any access is UNPREDICTABLE."]
     _10,
-    #[doc = "Full access."]
+    #[doc = "3: Full access."]
     _11,
 }
-impl CP10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CP10R::_00 => 0,
-            CP10R::_01 => 1,
-            CP10R::_10 => 2,
-            CP10R::_11 => 3,
+impl From<CP10_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CP10_A) -> Self {
+        match variant {
+            CP10_A::_00 => 0,
+            CP10_A::_01 => 1,
+            CP10_A::_10 => 2,
+            CP10_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CP10R {
-        match value {
-            0 => CP10R::_00,
-            1 => CP10R::_01,
-            2 => CP10R::_10,
-            3 => CP10R::_11,
+}
+#[doc = "Reader of field `CP10`"]
+pub type CP10_R = crate::R<u8, CP10_A>;
+impl CP10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CP10_A {
+        match self.bits {
+            0 => CP10_A::_00,
+            1 => CP10_A::_01,
+            2 => CP10_A::_10,
+            3 => CP10_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == CP10R::_00
+        *self == CP10_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == CP10R::_01
+        *self == CP10_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == CP10R::_10
+        *self == CP10_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == CP10R::_11
+        *self == CP10_A::_11
     }
 }
-#[doc = "Possible values of the field `CP11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CP11R {
-    #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
-    _00,
-    #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
-    _01,
-    #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
-    _10,
-    #[doc = "Full access."]
-    _11,
-}
-impl CP11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CP11R::_00 => 0,
-            CP11R::_01 => 1,
-            CP11R::_10 => 2,
-            CP11R::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CP11R {
-        match value {
-            0 => CP11R::_00,
-            1 => CP11R::_01,
-            2 => CP11R::_10,
-            3 => CP11R::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == CP11R::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == CP11R::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == CP11R::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == CP11R::_11
-    }
-}
-#[doc = "Values that can be written to the field `CP10`"]
-pub enum CP10W {
-    #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
-    _00,
-    #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
-    _01,
-    #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
-    _10,
-    #[doc = "Full access."]
-    _11,
-}
-impl CP10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CP10W::_00 => 0,
-            CP10W::_01 => 1,
-            CP10W::_10 => 2,
-            CP10W::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CP10W<'a> {
+#[doc = "Write proxy for field `CP10`"]
+pub struct CP10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CP10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CP10W) -> &'a mut W {
+impl<'a> CP10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CP10_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(CP10W::_00)
+        self.variant(CP10_A::_00)
     }
     #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(CP10W::_01)
+        self.variant(CP10_A::_01)
     }
     #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(CP10W::_10)
+        self.variant(CP10_A::_10)
     }
     #[doc = "Full access."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(CP10W::_11)
+        self.variant(CP10_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 20)) | (((value as u32) & 0x03) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CP11`"]
-pub enum CP11W {
-    #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
+#[doc = "Access privileges for coprocessor 11.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CP11_A {
+    #[doc = "0: Access denied. Any attempted access generates a NOCP UsageFault"]
     _00,
-    #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
+    #[doc = "1: Privileged access only. An unprivileged access generates a NOCP fault."]
     _01,
-    #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
+    #[doc = "2: Reserved. The result of any access is UNPREDICTABLE."]
     _10,
-    #[doc = "Full access."]
+    #[doc = "3: Full access."]
     _11,
 }
-impl CP11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CP11W::_00 => 0,
-            CP11W::_01 => 1,
-            CP11W::_10 => 2,
-            CP11W::_11 => 3,
+impl From<CP11_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CP11_A) -> Self {
+        match variant {
+            CP11_A::_00 => 0,
+            CP11_A::_01 => 1,
+            CP11_A::_10 => 2,
+            CP11_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CP11W<'a> {
+#[doc = "Reader of field `CP11`"]
+pub type CP11_R = crate::R<u8, CP11_A>;
+impl CP11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CP11_A {
+        match self.bits {
+            0 => CP11_A::_00,
+            1 => CP11_A::_01,
+            2 => CP11_A::_10,
+            3 => CP11_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == CP11_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == CP11_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == CP11_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == CP11_A::_11
+    }
+}
+#[doc = "Write proxy for field `CP11`"]
+pub struct CP11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CP11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CP11W) -> &'a mut W {
+impl<'a> CP11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CP11_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Access denied. Any attempted access generates a NOCP UsageFault"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(CP11W::_00)
+        self.variant(CP11_A::_00)
     }
     #[doc = "Privileged access only. An unprivileged access generates a NOCP fault."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(CP11W::_01)
+        self.variant(CP11_A::_01)
     }
     #[doc = "Reserved. The result of any access is UNPREDICTABLE."]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(CP11W::_10)
+        self.variant(CP11_A::_10)
     }
     #[doc = "Full access."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(CP11W::_11)
+        self.variant(CP11_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 20:21 - Access privileges for coprocessor 10."]
-    #[inline]
-    pub fn cp10(&self) -> CP10R {
-        CP10R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn cp10(&self) -> CP10_R {
+        CP10_R::new(((self.bits >> 20) & 0x03) as u8)
     }
     #[doc = "Bits 22:23 - Access privileges for coprocessor 11."]
-    #[inline]
-    pub fn cp11(&self) -> CP11R {
-        CP11R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn cp11(&self) -> CP11_R {
+        CP11_R::new(((self.bits >> 22) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 20:21 - Access privileges for coprocessor 10."]
-    #[inline]
-    pub fn cp10(&mut self) -> _CP10W {
-        _CP10W { w: self }
+    #[inline(always)]
+    pub fn cp10(&mut self) -> CP10_W {
+        CP10_W { w: self }
     }
     #[doc = "Bits 22:23 - Access privileges for coprocessor 11."]
-    #[inline]
-    pub fn cp11(&mut self) -> _CP11W {
-        _CP11W { w: self }
+    #[inline(always)]
+    pub fn cp11(&mut self) -> CP11_W {
+        CP11_W { w: self }
     }
 }

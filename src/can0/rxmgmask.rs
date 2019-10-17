@@ -1,3872 +1,2832 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RXMGMASK {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RXMGMASK"]
+pub type R = crate::R<u32, super::RXMGMASK>;
+#[doc = "Writer for register RXMGMASK"]
+pub type W = crate::W<u32, super::RXMGMASK>;
+#[doc = "Register RXMGMASK `reset()`'s with value 0xffff_ffff"]
+impl crate::ResetValue for super::RXMGMASK {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xffff_ffff
     }
 }
-#[doc = "Possible values of the field `MG0`"]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG0R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+pub enum MG0_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG0R::_0 => false,
-            MG0R::_1 => true,
+impl From<MG0_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG0_A) -> Self {
+        match variant {
+            MG0_A::_0 => false,
+            MG0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG0R {
-        match value {
-            false => MG0R::_0,
-            true => MG0R::_1,
+}
+#[doc = "Reader of field `MG0`"]
+pub type MG0_R = crate::R<bool, MG0_A>;
+impl MG0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG0_A {
+        match self.bits {
+            false => MG0_A::_0,
+            true => MG0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == MG0R::_0
+        *self == MG0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == MG0R::_1
+        *self == MG0_A::_1
     }
 }
-#[doc = "Possible values of the field `MG1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG1R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG1R::_0 => false,
-            MG1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG1R {
-        match value {
-            false => MG1R::_0,
-            true => MG1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG1R::_1
-    }
-}
-#[doc = "Possible values of the field `MG2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG2R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG2R::_0 => false,
-            MG2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG2R {
-        match value {
-            false => MG2R::_0,
-            true => MG2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG2R::_1
-    }
-}
-#[doc = "Possible values of the field `MG3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG3R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG3R::_0 => false,
-            MG3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG3R {
-        match value {
-            false => MG3R::_0,
-            true => MG3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG3R::_1
-    }
-}
-#[doc = "Possible values of the field `MG4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG4R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG4R::_0 => false,
-            MG4R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG4R {
-        match value {
-            false => MG4R::_0,
-            true => MG4R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG4R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG4R::_1
-    }
-}
-#[doc = "Possible values of the field `MG5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG5R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG5R::_0 => false,
-            MG5R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG5R {
-        match value {
-            false => MG5R::_0,
-            true => MG5R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG5R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG5R::_1
-    }
-}
-#[doc = "Possible values of the field `MG6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG6R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG6R::_0 => false,
-            MG6R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG6R {
-        match value {
-            false => MG6R::_0,
-            true => MG6R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG6R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG6R::_1
-    }
-}
-#[doc = "Possible values of the field `MG7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG7R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG7R::_0 => false,
-            MG7R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG7R {
-        match value {
-            false => MG7R::_0,
-            true => MG7R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG7R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG7R::_1
-    }
-}
-#[doc = "Possible values of the field `MG8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG8R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG8R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG8R::_0 => false,
-            MG8R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG8R {
-        match value {
-            false => MG8R::_0,
-            true => MG8R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG8R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG8R::_1
-    }
-}
-#[doc = "Possible values of the field `MG9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG9R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG9R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG9R::_0 => false,
-            MG9R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG9R {
-        match value {
-            false => MG9R::_0,
-            true => MG9R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG9R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG9R::_1
-    }
-}
-#[doc = "Possible values of the field `MG10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG10R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG10R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG10R::_0 => false,
-            MG10R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG10R {
-        match value {
-            false => MG10R::_0,
-            true => MG10R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG10R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG10R::_1
-    }
-}
-#[doc = "Possible values of the field `MG11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG11R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG11R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG11R::_0 => false,
-            MG11R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG11R {
-        match value {
-            false => MG11R::_0,
-            true => MG11R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG11R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG11R::_1
-    }
-}
-#[doc = "Possible values of the field `MG12`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG12R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG12R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG12R::_0 => false,
-            MG12R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG12R {
-        match value {
-            false => MG12R::_0,
-            true => MG12R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG12R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG12R::_1
-    }
-}
-#[doc = "Possible values of the field `MG13`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG13R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG13R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG13R::_0 => false,
-            MG13R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG13R {
-        match value {
-            false => MG13R::_0,
-            true => MG13R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG13R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG13R::_1
-    }
-}
-#[doc = "Possible values of the field `MG14`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG14R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG14R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG14R::_0 => false,
-            MG14R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG14R {
-        match value {
-            false => MG14R::_0,
-            true => MG14R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG14R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG14R::_1
-    }
-}
-#[doc = "Possible values of the field `MG15`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG15R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG15R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG15R::_0 => false,
-            MG15R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG15R {
-        match value {
-            false => MG15R::_0,
-            true => MG15R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG15R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG15R::_1
-    }
-}
-#[doc = "Possible values of the field `MG16`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG16R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG16R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG16R::_0 => false,
-            MG16R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG16R {
-        match value {
-            false => MG16R::_0,
-            true => MG16R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG16R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG16R::_1
-    }
-}
-#[doc = "Possible values of the field `MG17`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG17R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG17R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG17R::_0 => false,
-            MG17R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG17R {
-        match value {
-            false => MG17R::_0,
-            true => MG17R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG17R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG17R::_1
-    }
-}
-#[doc = "Possible values of the field `MG18`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG18R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG18R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG18R::_0 => false,
-            MG18R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG18R {
-        match value {
-            false => MG18R::_0,
-            true => MG18R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG18R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG18R::_1
-    }
-}
-#[doc = "Possible values of the field `MG19`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG19R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG19R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG19R::_0 => false,
-            MG19R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG19R {
-        match value {
-            false => MG19R::_0,
-            true => MG19R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG19R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG19R::_1
-    }
-}
-#[doc = "Possible values of the field `MG20`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG20R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG20R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG20R::_0 => false,
-            MG20R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG20R {
-        match value {
-            false => MG20R::_0,
-            true => MG20R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG20R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG20R::_1
-    }
-}
-#[doc = "Possible values of the field `MG21`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG21R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG21R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG21R::_0 => false,
-            MG21R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG21R {
-        match value {
-            false => MG21R::_0,
-            true => MG21R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG21R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG21R::_1
-    }
-}
-#[doc = "Possible values of the field `MG22`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG22R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG22R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG22R::_0 => false,
-            MG22R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG22R {
-        match value {
-            false => MG22R::_0,
-            true => MG22R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG22R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG22R::_1
-    }
-}
-#[doc = "Possible values of the field `MG23`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG23R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG23R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG23R::_0 => false,
-            MG23R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG23R {
-        match value {
-            false => MG23R::_0,
-            true => MG23R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG23R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG23R::_1
-    }
-}
-#[doc = "Possible values of the field `MG24`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG24R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG24R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG24R::_0 => false,
-            MG24R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG24R {
-        match value {
-            false => MG24R::_0,
-            true => MG24R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG24R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG24R::_1
-    }
-}
-#[doc = "Possible values of the field `MG25`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG25R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG25R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG25R::_0 => false,
-            MG25R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG25R {
-        match value {
-            false => MG25R::_0,
-            true => MG25R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG25R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG25R::_1
-    }
-}
-#[doc = "Possible values of the field `MG26`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG26R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG26R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG26R::_0 => false,
-            MG26R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG26R {
-        match value {
-            false => MG26R::_0,
-            true => MG26R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG26R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG26R::_1
-    }
-}
-#[doc = "Possible values of the field `MG27`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG27R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG27R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG27R::_0 => false,
-            MG27R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG27R {
-        match value {
-            false => MG27R::_0,
-            true => MG27R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG27R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG27R::_1
-    }
-}
-#[doc = "Possible values of the field `MG28`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG28R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG28R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG28R::_0 => false,
-            MG28R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG28R {
-        match value {
-            false => MG28R::_0,
-            true => MG28R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG28R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG28R::_1
-    }
-}
-#[doc = "Possible values of the field `MG29`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG29R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG29R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG29R::_0 => false,
-            MG29R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG29R {
-        match value {
-            false => MG29R::_0,
-            true => MG29R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG29R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG29R::_1
-    }
-}
-#[doc = "Possible values of the field `MG30`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG30R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG30R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG30R::_0 => false,
-            MG30R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG30R {
-        match value {
-            false => MG30R::_0,
-            true => MG30R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG30R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG30R::_1
-    }
-}
-#[doc = "Possible values of the field `MG31`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MG31R {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG31R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MG31R::_0 => false,
-            MG31R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MG31R {
-        match value {
-            false => MG31R::_0,
-            true => MG31R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MG31R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MG31R::_1
-    }
-}
-#[doc = "Values that can be written to the field `MG0`"]
-pub enum MG0W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    _0,
-    #[doc = "The corresponding bit in the filter is checked."]
-    _1,
-}
-impl MG0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG0W::_0 => false,
-            MG0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MG0W<'a> {
+#[doc = "Write proxy for field `MG0`"]
+pub struct MG0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG0W) -> &'a mut W {
+impl<'a> MG0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG0W::_0)
+        self.variant(MG0_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG0W::_1)
+        self.variant(MG0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG1`"]
-pub enum MG1W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG1_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG1W::_0 => false,
-            MG1W::_1 => true,
+impl From<MG1_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG1_A) -> Self {
+        match variant {
+            MG1_A::_0 => false,
+            MG1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG1W<'a> {
+#[doc = "Reader of field `MG1`"]
+pub type MG1_R = crate::R<bool, MG1_A>;
+impl MG1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG1_A {
+        match self.bits {
+            false => MG1_A::_0,
+            true => MG1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG1_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG1`"]
+pub struct MG1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG1W) -> &'a mut W {
+impl<'a> MG1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG1W::_0)
+        self.variant(MG1_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG1W::_1)
+        self.variant(MG1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG2`"]
-pub enum MG2W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG2_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG2W::_0 => false,
-            MG2W::_1 => true,
+impl From<MG2_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG2_A) -> Self {
+        match variant {
+            MG2_A::_0 => false,
+            MG2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG2W<'a> {
+#[doc = "Reader of field `MG2`"]
+pub type MG2_R = crate::R<bool, MG2_A>;
+impl MG2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG2_A {
+        match self.bits {
+            false => MG2_A::_0,
+            true => MG2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG2_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG2`"]
+pub struct MG2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG2W) -> &'a mut W {
+impl<'a> MG2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG2W::_0)
+        self.variant(MG2_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG2W::_1)
+        self.variant(MG2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG3`"]
-pub enum MG3W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG3_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG3W::_0 => false,
-            MG3W::_1 => true,
+impl From<MG3_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG3_A) -> Self {
+        match variant {
+            MG3_A::_0 => false,
+            MG3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG3W<'a> {
+#[doc = "Reader of field `MG3`"]
+pub type MG3_R = crate::R<bool, MG3_A>;
+impl MG3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG3_A {
+        match self.bits {
+            false => MG3_A::_0,
+            true => MG3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG3_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG3`"]
+pub struct MG3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG3W) -> &'a mut W {
+impl<'a> MG3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG3W::_0)
+        self.variant(MG3_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG3W::_1)
+        self.variant(MG3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG4`"]
-pub enum MG4W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG4_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG4W::_0 => false,
-            MG4W::_1 => true,
+impl From<MG4_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG4_A) -> Self {
+        match variant {
+            MG4_A::_0 => false,
+            MG4_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG4W<'a> {
+#[doc = "Reader of field `MG4`"]
+pub type MG4_R = crate::R<bool, MG4_A>;
+impl MG4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG4_A {
+        match self.bits {
+            false => MG4_A::_0,
+            true => MG4_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG4_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG4_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG4`"]
+pub struct MG4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG4W) -> &'a mut W {
+impl<'a> MG4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG4W::_0)
+        self.variant(MG4_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG4W::_1)
+        self.variant(MG4_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG5`"]
-pub enum MG5W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG5_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG5W::_0 => false,
-            MG5W::_1 => true,
+impl From<MG5_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG5_A) -> Self {
+        match variant {
+            MG5_A::_0 => false,
+            MG5_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG5W<'a> {
+#[doc = "Reader of field `MG5`"]
+pub type MG5_R = crate::R<bool, MG5_A>;
+impl MG5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG5_A {
+        match self.bits {
+            false => MG5_A::_0,
+            true => MG5_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG5_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG5_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG5`"]
+pub struct MG5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG5W) -> &'a mut W {
+impl<'a> MG5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG5W::_0)
+        self.variant(MG5_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG5W::_1)
+        self.variant(MG5_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG6`"]
-pub enum MG6W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG6_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG6W::_0 => false,
-            MG6W::_1 => true,
+impl From<MG6_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG6_A) -> Self {
+        match variant {
+            MG6_A::_0 => false,
+            MG6_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG6W<'a> {
+#[doc = "Reader of field `MG6`"]
+pub type MG6_R = crate::R<bool, MG6_A>;
+impl MG6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG6_A {
+        match self.bits {
+            false => MG6_A::_0,
+            true => MG6_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG6_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG6_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG6`"]
+pub struct MG6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG6W) -> &'a mut W {
+impl<'a> MG6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG6W::_0)
+        self.variant(MG6_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG6W::_1)
+        self.variant(MG6_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG7`"]
-pub enum MG7W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG7_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG7W::_0 => false,
-            MG7W::_1 => true,
+impl From<MG7_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG7_A) -> Self {
+        match variant {
+            MG7_A::_0 => false,
+            MG7_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG7W<'a> {
+#[doc = "Reader of field `MG7`"]
+pub type MG7_R = crate::R<bool, MG7_A>;
+impl MG7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG7_A {
+        match self.bits {
+            false => MG7_A::_0,
+            true => MG7_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG7_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG7_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG7`"]
+pub struct MG7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG7W) -> &'a mut W {
+impl<'a> MG7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG7W::_0)
+        self.variant(MG7_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG7W::_1)
+        self.variant(MG7_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG8`"]
-pub enum MG8W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG8_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG8W::_0 => false,
-            MG8W::_1 => true,
+impl From<MG8_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG8_A) -> Self {
+        match variant {
+            MG8_A::_0 => false,
+            MG8_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG8W<'a> {
+#[doc = "Reader of field `MG8`"]
+pub type MG8_R = crate::R<bool, MG8_A>;
+impl MG8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG8_A {
+        match self.bits {
+            false => MG8_A::_0,
+            true => MG8_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG8_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG8_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG8`"]
+pub struct MG8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG8W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG8W) -> &'a mut W {
+impl<'a> MG8_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG8_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG8W::_0)
+        self.variant(MG8_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG8W::_1)
+        self.variant(MG8_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG9`"]
-pub enum MG9W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG9_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG9W::_0 => false,
-            MG9W::_1 => true,
+impl From<MG9_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG9_A) -> Self {
+        match variant {
+            MG9_A::_0 => false,
+            MG9_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG9W<'a> {
+#[doc = "Reader of field `MG9`"]
+pub type MG9_R = crate::R<bool, MG9_A>;
+impl MG9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG9_A {
+        match self.bits {
+            false => MG9_A::_0,
+            true => MG9_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG9_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG9_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG9`"]
+pub struct MG9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG9W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG9W) -> &'a mut W {
+impl<'a> MG9_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG9_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG9W::_0)
+        self.variant(MG9_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG9W::_1)
+        self.variant(MG9_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG10`"]
-pub enum MG10W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG10_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG10W::_0 => false,
-            MG10W::_1 => true,
+impl From<MG10_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG10_A) -> Self {
+        match variant {
+            MG10_A::_0 => false,
+            MG10_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG10W<'a> {
+#[doc = "Reader of field `MG10`"]
+pub type MG10_R = crate::R<bool, MG10_A>;
+impl MG10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG10_A {
+        match self.bits {
+            false => MG10_A::_0,
+            true => MG10_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG10_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG10_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG10`"]
+pub struct MG10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG10W) -> &'a mut W {
+impl<'a> MG10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG10_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG10W::_0)
+        self.variant(MG10_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG10W::_1)
+        self.variant(MG10_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG11`"]
-pub enum MG11W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG11_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG11W::_0 => false,
-            MG11W::_1 => true,
+impl From<MG11_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG11_A) -> Self {
+        match variant {
+            MG11_A::_0 => false,
+            MG11_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG11W<'a> {
+#[doc = "Reader of field `MG11`"]
+pub type MG11_R = crate::R<bool, MG11_A>;
+impl MG11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG11_A {
+        match self.bits {
+            false => MG11_A::_0,
+            true => MG11_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG11_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG11_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG11`"]
+pub struct MG11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG11W) -> &'a mut W {
+impl<'a> MG11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG11_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG11W::_0)
+        self.variant(MG11_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG11W::_1)
+        self.variant(MG11_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG12`"]
-pub enum MG12W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG12_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG12W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG12W::_0 => false,
-            MG12W::_1 => true,
+impl From<MG12_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG12_A) -> Self {
+        match variant {
+            MG12_A::_0 => false,
+            MG12_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG12W<'a> {
+#[doc = "Reader of field `MG12`"]
+pub type MG12_R = crate::R<bool, MG12_A>;
+impl MG12_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG12_A {
+        match self.bits {
+            false => MG12_A::_0,
+            true => MG12_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG12_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG12_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG12`"]
+pub struct MG12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG12W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG12W) -> &'a mut W {
+impl<'a> MG12_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG12_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG12W::_0)
+        self.variant(MG12_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG12W::_1)
+        self.variant(MG12_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG13`"]
-pub enum MG13W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG13_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG13W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG13W::_0 => false,
-            MG13W::_1 => true,
+impl From<MG13_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG13_A) -> Self {
+        match variant {
+            MG13_A::_0 => false,
+            MG13_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG13W<'a> {
+#[doc = "Reader of field `MG13`"]
+pub type MG13_R = crate::R<bool, MG13_A>;
+impl MG13_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG13_A {
+        match self.bits {
+            false => MG13_A::_0,
+            true => MG13_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG13_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG13_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG13`"]
+pub struct MG13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG13W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG13W) -> &'a mut W {
+impl<'a> MG13_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG13_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG13W::_0)
+        self.variant(MG13_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG13W::_1)
+        self.variant(MG13_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG14`"]
-pub enum MG14W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG14_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG14W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG14W::_0 => false,
-            MG14W::_1 => true,
+impl From<MG14_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG14_A) -> Self {
+        match variant {
+            MG14_A::_0 => false,
+            MG14_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG14W<'a> {
+#[doc = "Reader of field `MG14`"]
+pub type MG14_R = crate::R<bool, MG14_A>;
+impl MG14_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG14_A {
+        match self.bits {
+            false => MG14_A::_0,
+            true => MG14_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG14_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG14_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG14`"]
+pub struct MG14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG14W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG14W) -> &'a mut W {
+impl<'a> MG14_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG14_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG14W::_0)
+        self.variant(MG14_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG14W::_1)
+        self.variant(MG14_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG15`"]
-pub enum MG15W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG15_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG15W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG15W::_0 => false,
-            MG15W::_1 => true,
+impl From<MG15_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG15_A) -> Self {
+        match variant {
+            MG15_A::_0 => false,
+            MG15_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG15W<'a> {
+#[doc = "Reader of field `MG15`"]
+pub type MG15_R = crate::R<bool, MG15_A>;
+impl MG15_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG15_A {
+        match self.bits {
+            false => MG15_A::_0,
+            true => MG15_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG15_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG15_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG15`"]
+pub struct MG15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG15W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG15W) -> &'a mut W {
+impl<'a> MG15_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG15_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG15W::_0)
+        self.variant(MG15_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG15W::_1)
+        self.variant(MG15_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG16`"]
-pub enum MG16W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG16_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG16W::_0 => false,
-            MG16W::_1 => true,
+impl From<MG16_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG16_A) -> Self {
+        match variant {
+            MG16_A::_0 => false,
+            MG16_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG16W<'a> {
+#[doc = "Reader of field `MG16`"]
+pub type MG16_R = crate::R<bool, MG16_A>;
+impl MG16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG16_A {
+        match self.bits {
+            false => MG16_A::_0,
+            true => MG16_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG16_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG16_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG16`"]
+pub struct MG16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG16W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG16W) -> &'a mut W {
+impl<'a> MG16_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG16W::_0)
+        self.variant(MG16_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG16W::_1)
+        self.variant(MG16_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG17`"]
-pub enum MG17W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG17_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG17W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG17W::_0 => false,
-            MG17W::_1 => true,
+impl From<MG17_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG17_A) -> Self {
+        match variant {
+            MG17_A::_0 => false,
+            MG17_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG17W<'a> {
+#[doc = "Reader of field `MG17`"]
+pub type MG17_R = crate::R<bool, MG17_A>;
+impl MG17_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG17_A {
+        match self.bits {
+            false => MG17_A::_0,
+            true => MG17_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG17_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG17_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG17`"]
+pub struct MG17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG17W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG17W) -> &'a mut W {
+impl<'a> MG17_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG17_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG17W::_0)
+        self.variant(MG17_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG17W::_1)
+        self.variant(MG17_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG18`"]
-pub enum MG18W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG18_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG18W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG18W::_0 => false,
-            MG18W::_1 => true,
+impl From<MG18_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG18_A) -> Self {
+        match variant {
+            MG18_A::_0 => false,
+            MG18_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG18W<'a> {
+#[doc = "Reader of field `MG18`"]
+pub type MG18_R = crate::R<bool, MG18_A>;
+impl MG18_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG18_A {
+        match self.bits {
+            false => MG18_A::_0,
+            true => MG18_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG18_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG18_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG18`"]
+pub struct MG18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG18W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG18W) -> &'a mut W {
+impl<'a> MG18_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG18_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG18W::_0)
+        self.variant(MG18_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG18W::_1)
+        self.variant(MG18_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG19`"]
-pub enum MG19W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG19_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG19W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG19W::_0 => false,
-            MG19W::_1 => true,
+impl From<MG19_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG19_A) -> Self {
+        match variant {
+            MG19_A::_0 => false,
+            MG19_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG19W<'a> {
+#[doc = "Reader of field `MG19`"]
+pub type MG19_R = crate::R<bool, MG19_A>;
+impl MG19_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG19_A {
+        match self.bits {
+            false => MG19_A::_0,
+            true => MG19_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG19_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG19_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG19`"]
+pub struct MG19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG19W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG19W) -> &'a mut W {
+impl<'a> MG19_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG19_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG19W::_0)
+        self.variant(MG19_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG19W::_1)
+        self.variant(MG19_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG20`"]
-pub enum MG20W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG20_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG20W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG20W::_0 => false,
-            MG20W::_1 => true,
+impl From<MG20_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG20_A) -> Self {
+        match variant {
+            MG20_A::_0 => false,
+            MG20_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG20W<'a> {
+#[doc = "Reader of field `MG20`"]
+pub type MG20_R = crate::R<bool, MG20_A>;
+impl MG20_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG20_A {
+        match self.bits {
+            false => MG20_A::_0,
+            true => MG20_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG20_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG20_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG20`"]
+pub struct MG20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG20W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG20W) -> &'a mut W {
+impl<'a> MG20_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG20_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG20W::_0)
+        self.variant(MG20_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG20W::_1)
+        self.variant(MG20_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG21`"]
-pub enum MG21W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG21_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG21W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG21W::_0 => false,
-            MG21W::_1 => true,
+impl From<MG21_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG21_A) -> Self {
+        match variant {
+            MG21_A::_0 => false,
+            MG21_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG21W<'a> {
+#[doc = "Reader of field `MG21`"]
+pub type MG21_R = crate::R<bool, MG21_A>;
+impl MG21_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG21_A {
+        match self.bits {
+            false => MG21_A::_0,
+            true => MG21_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG21_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG21_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG21`"]
+pub struct MG21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG21W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG21W) -> &'a mut W {
+impl<'a> MG21_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG21_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG21W::_0)
+        self.variant(MG21_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG21W::_1)
+        self.variant(MG21_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG22`"]
-pub enum MG22W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG22_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG22W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG22W::_0 => false,
-            MG22W::_1 => true,
+impl From<MG22_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG22_A) -> Self {
+        match variant {
+            MG22_A::_0 => false,
+            MG22_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG22W<'a> {
+#[doc = "Reader of field `MG22`"]
+pub type MG22_R = crate::R<bool, MG22_A>;
+impl MG22_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG22_A {
+        match self.bits {
+            false => MG22_A::_0,
+            true => MG22_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG22_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG22_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG22`"]
+pub struct MG22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG22W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG22W) -> &'a mut W {
+impl<'a> MG22_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG22_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG22W::_0)
+        self.variant(MG22_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG22W::_1)
+        self.variant(MG22_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG23`"]
-pub enum MG23W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG23_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG23W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG23W::_0 => false,
-            MG23W::_1 => true,
+impl From<MG23_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG23_A) -> Self {
+        match variant {
+            MG23_A::_0 => false,
+            MG23_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG23W<'a> {
+#[doc = "Reader of field `MG23`"]
+pub type MG23_R = crate::R<bool, MG23_A>;
+impl MG23_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG23_A {
+        match self.bits {
+            false => MG23_A::_0,
+            true => MG23_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG23_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG23_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG23`"]
+pub struct MG23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG23W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG23W) -> &'a mut W {
+impl<'a> MG23_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG23_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG23W::_0)
+        self.variant(MG23_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG23W::_1)
+        self.variant(MG23_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG24`"]
-pub enum MG24W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG24_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG24W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG24W::_0 => false,
-            MG24W::_1 => true,
+impl From<MG24_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG24_A) -> Self {
+        match variant {
+            MG24_A::_0 => false,
+            MG24_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG24W<'a> {
+#[doc = "Reader of field `MG24`"]
+pub type MG24_R = crate::R<bool, MG24_A>;
+impl MG24_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG24_A {
+        match self.bits {
+            false => MG24_A::_0,
+            true => MG24_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG24_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG24_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG24`"]
+pub struct MG24_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG24W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG24W) -> &'a mut W {
+impl<'a> MG24_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG24_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG24W::_0)
+        self.variant(MG24_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG24W::_1)
+        self.variant(MG24_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG25`"]
-pub enum MG25W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG25_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG25W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG25W::_0 => false,
-            MG25W::_1 => true,
+impl From<MG25_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG25_A) -> Self {
+        match variant {
+            MG25_A::_0 => false,
+            MG25_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG25W<'a> {
+#[doc = "Reader of field `MG25`"]
+pub type MG25_R = crate::R<bool, MG25_A>;
+impl MG25_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG25_A {
+        match self.bits {
+            false => MG25_A::_0,
+            true => MG25_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG25_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG25_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG25`"]
+pub struct MG25_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG25W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG25W) -> &'a mut W {
+impl<'a> MG25_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG25_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG25W::_0)
+        self.variant(MG25_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG25W::_1)
+        self.variant(MG25_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG26`"]
-pub enum MG26W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG26_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG26W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG26W::_0 => false,
-            MG26W::_1 => true,
+impl From<MG26_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG26_A) -> Self {
+        match variant {
+            MG26_A::_0 => false,
+            MG26_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG26W<'a> {
+#[doc = "Reader of field `MG26`"]
+pub type MG26_R = crate::R<bool, MG26_A>;
+impl MG26_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG26_A {
+        match self.bits {
+            false => MG26_A::_0,
+            true => MG26_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG26_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG26_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG26`"]
+pub struct MG26_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG26W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG26W) -> &'a mut W {
+impl<'a> MG26_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG26_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG26W::_0)
+        self.variant(MG26_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG26W::_1)
+        self.variant(MG26_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG27`"]
-pub enum MG27W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG27_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG27W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG27W::_0 => false,
-            MG27W::_1 => true,
+impl From<MG27_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG27_A) -> Self {
+        match variant {
+            MG27_A::_0 => false,
+            MG27_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG27W<'a> {
+#[doc = "Reader of field `MG27`"]
+pub type MG27_R = crate::R<bool, MG27_A>;
+impl MG27_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG27_A {
+        match self.bits {
+            false => MG27_A::_0,
+            true => MG27_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG27_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG27_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG27`"]
+pub struct MG27_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG27W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG27W) -> &'a mut W {
+impl<'a> MG27_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG27_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG27W::_0)
+        self.variant(MG27_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG27W::_1)
+        self.variant(MG27_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG28`"]
-pub enum MG28W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG28_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG28W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG28W::_0 => false,
-            MG28W::_1 => true,
+impl From<MG28_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG28_A) -> Self {
+        match variant {
+            MG28_A::_0 => false,
+            MG28_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG28W<'a> {
+#[doc = "Reader of field `MG28`"]
+pub type MG28_R = crate::R<bool, MG28_A>;
+impl MG28_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG28_A {
+        match self.bits {
+            false => MG28_A::_0,
+            true => MG28_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG28_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG28_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG28`"]
+pub struct MG28_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG28W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG28W) -> &'a mut W {
+impl<'a> MG28_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG28_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG28W::_0)
+        self.variant(MG28_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG28W::_1)
+        self.variant(MG28_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG29`"]
-pub enum MG29W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG29_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG29W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG29W::_0 => false,
-            MG29W::_1 => true,
+impl From<MG29_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG29_A) -> Self {
+        match variant {
+            MG29_A::_0 => false,
+            MG29_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG29W<'a> {
+#[doc = "Reader of field `MG29`"]
+pub type MG29_R = crate::R<bool, MG29_A>;
+impl MG29_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG29_A {
+        match self.bits {
+            false => MG29_A::_0,
+            true => MG29_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG29_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG29_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG29`"]
+pub struct MG29_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG29W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG29W) -> &'a mut W {
+impl<'a> MG29_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG29_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG29W::_0)
+        self.variant(MG29_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG29W::_1)
+        self.variant(MG29_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG30`"]
-pub enum MG30W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG30_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG30W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG30W::_0 => false,
-            MG30W::_1 => true,
+impl From<MG30_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG30_A) -> Self {
+        match variant {
+            MG30_A::_0 => false,
+            MG30_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG30W<'a> {
+#[doc = "Reader of field `MG30`"]
+pub type MG30_R = crate::R<bool, MG30_A>;
+impl MG30_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG30_A {
+        match self.bits {
+            false => MG30_A::_0,
+            true => MG30_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG30_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG30_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG30`"]
+pub struct MG30_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG30W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG30W) -> &'a mut W {
+impl<'a> MG30_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG30_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG30W::_0)
+        self.variant(MG30_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG30W::_1)
+        self.variant(MG30_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MG31`"]
-pub enum MG31W {
-    #[doc = "The corresponding bit in the filter is \"don't care.\""]
+#[doc = "Rx Mailboxes Global Mask Bits\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MG31_A {
+    #[doc = "0: The corresponding bit in the filter is \"don't care.\""]
     _0,
-    #[doc = "The corresponding bit in the filter is checked."]
+    #[doc = "1: The corresponding bit in the filter is checked."]
     _1,
 }
-impl MG31W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MG31W::_0 => false,
-            MG31W::_1 => true,
+impl From<MG31_A> for bool {
+    #[inline(always)]
+    fn from(variant: MG31_A) -> Self {
+        match variant {
+            MG31_A::_0 => false,
+            MG31_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MG31W<'a> {
+#[doc = "Reader of field `MG31`"]
+pub type MG31_R = crate::R<bool, MG31_A>;
+impl MG31_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MG31_A {
+        match self.bits {
+            false => MG31_A::_0,
+            true => MG31_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MG31_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MG31_A::_1
+    }
+}
+#[doc = "Write proxy for field `MG31`"]
+pub struct MG31_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MG31W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MG31W) -> &'a mut W {
+impl<'a> MG31_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MG31_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding bit in the filter is \"don't care.\""]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MG31W::_0)
+        self.variant(MG31_A::_0)
     }
     #[doc = "The corresponding bit in the filter is checked."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MG31W::_1)
+        self.variant(MG31_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg0(&self) -> MG0R {
-        MG0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg0(&self) -> MG0_R {
+        MG0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg1(&self) -> MG1R {
-        MG1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg1(&self) -> MG1_R {
+        MG1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg2(&self) -> MG2R {
-        MG2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg2(&self) -> MG2_R {
+        MG2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg3(&self) -> MG3R {
-        MG3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg3(&self) -> MG3_R {
+        MG3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg4(&self) -> MG4R {
-        MG4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg4(&self) -> MG4_R {
+        MG4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg5(&self) -> MG5R {
-        MG5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg5(&self) -> MG5_R {
+        MG5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg6(&self) -> MG6R {
-        MG6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg6(&self) -> MG6_R {
+        MG6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg7(&self) -> MG7R {
-        MG7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg7(&self) -> MG7_R {
+        MG7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg8(&self) -> MG8R {
-        MG8R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg8(&self) -> MG8_R {
+        MG8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg9(&self) -> MG9R {
-        MG9R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg9(&self) -> MG9_R {
+        MG9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg10(&self) -> MG10R {
-        MG10R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg10(&self) -> MG10_R {
+        MG10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg11(&self) -> MG11R {
-        MG11R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg11(&self) -> MG11_R {
+        MG11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg12(&self) -> MG12R {
-        MG12R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg12(&self) -> MG12_R {
+        MG12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg13(&self) -> MG13R {
-        MG13R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg13(&self) -> MG13_R {
+        MG13_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg14(&self) -> MG14R {
-        MG14R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg14(&self) -> MG14_R {
+        MG14_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg15(&self) -> MG15R {
-        MG15R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg15(&self) -> MG15_R {
+        MG15_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg16(&self) -> MG16R {
-        MG16R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg16(&self) -> MG16_R {
+        MG16_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg17(&self) -> MG17R {
-        MG17R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg17(&self) -> MG17_R {
+        MG17_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg18(&self) -> MG18R {
-        MG18R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg18(&self) -> MG18_R {
+        MG18_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg19(&self) -> MG19R {
-        MG19R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg19(&self) -> MG19_R {
+        MG19_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg20(&self) -> MG20R {
-        MG20R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg20(&self) -> MG20_R {
+        MG20_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg21(&self) -> MG21R {
-        MG21R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg21(&self) -> MG21_R {
+        MG21_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg22(&self) -> MG22R {
-        MG22R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg22(&self) -> MG22_R {
+        MG22_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg23(&self) -> MG23R {
-        MG23R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg23(&self) -> MG23_R {
+        MG23_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg24(&self) -> MG24R {
-        MG24R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg24(&self) -> MG24_R {
+        MG24_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg25(&self) -> MG25R {
-        MG25R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg25(&self) -> MG25_R {
+        MG25_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg26(&self) -> MG26R {
-        MG26R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg26(&self) -> MG26_R {
+        MG26_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg27(&self) -> MG27R {
-        MG27R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg27(&self) -> MG27_R {
+        MG27_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg28(&self) -> MG28R {
-        MG28R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg28(&self) -> MG28_R {
+        MG28_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg29(&self) -> MG29R {
-        MG29R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg29(&self) -> MG29_R {
+        MG29_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg30(&self) -> MG30R {
-        MG30R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg30(&self) -> MG30_R {
+        MG30_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg31(&self) -> MG31R {
-        MG31R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mg31(&self) -> MG31_R {
+        MG31_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 4294967295 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg0(&mut self) -> _MG0W {
-        _MG0W { w: self }
+    #[inline(always)]
+    pub fn mg0(&mut self) -> MG0_W {
+        MG0_W { w: self }
     }
     #[doc = "Bit 1 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg1(&mut self) -> _MG1W {
-        _MG1W { w: self }
+    #[inline(always)]
+    pub fn mg1(&mut self) -> MG1_W {
+        MG1_W { w: self }
     }
     #[doc = "Bit 2 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg2(&mut self) -> _MG2W {
-        _MG2W { w: self }
+    #[inline(always)]
+    pub fn mg2(&mut self) -> MG2_W {
+        MG2_W { w: self }
     }
     #[doc = "Bit 3 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg3(&mut self) -> _MG3W {
-        _MG3W { w: self }
+    #[inline(always)]
+    pub fn mg3(&mut self) -> MG3_W {
+        MG3_W { w: self }
     }
     #[doc = "Bit 4 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg4(&mut self) -> _MG4W {
-        _MG4W { w: self }
+    #[inline(always)]
+    pub fn mg4(&mut self) -> MG4_W {
+        MG4_W { w: self }
     }
     #[doc = "Bit 5 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg5(&mut self) -> _MG5W {
-        _MG5W { w: self }
+    #[inline(always)]
+    pub fn mg5(&mut self) -> MG5_W {
+        MG5_W { w: self }
     }
     #[doc = "Bit 6 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg6(&mut self) -> _MG6W {
-        _MG6W { w: self }
+    #[inline(always)]
+    pub fn mg6(&mut self) -> MG6_W {
+        MG6_W { w: self }
     }
     #[doc = "Bit 7 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg7(&mut self) -> _MG7W {
-        _MG7W { w: self }
+    #[inline(always)]
+    pub fn mg7(&mut self) -> MG7_W {
+        MG7_W { w: self }
     }
     #[doc = "Bit 8 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg8(&mut self) -> _MG8W {
-        _MG8W { w: self }
+    #[inline(always)]
+    pub fn mg8(&mut self) -> MG8_W {
+        MG8_W { w: self }
     }
     #[doc = "Bit 9 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg9(&mut self) -> _MG9W {
-        _MG9W { w: self }
+    #[inline(always)]
+    pub fn mg9(&mut self) -> MG9_W {
+        MG9_W { w: self }
     }
     #[doc = "Bit 10 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg10(&mut self) -> _MG10W {
-        _MG10W { w: self }
+    #[inline(always)]
+    pub fn mg10(&mut self) -> MG10_W {
+        MG10_W { w: self }
     }
     #[doc = "Bit 11 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg11(&mut self) -> _MG11W {
-        _MG11W { w: self }
+    #[inline(always)]
+    pub fn mg11(&mut self) -> MG11_W {
+        MG11_W { w: self }
     }
     #[doc = "Bit 12 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg12(&mut self) -> _MG12W {
-        _MG12W { w: self }
+    #[inline(always)]
+    pub fn mg12(&mut self) -> MG12_W {
+        MG12_W { w: self }
     }
     #[doc = "Bit 13 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg13(&mut self) -> _MG13W {
-        _MG13W { w: self }
+    #[inline(always)]
+    pub fn mg13(&mut self) -> MG13_W {
+        MG13_W { w: self }
     }
     #[doc = "Bit 14 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg14(&mut self) -> _MG14W {
-        _MG14W { w: self }
+    #[inline(always)]
+    pub fn mg14(&mut self) -> MG14_W {
+        MG14_W { w: self }
     }
     #[doc = "Bit 15 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg15(&mut self) -> _MG15W {
-        _MG15W { w: self }
+    #[inline(always)]
+    pub fn mg15(&mut self) -> MG15_W {
+        MG15_W { w: self }
     }
     #[doc = "Bit 16 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg16(&mut self) -> _MG16W {
-        _MG16W { w: self }
+    #[inline(always)]
+    pub fn mg16(&mut self) -> MG16_W {
+        MG16_W { w: self }
     }
     #[doc = "Bit 17 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg17(&mut self) -> _MG17W {
-        _MG17W { w: self }
+    #[inline(always)]
+    pub fn mg17(&mut self) -> MG17_W {
+        MG17_W { w: self }
     }
     #[doc = "Bit 18 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg18(&mut self) -> _MG18W {
-        _MG18W { w: self }
+    #[inline(always)]
+    pub fn mg18(&mut self) -> MG18_W {
+        MG18_W { w: self }
     }
     #[doc = "Bit 19 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg19(&mut self) -> _MG19W {
-        _MG19W { w: self }
+    #[inline(always)]
+    pub fn mg19(&mut self) -> MG19_W {
+        MG19_W { w: self }
     }
     #[doc = "Bit 20 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg20(&mut self) -> _MG20W {
-        _MG20W { w: self }
+    #[inline(always)]
+    pub fn mg20(&mut self) -> MG20_W {
+        MG20_W { w: self }
     }
     #[doc = "Bit 21 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg21(&mut self) -> _MG21W {
-        _MG21W { w: self }
+    #[inline(always)]
+    pub fn mg21(&mut self) -> MG21_W {
+        MG21_W { w: self }
     }
     #[doc = "Bit 22 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg22(&mut self) -> _MG22W {
-        _MG22W { w: self }
+    #[inline(always)]
+    pub fn mg22(&mut self) -> MG22_W {
+        MG22_W { w: self }
     }
     #[doc = "Bit 23 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg23(&mut self) -> _MG23W {
-        _MG23W { w: self }
+    #[inline(always)]
+    pub fn mg23(&mut self) -> MG23_W {
+        MG23_W { w: self }
     }
     #[doc = "Bit 24 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg24(&mut self) -> _MG24W {
-        _MG24W { w: self }
+    #[inline(always)]
+    pub fn mg24(&mut self) -> MG24_W {
+        MG24_W { w: self }
     }
     #[doc = "Bit 25 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg25(&mut self) -> _MG25W {
-        _MG25W { w: self }
+    #[inline(always)]
+    pub fn mg25(&mut self) -> MG25_W {
+        MG25_W { w: self }
     }
     #[doc = "Bit 26 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg26(&mut self) -> _MG26W {
-        _MG26W { w: self }
+    #[inline(always)]
+    pub fn mg26(&mut self) -> MG26_W {
+        MG26_W { w: self }
     }
     #[doc = "Bit 27 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg27(&mut self) -> _MG27W {
-        _MG27W { w: self }
+    #[inline(always)]
+    pub fn mg27(&mut self) -> MG27_W {
+        MG27_W { w: self }
     }
     #[doc = "Bit 28 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg28(&mut self) -> _MG28W {
-        _MG28W { w: self }
+    #[inline(always)]
+    pub fn mg28(&mut self) -> MG28_W {
+        MG28_W { w: self }
     }
     #[doc = "Bit 29 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg29(&mut self) -> _MG29W {
-        _MG29W { w: self }
+    #[inline(always)]
+    pub fn mg29(&mut self) -> MG29_W {
+        MG29_W { w: self }
     }
     #[doc = "Bit 30 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg30(&mut self) -> _MG30W {
-        _MG30W { w: self }
+    #[inline(always)]
+    pub fn mg30(&mut self) -> MG30_W {
+        MG30_W { w: self }
     }
     #[doc = "Bit 31 - Rx Mailboxes Global Mask Bits"]
-    #[inline]
-    pub fn mg31(&mut self) -> _MG31W {
-        _MG31W { w: self }
+    #[inline(always)]
+    pub fn mg31(&mut self) -> MG31_W {
+        MG31_W { w: self }
     }
 }

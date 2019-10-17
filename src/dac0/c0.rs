@@ -1,960 +1,693 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C0 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C0"]
+pub type R = crate::R<u8, super::C0>;
+#[doc = "Writer for register C0"]
+pub type W = crate::W<u8, super::C0>;
+#[doc = "Register C0 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C0 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `DACBBIEN`"]
+#[doc = "DAC Buffer Read Pointer Bottom Flag Interrupt Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBBIENR {
-    #[doc = "The DAC buffer read pointer bottom flag interrupt is disabled."]
+pub enum DACBBIEN_A {
+    #[doc = "0: The DAC buffer read pointer bottom flag interrupt is disabled."]
     _0,
-    #[doc = "The DAC buffer read pointer bottom flag interrupt is enabled."]
+    #[doc = "1: The DAC buffer read pointer bottom flag interrupt is enabled."]
     _1,
 }
-impl DACBBIENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBBIENR::_0 => false,
-            DACBBIENR::_1 => true,
+impl From<DACBBIEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBBIEN_A) -> Self {
+        match variant {
+            DACBBIEN_A::_0 => false,
+            DACBBIEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBBIENR {
-        match value {
-            false => DACBBIENR::_0,
-            true => DACBBIENR::_1,
+}
+#[doc = "Reader of field `DACBBIEN`"]
+pub type DACBBIEN_R = crate::R<bool, DACBBIEN_A>;
+impl DACBBIEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBBIEN_A {
+        match self.bits {
+            false => DACBBIEN_A::_0,
+            true => DACBBIEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DACBBIENR::_0
+        *self == DACBBIEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DACBBIENR::_1
+        *self == DACBBIEN_A::_1
     }
 }
-#[doc = "Possible values of the field `DACBTIEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBTIENR {
-    #[doc = "The DAC buffer read pointer top flag interrupt is disabled."]
-    _0,
-    #[doc = "The DAC buffer read pointer top flag interrupt is enabled."]
-    _1,
-}
-impl DACBTIENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBTIENR::_0 => false,
-            DACBTIENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBTIENR {
-        match value {
-            false => DACBTIENR::_0,
-            true => DACBTIENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACBTIENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACBTIENR::_1
-    }
-}
-#[doc = "Possible values of the field `DACBWIEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBWIENR {
-    #[doc = "The DAC buffer watermark interrupt is disabled."]
-    _0,
-    #[doc = "The DAC buffer watermark interrupt is enabled."]
-    _1,
-}
-impl DACBWIENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBWIENR::_0 => false,
-            DACBWIENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBWIENR {
-        match value {
-            false => DACBWIENR::_0,
-            true => DACBWIENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACBWIENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACBWIENR::_1
-    }
-}
-#[doc = "Possible values of the field `LPEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPENR {
-    #[doc = "High-Power mode"]
-    _0,
-    #[doc = "Low-Power mode"]
-    _1,
-}
-impl LPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LPENR::_0 => false,
-            LPENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LPENR {
-        match value {
-            false => LPENR::_0,
-            true => LPENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LPENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LPENR::_1
-    }
-}
-#[doc = "Possible values of the field `DACTRGSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACTRGSELR {
-    #[doc = "The DAC hardware trigger is selected."]
-    _0,
-    #[doc = "The DAC software trigger is selected."]
-    _1,
-}
-impl DACTRGSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACTRGSELR::_0 => false,
-            DACTRGSELR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACTRGSELR {
-        match value {
-            false => DACTRGSELR::_0,
-            true => DACTRGSELR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACTRGSELR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACTRGSELR::_1
-    }
-}
-#[doc = "Possible values of the field `DACRFS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACRFSR {
-    #[doc = "The DAC selects DACREF_1 as the reference voltage."]
-    _0,
-    #[doc = "The DAC selects DACREF_2 as the reference voltage."]
-    _1,
-}
-impl DACRFSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACRFSR::_0 => false,
-            DACRFSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACRFSR {
-        match value {
-            false => DACRFSR::_0,
-            true => DACRFSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACRFSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACRFSR::_1
-    }
-}
-#[doc = "Possible values of the field `DACEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACENR {
-    #[doc = "The DAC system is disabled."]
-    _0,
-    #[doc = "The DAC system is enabled."]
-    _1,
-}
-impl DACENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACENR::_0 => false,
-            DACENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACENR {
-        match value {
-            false => DACENR::_0,
-            true => DACENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `DACBBIEN`"]
-pub enum DACBBIENW {
-    #[doc = "The DAC buffer read pointer bottom flag interrupt is disabled."]
-    _0,
-    #[doc = "The DAC buffer read pointer bottom flag interrupt is enabled."]
-    _1,
-}
-impl DACBBIENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBBIENW::_0 => false,
-            DACBBIENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DACBBIENW<'a> {
+#[doc = "Write proxy for field `DACBBIEN`"]
+pub struct DACBBIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBBIENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBBIENW) -> &'a mut W {
+impl<'a> DACBBIEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBBIEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC buffer read pointer bottom flag interrupt is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBBIENW::_0)
+        self.variant(DACBBIEN_A::_0)
     }
     #[doc = "The DAC buffer read pointer bottom flag interrupt is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBBIENW::_1)
+        self.variant(DACBBIEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACBTIEN`"]
-pub enum DACBTIENW {
+#[doc = "DAC Buffer Read Pointer Top Flag Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACBTIEN_A {
+    #[doc = "0: The DAC buffer read pointer top flag interrupt is disabled."]
+    _0,
+    #[doc = "1: The DAC buffer read pointer top flag interrupt is enabled."]
+    _1,
+}
+impl From<DACBTIEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBTIEN_A) -> Self {
+        match variant {
+            DACBTIEN_A::_0 => false,
+            DACBTIEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `DACBTIEN`"]
+pub type DACBTIEN_R = crate::R<bool, DACBTIEN_A>;
+impl DACBTIEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBTIEN_A {
+        match self.bits {
+            false => DACBTIEN_A::_0,
+            true => DACBTIEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACBTIEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACBTIEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACBTIEN`"]
+pub struct DACBTIEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DACBTIEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBTIEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The DAC buffer read pointer top flag interrupt is disabled."]
-    _0,
-    #[doc = "The DAC buffer read pointer top flag interrupt is enabled."]
-    _1,
-}
-impl DACBTIENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBTIENW::_0 => false,
-            DACBTIENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DACBTIENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DACBTIENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBTIENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The DAC buffer read pointer top flag interrupt is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBTIENW::_0)
+        self.variant(DACBTIEN_A::_0)
     }
     #[doc = "The DAC buffer read pointer top flag interrupt is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBTIENW::_1)
+        self.variant(DACBTIEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACBWIEN`"]
-pub enum DACBWIENW {
-    #[doc = "The DAC buffer watermark interrupt is disabled."]
+#[doc = "DAC Buffer Watermark Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACBWIEN_A {
+    #[doc = "0: The DAC buffer watermark interrupt is disabled."]
     _0,
-    #[doc = "The DAC buffer watermark interrupt is enabled."]
+    #[doc = "1: The DAC buffer watermark interrupt is enabled."]
     _1,
 }
-impl DACBWIENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBWIENW::_0 => false,
-            DACBWIENW::_1 => true,
+impl From<DACBWIEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBWIEN_A) -> Self {
+        match variant {
+            DACBWIEN_A::_0 => false,
+            DACBWIEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACBWIENW<'a> {
+#[doc = "Reader of field `DACBWIEN`"]
+pub type DACBWIEN_R = crate::R<bool, DACBWIEN_A>;
+impl DACBWIEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBWIEN_A {
+        match self.bits {
+            false => DACBWIEN_A::_0,
+            true => DACBWIEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACBWIEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACBWIEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACBWIEN`"]
+pub struct DACBWIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBWIENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBWIENW) -> &'a mut W {
+impl<'a> DACBWIEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBWIEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC buffer watermark interrupt is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBWIENW::_0)
+        self.variant(DACBWIEN_A::_0)
     }
     #[doc = "The DAC buffer watermark interrupt is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBWIENW::_1)
+        self.variant(DACBWIEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LPEN`"]
-pub enum LPENW {
-    #[doc = "High-Power mode"]
+#[doc = "DAC Low Power Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LPEN_A {
+    #[doc = "0: High-Power mode"]
     _0,
-    #[doc = "Low-Power mode"]
+    #[doc = "1: Low-Power mode"]
     _1,
 }
-impl LPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LPENW::_0 => false,
-            LPENW::_1 => true,
+impl From<LPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: LPEN_A) -> Self {
+        match variant {
+            LPEN_A::_0 => false,
+            LPEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LPENW<'a> {
+#[doc = "Reader of field `LPEN`"]
+pub type LPEN_R = crate::R<bool, LPEN_A>;
+impl LPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LPEN_A {
+        match self.bits {
+            false => LPEN_A::_0,
+            true => LPEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LPEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LPEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `LPEN`"]
+pub struct LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPENW) -> &'a mut W {
+impl<'a> LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "High-Power mode"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LPENW::_0)
+        self.variant(LPEN_A::_0)
     }
     #[doc = "Low-Power mode"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LPENW::_1)
+        self.variant(LPEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACSWTRG`"]
-pub enum DACSWTRGW {
-    #[doc = "The DAC soft trigger is not valid."]
+#[doc = "DAC Software Trigger\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACSWTRG_AW {
+    #[doc = "0: The DAC soft trigger is not valid."]
     _0,
-    #[doc = "The DAC soft trigger is valid."]
+    #[doc = "1: The DAC soft trigger is valid."]
     _1,
 }
-impl DACSWTRGW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACSWTRGW::_0 => false,
-            DACSWTRGW::_1 => true,
+impl From<DACSWTRG_AW> for bool {
+    #[inline(always)]
+    fn from(variant: DACSWTRG_AW) -> Self {
+        match variant {
+            DACSWTRG_AW::_0 => false,
+            DACSWTRG_AW::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACSWTRGW<'a> {
+#[doc = "Write proxy for field `DACSWTRG`"]
+pub struct DACSWTRG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACSWTRGW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACSWTRGW) -> &'a mut W {
+impl<'a> DACSWTRG_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACSWTRG_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC soft trigger is not valid."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACSWTRGW::_0)
+        self.variant(DACSWTRG_AW::_0)
     }
     #[doc = "The DAC soft trigger is valid."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACSWTRGW::_1)
+        self.variant(DACSWTRG_AW::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACTRGSEL`"]
-pub enum DACTRGSELW {
+#[doc = "DAC Trigger Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACTRGSEL_A {
+    #[doc = "0: The DAC hardware trigger is selected."]
+    _0,
+    #[doc = "1: The DAC software trigger is selected."]
+    _1,
+}
+impl From<DACTRGSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACTRGSEL_A) -> Self {
+        match variant {
+            DACTRGSEL_A::_0 => false,
+            DACTRGSEL_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `DACTRGSEL`"]
+pub type DACTRGSEL_R = crate::R<bool, DACTRGSEL_A>;
+impl DACTRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACTRGSEL_A {
+        match self.bits {
+            false => DACTRGSEL_A::_0,
+            true => DACTRGSEL_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACTRGSEL_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACTRGSEL_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACTRGSEL`"]
+pub struct DACTRGSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DACTRGSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACTRGSEL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The DAC hardware trigger is selected."]
-    _0,
-    #[doc = "The DAC software trigger is selected."]
-    _1,
-}
-impl DACTRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACTRGSELW::_0 => false,
-            DACTRGSELW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DACTRGSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DACTRGSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACTRGSELW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The DAC hardware trigger is selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACTRGSELW::_0)
+        self.variant(DACTRGSEL_A::_0)
     }
     #[doc = "The DAC software trigger is selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACTRGSELW::_1)
+        self.variant(DACTRGSEL_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACRFS`"]
-pub enum DACRFSW {
-    #[doc = "The DAC selects DACREF_1 as the reference voltage."]
+#[doc = "DAC Reference Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACRFS_A {
+    #[doc = "0: The DAC selects DACREF_1 as the reference voltage."]
     _0,
-    #[doc = "The DAC selects DACREF_2 as the reference voltage."]
+    #[doc = "1: The DAC selects DACREF_2 as the reference voltage."]
     _1,
 }
-impl DACRFSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACRFSW::_0 => false,
-            DACRFSW::_1 => true,
+impl From<DACRFS_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACRFS_A) -> Self {
+        match variant {
+            DACRFS_A::_0 => false,
+            DACRFS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACRFSW<'a> {
+#[doc = "Reader of field `DACRFS`"]
+pub type DACRFS_R = crate::R<bool, DACRFS_A>;
+impl DACRFS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACRFS_A {
+        match self.bits {
+            false => DACRFS_A::_0,
+            true => DACRFS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACRFS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACRFS_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACRFS`"]
+pub struct DACRFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACRFSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACRFSW) -> &'a mut W {
+impl<'a> DACRFS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACRFS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC selects DACREF_1 as the reference voltage."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACRFSW::_0)
+        self.variant(DACRFS_A::_0)
     }
     #[doc = "The DAC selects DACREF_2 as the reference voltage."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACRFSW::_1)
+        self.variant(DACRFS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACEN`"]
-pub enum DACENW {
-    #[doc = "The DAC system is disabled."]
+#[doc = "DAC Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACEN_A {
+    #[doc = "0: The DAC system is disabled."]
     _0,
-    #[doc = "The DAC system is enabled."]
+    #[doc = "1: The DAC system is enabled."]
     _1,
 }
-impl DACENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACENW::_0 => false,
-            DACENW::_1 => true,
+impl From<DACEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACEN_A) -> Self {
+        match variant {
+            DACEN_A::_0 => false,
+            DACEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACENW<'a> {
+#[doc = "Reader of field `DACEN`"]
+pub type DACEN_R = crate::R<bool, DACEN_A>;
+impl DACEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACEN_A {
+        match self.bits {
+            false => DACEN_A::_0,
+            true => DACEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACEN`"]
+pub struct DACEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACENW) -> &'a mut W {
+impl<'a> DACEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC system is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACENW::_0)
+        self.variant(DACEN_A::_0)
     }
     #[doc = "The DAC system is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACENW::_1)
+        self.variant(DACEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - DAC Buffer Read Pointer Bottom Flag Interrupt Enable"]
-    #[inline]
-    pub fn dacbbien(&self) -> DACBBIENR {
-        DACBBIENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbbien(&self) -> DACBBIEN_R {
+        DACBBIEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - DAC Buffer Read Pointer Top Flag Interrupt Enable"]
-    #[inline]
-    pub fn dacbtien(&self) -> DACBTIENR {
-        DACBTIENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbtien(&self) -> DACBTIEN_R {
+        DACBTIEN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - DAC Buffer Watermark Interrupt Enable"]
-    #[inline]
-    pub fn dacbwien(&self) -> DACBWIENR {
-        DACBWIENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbwien(&self) -> DACBWIEN_R {
+        DACBWIEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - DAC Low Power Control"]
-    #[inline]
-    pub fn lpen(&self) -> LPENR {
-        LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lpen(&self) -> LPEN_R {
+        LPEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 5 - DAC Trigger Select"]
-    #[inline]
-    pub fn dactrgsel(&self) -> DACTRGSELR {
-        DACTRGSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dactrgsel(&self) -> DACTRGSEL_R {
+        DACTRGSEL_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - DAC Reference Select"]
-    #[inline]
-    pub fn dacrfs(&self) -> DACRFSR {
-        DACRFSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacrfs(&self) -> DACRFS_R {
+        DACRFS_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - DAC Enable"]
-    #[inline]
-    pub fn dacen(&self) -> DACENR {
-        DACENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacen(&self) -> DACEN_R {
+        DACEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - DAC Buffer Read Pointer Bottom Flag Interrupt Enable"]
-    #[inline]
-    pub fn dacbbien(&mut self) -> _DACBBIENW {
-        _DACBBIENW { w: self }
+    #[inline(always)]
+    pub fn dacbbien(&mut self) -> DACBBIEN_W {
+        DACBBIEN_W { w: self }
     }
     #[doc = "Bit 1 - DAC Buffer Read Pointer Top Flag Interrupt Enable"]
-    #[inline]
-    pub fn dacbtien(&mut self) -> _DACBTIENW {
-        _DACBTIENW { w: self }
+    #[inline(always)]
+    pub fn dacbtien(&mut self) -> DACBTIEN_W {
+        DACBTIEN_W { w: self }
     }
     #[doc = "Bit 2 - DAC Buffer Watermark Interrupt Enable"]
-    #[inline]
-    pub fn dacbwien(&mut self) -> _DACBWIENW {
-        _DACBWIENW { w: self }
+    #[inline(always)]
+    pub fn dacbwien(&mut self) -> DACBWIEN_W {
+        DACBWIEN_W { w: self }
     }
     #[doc = "Bit 3 - DAC Low Power Control"]
-    #[inline]
-    pub fn lpen(&mut self) -> _LPENW {
-        _LPENW { w: self }
+    #[inline(always)]
+    pub fn lpen(&mut self) -> LPEN_W {
+        LPEN_W { w: self }
     }
     #[doc = "Bit 4 - DAC Software Trigger"]
-    #[inline]
-    pub fn dacswtrg(&mut self) -> _DACSWTRGW {
-        _DACSWTRGW { w: self }
+    #[inline(always)]
+    pub fn dacswtrg(&mut self) -> DACSWTRG_W {
+        DACSWTRG_W { w: self }
     }
     #[doc = "Bit 5 - DAC Trigger Select"]
-    #[inline]
-    pub fn dactrgsel(&mut self) -> _DACTRGSELW {
-        _DACTRGSELW { w: self }
+    #[inline(always)]
+    pub fn dactrgsel(&mut self) -> DACTRGSEL_W {
+        DACTRGSEL_W { w: self }
     }
     #[doc = "Bit 6 - DAC Reference Select"]
-    #[inline]
-    pub fn dacrfs(&mut self) -> _DACRFSW {
-        _DACRFSW { w: self }
+    #[inline(always)]
+    pub fn dacrfs(&mut self) -> DACRFS_W {
+        DACRFS_W { w: self }
     }
     #[doc = "Bit 7 - DAC Enable"]
-    #[inline]
-    pub fn dacen(&mut self) -> _DACENW {
-        _DACENW { w: self }
+    #[inline(always)]
+    pub fn dacen(&mut self) -> DACEN_W {
+        DACEN_W { w: self }
     }
 }

@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MCR"]
+pub type R = crate::R<u32, super::MCR>;
+#[doc = "Writer for register MCR"]
+pub type W = crate::W<u32, super::MCR>;
+#[doc = "Register MCR `reset()`'s with value 0x06"]
+impl crate::ResetValue for super::MCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x06
     }
 }
-#[doc = "Possible values of the field `FRZ`"]
+#[doc = "Freeze\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FRZR {
-    #[doc = "Timers continue to run in Debug mode."]
+pub enum FRZ_A {
+    #[doc = "0: Timers continue to run in Debug mode."]
     _0,
-    #[doc = "Timers are stopped in Debug mode."]
+    #[doc = "1: Timers are stopped in Debug mode."]
     _1,
 }
-impl FRZR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FRZR::_0 => false,
-            FRZR::_1 => true,
+impl From<FRZ_A> for bool {
+    #[inline(always)]
+    fn from(variant: FRZ_A) -> Self {
+        match variant {
+            FRZ_A::_0 => false,
+            FRZ_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FRZR {
-        match value {
-            false => FRZR::_0,
-            true => FRZR::_1,
+}
+#[doc = "Reader of field `FRZ`"]
+pub type FRZ_R = crate::R<bool, FRZ_A>;
+impl FRZ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FRZ_A {
+        match self.bits {
+            false => FRZ_A::_0,
+            true => FRZ_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == FRZR::_0
+        *self == FRZ_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == FRZR::_1
+        *self == FRZ_A::_1
     }
 }
-#[doc = "Possible values of the field `MDIS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MDISR {
-    #[doc = "Clock for standard PIT timers is enabled."]
-    _0,
-    #[doc = "Clock for standard PIT timers is disabled."]
-    _1,
-}
-impl MDISR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MDISR::_0 => false,
-            MDISR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MDISR {
-        match value {
-            false => MDISR::_0,
-            true => MDISR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MDISR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MDISR::_1
-    }
-}
-#[doc = "Values that can be written to the field `FRZ`"]
-pub enum FRZW {
-    #[doc = "Timers continue to run in Debug mode."]
-    _0,
-    #[doc = "Timers are stopped in Debug mode."]
-    _1,
-}
-impl FRZW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FRZW::_0 => false,
-            FRZW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FRZW<'a> {
+#[doc = "Write proxy for field `FRZ`"]
+pub struct FRZ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRZW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FRZW) -> &'a mut W {
+impl<'a> FRZ_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FRZ_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Timers continue to run in Debug mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(FRZW::_0)
+        self.variant(FRZ_A::_0)
     }
     #[doc = "Timers are stopped in Debug mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(FRZW::_1)
+        self.variant(FRZ_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MDIS`"]
-pub enum MDISW {
-    #[doc = "Clock for standard PIT timers is enabled."]
+#[doc = "Module Disable - (PIT section)\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MDIS_A {
+    #[doc = "0: Clock for standard PIT timers is enabled."]
     _0,
-    #[doc = "Clock for standard PIT timers is disabled."]
+    #[doc = "1: Clock for standard PIT timers is disabled."]
     _1,
 }
-impl MDISW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MDISW::_0 => false,
-            MDISW::_1 => true,
+impl From<MDIS_A> for bool {
+    #[inline(always)]
+    fn from(variant: MDIS_A) -> Self {
+        match variant {
+            MDIS_A::_0 => false,
+            MDIS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MDISW<'a> {
+#[doc = "Reader of field `MDIS`"]
+pub type MDIS_R = crate::R<bool, MDIS_A>;
+impl MDIS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MDIS_A {
+        match self.bits {
+            false => MDIS_A::_0,
+            true => MDIS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MDIS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MDIS_A::_1
+    }
+}
+#[doc = "Write proxy for field `MDIS`"]
+pub struct MDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MDISW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MDISW) -> &'a mut W {
+impl<'a> MDIS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MDIS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clock for standard PIT timers is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MDISW::_0)
+        self.variant(MDIS_A::_0)
     }
     #[doc = "Clock for standard PIT timers is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MDISW::_1)
+        self.variant(MDIS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Freeze"]
-    #[inline]
-    pub fn frz(&self) -> FRZR {
-        FRZR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn frz(&self) -> FRZ_R {
+        FRZ_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Module Disable - (PIT section)"]
-    #[inline]
-    pub fn mdis(&self) -> MDISR {
-        MDISR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mdis(&self) -> MDIS_R {
+        MDIS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 6 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Freeze"]
-    #[inline]
-    pub fn frz(&mut self) -> _FRZW {
-        _FRZW { w: self }
+    #[inline(always)]
+    pub fn frz(&mut self) -> FRZ_W {
+        FRZ_W { w: self }
     }
     #[doc = "Bit 1 - Module Disable - (PIT section)"]
-    #[inline]
-    pub fn mdis(&mut self) -> _MDISW {
-        _MDISW { w: self }
+    #[inline(always)]
+    pub fn mdis(&mut self) -> MDIS_W {
+        MDIS_W { w: self }
     }
 }

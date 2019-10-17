@@ -1,608 +1,444 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::PE2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PE2"]
+pub type R = crate::R<u8, super::PE2>;
+#[doc = "Writer for register PE2"]
+pub type W = crate::W<u8, super::PE2>;
+#[doc = "Register PE2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PE2 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `WUPE4`"]
+#[doc = "Wakeup Pin Enable For LLWU_P4\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUPE4R {
-    #[doc = "External input pin disabled as wakeup input"]
+pub enum WUPE4_A {
+    #[doc = "0: External input pin disabled as wakeup input"]
     _00,
-    #[doc = "External input pin enabled with rising edge detection"]
+    #[doc = "1: External input pin enabled with rising edge detection"]
     _01,
-    #[doc = "External input pin enabled with falling edge detection"]
+    #[doc = "2: External input pin enabled with falling edge detection"]
     _10,
-    #[doc = "External input pin enabled with any change detection"]
+    #[doc = "3: External input pin enabled with any change detection"]
     _11,
 }
-impl WUPE4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WUPE4R::_00 => 0,
-            WUPE4R::_01 => 1,
-            WUPE4R::_10 => 2,
-            WUPE4R::_11 => 3,
+impl From<WUPE4_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WUPE4_A) -> Self {
+        match variant {
+            WUPE4_A::_00 => 0,
+            WUPE4_A::_01 => 1,
+            WUPE4_A::_10 => 2,
+            WUPE4_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WUPE4R {
-        match value {
-            0 => WUPE4R::_00,
-            1 => WUPE4R::_01,
-            2 => WUPE4R::_10,
-            3 => WUPE4R::_11,
+}
+#[doc = "Reader of field `WUPE4`"]
+pub type WUPE4_R = crate::R<u8, WUPE4_A>;
+impl WUPE4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUPE4_A {
+        match self.bits {
+            0 => WUPE4_A::_00,
+            1 => WUPE4_A::_01,
+            2 => WUPE4_A::_10,
+            3 => WUPE4_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == WUPE4R::_00
+        *self == WUPE4_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == WUPE4R::_01
+        *self == WUPE4_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == WUPE4R::_10
+        *self == WUPE4_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == WUPE4R::_11
+        *self == WUPE4_A::_11
     }
 }
-#[doc = "Possible values of the field `WUPE5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUPE5R {
-    #[doc = "External input pin disabled as wakeup input"]
-    _00,
-    #[doc = "External input pin enabled with rising edge detection"]
-    _01,
-    #[doc = "External input pin enabled with falling edge detection"]
-    _10,
-    #[doc = "External input pin enabled with any change detection"]
-    _11,
-}
-impl WUPE5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WUPE5R::_00 => 0,
-            WUPE5R::_01 => 1,
-            WUPE5R::_10 => 2,
-            WUPE5R::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WUPE5R {
-        match value {
-            0 => WUPE5R::_00,
-            1 => WUPE5R::_01,
-            2 => WUPE5R::_10,
-            3 => WUPE5R::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == WUPE5R::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == WUPE5R::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == WUPE5R::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == WUPE5R::_11
-    }
-}
-#[doc = "Possible values of the field `WUPE6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUPE6R {
-    #[doc = "External input pin disabled as wakeup input"]
-    _00,
-    #[doc = "External input pin enabled with rising edge detection"]
-    _01,
-    #[doc = "External input pin enabled with falling edge detection"]
-    _10,
-    #[doc = "External input pin enabled with any change detection"]
-    _11,
-}
-impl WUPE6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WUPE6R::_00 => 0,
-            WUPE6R::_01 => 1,
-            WUPE6R::_10 => 2,
-            WUPE6R::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WUPE6R {
-        match value {
-            0 => WUPE6R::_00,
-            1 => WUPE6R::_01,
-            2 => WUPE6R::_10,
-            3 => WUPE6R::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == WUPE6R::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == WUPE6R::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == WUPE6R::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == WUPE6R::_11
-    }
-}
-#[doc = "Possible values of the field `WUPE7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUPE7R {
-    #[doc = "External input pin disabled as wakeup input"]
-    _00,
-    #[doc = "External input pin enabled with rising edge detection"]
-    _01,
-    #[doc = "External input pin enabled with falling edge detection"]
-    _10,
-    #[doc = "External input pin enabled with any change detection"]
-    _11,
-}
-impl WUPE7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WUPE7R::_00 => 0,
-            WUPE7R::_01 => 1,
-            WUPE7R::_10 => 2,
-            WUPE7R::_11 => 3,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WUPE7R {
-        match value {
-            0 => WUPE7R::_00,
-            1 => WUPE7R::_01,
-            2 => WUPE7R::_10,
-            3 => WUPE7R::_11,
-            _ => unreachable!(),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == WUPE7R::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == WUPE7R::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == WUPE7R::_10
-    }
-    #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
-    pub fn is_11(&self) -> bool {
-        *self == WUPE7R::_11
-    }
-}
-#[doc = "Values that can be written to the field `WUPE4`"]
-pub enum WUPE4W {
-    #[doc = "External input pin disabled as wakeup input"]
-    _00,
-    #[doc = "External input pin enabled with rising edge detection"]
-    _01,
-    #[doc = "External input pin enabled with falling edge detection"]
-    _10,
-    #[doc = "External input pin enabled with any change detection"]
-    _11,
-}
-impl WUPE4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WUPE4W::_00 => 0,
-            WUPE4W::_01 => 1,
-            WUPE4W::_10 => 2,
-            WUPE4W::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WUPE4W<'a> {
+#[doc = "Write proxy for field `WUPE4`"]
+pub struct WUPE4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUPE4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUPE4W) -> &'a mut W {
+impl<'a> WUPE4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUPE4_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "External input pin disabled as wakeup input"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(WUPE4W::_00)
+        self.variant(WUPE4_A::_00)
     }
     #[doc = "External input pin enabled with rising edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(WUPE4W::_01)
+        self.variant(WUPE4_A::_01)
     }
     #[doc = "External input pin enabled with falling edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(WUPE4W::_10)
+        self.variant(WUPE4_A::_10)
     }
     #[doc = "External input pin enabled with any change detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(WUPE4W::_11)
+        self.variant(WUPE4_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u8) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUPE5`"]
-pub enum WUPE5W {
-    #[doc = "External input pin disabled as wakeup input"]
+#[doc = "Wakeup Pin Enable For LLWU_P5\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUPE5_A {
+    #[doc = "0: External input pin disabled as wakeup input"]
     _00,
-    #[doc = "External input pin enabled with rising edge detection"]
+    #[doc = "1: External input pin enabled with rising edge detection"]
     _01,
-    #[doc = "External input pin enabled with falling edge detection"]
+    #[doc = "2: External input pin enabled with falling edge detection"]
     _10,
-    #[doc = "External input pin enabled with any change detection"]
+    #[doc = "3: External input pin enabled with any change detection"]
     _11,
 }
-impl WUPE5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WUPE5W::_00 => 0,
-            WUPE5W::_01 => 1,
-            WUPE5W::_10 => 2,
-            WUPE5W::_11 => 3,
+impl From<WUPE5_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WUPE5_A) -> Self {
+        match variant {
+            WUPE5_A::_00 => 0,
+            WUPE5_A::_01 => 1,
+            WUPE5_A::_10 => 2,
+            WUPE5_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUPE5W<'a> {
+#[doc = "Reader of field `WUPE5`"]
+pub type WUPE5_R = crate::R<u8, WUPE5_A>;
+impl WUPE5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUPE5_A {
+        match self.bits {
+            0 => WUPE5_A::_00,
+            1 => WUPE5_A::_01,
+            2 => WUPE5_A::_10,
+            3 => WUPE5_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == WUPE5_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == WUPE5_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == WUPE5_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == WUPE5_A::_11
+    }
+}
+#[doc = "Write proxy for field `WUPE5`"]
+pub struct WUPE5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUPE5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUPE5W) -> &'a mut W {
+impl<'a> WUPE5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUPE5_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "External input pin disabled as wakeup input"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(WUPE5W::_00)
+        self.variant(WUPE5_A::_00)
     }
     #[doc = "External input pin enabled with rising edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(WUPE5W::_01)
+        self.variant(WUPE5_A::_01)
     }
     #[doc = "External input pin enabled with falling edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(WUPE5W::_10)
+        self.variant(WUPE5_A::_10)
     }
     #[doc = "External input pin enabled with any change detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(WUPE5W::_11)
+        self.variant(WUPE5_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 2)) | (((value as u8) & 0x03) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUPE6`"]
-pub enum WUPE6W {
-    #[doc = "External input pin disabled as wakeup input"]
+#[doc = "Wakeup Pin Enable For LLWU_P6\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUPE6_A {
+    #[doc = "0: External input pin disabled as wakeup input"]
     _00,
-    #[doc = "External input pin enabled with rising edge detection"]
+    #[doc = "1: External input pin enabled with rising edge detection"]
     _01,
-    #[doc = "External input pin enabled with falling edge detection"]
+    #[doc = "2: External input pin enabled with falling edge detection"]
     _10,
-    #[doc = "External input pin enabled with any change detection"]
+    #[doc = "3: External input pin enabled with any change detection"]
     _11,
 }
-impl WUPE6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WUPE6W::_00 => 0,
-            WUPE6W::_01 => 1,
-            WUPE6W::_10 => 2,
-            WUPE6W::_11 => 3,
+impl From<WUPE6_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WUPE6_A) -> Self {
+        match variant {
+            WUPE6_A::_00 => 0,
+            WUPE6_A::_01 => 1,
+            WUPE6_A::_10 => 2,
+            WUPE6_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUPE6W<'a> {
+#[doc = "Reader of field `WUPE6`"]
+pub type WUPE6_R = crate::R<u8, WUPE6_A>;
+impl WUPE6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUPE6_A {
+        match self.bits {
+            0 => WUPE6_A::_00,
+            1 => WUPE6_A::_01,
+            2 => WUPE6_A::_10,
+            3 => WUPE6_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == WUPE6_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == WUPE6_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == WUPE6_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == WUPE6_A::_11
+    }
+}
+#[doc = "Write proxy for field `WUPE6`"]
+pub struct WUPE6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUPE6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUPE6W) -> &'a mut W {
+impl<'a> WUPE6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUPE6_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "External input pin disabled as wakeup input"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(WUPE6W::_00)
+        self.variant(WUPE6_A::_00)
     }
     #[doc = "External input pin enabled with rising edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(WUPE6W::_01)
+        self.variant(WUPE6_A::_01)
     }
     #[doc = "External input pin enabled with falling edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(WUPE6W::_10)
+        self.variant(WUPE6_A::_10)
     }
     #[doc = "External input pin enabled with any change detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(WUPE6W::_11)
+        self.variant(WUPE6_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u8) & 0x03) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUPE7`"]
-pub enum WUPE7W {
-    #[doc = "External input pin disabled as wakeup input"]
+#[doc = "Wakeup Pin Enable For LLWU_P7\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUPE7_A {
+    #[doc = "0: External input pin disabled as wakeup input"]
     _00,
-    #[doc = "External input pin enabled with rising edge detection"]
+    #[doc = "1: External input pin enabled with rising edge detection"]
     _01,
-    #[doc = "External input pin enabled with falling edge detection"]
+    #[doc = "2: External input pin enabled with falling edge detection"]
     _10,
-    #[doc = "External input pin enabled with any change detection"]
+    #[doc = "3: External input pin enabled with any change detection"]
     _11,
 }
-impl WUPE7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WUPE7W::_00 => 0,
-            WUPE7W::_01 => 1,
-            WUPE7W::_10 => 2,
-            WUPE7W::_11 => 3,
+impl From<WUPE7_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WUPE7_A) -> Self {
+        match variant {
+            WUPE7_A::_00 => 0,
+            WUPE7_A::_01 => 1,
+            WUPE7_A::_10 => 2,
+            WUPE7_A::_11 => 3,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUPE7W<'a> {
+#[doc = "Reader of field `WUPE7`"]
+pub type WUPE7_R = crate::R<u8, WUPE7_A>;
+impl WUPE7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUPE7_A {
+        match self.bits {
+            0 => WUPE7_A::_00,
+            1 => WUPE7_A::_01,
+            2 => WUPE7_A::_10,
+            3 => WUPE7_A::_11,
+            _ => unreachable!(),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == WUPE7_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == WUPE7_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == WUPE7_A::_10
+    }
+    #[doc = "Checks if the value of the field is `_11`"]
+    #[inline(always)]
+    pub fn is_11(&self) -> bool {
+        *self == WUPE7_A::_11
+    }
+}
+#[doc = "Write proxy for field `WUPE7`"]
+pub struct WUPE7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUPE7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUPE7W) -> &'a mut W {
+impl<'a> WUPE7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUPE7_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "External input pin disabled as wakeup input"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(WUPE7W::_00)
+        self.variant(WUPE7_A::_00)
     }
     #[doc = "External input pin enabled with rising edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(WUPE7W::_01)
+        self.variant(WUPE7_A::_01)
     }
     #[doc = "External input pin enabled with falling edge detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(WUPE7W::_10)
+        self.variant(WUPE7_A::_10)
     }
     #[doc = "External input pin enabled with any change detection"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(WUPE7W::_11)
+        self.variant(WUPE7_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u8) & 0x03) << 6);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Wakeup Pin Enable For LLWU_P4"]
-    #[inline]
-    pub fn wupe4(&self) -> WUPE4R {
-        WUPE4R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn wupe4(&self) -> WUPE4_R {
+        WUPE4_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - Wakeup Pin Enable For LLWU_P5"]
-    #[inline]
-    pub fn wupe5(&self) -> WUPE5R {
-        WUPE5R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn wupe5(&self) -> WUPE5_R {
+        WUPE5_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bits 4:5 - Wakeup Pin Enable For LLWU_P6"]
-    #[inline]
-    pub fn wupe6(&self) -> WUPE6R {
-        WUPE6R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn wupe6(&self) -> WUPE6_R {
+        WUPE6_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 6:7 - Wakeup Pin Enable For LLWU_P7"]
-    #[inline]
-    pub fn wupe7(&self) -> WUPE7R {
-        WUPE7R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn wupe7(&self) -> WUPE7_R {
+        WUPE7_R::new(((self.bits >> 6) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Wakeup Pin Enable For LLWU_P4"]
-    #[inline]
-    pub fn wupe4(&mut self) -> _WUPE4W {
-        _WUPE4W { w: self }
+    #[inline(always)]
+    pub fn wupe4(&mut self) -> WUPE4_W {
+        WUPE4_W { w: self }
     }
     #[doc = "Bits 2:3 - Wakeup Pin Enable For LLWU_P5"]
-    #[inline]
-    pub fn wupe5(&mut self) -> _WUPE5W {
-        _WUPE5W { w: self }
+    #[inline(always)]
+    pub fn wupe5(&mut self) -> WUPE5_W {
+        WUPE5_W { w: self }
     }
     #[doc = "Bits 4:5 - Wakeup Pin Enable For LLWU_P6"]
-    #[inline]
-    pub fn wupe6(&mut self) -> _WUPE6W {
-        _WUPE6W { w: self }
+    #[inline(always)]
+    pub fn wupe6(&mut self) -> WUPE6_W {
+        WUPE6_W { w: self }
     }
     #[doc = "Bits 6:7 - Wakeup Pin Enable For LLWU_P7"]
-    #[inline]
-    pub fn wupe7(&mut self) -> _WUPE7W {
-        _WUPE7W { w: self }
+    #[inline(always)]
+    pub fn wupe7(&mut self) -> WUPE7_W {
+        WUPE7_W { w: self }
     }
 }

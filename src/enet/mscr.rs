@@ -1,361 +1,234 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MSCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MSCR"]
+pub type R = crate::R<u32, super::MSCR>;
+#[doc = "Writer for register MSCR"]
+pub type W = crate::W<u32, super::MSCR>;
+#[doc = "Register MSCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MSCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct MII_SPEEDR {
-    bits: u8,
+#[doc = "Reader of field `MII_SPEED`"]
+pub type MII_SPEED_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MII_SPEED`"]
+pub struct MII_SPEED_W<'a> {
+    w: &'a mut W,
 }
-impl MII_SPEEDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> MII_SPEED_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x3f << 1)) | (((value as u32) & 0x3f) << 1);
+        self.w
     }
 }
-#[doc = "Possible values of the field `DIS_PRE`"]
+#[doc = "Disable Preamble\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIS_PRER {
-    #[doc = "Preamble enabled."]
+pub enum DIS_PRE_A {
+    #[doc = "0: Preamble enabled."]
     _0,
-    #[doc = "Preamble (32 ones) is not prepended to the MII management frame."]
+    #[doc = "1: Preamble (32 ones) is not prepended to the MII management frame."]
     _1,
 }
-impl DIS_PRER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DIS_PRER::_0 => false,
-            DIS_PRER::_1 => true,
+impl From<DIS_PRE_A> for bool {
+    #[inline(always)]
+    fn from(variant: DIS_PRE_A) -> Self {
+        match variant {
+            DIS_PRE_A::_0 => false,
+            DIS_PRE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DIS_PRER {
-        match value {
-            false => DIS_PRER::_0,
-            true => DIS_PRER::_1,
+}
+#[doc = "Reader of field `DIS_PRE`"]
+pub type DIS_PRE_R = crate::R<bool, DIS_PRE_A>;
+impl DIS_PRE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DIS_PRE_A {
+        match self.bits {
+            false => DIS_PRE_A::_0,
+            true => DIS_PRE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DIS_PRER::_0
+        *self == DIS_PRE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DIS_PRER::_1
+        *self == DIS_PRE_A::_1
     }
 }
-#[doc = "Possible values of the field `HOLDTIME`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HOLDTIMER {
-    #[doc = "1 internal module clock cycle"]
-    _000,
-    #[doc = "2 internal module clock cycles"]
-    _001,
-    #[doc = "3 internal module clock cycles"]
-    _010,
-    #[doc = "8 internal module clock cycles"]
-    _111,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HOLDTIMER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HOLDTIMER::_000 => 0,
-            HOLDTIMER::_001 => 1,
-            HOLDTIMER::_010 => 2,
-            HOLDTIMER::_111 => 7,
-            HOLDTIMER::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HOLDTIMER {
-        match value {
-            0 => HOLDTIMER::_000,
-            1 => HOLDTIMER::_001,
-            2 => HOLDTIMER::_010,
-            7 => HOLDTIMER::_111,
-            i => HOLDTIMER::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
-    pub fn is_000(&self) -> bool {
-        *self == HOLDTIMER::_000
-    }
-    #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
-    pub fn is_001(&self) -> bool {
-        *self == HOLDTIMER::_001
-    }
-    #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
-    pub fn is_010(&self) -> bool {
-        *self == HOLDTIMER::_010
-    }
-    #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
-    pub fn is_111(&self) -> bool {
-        *self == HOLDTIMER::_111
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MII_SPEEDW<'a> {
+#[doc = "Write proxy for field `DIS_PRE`"]
+pub struct DIS_PRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MII_SPEEDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 63;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DIS_PRE`"]
-pub enum DIS_PREW {
-    #[doc = "Preamble enabled."]
-    _0,
-    #[doc = "Preamble (32 ones) is not prepended to the MII management frame."]
-    _1,
-}
-impl DIS_PREW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DIS_PREW::_0 => false,
-            DIS_PREW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DIS_PREW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DIS_PREW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DIS_PREW) -> &'a mut W {
+impl<'a> DIS_PRE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DIS_PRE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Preamble enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DIS_PREW::_0)
+        self.variant(DIS_PRE_A::_0)
     }
     #[doc = "Preamble (32 ones) is not prepended to the MII management frame."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DIS_PREW::_1)
+        self.variant(DIS_PRE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HOLDTIME`"]
-pub enum HOLDTIMEW {
-    #[doc = "1 internal module clock cycle"]
+#[doc = "Hold time On MDIO Output\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HOLDTIME_A {
+    #[doc = "0: 1 internal module clock cycle"]
     _000,
-    #[doc = "2 internal module clock cycles"]
+    #[doc = "1: 2 internal module clock cycles"]
     _001,
-    #[doc = "3 internal module clock cycles"]
+    #[doc = "2: 3 internal module clock cycles"]
     _010,
-    #[doc = "8 internal module clock cycles"]
+    #[doc = "7: 8 internal module clock cycles"]
     _111,
 }
-impl HOLDTIMEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HOLDTIMEW::_000 => 0,
-            HOLDTIMEW::_001 => 1,
-            HOLDTIMEW::_010 => 2,
-            HOLDTIMEW::_111 => 7,
+impl From<HOLDTIME_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HOLDTIME_A) -> Self {
+        match variant {
+            HOLDTIME_A::_000 => 0,
+            HOLDTIME_A::_001 => 1,
+            HOLDTIME_A::_010 => 2,
+            HOLDTIME_A::_111 => 7,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HOLDTIMEW<'a> {
+#[doc = "Reader of field `HOLDTIME`"]
+pub type HOLDTIME_R = crate::R<u8, HOLDTIME_A>;
+impl HOLDTIME_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HOLDTIME_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HOLDTIME_A::_000),
+            1 => Val(HOLDTIME_A::_001),
+            2 => Val(HOLDTIME_A::_010),
+            7 => Val(HOLDTIME_A::_111),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_000`"]
+    #[inline(always)]
+    pub fn is_000(&self) -> bool {
+        *self == HOLDTIME_A::_000
+    }
+    #[doc = "Checks if the value of the field is `_001`"]
+    #[inline(always)]
+    pub fn is_001(&self) -> bool {
+        *self == HOLDTIME_A::_001
+    }
+    #[doc = "Checks if the value of the field is `_010`"]
+    #[inline(always)]
+    pub fn is_010(&self) -> bool {
+        *self == HOLDTIME_A::_010
+    }
+    #[doc = "Checks if the value of the field is `_111`"]
+    #[inline(always)]
+    pub fn is_111(&self) -> bool {
+        *self == HOLDTIME_A::_111
+    }
+}
+#[doc = "Write proxy for field `HOLDTIME`"]
+pub struct HOLDTIME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HOLDTIMEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HOLDTIMEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HOLDTIME_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HOLDTIME_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "1 internal module clock cycle"]
-    #[inline]
+    #[inline(always)]
     pub fn _000(self) -> &'a mut W {
-        self.variant(HOLDTIMEW::_000)
+        self.variant(HOLDTIME_A::_000)
     }
     #[doc = "2 internal module clock cycles"]
-    #[inline]
+    #[inline(always)]
     pub fn _001(self) -> &'a mut W {
-        self.variant(HOLDTIMEW::_001)
+        self.variant(HOLDTIME_A::_001)
     }
     #[doc = "3 internal module clock cycles"]
-    #[inline]
+    #[inline(always)]
     pub fn _010(self) -> &'a mut W {
-        self.variant(HOLDTIMEW::_010)
+        self.variant(HOLDTIME_A::_010)
     }
     #[doc = "8 internal module clock cycles"]
-    #[inline]
+    #[inline(always)]
     pub fn _111(self) -> &'a mut W {
-        self.variant(HOLDTIMEW::_111)
+        self.variant(HOLDTIME_A::_111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 8)) | (((value as u32) & 0x07) << 8);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 1:6 - MII Speed"]
-    #[inline]
-    pub fn mii_speed(&self) -> MII_SPEEDR {
-        let bits = {
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MII_SPEEDR { bits }
+    #[inline(always)]
+    pub fn mii_speed(&self) -> MII_SPEED_R {
+        MII_SPEED_R::new(((self.bits >> 1) & 0x3f) as u8)
     }
     #[doc = "Bit 7 - Disable Preamble"]
-    #[inline]
-    pub fn dis_pre(&self) -> DIS_PRER {
-        DIS_PRER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dis_pre(&self) -> DIS_PRE_R {
+        DIS_PRE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:10 - Hold time On MDIO Output"]
-    #[inline]
-    pub fn holdtime(&self) -> HOLDTIMER {
-        HOLDTIMER::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn holdtime(&self) -> HOLDTIME_R {
+        HOLDTIME_R::new(((self.bits >> 8) & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 1:6 - MII Speed"]
-    #[inline]
-    pub fn mii_speed(&mut self) -> _MII_SPEEDW {
-        _MII_SPEEDW { w: self }
+    #[inline(always)]
+    pub fn mii_speed(&mut self) -> MII_SPEED_W {
+        MII_SPEED_W { w: self }
     }
     #[doc = "Bit 7 - Disable Preamble"]
-    #[inline]
-    pub fn dis_pre(&mut self) -> _DIS_PREW {
-        _DIS_PREW { w: self }
+    #[inline(always)]
+    pub fn dis_pre(&mut self) -> DIS_PRE_W {
+        DIS_PRE_W { w: self }
     }
     #[doc = "Bits 8:10 - Hold time On MDIO Output"]
-    #[inline]
-    pub fn holdtime(&mut self) -> _HOLDTIMEW {
-        _HOLDTIMEW { w: self }
+    #[inline(always)]
+    pub fn holdtime(&mut self) -> HOLDTIME_W {
+        HOLDTIME_W { w: self }
     }
 }

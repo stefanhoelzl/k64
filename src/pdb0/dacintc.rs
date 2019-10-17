@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DACINTC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DACINTC%s"]
+pub type R = crate::R<u32, super::DACINTC>;
+#[doc = "Writer for register DACINTC%s"]
+pub type W = crate::W<u32, super::DACINTC>;
+#[doc = "Register DACINTC%s `reset()`'s with value 0"]
+impl crate::ResetValue for super::DACINTC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TOE`"]
+#[doc = "DAC Interval Trigger Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TOER {
-    #[doc = "DAC interval trigger disabled."]
+pub enum TOE_A {
+    #[doc = "0: DAC interval trigger disabled."]
     _0,
-    #[doc = "DAC interval trigger enabled."]
+    #[doc = "1: DAC interval trigger enabled."]
     _1,
 }
-impl TOER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TOER::_0 => false,
-            TOER::_1 => true,
+impl From<TOE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TOE_A) -> Self {
+        match variant {
+            TOE_A::_0 => false,
+            TOE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TOER {
-        match value {
-            false => TOER::_0,
-            true => TOER::_1,
+}
+#[doc = "Reader of field `TOE`"]
+pub type TOE_R = crate::R<bool, TOE_A>;
+impl TOE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TOE_A {
+        match self.bits {
+            false => TOE_A::_0,
+            true => TOE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == TOER::_0
+        *self == TOE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == TOER::_1
+        *self == TOE_A::_1
     }
 }
-#[doc = "Possible values of the field `EXT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EXTR {
-    #[doc = "DAC external trigger input disabled. DAC interval counter is reset and counting starts when a rising edge is detected on selected trigger input source or software trigger is selected and SWTRIG is written with 1."]
-    _0,
-    #[doc = "DAC external trigger input enabled. DAC interval counter is bypassed and DAC external trigger input triggers the DAC interval trigger."]
-    _1,
-}
-impl EXTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EXTR::_0 => false,
-            EXTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EXTR {
-        match value {
-            false => EXTR::_0,
-            true => EXTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == EXTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == EXTR::_1
-    }
-}
-#[doc = "Values that can be written to the field `TOE`"]
-pub enum TOEW {
-    #[doc = "DAC interval trigger disabled."]
-    _0,
-    #[doc = "DAC interval trigger enabled."]
-    _1,
-}
-impl TOEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TOEW::_0 => false,
-            TOEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TOEW<'a> {
+#[doc = "Write proxy for field `TOE`"]
+pub struct TOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TOEW) -> &'a mut W {
+impl<'a> TOE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TOE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC interval trigger disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TOEW::_0)
+        self.variant(TOE_A::_0)
     }
     #[doc = "DAC interval trigger enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TOEW::_1)
+        self.variant(TOE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `EXT`"]
-pub enum EXTW {
-    #[doc = "DAC external trigger input disabled. DAC interval counter is reset and counting starts when a rising edge is detected on selected trigger input source or software trigger is selected and SWTRIG is written with 1."]
+#[doc = "DAC External Trigger Input Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EXT_A {
+    #[doc = "0: DAC external trigger input disabled. DAC interval counter is reset and counting starts when a rising edge is detected on selected trigger input source or software trigger is selected and SWTRIG is written with 1."]
     _0,
-    #[doc = "DAC external trigger input enabled. DAC interval counter is bypassed and DAC external trigger input triggers the DAC interval trigger."]
+    #[doc = "1: DAC external trigger input enabled. DAC interval counter is bypassed and DAC external trigger input triggers the DAC interval trigger."]
     _1,
 }
-impl EXTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EXTW::_0 => false,
-            EXTW::_1 => true,
+impl From<EXT_A> for bool {
+    #[inline(always)]
+    fn from(variant: EXT_A) -> Self {
+        match variant {
+            EXT_A::_0 => false,
+            EXT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _EXTW<'a> {
+#[doc = "Reader of field `EXT`"]
+pub type EXT_R = crate::R<bool, EXT_A>;
+impl EXT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EXT_A {
+        match self.bits {
+            false => EXT_A::_0,
+            true => EXT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == EXT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == EXT_A::_1
+    }
+}
+#[doc = "Write proxy for field `EXT`"]
+pub struct EXT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EXTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EXTW) -> &'a mut W {
+impl<'a> EXT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EXT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC external trigger input disabled. DAC interval counter is reset and counting starts when a rising edge is detected on selected trigger input source or software trigger is selected and SWTRIG is written with 1."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EXTW::_0)
+        self.variant(EXT_A::_0)
     }
     #[doc = "DAC external trigger input enabled. DAC interval counter is bypassed and DAC external trigger input triggers the DAC interval trigger."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EXTW::_1)
+        self.variant(EXT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - DAC Interval Trigger Enable"]
-    #[inline]
-    pub fn toe(&self) -> TOER {
-        TOER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn toe(&self) -> TOE_R {
+        TOE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - DAC External Trigger Input Enable"]
-    #[inline]
-    pub fn ext(&self) -> EXTR {
-        EXTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ext(&self) -> EXT_R {
+        EXT_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - DAC Interval Trigger Enable"]
-    #[inline]
-    pub fn toe(&mut self) -> _TOEW {
-        _TOEW { w: self }
+    #[inline(always)]
+    pub fn toe(&mut self) -> TOE_W {
+        TOE_W { w: self }
     }
     #[doc = "Bit 1 - DAC External Trigger Input Enable"]
-    #[inline]
-    pub fn ext(&mut self) -> _EXTW {
-        _EXTW { w: self }
+    #[inline(always)]
+    pub fn ext(&mut self) -> EXT_W {
+        EXT_W { w: self }
     }
 }

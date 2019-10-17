@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - MCG Control 1 Register"]
@@ -15,10 +15,10 @@ pub struct RegisterBlock {
     pub c6: C6,
     #[doc = "0x06 - MCG Status Register"]
     pub s: S,
-    _reserved0: [u8; 1usize],
+    _reserved7: [u8; 1usize],
     #[doc = "0x08 - MCG Status and Control Register"]
     pub sc: SC,
-    _reserved1: [u8; 1usize],
+    _reserved8: [u8; 1usize],
     #[doc = "0x0a - MCG Auto Trim Compare Value High Register"]
     pub atcvh: ATCVH,
     #[doc = "0x0b - MCG Auto Trim Compare Value Low Register"]
@@ -28,75 +28,135 @@ pub struct RegisterBlock {
     #[doc = "0x0d - MCG Control 8 Register"]
     pub c8: C8,
 }
-#[doc = "MCG Control 1 Register"]
-pub struct C1 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 1 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c1](c1) module"]
+pub type C1 = crate::Reg<u8, _C1>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C1;
+#[doc = "`read()` method returns [c1::R](c1::R) reader structure"]
+impl crate::Readable for C1 {}
+#[doc = "`write(|w| ..)` method takes [c1::W](c1::W) writer structure"]
+impl crate::Writable for C1 {}
 #[doc = "MCG Control 1 Register"]
 pub mod c1;
-#[doc = "MCG Control 2 Register"]
-pub struct C2 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 2 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c2](c2) module"]
+pub type C2 = crate::Reg<u8, _C2>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C2;
+#[doc = "`read()` method returns [c2::R](c2::R) reader structure"]
+impl crate::Readable for C2 {}
+#[doc = "`write(|w| ..)` method takes [c2::W](c2::W) writer structure"]
+impl crate::Writable for C2 {}
 #[doc = "MCG Control 2 Register"]
 pub mod c2;
-#[doc = "MCG Control 3 Register"]
-pub struct C3 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 3 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c3](c3) module"]
+pub type C3 = crate::Reg<u8, _C3>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C3;
+#[doc = "`read()` method returns [c3::R](c3::R) reader structure"]
+impl crate::Readable for C3 {}
+#[doc = "`write(|w| ..)` method takes [c3::W](c3::W) writer structure"]
+impl crate::Writable for C3 {}
 #[doc = "MCG Control 3 Register"]
 pub mod c3;
-#[doc = "MCG Control 4 Register"]
-pub struct C4 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 4 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c4](c4) module"]
+pub type C4 = crate::Reg<u8, _C4>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C4;
+#[doc = "`read()` method returns [c4::R](c4::R) reader structure"]
+impl crate::Readable for C4 {}
+#[doc = "`write(|w| ..)` method takes [c4::W](c4::W) writer structure"]
+impl crate::Writable for C4 {}
 #[doc = "MCG Control 4 Register"]
 pub mod c4;
-#[doc = "MCG Control 5 Register"]
-pub struct C5 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 5 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c5](c5) module"]
+pub type C5 = crate::Reg<u8, _C5>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C5;
+#[doc = "`read()` method returns [c5::R](c5::R) reader structure"]
+impl crate::Readable for C5 {}
+#[doc = "`write(|w| ..)` method takes [c5::W](c5::W) writer structure"]
+impl crate::Writable for C5 {}
 #[doc = "MCG Control 5 Register"]
 pub mod c5;
-#[doc = "MCG Control 6 Register"]
-pub struct C6 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 6 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c6](c6) module"]
+pub type C6 = crate::Reg<u8, _C6>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C6;
+#[doc = "`read()` method returns [c6::R](c6::R) reader structure"]
+impl crate::Readable for C6 {}
+#[doc = "`write(|w| ..)` method takes [c6::W](c6::W) writer structure"]
+impl crate::Writable for C6 {}
 #[doc = "MCG Control 6 Register"]
 pub mod c6;
-#[doc = "MCG Status Register"]
-pub struct S {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [s](s) module"]
+pub type S = crate::Reg<u8, _S>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _S;
+#[doc = "`read()` method returns [s::R](s::R) reader structure"]
+impl crate::Readable for S {}
+#[doc = "`write(|w| ..)` method takes [s::W](s::W) writer structure"]
+impl crate::Writable for S {}
 #[doc = "MCG Status Register"]
 pub mod s;
-#[doc = "MCG Status and Control Register"]
-pub struct SC {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Status and Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sc](sc) module"]
+pub type SC = crate::Reg<u8, _SC>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _SC;
+#[doc = "`read()` method returns [sc::R](sc::R) reader structure"]
+impl crate::Readable for SC {}
+#[doc = "`write(|w| ..)` method takes [sc::W](sc::W) writer structure"]
+impl crate::Writable for SC {}
 #[doc = "MCG Status and Control Register"]
 pub mod sc;
-#[doc = "MCG Auto Trim Compare Value High Register"]
-pub struct ATCVH {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Auto Trim Compare Value High Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [atcvh](atcvh) module"]
+pub type ATCVH = crate::Reg<u8, _ATCVH>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _ATCVH;
+#[doc = "`read()` method returns [atcvh::R](atcvh::R) reader structure"]
+impl crate::Readable for ATCVH {}
+#[doc = "`write(|w| ..)` method takes [atcvh::W](atcvh::W) writer structure"]
+impl crate::Writable for ATCVH {}
 #[doc = "MCG Auto Trim Compare Value High Register"]
 pub mod atcvh;
-#[doc = "MCG Auto Trim Compare Value Low Register"]
-pub struct ATCVL {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Auto Trim Compare Value Low Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [atcvl](atcvl) module"]
+pub type ATCVL = crate::Reg<u8, _ATCVL>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _ATCVL;
+#[doc = "`read()` method returns [atcvl::R](atcvl::R) reader structure"]
+impl crate::Readable for ATCVL {}
+#[doc = "`write(|w| ..)` method takes [atcvl::W](atcvl::W) writer structure"]
+impl crate::Writable for ATCVL {}
 #[doc = "MCG Auto Trim Compare Value Low Register"]
 pub mod atcvl;
-#[doc = "MCG Control 7 Register"]
-pub struct C7 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 7 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c7](c7) module"]
+pub type C7 = crate::Reg<u8, _C7>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C7;
+#[doc = "`read()` method returns [c7::R](c7::R) reader structure"]
+impl crate::Readable for C7 {}
+#[doc = "`write(|w| ..)` method takes [c7::W](c7::W) writer structure"]
+impl crate::Writable for C7 {}
 #[doc = "MCG Control 7 Register"]
 pub mod c7;
-#[doc = "MCG Control 8 Register"]
-pub struct C8 {
-    register: ::vcell::VolatileCell<u8>,
-}
+#[doc = "MCG Control 8 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [c8](c8) module"]
+pub type C8 = crate::Reg<u8, _C8>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _C8;
+#[doc = "`read()` method returns [c8::R](c8::R) reader structure"]
+impl crate::Readable for C8 {}
+#[doc = "`write(|w| ..)` method takes [c8::W](c8::W) writer structure"]
+impl crate::Writable for C8 {}
 #[doc = "MCG Control 8 Register"]
 pub mod c8;

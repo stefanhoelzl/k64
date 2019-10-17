@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::TXFR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXDATAR {
-    bits: u16,
-}
-impl TXDATAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXCMD_TXDATAR {
-    bits: u16,
-}
-impl TXCMD_TXDATAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register TXFR%s"]
+pub type R = crate::R<u32, super::TXFR>;
+#[doc = "Reader of field `TXDATA`"]
+pub type TXDATA_R = crate::R<u16, u16>;
+#[doc = "Reader of field `TXCMD_TXDATA`"]
+pub type TXCMD_TXDATA_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Transmit Data"]
-    #[inline]
-    pub fn txdata(&self) -> TXDATAR {
-        let bits = {
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TXDATAR { bits }
+    #[inline(always)]
+    pub fn txdata(&self) -> TXDATA_R {
+        TXDATA_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:31 - Transmit Command or Transmit Data"]
-    #[inline]
-    pub fn txcmd_txdata(&self) -> TXCMD_TXDATAR {
-        let bits = {
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TXCMD_TXDATAR { bits }
+    #[inline(always)]
+    pub fn txcmd_txdata(&self) -> TXCMD_TXDATA_R {
+        TXCMD_TXDATA_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }

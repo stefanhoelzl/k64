@@ -1,225 +1,132 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::F {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register F"]
+pub type R = crate::R<u8, super::F>;
+#[doc = "Writer for register F"]
+pub type W = crate::W<u8, super::F>;
+#[doc = "Register F `reset()`'s with value 0"]
+impl crate::ResetValue for super::F {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct ICRR {
-    bits: u8,
-}
-impl ICRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `MULT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MULTR {
-    #[doc = "mul = 1"]
-    _00,
-    #[doc = "mul = 2"]
-    _01,
-    #[doc = "mul = 4"]
-    _10,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl MULTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MULTR::_00 => 0,
-            MULTR::_01 => 1,
-            MULTR::_10 => 2,
-            MULTR::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MULTR {
-        match value {
-            0 => MULTR::_00,
-            1 => MULTR::_01,
-            2 => MULTR::_10,
-            i => MULTR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
-    pub fn is_00(&self) -> bool {
-        *self == MULTR::_00
-    }
-    #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
-    pub fn is_01(&self) -> bool {
-        *self == MULTR::_01
-    }
-    #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
-    pub fn is_10(&self) -> bool {
-        *self == MULTR::_10
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ICRW<'a> {
+#[doc = "Reader of field `ICR`"]
+pub type ICR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `ICR`"]
+pub struct ICR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ICRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> ICR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 63;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x3f) | ((value as u8) & 0x3f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MULT`"]
-pub enum MULTW {
-    #[doc = "mul = 1"]
+#[doc = "Multiplier Factor\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MULT_A {
+    #[doc = "0: mul = 1"]
     _00,
-    #[doc = "mul = 2"]
+    #[doc = "1: mul = 2"]
     _01,
-    #[doc = "mul = 4"]
+    #[doc = "2: mul = 4"]
     _10,
 }
-impl MULTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MULTW::_00 => 0,
-            MULTW::_01 => 1,
-            MULTW::_10 => 2,
+impl From<MULT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MULT_A) -> Self {
+        match variant {
+            MULT_A::_00 => 0,
+            MULT_A::_01 => 1,
+            MULT_A::_10 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MULTW<'a> {
+#[doc = "Reader of field `MULT`"]
+pub type MULT_R = crate::R<u8, MULT_A>;
+impl MULT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, MULT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(MULT_A::_00),
+            1 => Val(MULT_A::_01),
+            2 => Val(MULT_A::_10),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_00`"]
+    #[inline(always)]
+    pub fn is_00(&self) -> bool {
+        *self == MULT_A::_00
+    }
+    #[doc = "Checks if the value of the field is `_01`"]
+    #[inline(always)]
+    pub fn is_01(&self) -> bool {
+        *self == MULT_A::_01
+    }
+    #[doc = "Checks if the value of the field is `_10`"]
+    #[inline(always)]
+    pub fn is_10(&self) -> bool {
+        *self == MULT_A::_10
+    }
+}
+#[doc = "Write proxy for field `MULT`"]
+pub struct MULT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MULTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MULTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> MULT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MULT_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "mul = 1"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(MULTW::_00)
+        self.variant(MULT_A::_00)
     }
     #[doc = "mul = 2"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(MULTW::_01)
+        self.variant(MULT_A::_01)
     }
     #[doc = "mul = 4"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(MULTW::_10)
+        self.variant(MULT_A::_10)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u8) & 0x03) << 6);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:5 - ClockRate"]
-    #[inline]
-    pub fn icr(&self) -> ICRR {
-        let bits = {
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        ICRR { bits }
+    #[inline(always)]
+    pub fn icr(&self) -> ICR_R {
+        ICR_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bits 6:7 - Multiplier Factor"]
-    #[inline]
-    pub fn mult(&self) -> MULTR {
-        MULTR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn mult(&self) -> MULT_R {
+        MULT_R::new(((self.bits >> 6) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:5 - ClockRate"]
-    #[inline]
-    pub fn icr(&mut self) -> _ICRW {
-        _ICRW { w: self }
+    #[inline(always)]
+    pub fn icr(&mut self) -> ICR_W {
+        ICR_W { w: self }
     }
     #[doc = "Bits 6:7 - Multiplier Factor"]
-    #[inline]
-    pub fn mult(&mut self) -> _MULTW {
-        _MULTW { w: self }
+    #[inline(always)]
+    pub fn mult(&mut self) -> MULT_W {
+        MULT_W { w: self }
     }
 }

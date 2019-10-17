@@ -1,225 +1,132 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::TOKEN {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TOKEN"]
+pub type R = crate::R<u8, super::TOKEN>;
+#[doc = "Writer for register TOKEN"]
+pub type W = crate::W<u8, super::TOKEN>;
+#[doc = "Register TOKEN `reset()`'s with value 0"]
+impl crate::ResetValue for super::TOKEN {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct TOKENENDPTR {
-    bits: u8,
-}
-impl TOKENENDPTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `TOKENPID`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TOKENPIDR {
-    #[doc = "OUT Token. USB Module performs an OUT (TX) transaction."]
-    _0001,
-    #[doc = "IN Token. USB Module performs an In (RX) transaction."]
-    _1001,
-    #[doc = "SETUP Token. USB Module performs a SETUP (TX) transaction"]
-    _1101,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl TOKENPIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TOKENPIDR::_0001 => 1,
-            TOKENPIDR::_1001 => 9,
-            TOKENPIDR::_1101 => 13,
-            TOKENPIDR::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TOKENPIDR {
-        match value {
-            1 => TOKENPIDR::_0001,
-            9 => TOKENPIDR::_1001,
-            13 => TOKENPIDR::_1101,
-            i => TOKENPIDR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0001`"]
-    #[inline]
-    pub fn is_0001(&self) -> bool {
-        *self == TOKENPIDR::_0001
-    }
-    #[doc = "Checks if the value of the field is `_1001`"]
-    #[inline]
-    pub fn is_1001(&self) -> bool {
-        *self == TOKENPIDR::_1001
-    }
-    #[doc = "Checks if the value of the field is `_1101`"]
-    #[inline]
-    pub fn is_1101(&self) -> bool {
-        *self == TOKENPIDR::_1101
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TOKENENDPTW<'a> {
+#[doc = "Reader of field `TOKENENDPT`"]
+pub type TOKENENDPT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TOKENENDPT`"]
+pub struct TOKENENDPT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOKENENDPTW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TOKENENDPT_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u8) & 0x0f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TOKENPID`"]
-pub enum TOKENPIDW {
-    #[doc = "OUT Token. USB Module performs an OUT (TX) transaction."]
+#[doc = "Contains the token type executed by the USB module.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TOKENPID_A {
+    #[doc = "1: OUT Token. USB Module performs an OUT (TX) transaction."]
     _0001,
-    #[doc = "IN Token. USB Module performs an In (RX) transaction."]
+    #[doc = "9: IN Token. USB Module performs an In (RX) transaction."]
     _1001,
-    #[doc = "SETUP Token. USB Module performs a SETUP (TX) transaction"]
+    #[doc = "13: SETUP Token. USB Module performs a SETUP (TX) transaction"]
     _1101,
 }
-impl TOKENPIDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TOKENPIDW::_0001 => 1,
-            TOKENPIDW::_1001 => 9,
-            TOKENPIDW::_1101 => 13,
+impl From<TOKENPID_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TOKENPID_A) -> Self {
+        match variant {
+            TOKENPID_A::_0001 => 1,
+            TOKENPID_A::_1001 => 9,
+            TOKENPID_A::_1101 => 13,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TOKENPIDW<'a> {
+#[doc = "Reader of field `TOKENPID`"]
+pub type TOKENPID_R = crate::R<u8, TOKENPID_A>;
+impl TOKENPID_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TOKENPID_A> {
+        use crate::Variant::*;
+        match self.bits {
+            1 => Val(TOKENPID_A::_0001),
+            9 => Val(TOKENPID_A::_1001),
+            13 => Val(TOKENPID_A::_1101),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0001`"]
+    #[inline(always)]
+    pub fn is_0001(&self) -> bool {
+        *self == TOKENPID_A::_0001
+    }
+    #[doc = "Checks if the value of the field is `_1001`"]
+    #[inline(always)]
+    pub fn is_1001(&self) -> bool {
+        *self == TOKENPID_A::_1001
+    }
+    #[doc = "Checks if the value of the field is `_1101`"]
+    #[inline(always)]
+    pub fn is_1101(&self) -> bool {
+        *self == TOKENPID_A::_1101
+    }
+}
+#[doc = "Write proxy for field `TOKENPID`"]
+pub struct TOKENPID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOKENPIDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TOKENPIDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> TOKENPID_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TOKENPID_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "OUT Token. USB Module performs an OUT (TX) transaction."]
-    #[inline]
+    #[inline(always)]
     pub fn _0001(self) -> &'a mut W {
-        self.variant(TOKENPIDW::_0001)
+        self.variant(TOKENPID_A::_0001)
     }
     #[doc = "IN Token. USB Module performs an In (RX) transaction."]
-    #[inline]
+    #[inline(always)]
     pub fn _1001(self) -> &'a mut W {
-        self.variant(TOKENPIDW::_1001)
+        self.variant(TOKENPID_A::_1001)
     }
     #[doc = "SETUP Token. USB Module performs a SETUP (TX) transaction"]
-    #[inline]
+    #[inline(always)]
     pub fn _1101(self) -> &'a mut W {
-        self.variant(TOKENPIDW::_1101)
+        self.variant(TOKENPID_A::_1101)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u8) & 0x0f) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Holds the Endpoint address for the token command"]
-    #[inline]
-    pub fn tokenendpt(&self) -> TOKENENDPTR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        TOKENENDPTR { bits }
+    #[inline(always)]
+    pub fn tokenendpt(&self) -> TOKENENDPT_R {
+        TOKENENDPT_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:7 - Contains the token type executed by the USB module."]
-    #[inline]
-    pub fn tokenpid(&self) -> TOKENPIDR {
-        TOKENPIDR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn tokenpid(&self) -> TOKENPID_R {
+        TOKENPID_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Holds the Endpoint address for the token command"]
-    #[inline]
-    pub fn tokenendpt(&mut self) -> _TOKENENDPTW {
-        _TOKENENDPTW { w: self }
+    #[inline(always)]
+    pub fn tokenendpt(&mut self) -> TOKENENDPT_W {
+        TOKENENDPT_W { w: self }
     }
     #[doc = "Bits 4:7 - Contains the token type executed by the USB module."]
-    #[inline]
-    pub fn tokenpid(&mut self) -> _TOKENPIDW {
-        _TOKENPIDW { w: self }
+    #[inline(always)]
+    pub fn tokenpid(&mut self) -> TOKENPID_W {
+        TOKENPID_W { w: self }
     }
 }

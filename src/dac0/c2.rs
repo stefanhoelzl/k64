@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C2"]
+pub type R = crate::R<u8, super::C2>;
+#[doc = "Writer for register C2"]
+pub type W = crate::W<u8, super::C2>;
+#[doc = "Register C2 `reset()`'s with value 0x0f"]
+impl crate::ResetValue for super::C2 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0f
     }
 }
-#[doc = r" Value of the field"]
-pub struct DACBFUPR {
-    bits: u8,
-}
-impl DACBFUPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DACBFRPR {
-    bits: u8,
-}
-impl DACBFRPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DACBFUPW<'a> {
+#[doc = "Reader of field `DACBFUP`"]
+pub type DACBFUP_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DACBFUP`"]
+pub struct DACBFUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBFUPW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> DACBFUP_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u8) & 0x0f);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACBFRPW<'a> {
+#[doc = "Reader of field `DACBFRP`"]
+pub type DACBFRP_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DACBFRP`"]
+pub struct DACBFRP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBFRPW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> DACBFRP_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u8) & 0x0f) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - DAC Buffer Upper Limit"]
-    #[inline]
-    pub fn dacbfup(&self) -> DACBFUPR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        DACBFUPR { bits }
+    #[inline(always)]
+    pub fn dacbfup(&self) -> DACBFUP_R {
+        DACBFUP_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:7 - DAC Buffer Read Pointer"]
-    #[inline]
-    pub fn dacbfrp(&self) -> DACBFRPR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        DACBFRPR { bits }
+    #[inline(always)]
+    pub fn dacbfrp(&self) -> DACBFRP_R {
+        DACBFRP_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 15 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - DAC Buffer Upper Limit"]
-    #[inline]
-    pub fn dacbfup(&mut self) -> _DACBFUPW {
-        _DACBFUPW { w: self }
+    #[inline(always)]
+    pub fn dacbfup(&mut self) -> DACBFUP_W {
+        DACBFUP_W { w: self }
     }
     #[doc = "Bits 4:7 - DAC Buffer Read Pointer"]
-    #[inline]
-    pub fn dacbfrp(&mut self) -> _DACBFRPW {
-        _DACBFRPW { w: self }
+    #[inline(always)]
+    pub fn dacbfrp(&mut self) -> DACBFRP_W {
+        DACBFRP_W { w: self }
     }
 }

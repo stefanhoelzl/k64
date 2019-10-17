@@ -1,462 +1,304 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C4 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C4"]
+pub type R = crate::R<u8, super::C4>;
+#[doc = "Writer for register C4"]
+pub type W = crate::W<u8, super::C4>;
+#[doc = "Register C4 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C4 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct BRFAR {
-    bits: u8,
-}
-impl BRFAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `M10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum M10R {
-    #[doc = "The parity bit is the ninth bit in the serial transmission."]
-    _0,
-    #[doc = "The parity bit is the tenth bit in the serial transmission."]
-    _1,
-}
-impl M10R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            M10R::_0 => false,
-            M10R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> M10R {
-        match value {
-            false => M10R::_0,
-            true => M10R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == M10R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == M10R::_1
-    }
-}
-#[doc = "Possible values of the field `MAEN2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAEN2R {
-    #[doc = "All data received is transferred to the data buffer if MAEN1 is cleared."]
-    _0,
-    #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA2 register. If no match occurs, the data is discarded. If a match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
-    _1,
-}
-impl MAEN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MAEN2R::_0 => false,
-            MAEN2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MAEN2R {
-        match value {
-            false => MAEN2R::_0,
-            true => MAEN2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MAEN2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MAEN2R::_1
-    }
-}
-#[doc = "Possible values of the field `MAEN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAEN1R {
-    #[doc = "All data received is transferred to the data buffer if MAEN2 is cleared."]
-    _0,
-    #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA1 register. If no match occurs, the data is discarded. If match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
-    _1,
-}
-impl MAEN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MAEN1R::_0 => false,
-            MAEN1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MAEN1R {
-        match value {
-            false => MAEN1R::_0,
-            true => MAEN1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MAEN1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MAEN1R::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BRFAW<'a> {
+#[doc = "Reader of field `BRFA`"]
+pub type BRFA_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BRFA`"]
+pub struct BRFA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BRFAW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> BRFA_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u8) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `M10`"]
-pub enum M10W {
+#[doc = "10-bit Mode select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum M10_A {
+    #[doc = "0: The parity bit is the ninth bit in the serial transmission."]
+    _0,
+    #[doc = "1: The parity bit is the tenth bit in the serial transmission."]
+    _1,
+}
+impl From<M10_A> for bool {
+    #[inline(always)]
+    fn from(variant: M10_A) -> Self {
+        match variant {
+            M10_A::_0 => false,
+            M10_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `M10`"]
+pub type M10_R = crate::R<bool, M10_A>;
+impl M10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> M10_A {
+        match self.bits {
+            false => M10_A::_0,
+            true => M10_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == M10_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == M10_A::_1
+    }
+}
+#[doc = "Write proxy for field `M10`"]
+pub struct M10_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> M10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: M10_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The parity bit is the ninth bit in the serial transmission."]
-    _0,
-    #[doc = "The parity bit is the tenth bit in the serial transmission."]
-    _1,
-}
-impl M10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            M10W::_0 => false,
-            M10W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _M10W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _M10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: M10W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The parity bit is the ninth bit in the serial transmission."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(M10W::_0)
+        self.variant(M10_A::_0)
     }
     #[doc = "The parity bit is the tenth bit in the serial transmission."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(M10W::_1)
+        self.variant(M10_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MAEN2`"]
-pub enum MAEN2W {
-    #[doc = "All data received is transferred to the data buffer if MAEN1 is cleared."]
+#[doc = "Match Address Mode Enable 2\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MAEN2_A {
+    #[doc = "0: All data received is transferred to the data buffer if MAEN1 is cleared."]
     _0,
-    #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA2 register. If no match occurs, the data is discarded. If a match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
+    #[doc = "1: All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA2 register. If no match occurs, the data is discarded. If a match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
     _1,
 }
-impl MAEN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MAEN2W::_0 => false,
-            MAEN2W::_1 => true,
+impl From<MAEN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: MAEN2_A) -> Self {
+        match variant {
+            MAEN2_A::_0 => false,
+            MAEN2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MAEN2W<'a> {
+#[doc = "Reader of field `MAEN2`"]
+pub type MAEN2_R = crate::R<bool, MAEN2_A>;
+impl MAEN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MAEN2_A {
+        match self.bits {
+            false => MAEN2_A::_0,
+            true => MAEN2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MAEN2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MAEN2_A::_1
+    }
+}
+#[doc = "Write proxy for field `MAEN2`"]
+pub struct MAEN2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAEN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MAEN2W) -> &'a mut W {
+impl<'a> MAEN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MAEN2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "All data received is transferred to the data buffer if MAEN1 is cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MAEN2W::_0)
+        self.variant(MAEN2_A::_0)
     }
     #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA2 register. If no match occurs, the data is discarded. If a match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MAEN2W::_1)
+        self.variant(MAEN2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MAEN1`"]
-pub enum MAEN1W {
-    #[doc = "All data received is transferred to the data buffer if MAEN2 is cleared."]
+#[doc = "Match Address Mode Enable 1\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MAEN1_A {
+    #[doc = "0: All data received is transferred to the data buffer if MAEN2 is cleared."]
     _0,
-    #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA1 register. If no match occurs, the data is discarded. If match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
+    #[doc = "1: All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA1 register. If no match occurs, the data is discarded. If match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
     _1,
 }
-impl MAEN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MAEN1W::_0 => false,
-            MAEN1W::_1 => true,
+impl From<MAEN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: MAEN1_A) -> Self {
+        match variant {
+            MAEN1_A::_0 => false,
+            MAEN1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MAEN1W<'a> {
+#[doc = "Reader of field `MAEN1`"]
+pub type MAEN1_R = crate::R<bool, MAEN1_A>;
+impl MAEN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MAEN1_A {
+        match self.bits {
+            false => MAEN1_A::_0,
+            true => MAEN1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MAEN1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MAEN1_A::_1
+    }
+}
+#[doc = "Write proxy for field `MAEN1`"]
+pub struct MAEN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAEN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MAEN1W) -> &'a mut W {
+impl<'a> MAEN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MAEN1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "All data received is transferred to the data buffer if MAEN2 is cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MAEN1W::_0)
+        self.variant(MAEN1_A::_0)
     }
     #[doc = "All data received with the most significant bit cleared, is discarded. All data received with the most significant bit set, is compared with contents of MA1 register. If no match occurs, the data is discarded. If match occurs, data is transferred to the data buffer. This field must be cleared when C7816\\[ISO7816E\\] is set/enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MAEN1W::_1)
+        self.variant(MAEN1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Baud Rate Fine Adjust"]
-    #[inline]
-    pub fn brfa(&self) -> BRFAR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        BRFAR { bits }
+    #[inline(always)]
+    pub fn brfa(&self) -> BRFA_R {
+        BRFA_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 5 - 10-bit Mode select"]
-    #[inline]
-    pub fn m10(&self) -> M10R {
-        M10R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn m10(&self) -> M10_R {
+        M10_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Match Address Mode Enable 2"]
-    #[inline]
-    pub fn maen2(&self) -> MAEN2R {
-        MAEN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn maen2(&self) -> MAEN2_R {
+        MAEN2_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Match Address Mode Enable 1"]
-    #[inline]
-    pub fn maen1(&self) -> MAEN1R {
-        MAEN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn maen1(&self) -> MAEN1_R {
+        MAEN1_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Baud Rate Fine Adjust"]
-    #[inline]
-    pub fn brfa(&mut self) -> _BRFAW {
-        _BRFAW { w: self }
+    #[inline(always)]
+    pub fn brfa(&mut self) -> BRFA_W {
+        BRFA_W { w: self }
     }
     #[doc = "Bit 5 - 10-bit Mode select"]
-    #[inline]
-    pub fn m10(&mut self) -> _M10W {
-        _M10W { w: self }
+    #[inline(always)]
+    pub fn m10(&mut self) -> M10_W {
+        M10_W { w: self }
     }
     #[doc = "Bit 6 - Match Address Mode Enable 2"]
-    #[inline]
-    pub fn maen2(&mut self) -> _MAEN2W {
-        _MAEN2W { w: self }
+    #[inline(always)]
+    pub fn maen2(&mut self) -> MAEN2_W {
+        MAEN2_W { w: self }
     }
     #[doc = "Bit 7 - Match Address Mode Enable 1"]
-    #[inline]
-    pub fn maen1(&mut self) -> _MAEN1W {
-        _MAEN1W { w: self }
+    #[inline(always)]
+    pub fn maen1(&mut self) -> MAEN1_W {
+        MAEN1_W { w: self }
     }
 }

@@ -1,76 +1,48 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-impl super::MR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `EZP_MS`"]
+#[doc = "Reader of register MR"]
+pub type R = crate::R<u8, super::MR>;
+#[doc = "EZP_MS_B pin state\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EZP_MSR {
-    #[doc = "Pin deasserted (logic 1)"]
+pub enum EZP_MS_A {
+    #[doc = "0: Pin deasserted (logic 1)"]
     _0,
-    #[doc = "Pin asserted (logic 0)"]
+    #[doc = "1: Pin asserted (logic 0)"]
     _1,
 }
-impl EZP_MSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EZP_MSR::_0 => false,
-            EZP_MSR::_1 => true,
+impl From<EZP_MS_A> for bool {
+    #[inline(always)]
+    fn from(variant: EZP_MS_A) -> Self {
+        match variant {
+            EZP_MS_A::_0 => false,
+            EZP_MS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EZP_MSR {
-        match value {
-            false => EZP_MSR::_0,
-            true => EZP_MSR::_1,
+}
+#[doc = "Reader of field `EZP_MS`"]
+pub type EZP_MS_R = crate::R<bool, EZP_MS_A>;
+impl EZP_MS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EZP_MS_A {
+        match self.bits {
+            false => EZP_MS_A::_0,
+            true => EZP_MS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EZP_MSR::_0
+        *self == EZP_MS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EZP_MSR::_1
+        *self == EZP_MS_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 1 - EZP_MS_B pin state"]
-    #[inline]
-    pub fn ezp_ms(&self) -> EZP_MSR {
-        EZP_MSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ezp_ms(&self) -> EZP_MS_R {
+        EZP_MS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }

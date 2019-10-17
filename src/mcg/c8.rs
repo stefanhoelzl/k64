@@ -1,540 +1,368 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C8 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C8"]
+pub type R = crate::R<u8, super::C8>;
+#[doc = "Writer for register C8"]
+pub type W = crate::W<u8, super::C8>;
+#[doc = "Register C8 `reset()`'s with value 0x80"]
+impl crate::ResetValue for super::C8 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x80
     }
 }
-#[doc = "Possible values of the field `LOCS1`"]
+#[doc = "RTC Loss of Clock Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOCS1R {
-    #[doc = "Loss of RTC has not occur."]
+pub enum LOCS1_A {
+    #[doc = "0: Loss of RTC has not occur."]
     _0,
-    #[doc = "Loss of RTC has occur"]
+    #[doc = "1: Loss of RTC has occur"]
     _1,
 }
-impl LOCS1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOCS1R::_0 => false,
-            LOCS1R::_1 => true,
+impl From<LOCS1_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOCS1_A) -> Self {
+        match variant {
+            LOCS1_A::_0 => false,
+            LOCS1_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOCS1R {
-        match value {
-            false => LOCS1R::_0,
-            true => LOCS1R::_1,
+}
+#[doc = "Reader of field `LOCS1`"]
+pub type LOCS1_R = crate::R<bool, LOCS1_A>;
+impl LOCS1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOCS1_A {
+        match self.bits {
+            false => LOCS1_A::_0,
+            true => LOCS1_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LOCS1R::_0
+        *self == LOCS1_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LOCS1R::_1
+        *self == LOCS1_A::_1
     }
 }
-#[doc = "Possible values of the field `CME1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CME1R {
-    #[doc = "External clock monitor is disabled for RTC clock."]
-    _0,
-    #[doc = "External clock monitor is enabled for RTC clock."]
-    _1,
-}
-impl CME1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CME1R::_0 => false,
-            CME1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CME1R {
-        match value {
-            false => CME1R::_0,
-            true => CME1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CME1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CME1R::_1
-    }
-}
-#[doc = "Possible values of the field `LOLRE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOLRER {
-    #[doc = "Interrupt request is generated on a PLL loss of lock indication. The PLL loss of lock interrupt enable bit must also be set to generate the interrupt request."]
-    _0,
-    #[doc = "Generate a reset request on a PLL loss of lock indication."]
-    _1,
-}
-impl LOLRER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOLRER::_0 => false,
-            LOLRER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOLRER {
-        match value {
-            false => LOLRER::_0,
-            true => LOLRER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LOLRER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LOLRER::_1
-    }
-}
-#[doc = "Possible values of the field `LOCRE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOCRE1R {
-    #[doc = "Interrupt request is generated on a loss of RTC external reference clock."]
-    _0,
-    #[doc = "Generate a reset request on a loss of RTC external reference clock"]
-    _1,
-}
-impl LOCRE1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOCRE1R::_0 => false,
-            LOCRE1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOCRE1R {
-        match value {
-            false => LOCRE1R::_0,
-            true => LOCRE1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LOCRE1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LOCRE1R::_1
-    }
-}
-#[doc = "Values that can be written to the field `LOCS1`"]
-pub enum LOCS1W {
-    #[doc = "Loss of RTC has not occur."]
-    _0,
-    #[doc = "Loss of RTC has occur"]
-    _1,
-}
-impl LOCS1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOCS1W::_0 => false,
-            LOCS1W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LOCS1W<'a> {
+#[doc = "Write proxy for field `LOCS1`"]
+pub struct LOCS1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOCS1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOCS1W) -> &'a mut W {
+impl<'a> LOCS1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOCS1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Loss of RTC has not occur."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOCS1W::_0)
+        self.variant(LOCS1_A::_0)
     }
     #[doc = "Loss of RTC has occur"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOCS1W::_1)
+        self.variant(LOCS1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CME1`"]
-pub enum CME1W {
+#[doc = "Clock Monitor Enable1\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CME1_A {
+    #[doc = "0: External clock monitor is disabled for RTC clock."]
+    _0,
+    #[doc = "1: External clock monitor is enabled for RTC clock."]
+    _1,
+}
+impl From<CME1_A> for bool {
+    #[inline(always)]
+    fn from(variant: CME1_A) -> Self {
+        match variant {
+            CME1_A::_0 => false,
+            CME1_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CME1`"]
+pub type CME1_R = crate::R<bool, CME1_A>;
+impl CME1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CME1_A {
+        match self.bits {
+            false => CME1_A::_0,
+            true => CME1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CME1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CME1_A::_1
+    }
+}
+#[doc = "Write proxy for field `CME1`"]
+pub struct CME1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CME1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CME1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "External clock monitor is disabled for RTC clock."]
-    _0,
-    #[doc = "External clock monitor is enabled for RTC clock."]
-    _1,
-}
-impl CME1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CME1W::_0 => false,
-            CME1W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CME1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CME1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CME1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "External clock monitor is disabled for RTC clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CME1W::_0)
+        self.variant(CME1_A::_0)
     }
     #[doc = "External clock monitor is enabled for RTC clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CME1W::_1)
+        self.variant(CME1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LOLRE`"]
-pub enum LOLREW {
-    #[doc = "Interrupt request is generated on a PLL loss of lock indication. The PLL loss of lock interrupt enable bit must also be set to generate the interrupt request."]
+#[doc = "PLL Loss of Lock Reset Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LOLRE_A {
+    #[doc = "0: Interrupt request is generated on a PLL loss of lock indication. The PLL loss of lock interrupt enable bit must also be set to generate the interrupt request."]
     _0,
-    #[doc = "Generate a reset request on a PLL loss of lock indication."]
+    #[doc = "1: Generate a reset request on a PLL loss of lock indication."]
     _1,
 }
-impl LOLREW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOLREW::_0 => false,
-            LOLREW::_1 => true,
+impl From<LOLRE_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOLRE_A) -> Self {
+        match variant {
+            LOLRE_A::_0 => false,
+            LOLRE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LOLREW<'a> {
+#[doc = "Reader of field `LOLRE`"]
+pub type LOLRE_R = crate::R<bool, LOLRE_A>;
+impl LOLRE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOLRE_A {
+        match self.bits {
+            false => LOLRE_A::_0,
+            true => LOLRE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LOLRE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LOLRE_A::_1
+    }
+}
+#[doc = "Write proxy for field `LOLRE`"]
+pub struct LOLRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOLREW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOLREW) -> &'a mut W {
+impl<'a> LOLRE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOLRE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Interrupt request is generated on a PLL loss of lock indication. The PLL loss of lock interrupt enable bit must also be set to generate the interrupt request."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOLREW::_0)
+        self.variant(LOLRE_A::_0)
     }
     #[doc = "Generate a reset request on a PLL loss of lock indication."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOLREW::_1)
+        self.variant(LOLRE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LOCRE1`"]
-pub enum LOCRE1W {
-    #[doc = "Interrupt request is generated on a loss of RTC external reference clock."]
+#[doc = "Loss of Clock Reset Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LOCRE1_A {
+    #[doc = "0: Interrupt request is generated on a loss of RTC external reference clock."]
     _0,
-    #[doc = "Generate a reset request on a loss of RTC external reference clock"]
+    #[doc = "1: Generate a reset request on a loss of RTC external reference clock"]
     _1,
 }
-impl LOCRE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOCRE1W::_0 => false,
-            LOCRE1W::_1 => true,
+impl From<LOCRE1_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOCRE1_A) -> Self {
+        match variant {
+            LOCRE1_A::_0 => false,
+            LOCRE1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LOCRE1W<'a> {
+#[doc = "Reader of field `LOCRE1`"]
+pub type LOCRE1_R = crate::R<bool, LOCRE1_A>;
+impl LOCRE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOCRE1_A {
+        match self.bits {
+            false => LOCRE1_A::_0,
+            true => LOCRE1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LOCRE1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LOCRE1_A::_1
+    }
+}
+#[doc = "Write proxy for field `LOCRE1`"]
+pub struct LOCRE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOCRE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOCRE1W) -> &'a mut W {
+impl<'a> LOCRE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOCRE1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Interrupt request is generated on a loss of RTC external reference clock."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOCRE1W::_0)
+        self.variant(LOCRE1_A::_0)
     }
     #[doc = "Generate a reset request on a loss of RTC external reference clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOCRE1W::_1)
+        self.variant(LOCRE1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - RTC Loss of Clock Status"]
-    #[inline]
-    pub fn locs1(&self) -> LOCS1R {
-        LOCS1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn locs1(&self) -> LOCS1_R {
+        LOCS1_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 5 - Clock Monitor Enable1"]
-    #[inline]
-    pub fn cme1(&self) -> CME1R {
-        CME1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn cme1(&self) -> CME1_R {
+        CME1_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - PLL Loss of Lock Reset Enable"]
-    #[inline]
-    pub fn lolre(&self) -> LOLRER {
-        LOLRER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lolre(&self) -> LOLRE_R {
+        LOLRE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Loss of Clock Reset Enable"]
-    #[inline]
-    pub fn locre1(&self) -> LOCRE1R {
-        LOCRE1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn locre1(&self) -> LOCRE1_R {
+        LOCRE1_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 128 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - RTC Loss of Clock Status"]
-    #[inline]
-    pub fn locs1(&mut self) -> _LOCS1W {
-        _LOCS1W { w: self }
+    #[inline(always)]
+    pub fn locs1(&mut self) -> LOCS1_W {
+        LOCS1_W { w: self }
     }
     #[doc = "Bit 5 - Clock Monitor Enable1"]
-    #[inline]
-    pub fn cme1(&mut self) -> _CME1W {
-        _CME1W { w: self }
+    #[inline(always)]
+    pub fn cme1(&mut self) -> CME1_W {
+        CME1_W { w: self }
     }
     #[doc = "Bit 6 - PLL Loss of Lock Reset Enable"]
-    #[inline]
-    pub fn lolre(&mut self) -> _LOLREW {
-        _LOLREW { w: self }
+    #[inline(always)]
+    pub fn lolre(&mut self) -> LOLRE_W {
+        LOLRE_W { w: self }
     }
     #[doc = "Bit 7 - Loss of Clock Reset Enable"]
-    #[inline]
-    pub fn locre1(&mut self) -> _LOCRE1W {
-        _LOCRE1W { w: self }
+    #[inline(always)]
+    pub fn locre1(&mut self) -> LOCRE1_W {
+        LOCRE1_W { w: self }
     }
 }

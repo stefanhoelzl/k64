@@ -1,764 +1,544 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::S {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register S"]
+pub type R = crate::R<u8, super::S>;
+#[doc = "Writer for register S"]
+pub type W = crate::W<u8, super::S>;
+#[doc = "Register S `reset()`'s with value 0x80"]
+impl crate::ResetValue for super::S {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x80
     }
 }
-#[doc = "Possible values of the field `RXAK`"]
+#[doc = "Receive Acknowledge\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXAKR {
-    #[doc = "Acknowledge signal was received after the completion of one byte of data transmission on the bus"]
+pub enum RXAK_A {
+    #[doc = "0: Acknowledge signal was received after the completion of one byte of data transmission on the bus"]
     _0,
-    #[doc = "No acknowledge signal detected"]
+    #[doc = "1: No acknowledge signal detected"]
     _1,
 }
-impl RXAKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXAKR::_0 => false,
-            RXAKR::_1 => true,
+impl From<RXAK_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXAK_A) -> Self {
+        match variant {
+            RXAK_A::_0 => false,
+            RXAK_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXAKR {
-        match value {
-            false => RXAKR::_0,
-            true => RXAKR::_1,
+}
+#[doc = "Reader of field `RXAK`"]
+pub type RXAK_R = crate::R<bool, RXAK_A>;
+impl RXAK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXAK_A {
+        match self.bits {
+            false => RXAK_A::_0,
+            true => RXAK_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RXAKR::_0
+        *self == RXAK_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RXAKR::_1
+        *self == RXAK_A::_1
     }
 }
-#[doc = "Possible values of the field `IICIF`"]
+#[doc = "Interrupt Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IICIFR {
-    #[doc = "No interrupt pending"]
+pub enum IICIF_A {
+    #[doc = "0: No interrupt pending"]
     _0,
-    #[doc = "Interrupt pending"]
+    #[doc = "1: Interrupt pending"]
     _1,
 }
-impl IICIFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IICIFR::_0 => false,
-            IICIFR::_1 => true,
+impl From<IICIF_A> for bool {
+    #[inline(always)]
+    fn from(variant: IICIF_A) -> Self {
+        match variant {
+            IICIF_A::_0 => false,
+            IICIF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IICIFR {
-        match value {
-            false => IICIFR::_0,
-            true => IICIFR::_1,
+}
+#[doc = "Reader of field `IICIF`"]
+pub type IICIF_R = crate::R<bool, IICIF_A>;
+impl IICIF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IICIF_A {
+        match self.bits {
+            false => IICIF_A::_0,
+            true => IICIF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IICIFR::_0
+        *self == IICIF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IICIFR::_1
+        *self == IICIF_A::_1
     }
 }
-#[doc = "Possible values of the field `SRW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SRWR {
-    #[doc = "Slave receive, master writing to slave"]
-    _0,
-    #[doc = "Slave transmit, master reading from slave"]
-    _1,
-}
-impl SRWR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SRWR::_0 => false,
-            SRWR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SRWR {
-        match value {
-            false => SRWR::_0,
-            true => SRWR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SRWR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SRWR::_1
-    }
-}
-#[doc = "Possible values of the field `RAM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RAMR {
-    #[doc = "Not addressed"]
-    _0,
-    #[doc = "Addressed as a slave"]
-    _1,
-}
-impl RAMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RAMR::_0 => false,
-            RAMR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RAMR {
-        match value {
-            false => RAMR::_0,
-            true => RAMR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RAMR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RAMR::_1
-    }
-}
-#[doc = "Possible values of the field `ARBL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ARBLR {
-    #[doc = "Standard bus operation."]
-    _0,
-    #[doc = "Loss of arbitration."]
-    _1,
-}
-impl ARBLR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ARBLR::_0 => false,
-            ARBLR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ARBLR {
-        match value {
-            false => ARBLR::_0,
-            true => ARBLR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ARBLR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ARBLR::_1
-    }
-}
-#[doc = "Possible values of the field `BUSY`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUSYR {
-    #[doc = "Bus is idle"]
-    _0,
-    #[doc = "Bus is busy"]
-    _1,
-}
-impl BUSYR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUSYR::_0 => false,
-            BUSYR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUSYR {
-        match value {
-            false => BUSYR::_0,
-            true => BUSYR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUSYR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUSYR::_1
-    }
-}
-#[doc = "Possible values of the field `IAAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IAASR {
-    #[doc = "Not addressed"]
-    _0,
-    #[doc = "Addressed as a slave"]
-    _1,
-}
-impl IAASR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IAASR::_0 => false,
-            IAASR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IAASR {
-        match value {
-            false => IAASR::_0,
-            true => IAASR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IAASR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IAASR::_1
-    }
-}
-#[doc = "Possible values of the field `TCF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCFR {
-    #[doc = "Transfer in progress"]
-    _0,
-    #[doc = "Transfer complete"]
-    _1,
-}
-impl TCFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TCFR::_0 => false,
-            TCFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TCFR {
-        match value {
-            false => TCFR::_0,
-            true => TCFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TCFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TCFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `IICIF`"]
-pub enum IICIFW {
-    #[doc = "No interrupt pending"]
-    _0,
-    #[doc = "Interrupt pending"]
-    _1,
-}
-impl IICIFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IICIFW::_0 => false,
-            IICIFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IICIFW<'a> {
+#[doc = "Write proxy for field `IICIF`"]
+pub struct IICIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IICIFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IICIFW) -> &'a mut W {
+impl<'a> IICIF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IICIF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No interrupt pending"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IICIFW::_0)
+        self.variant(IICIF_A::_0)
     }
     #[doc = "Interrupt pending"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IICIFW::_1)
+        self.variant(IICIF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RAM`"]
-pub enum RAMW {
-    #[doc = "Not addressed"]
+#[doc = "Slave Read/Write\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SRW_A {
+    #[doc = "0: Slave receive, master writing to slave"]
     _0,
-    #[doc = "Addressed as a slave"]
+    #[doc = "1: Slave transmit, master reading from slave"]
     _1,
 }
-impl RAMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RAMW::_0 => false,
-            RAMW::_1 => true,
+impl From<SRW_A> for bool {
+    #[inline(always)]
+    fn from(variant: SRW_A) -> Self {
+        match variant {
+            SRW_A::_0 => false,
+            SRW_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RAMW<'a> {
+#[doc = "Reader of field `SRW`"]
+pub type SRW_R = crate::R<bool, SRW_A>;
+impl SRW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SRW_A {
+        match self.bits {
+            false => SRW_A::_0,
+            true => SRW_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SRW_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SRW_A::_1
+    }
+}
+#[doc = "Range Address Match\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RAM_A {
+    #[doc = "0: Not addressed"]
+    _0,
+    #[doc = "1: Addressed as a slave"]
+    _1,
+}
+impl From<RAM_A> for bool {
+    #[inline(always)]
+    fn from(variant: RAM_A) -> Self {
+        match variant {
+            RAM_A::_0 => false,
+            RAM_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `RAM`"]
+pub type RAM_R = crate::R<bool, RAM_A>;
+impl RAM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RAM_A {
+        match self.bits {
+            false => RAM_A::_0,
+            true => RAM_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RAM_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RAM_A::_1
+    }
+}
+#[doc = "Write proxy for field `RAM`"]
+pub struct RAM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RAMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RAMW) -> &'a mut W {
+impl<'a> RAM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RAM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Not addressed"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RAMW::_0)
+        self.variant(RAM_A::_0)
     }
     #[doc = "Addressed as a slave"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RAMW::_1)
+        self.variant(RAM_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ARBL`"]
-pub enum ARBLW {
+#[doc = "Arbitration Lost\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ARBL_A {
+    #[doc = "0: Standard bus operation."]
+    _0,
+    #[doc = "1: Loss of arbitration."]
+    _1,
+}
+impl From<ARBL_A> for bool {
+    #[inline(always)]
+    fn from(variant: ARBL_A) -> Self {
+        match variant {
+            ARBL_A::_0 => false,
+            ARBL_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ARBL`"]
+pub type ARBL_R = crate::R<bool, ARBL_A>;
+impl ARBL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ARBL_A {
+        match self.bits {
+            false => ARBL_A::_0,
+            true => ARBL_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ARBL_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ARBL_A::_1
+    }
+}
+#[doc = "Write proxy for field `ARBL`"]
+pub struct ARBL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ARBL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ARBL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Standard bus operation."]
-    _0,
-    #[doc = "Loss of arbitration."]
-    _1,
-}
-impl ARBLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ARBLW::_0 => false,
-            ARBLW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ARBLW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ARBLW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ARBLW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Standard bus operation."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ARBLW::_0)
+        self.variant(ARBL_A::_0)
     }
     #[doc = "Loss of arbitration."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ARBLW::_1)
+        self.variant(ARBL_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IAAS`"]
-pub enum IAASW {
-    #[doc = "Not addressed"]
+#[doc = "Bus Busy\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUSY_A {
+    #[doc = "0: Bus is idle"]
     _0,
-    #[doc = "Addressed as a slave"]
+    #[doc = "1: Bus is busy"]
     _1,
 }
-impl IAASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IAASW::_0 => false,
-            IAASW::_1 => true,
+impl From<BUSY_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUSY_A) -> Self {
+        match variant {
+            BUSY_A::_0 => false,
+            BUSY_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _IAASW<'a> {
+#[doc = "Reader of field `BUSY`"]
+pub type BUSY_R = crate::R<bool, BUSY_A>;
+impl BUSY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUSY_A {
+        match self.bits {
+            false => BUSY_A::_0,
+            true => BUSY_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUSY_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUSY_A::_1
+    }
+}
+#[doc = "Addressed As A Slave\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IAAS_A {
+    #[doc = "0: Not addressed"]
+    _0,
+    #[doc = "1: Addressed as a slave"]
+    _1,
+}
+impl From<IAAS_A> for bool {
+    #[inline(always)]
+    fn from(variant: IAAS_A) -> Self {
+        match variant {
+            IAAS_A::_0 => false,
+            IAAS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `IAAS`"]
+pub type IAAS_R = crate::R<bool, IAAS_A>;
+impl IAAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IAAS_A {
+        match self.bits {
+            false => IAAS_A::_0,
+            true => IAAS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IAAS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IAAS_A::_1
+    }
+}
+#[doc = "Write proxy for field `IAAS`"]
+pub struct IAAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IAASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IAASW) -> &'a mut W {
+impl<'a> IAAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IAAS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Not addressed"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IAASW::_0)
+        self.variant(IAAS_A::_0)
     }
     #[doc = "Addressed as a slave"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IAASW::_1)
+        self.variant(IAAS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
+    }
+}
+#[doc = "Transfer Complete Flag\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TCF_A {
+    #[doc = "0: Transfer in progress"]
+    _0,
+    #[doc = "1: Transfer complete"]
+    _1,
+}
+impl From<TCF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TCF_A) -> Self {
+        match variant {
+            TCF_A::_0 => false,
+            TCF_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TCF`"]
+pub type TCF_R = crate::R<bool, TCF_A>;
+impl TCF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TCF_A {
+        match self.bits {
+            false => TCF_A::_0,
+            true => TCF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TCF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TCF_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Receive Acknowledge"]
-    #[inline]
-    pub fn rxak(&self) -> RXAKR {
-        RXAKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxak(&self) -> RXAK_R {
+        RXAK_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Interrupt Flag"]
-    #[inline]
-    pub fn iicif(&self) -> IICIFR {
-        IICIFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn iicif(&self) -> IICIF_R {
+        IICIF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Slave Read/Write"]
-    #[inline]
-    pub fn srw(&self) -> SRWR {
-        SRWR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn srw(&self) -> SRW_R {
+        SRW_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Range Address Match"]
-    #[inline]
-    pub fn ram(&self) -> RAMR {
-        RAMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ram(&self) -> RAM_R {
+        RAM_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Arbitration Lost"]
-    #[inline]
-    pub fn arbl(&self) -> ARBLR {
-        ARBLR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn arbl(&self) -> ARBL_R {
+        ARBL_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Bus Busy"]
-    #[inline]
-    pub fn busy(&self) -> BUSYR {
-        BUSYR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn busy(&self) -> BUSY_R {
+        BUSY_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Addressed As A Slave"]
-    #[inline]
-    pub fn iaas(&self) -> IAASR {
-        IAASR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn iaas(&self) -> IAAS_R {
+        IAAS_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Transfer Complete Flag"]
-    #[inline]
-    pub fn tcf(&self) -> TCFR {
-        TCFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn tcf(&self) -> TCF_R {
+        TCF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 128 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - Interrupt Flag"]
-    #[inline]
-    pub fn iicif(&mut self) -> _IICIFW {
-        _IICIFW { w: self }
+    #[inline(always)]
+    pub fn iicif(&mut self) -> IICIF_W {
+        IICIF_W { w: self }
     }
     #[doc = "Bit 3 - Range Address Match"]
-    #[inline]
-    pub fn ram(&mut self) -> _RAMW {
-        _RAMW { w: self }
+    #[inline(always)]
+    pub fn ram(&mut self) -> RAM_W {
+        RAM_W { w: self }
     }
     #[doc = "Bit 4 - Arbitration Lost"]
-    #[inline]
-    pub fn arbl(&mut self) -> _ARBLW {
-        _ARBLW { w: self }
+    #[inline(always)]
+    pub fn arbl(&mut self) -> ARBL_W {
+        ARBL_W { w: self }
     }
     #[doc = "Bit 6 - Addressed As A Slave"]
-    #[inline]
-    pub fn iaas(&mut self) -> _IAASW {
-        _IAASW { w: self }
+    #[inline(always)]
+    pub fn iaas(&mut self) -> IAAS_W {
+        IAAS_W { w: self }
     }
 }

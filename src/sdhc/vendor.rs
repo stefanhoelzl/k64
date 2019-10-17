@@ -1,323 +1,199 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::VENDOR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register VENDOR"]
+pub type R = crate::R<u32, super::VENDOR>;
+#[doc = "Writer for register VENDOR"]
+pub type W = crate::W<u32, super::VENDOR>;
+#[doc = "Register VENDOR `reset()`'s with value 0x01"]
+impl crate::ResetValue for super::VENDOR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x01
     }
 }
-#[doc = "Possible values of the field `EXTDMAEN`"]
+#[doc = "External DMA Request Enable\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EXTDMAENR {
-    #[doc = "In any scenario, SDHC does not send out the external DMA request."]
+pub enum EXTDMAEN_A {
+    #[doc = "0: In any scenario, SDHC does not send out the external DMA request."]
     _0,
-    #[doc = "When internal DMA is not active, the external DMA request will be sent out."]
+    #[doc = "1: When internal DMA is not active, the external DMA request will be sent out."]
     _1,
 }
-impl EXTDMAENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EXTDMAENR::_0 => false,
-            EXTDMAENR::_1 => true,
+impl From<EXTDMAEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: EXTDMAEN_A) -> Self {
+        match variant {
+            EXTDMAEN_A::_0 => false,
+            EXTDMAEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EXTDMAENR {
-        match value {
-            false => EXTDMAENR::_0,
-            true => EXTDMAENR::_1,
+}
+#[doc = "Reader of field `EXTDMAEN`"]
+pub type EXTDMAEN_R = crate::R<bool, EXTDMAEN_A>;
+impl EXTDMAEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EXTDMAEN_A {
+        match self.bits {
+            false => EXTDMAEN_A::_0,
+            true => EXTDMAEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EXTDMAENR::_0
+        *self == EXTDMAEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EXTDMAENR::_1
+        *self == EXTDMAEN_A::_1
     }
 }
-#[doc = "Possible values of the field `EXBLKNU`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EXBLKNUR {
-    #[doc = "None exact block read."]
-    _0,
-    #[doc = "Exact block read for SDIO CMD53."]
-    _1,
+#[doc = "Write proxy for field `EXTDMAEN`"]
+pub struct EXTDMAEN_W<'a> {
+    w: &'a mut W,
 }
-impl EXBLKNUR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EXBLKNUR::_0 => false,
-            EXBLKNUR::_1 => true,
+impl<'a> EXTDMAEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EXTDMAEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EXBLKNUR {
-        match value {
-            false => EXBLKNUR::_0,
-            true => EXBLKNUR::_1,
+    #[doc = "In any scenario, SDHC does not send out the external DMA request."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(EXTDMAEN_A::_0)
+    }
+    #[doc = "When internal DMA is not active, the external DMA request will be sent out."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(EXTDMAEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "Exact Block Number Block Read Enable For SDIO CMD53\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EXBLKNU_A {
+    #[doc = "0: None exact block read."]
+    _0,
+    #[doc = "1: Exact block read for SDIO CMD53."]
+    _1,
+}
+impl From<EXBLKNU_A> for bool {
+    #[inline(always)]
+    fn from(variant: EXBLKNU_A) -> Self {
+        match variant {
+            EXBLKNU_A::_0 => false,
+            EXBLKNU_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `EXBLKNU`"]
+pub type EXBLKNU_R = crate::R<bool, EXBLKNU_A>;
+impl EXBLKNU_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EXBLKNU_A {
+        match self.bits {
+            false => EXBLKNU_A::_0,
+            true => EXBLKNU_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EXBLKNUR::_0
+        *self == EXBLKNU_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EXBLKNUR::_1
+        *self == EXBLKNU_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct INTSTVALR {
-    bits: u8,
-}
-impl INTSTVALR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `EXTDMAEN`"]
-pub enum EXTDMAENW {
-    #[doc = "In any scenario, SDHC does not send out the external DMA request."]
-    _0,
-    #[doc = "When internal DMA is not active, the external DMA request will be sent out."]
-    _1,
-}
-impl EXTDMAENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EXTDMAENW::_0 => false,
-            EXTDMAENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EXTDMAENW<'a> {
+#[doc = "Write proxy for field `EXBLKNU`"]
+pub struct EXBLKNU_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EXTDMAENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EXTDMAENW) -> &'a mut W {
+impl<'a> EXBLKNU_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EXBLKNU_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "In any scenario, SDHC does not send out the external DMA request."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(EXTDMAENW::_0)
-    }
-    #[doc = "When internal DMA is not active, the external DMA request will be sent out."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(EXTDMAENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `EXBLKNU`"]
-pub enum EXBLKNUW {
-    #[doc = "None exact block read."]
-    _0,
-    #[doc = "Exact block read for SDIO CMD53."]
-    _1,
-}
-impl EXBLKNUW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EXBLKNUW::_0 => false,
-            EXBLKNUW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EXBLKNUW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _EXBLKNUW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EXBLKNUW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "None exact block read."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EXBLKNUW::_0)
+        self.variant(EXBLKNU_A::_0)
     }
     #[doc = "Exact block read for SDIO CMD53."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EXBLKNUW::_1)
+        self.variant(EXBLKNU_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
+#[doc = "Reader of field `INTSTVAL`"]
+pub type INTSTVAL_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - External DMA Request Enable"]
-    #[inline]
-    pub fn extdmaen(&self) -> EXTDMAENR {
-        EXTDMAENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn extdmaen(&self) -> EXTDMAEN_R {
+        EXTDMAEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Exact Block Number Block Read Enable For SDIO CMD53"]
-    #[inline]
-    pub fn exblknu(&self) -> EXBLKNUR {
-        EXBLKNUR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn exblknu(&self) -> EXBLKNU_R {
+        EXBLKNU_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bits 16:23 - Internal State Value"]
-    #[inline]
-    pub fn intstval(&self) -> INTSTVALR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        INTSTVALR { bits }
+    #[inline(always)]
+    pub fn intstval(&self) -> INTSTVAL_R {
+        INTSTVAL_R::new(((self.bits >> 16) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 1 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - External DMA Request Enable"]
-    #[inline]
-    pub fn extdmaen(&mut self) -> _EXTDMAENW {
-        _EXTDMAENW { w: self }
+    #[inline(always)]
+    pub fn extdmaen(&mut self) -> EXTDMAEN_W {
+        EXTDMAEN_W { w: self }
     }
     #[doc = "Bit 1 - Exact Block Number Block Read Enable For SDIO CMD53"]
-    #[inline]
-    pub fn exblknu(&mut self) -> _EXBLKNUW {
-        _EXBLKNUW { w: self }
+    #[inline(always)]
+    pub fn exblknu(&mut self) -> EXBLKNU_W {
+        EXBLKNU_W { w: self }
     }
 }

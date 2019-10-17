@@ -1,897 +1,632 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::IE7816 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IE7816"]
+pub type R = crate::R<u8, super::IE7816>;
+#[doc = "Writer for register IE7816"]
+pub type W = crate::W<u8, super::IE7816>;
+#[doc = "Register IE7816 `reset()`'s with value 0"]
+impl crate::ResetValue for super::IE7816 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RXTE`"]
+#[doc = "Receive Threshold Exceeded Interrupt Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXTER {
-    #[doc = "The assertion of IS7816\\[RXT\\] does not result in the generation of an interrupt."]
+pub enum RXTE_A {
+    #[doc = "0: The assertion of IS7816\\[RXT\\] does not result in the generation of an interrupt."]
     _0,
-    #[doc = "The assertion of IS7816\\[RXT\\] results in the generation of an interrupt."]
+    #[doc = "1: The assertion of IS7816\\[RXT\\] results in the generation of an interrupt."]
     _1,
 }
-impl RXTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXTER::_0 => false,
-            RXTER::_1 => true,
+impl From<RXTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXTE_A) -> Self {
+        match variant {
+            RXTE_A::_0 => false,
+            RXTE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXTER {
-        match value {
-            false => RXTER::_0,
-            true => RXTER::_1,
+}
+#[doc = "Reader of field `RXTE`"]
+pub type RXTE_R = crate::R<bool, RXTE_A>;
+impl RXTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXTE_A {
+        match self.bits {
+            false => RXTE_A::_0,
+            true => RXTE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RXTER::_0
+        *self == RXTE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RXTER::_1
+        *self == RXTE_A::_1
     }
 }
-#[doc = "Possible values of the field `TXTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXTER {
-    #[doc = "The assertion of IS7816\\[TXT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[TXT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl TXTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXTER::_0 => false,
-            TXTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXTER {
-        match value {
-            false => TXTER::_0,
-            true => TXTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXTER::_1
-    }
-}
-#[doc = "Possible values of the field `GTVE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GTVER {
-    #[doc = "The assertion of IS7816\\[GTV\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[GTV\\] results in the generation of an interrupt."]
-    _1,
-}
-impl GTVER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GTVER::_0 => false,
-            GTVER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GTVER {
-        match value {
-            false => GTVER::_0,
-            true => GTVER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == GTVER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == GTVER::_1
-    }
-}
-#[doc = "Possible values of the field `INITDE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum INITDER {
-    #[doc = "The assertion of IS7816\\[INITD\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[INITD\\] results in the generation of an interrupt."]
-    _1,
-}
-impl INITDER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            INITDER::_0 => false,
-            INITDER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> INITDER {
-        match value {
-            false => INITDER::_0,
-            true => INITDER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == INITDER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == INITDER::_1
-    }
-}
-#[doc = "Possible values of the field `BWTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BWTER {
-    #[doc = "The assertion of IS7816\\[BWT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[BWT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl BWTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BWTER::_0 => false,
-            BWTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BWTER {
-        match value {
-            false => BWTER::_0,
-            true => BWTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BWTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BWTER::_1
-    }
-}
-#[doc = "Possible values of the field `CWTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CWTER {
-    #[doc = "The assertion of IS7816\\[CWT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[CWT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl CWTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CWTER::_0 => false,
-            CWTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CWTER {
-        match value {
-            false => CWTER::_0,
-            true => CWTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CWTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CWTER::_1
-    }
-}
-#[doc = "Possible values of the field `WTE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WTER {
-    #[doc = "The assertion of IS7816\\[WT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[WT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl WTER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WTER::_0 => false,
-            WTER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WTER {
-        match value {
-            false => WTER::_0,
-            true => WTER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WTER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WTER::_1
-    }
-}
-#[doc = "Values that can be written to the field `RXTE`"]
-pub enum RXTEW {
-    #[doc = "The assertion of IS7816\\[RXT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[RXT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl RXTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXTEW::_0 => false,
-            RXTEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RXTEW<'a> {
+#[doc = "Write proxy for field `RXTE`"]
+pub struct RXTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXTEW) -> &'a mut W {
+impl<'a> RXTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The assertion of IS7816\\[RXT\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXTEW::_0)
+        self.variant(RXTE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[RXT\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXTEW::_1)
+        self.variant(RXTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TXTE`"]
-pub enum TXTEW {
+#[doc = "Transmit Threshold Exceeded Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXTE_A {
+    #[doc = "0: The assertion of IS7816\\[TXT\\] does not result in the generation of an interrupt."]
+    _0,
+    #[doc = "1: The assertion of IS7816\\[TXT\\] results in the generation of an interrupt."]
+    _1,
+}
+impl From<TXTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXTE_A) -> Self {
+        match variant {
+            TXTE_A::_0 => false,
+            TXTE_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TXTE`"]
+pub type TXTE_R = crate::R<bool, TXTE_A>;
+impl TXTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXTE_A {
+        match self.bits {
+            false => TXTE_A::_0,
+            true => TXTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `TXTE`"]
+pub struct TXTE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TXTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TXTE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The assertion of IS7816\\[TXT\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[TXT\\] results in the generation of an interrupt."]
-    _1,
-}
-impl TXTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TXTEW::_0 => false,
-            TXTEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TXTEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TXTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TXTEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The assertion of IS7816\\[TXT\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TXTEW::_0)
+        self.variant(TXTE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[TXT\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TXTEW::_1)
+        self.variant(TXTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `GTVE`"]
-pub enum GTVEW {
-    #[doc = "The assertion of IS7816\\[GTV\\] does not result in the generation of an interrupt."]
+#[doc = "Guard Timer Violated Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GTVE_A {
+    #[doc = "0: The assertion of IS7816\\[GTV\\] does not result in the generation of an interrupt."]
     _0,
-    #[doc = "The assertion of IS7816\\[GTV\\] results in the generation of an interrupt."]
+    #[doc = "1: The assertion of IS7816\\[GTV\\] results in the generation of an interrupt."]
     _1,
 }
-impl GTVEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GTVEW::_0 => false,
-            GTVEW::_1 => true,
+impl From<GTVE_A> for bool {
+    #[inline(always)]
+    fn from(variant: GTVE_A) -> Self {
+        match variant {
+            GTVE_A::_0 => false,
+            GTVE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _GTVEW<'a> {
+#[doc = "Reader of field `GTVE`"]
+pub type GTVE_R = crate::R<bool, GTVE_A>;
+impl GTVE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GTVE_A {
+        match self.bits {
+            false => GTVE_A::_0,
+            true => GTVE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == GTVE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == GTVE_A::_1
+    }
+}
+#[doc = "Write proxy for field `GTVE`"]
+pub struct GTVE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GTVEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GTVEW) -> &'a mut W {
+impl<'a> GTVE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GTVE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The assertion of IS7816\\[GTV\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(GTVEW::_0)
+        self.variant(GTVE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[GTV\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(GTVEW::_1)
+        self.variant(GTVE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `INITDE`"]
-pub enum INITDEW {
+#[doc = "Initial Character Detected Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum INITDE_A {
+    #[doc = "0: The assertion of IS7816\\[INITD\\] does not result in the generation of an interrupt."]
+    _0,
+    #[doc = "1: The assertion of IS7816\\[INITD\\] results in the generation of an interrupt."]
+    _1,
+}
+impl From<INITDE_A> for bool {
+    #[inline(always)]
+    fn from(variant: INITDE_A) -> Self {
+        match variant {
+            INITDE_A::_0 => false,
+            INITDE_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `INITDE`"]
+pub type INITDE_R = crate::R<bool, INITDE_A>;
+impl INITDE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> INITDE_A {
+        match self.bits {
+            false => INITDE_A::_0,
+            true => INITDE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == INITDE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == INITDE_A::_1
+    }
+}
+#[doc = "Write proxy for field `INITDE`"]
+pub struct INITDE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> INITDE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: INITDE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "The assertion of IS7816\\[INITD\\] does not result in the generation of an interrupt."]
-    _0,
-    #[doc = "The assertion of IS7816\\[INITD\\] results in the generation of an interrupt."]
-    _1,
-}
-impl INITDEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            INITDEW::_0 => false,
-            INITDEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _INITDEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _INITDEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: INITDEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The assertion of IS7816\\[INITD\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(INITDEW::_0)
+        self.variant(INITDE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[INITD\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(INITDEW::_1)
+        self.variant(INITDE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BWTE`"]
-pub enum BWTEW {
-    #[doc = "The assertion of IS7816\\[BWT\\] does not result in the generation of an interrupt."]
+#[doc = "Block Wait Timer Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BWTE_A {
+    #[doc = "0: The assertion of IS7816\\[BWT\\] does not result in the generation of an interrupt."]
     _0,
-    #[doc = "The assertion of IS7816\\[BWT\\] results in the generation of an interrupt."]
+    #[doc = "1: The assertion of IS7816\\[BWT\\] results in the generation of an interrupt."]
     _1,
 }
-impl BWTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BWTEW::_0 => false,
-            BWTEW::_1 => true,
+impl From<BWTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: BWTE_A) -> Self {
+        match variant {
+            BWTE_A::_0 => false,
+            BWTE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BWTEW<'a> {
+#[doc = "Reader of field `BWTE`"]
+pub type BWTE_R = crate::R<bool, BWTE_A>;
+impl BWTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BWTE_A {
+        match self.bits {
+            false => BWTE_A::_0,
+            true => BWTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BWTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BWTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `BWTE`"]
+pub struct BWTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BWTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BWTEW) -> &'a mut W {
+impl<'a> BWTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BWTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The assertion of IS7816\\[BWT\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BWTEW::_0)
+        self.variant(BWTE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[BWT\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BWTEW::_1)
+        self.variant(BWTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CWTE`"]
-pub enum CWTEW {
-    #[doc = "The assertion of IS7816\\[CWT\\] does not result in the generation of an interrupt."]
+#[doc = "Character Wait Timer Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CWTE_A {
+    #[doc = "0: The assertion of IS7816\\[CWT\\] does not result in the generation of an interrupt."]
     _0,
-    #[doc = "The assertion of IS7816\\[CWT\\] results in the generation of an interrupt."]
+    #[doc = "1: The assertion of IS7816\\[CWT\\] results in the generation of an interrupt."]
     _1,
 }
-impl CWTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CWTEW::_0 => false,
-            CWTEW::_1 => true,
+impl From<CWTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: CWTE_A) -> Self {
+        match variant {
+            CWTE_A::_0 => false,
+            CWTE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CWTEW<'a> {
+#[doc = "Reader of field `CWTE`"]
+pub type CWTE_R = crate::R<bool, CWTE_A>;
+impl CWTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CWTE_A {
+        match self.bits {
+            false => CWTE_A::_0,
+            true => CWTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CWTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CWTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `CWTE`"]
+pub struct CWTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CWTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CWTEW) -> &'a mut W {
+impl<'a> CWTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CWTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The assertion of IS7816\\[CWT\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CWTEW::_0)
+        self.variant(CWTE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[CWT\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CWTEW::_1)
+        self.variant(CWTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WTE`"]
-pub enum WTEW {
-    #[doc = "The assertion of IS7816\\[WT\\] does not result in the generation of an interrupt."]
+#[doc = "Wait Timer Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WTE_A {
+    #[doc = "0: The assertion of IS7816\\[WT\\] does not result in the generation of an interrupt."]
     _0,
-    #[doc = "The assertion of IS7816\\[WT\\] results in the generation of an interrupt."]
+    #[doc = "1: The assertion of IS7816\\[WT\\] results in the generation of an interrupt."]
     _1,
 }
-impl WTEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WTEW::_0 => false,
-            WTEW::_1 => true,
+impl From<WTE_A> for bool {
+    #[inline(always)]
+    fn from(variant: WTE_A) -> Self {
+        match variant {
+            WTE_A::_0 => false,
+            WTE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WTEW<'a> {
+#[doc = "Reader of field `WTE`"]
+pub type WTE_R = crate::R<bool, WTE_A>;
+impl WTE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WTE_A {
+        match self.bits {
+            false => WTE_A::_0,
+            true => WTE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WTE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WTE_A::_1
+    }
+}
+#[doc = "Write proxy for field `WTE`"]
+pub struct WTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WTEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WTEW) -> &'a mut W {
+impl<'a> WTE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WTE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The assertion of IS7816\\[WT\\] does not result in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WTEW::_0)
+        self.variant(WTE_A::_0)
     }
     #[doc = "The assertion of IS7816\\[WT\\] results in the generation of an interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WTEW::_1)
+        self.variant(WTE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Receive Threshold Exceeded Interrupt Enable"]
-    #[inline]
-    pub fn rxte(&self) -> RXTER {
-        RXTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxte(&self) -> RXTE_R {
+        RXTE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transmit Threshold Exceeded Interrupt Enable"]
-    #[inline]
-    pub fn txte(&self) -> TXTER {
-        TXTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn txte(&self) -> TXTE_R {
+        TXTE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Guard Timer Violated Interrupt Enable"]
-    #[inline]
-    pub fn gtve(&self) -> GTVER {
-        GTVER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn gtve(&self) -> GTVE_R {
+        GTVE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Initial Character Detected Interrupt Enable"]
-    #[inline]
-    pub fn initde(&self) -> INITDER {
-        INITDER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn initde(&self) -> INITDE_R {
+        INITDE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Block Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn bwte(&self) -> BWTER {
-        BWTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn bwte(&self) -> BWTE_R {
+        BWTE_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Character Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn cwte(&self) -> CWTER {
-        CWTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn cwte(&self) -> CWTE_R {
+        CWTE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn wte(&self) -> WTER {
-        WTER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wte(&self) -> WTE_R {
+        WTE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Receive Threshold Exceeded Interrupt Enable"]
-    #[inline]
-    pub fn rxte(&mut self) -> _RXTEW {
-        _RXTEW { w: self }
+    #[inline(always)]
+    pub fn rxte(&mut self) -> RXTE_W {
+        RXTE_W { w: self }
     }
     #[doc = "Bit 1 - Transmit Threshold Exceeded Interrupt Enable"]
-    #[inline]
-    pub fn txte(&mut self) -> _TXTEW {
-        _TXTEW { w: self }
+    #[inline(always)]
+    pub fn txte(&mut self) -> TXTE_W {
+        TXTE_W { w: self }
     }
     #[doc = "Bit 2 - Guard Timer Violated Interrupt Enable"]
-    #[inline]
-    pub fn gtve(&mut self) -> _GTVEW {
-        _GTVEW { w: self }
+    #[inline(always)]
+    pub fn gtve(&mut self) -> GTVE_W {
+        GTVE_W { w: self }
     }
     #[doc = "Bit 4 - Initial Character Detected Interrupt Enable"]
-    #[inline]
-    pub fn initde(&mut self) -> _INITDEW {
-        _INITDEW { w: self }
+    #[inline(always)]
+    pub fn initde(&mut self) -> INITDE_W {
+        INITDE_W { w: self }
     }
     #[doc = "Bit 5 - Block Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn bwte(&mut self) -> _BWTEW {
-        _BWTEW { w: self }
+    #[inline(always)]
+    pub fn bwte(&mut self) -> BWTE_W {
+        BWTE_W { w: self }
     }
     #[doc = "Bit 6 - Character Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn cwte(&mut self) -> _CWTEW {
-        _CWTEW { w: self }
+    #[inline(always)]
+    pub fn cwte(&mut self) -> CWTE_W {
+        CWTE_W { w: self }
     }
     #[doc = "Bit 7 - Wait Timer Interrupt Enable"]
-    #[inline]
-    pub fn wte(&mut self) -> _WTEW {
-        _WTEW { w: self }
+    #[inline(always)]
+    pub fn wte(&mut self) -> WTE_W {
+        WTE_W { w: self }
     }
 }

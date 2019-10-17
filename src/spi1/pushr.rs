@@ -1,1279 +1,910 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PUSHR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PUSHR"]
+pub type R = crate::R<u32, super::PUSHR>;
+#[doc = "Writer for register PUSHR"]
+pub type W = crate::W<u32, super::PUSHR>;
+#[doc = "Register PUSHR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PUSHR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct TXDATAR {
-    bits: u16,
+#[doc = "Reader of field `TXDATA`"]
+pub type TXDATA_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `TXDATA`"]
+pub struct TXDATA_W<'a> {
+    w: &'a mut W,
 }
-impl TXDATAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
+impl<'a> TXDATA_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u16) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0xffff) | ((value as u32) & 0xffff);
+        self.w
     }
 }
-#[doc = "Possible values of the field `PCS0`"]
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS0R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
+pub enum PCS0_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
     _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
     _1,
 }
-impl PCS0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS0R::_0 => false,
-            PCS0R::_1 => true,
+impl From<PCS0_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS0_A) -> Self {
+        match variant {
+            PCS0_A::_0 => false,
+            PCS0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS0R {
-        match value {
-            false => PCS0R::_0,
-            true => PCS0R::_1,
+}
+#[doc = "Reader of field `PCS0`"]
+pub type PCS0_R = crate::R<bool, PCS0_A>;
+impl PCS0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS0_A {
+        match self.bits {
+            false => PCS0_A::_0,
+            true => PCS0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS0R::_0
+        *self == PCS0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS0R::_1
+        *self == PCS0_A::_1
     }
 }
-#[doc = "Possible values of the field `PCS1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS1R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
+#[doc = "Write proxy for field `PCS0`"]
+pub struct PCS0_W<'a> {
+    w: &'a mut W,
 }
-impl PCS1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS1R::_0 => false,
-            PCS1R::_1 => true,
+impl<'a> PCS0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS0_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS1R {
-        match value {
-            false => PCS1R::_0,
-            true => PCS1R::_1,
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS0_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS0_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w
+    }
+}
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCS1_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
+    _0,
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
+    _1,
+}
+impl From<PCS1_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS1_A) -> Self {
+        match variant {
+            PCS1_A::_0 => false,
+            PCS1_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PCS1`"]
+pub type PCS1_R = crate::R<bool, PCS1_A>;
+impl PCS1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS1_A {
+        match self.bits {
+            false => PCS1_A::_0,
+            true => PCS1_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS1R::_0
+        *self == PCS1_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS1R::_1
+        *self == PCS1_A::_1
     }
 }
-#[doc = "Possible values of the field `PCS2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS2R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
+#[doc = "Write proxy for field `PCS1`"]
+pub struct PCS1_W<'a> {
+    w: &'a mut W,
 }
-impl PCS2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS2R::_0 => false,
-            PCS2R::_1 => true,
+impl<'a> PCS1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS2R {
-        match value {
-            false => PCS2R::_0,
-            true => PCS2R::_1,
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS1_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS1_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w
+    }
+}
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCS2_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
+    _0,
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
+    _1,
+}
+impl From<PCS2_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS2_A) -> Self {
+        match variant {
+            PCS2_A::_0 => false,
+            PCS2_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PCS2`"]
+pub type PCS2_R = crate::R<bool, PCS2_A>;
+impl PCS2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS2_A {
+        match self.bits {
+            false => PCS2_A::_0,
+            true => PCS2_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS2R::_0
+        *self == PCS2_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS2R::_1
+        *self == PCS2_A::_1
     }
 }
-#[doc = "Possible values of the field `PCS3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS3R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
+#[doc = "Write proxy for field `PCS2`"]
+pub struct PCS2_W<'a> {
+    w: &'a mut W,
 }
-impl PCS3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS3R::_0 => false,
-            PCS3R::_1 => true,
+impl<'a> PCS2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS3R {
-        match value {
-            false => PCS3R::_0,
-            true => PCS3R::_1,
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS2_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS2_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w
+    }
+}
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCS3_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
+    _0,
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
+    _1,
+}
+impl From<PCS3_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS3_A) -> Self {
+        match variant {
+            PCS3_A::_0 => false,
+            PCS3_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PCS3`"]
+pub type PCS3_R = crate::R<bool, PCS3_A>;
+impl PCS3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS3_A {
+        match self.bits {
+            false => PCS3_A::_0,
+            true => PCS3_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS3R::_0
+        *self == PCS3_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS3R::_1
+        *self == PCS3_A::_1
     }
 }
-#[doc = "Possible values of the field `PCS4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS4R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
+#[doc = "Write proxy for field `PCS3`"]
+pub struct PCS3_W<'a> {
+    w: &'a mut W,
 }
-impl PCS4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS4R::_0 => false,
-            PCS4R::_1 => true,
+impl<'a> PCS3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS3_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS4R {
-        match value {
-            false => PCS4R::_0,
-            true => PCS4R::_1,
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS3_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS3_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w
+    }
+}
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCS4_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
+    _0,
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
+    _1,
+}
+impl From<PCS4_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS4_A) -> Self {
+        match variant {
+            PCS4_A::_0 => false,
+            PCS4_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PCS4`"]
+pub type PCS4_R = crate::R<bool, PCS4_A>;
+impl PCS4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS4_A {
+        match self.bits {
+            false => PCS4_A::_0,
+            true => PCS4_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS4R::_0
+        *self == PCS4_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS4R::_1
+        *self == PCS4_A::_1
     }
 }
-#[doc = "Possible values of the field `PCS5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCS5R {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
+#[doc = "Write proxy for field `PCS4`"]
+pub struct PCS4_W<'a> {
+    w: &'a mut W,
 }
-impl PCS5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PCS5R::_0 => false,
-            PCS5R::_1 => true,
+impl<'a> PCS4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS4_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PCS5R {
-        match value {
-            false => PCS5R::_0,
-            true => PCS5R::_1,
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS4_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS4_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w
+    }
+}
+#[doc = "Select which PCS signals are to be asserted for the transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PCS5_A {
+    #[doc = "0: Negate the PCS\\[x\\] signal."]
+    _0,
+    #[doc = "1: Assert the PCS\\[x\\] signal."]
+    _1,
+}
+impl From<PCS5_A> for bool {
+    #[inline(always)]
+    fn from(variant: PCS5_A) -> Self {
+        match variant {
+            PCS5_A::_0 => false,
+            PCS5_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PCS5`"]
+pub type PCS5_R = crate::R<bool, PCS5_A>;
+impl PCS5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCS5_A {
+        match self.bits {
+            false => PCS5_A::_0,
+            true => PCS5_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PCS5R::_0
+        *self == PCS5_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PCS5R::_1
+        *self == PCS5_A::_1
     }
 }
-#[doc = "Possible values of the field `CTCNT`"]
+#[doc = "Write proxy for field `PCS5`"]
+pub struct PCS5_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PCS5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCS5_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Negate the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(PCS5_A::_0)
+    }
+    #[doc = "Assert the PCS\\[x\\] signal."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(PCS5_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w
+    }
+}
+#[doc = "Clear Transfer Counter\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CTCNTR {
+pub enum CTCNT_A {
+    #[doc = "0: Do not clear the TCR\\[TCNT\\] field."]
+    _0,
+    #[doc = "1: Clear the TCR\\[TCNT\\] field."]
+    _1,
+}
+impl From<CTCNT_A> for bool {
+    #[inline(always)]
+    fn from(variant: CTCNT_A) -> Self {
+        match variant {
+            CTCNT_A::_0 => false,
+            CTCNT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CTCNT`"]
+pub type CTCNT_R = crate::R<bool, CTCNT_A>;
+impl CTCNT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CTCNT_A {
+        match self.bits {
+            false => CTCNT_A::_0,
+            true => CTCNT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CTCNT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CTCNT_A::_1
+    }
+}
+#[doc = "Write proxy for field `CTCNT`"]
+pub struct CTCNT_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CTCNT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTCNT_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Do not clear the TCR\\[TCNT\\] field."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(CTCNT_A::_0)
+    }
     #[doc = "Clear the TCR\\[TCNT\\] field."]
-    _1,
-}
-impl CTCNTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(CTCNT_A::_1)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CTCNTR::_0 => false,
-            CTCNTR::_1 => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CTCNTR {
-        match value {
-            false => CTCNTR::_0,
-            true => CTCNTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CTCNTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CTCNTR::_1
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w
     }
 }
-#[doc = "Possible values of the field `EOQ`"]
+#[doc = "End Of Queue\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EOQR {
-    #[doc = "The SPI data is not the last data to transfer."]
+pub enum EOQ_A {
+    #[doc = "0: The SPI data is not the last data to transfer."]
     _0,
-    #[doc = "The SPI data is the last data to transfer."]
+    #[doc = "1: The SPI data is the last data to transfer."]
     _1,
 }
-impl EOQR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EOQR::_0 => false,
-            EOQR::_1 => true,
+impl From<EOQ_A> for bool {
+    #[inline(always)]
+    fn from(variant: EOQ_A) -> Self {
+        match variant {
+            EOQ_A::_0 => false,
+            EOQ_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EOQR {
-        match value {
-            false => EOQR::_0,
-            true => EOQR::_1,
+}
+#[doc = "Reader of field `EOQ`"]
+pub type EOQ_R = crate::R<bool, EOQ_A>;
+impl EOQ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EOQ_A {
+        match self.bits {
+            false => EOQ_A::_0,
+            true => EOQ_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EOQR::_0
+        *self == EOQ_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EOQR::_1
+        *self == EOQ_A::_1
     }
 }
-#[doc = "Possible values of the field `CTAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CTASR {
-    #[doc = "CTAR0"]
-    _000,
-    #[doc = "CTAR1"]
-    _001,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `EOQ`"]
+pub struct EOQ_W<'a> {
+    w: &'a mut W,
 }
-impl CTASR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CTASR::_000 => 0,
-            CTASR::_001 => 1,
-            CTASR::_Reserved(bits) => bits,
+impl<'a> EOQ_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EOQ_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CTASR {
-        match value {
-            0 => CTASR::_000,
-            1 => CTASR::_001,
-            i => CTASR::_Reserved(i),
+    #[doc = "The SPI data is not the last data to transfer."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(EOQ_A::_0)
+    }
+    #[doc = "The SPI data is the last data to transfer."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(EOQ_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w
+    }
+}
+#[doc = "Clock and Transfer Attributes Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CTAS_A {
+    #[doc = "0: CTAR0"]
+    _000,
+    #[doc = "1: CTAR1"]
+    _001,
+}
+impl From<CTAS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CTAS_A) -> Self {
+        match variant {
+            CTAS_A::_000 => 0,
+            CTAS_A::_001 => 1,
+        }
+    }
+}
+#[doc = "Reader of field `CTAS`"]
+pub type CTAS_R = crate::R<u8, CTAS_A>;
+impl CTAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CTAS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CTAS_A::_000),
+            1 => Val(CTAS_A::_001),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == CTASR::_000
+        *self == CTAS_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == CTASR::_001
+        *self == CTAS_A::_001
     }
 }
-#[doc = "Possible values of the field `CONT`"]
+#[doc = "Write proxy for field `CTAS`"]
+pub struct CTAS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CTAS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTAS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "CTAR0"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(CTAS_A::_000)
+    }
+    #[doc = "CTAR1"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(CTAS_A::_001)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 28)) | (((value as u32) & 0x07) << 28);
+        self.w
+    }
+}
+#[doc = "Continuous Peripheral Chip Select Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CONTR {
-    #[doc = "Return PCSn signals to their inactive state between transfers."]
+pub enum CONT_A {
+    #[doc = "0: Return PCSn signals to their inactive state between transfers."]
     _0,
-    #[doc = "Keep PCSn signals asserted between transfers."]
+    #[doc = "1: Keep PCSn signals asserted between transfers."]
     _1,
 }
-impl CONTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CONTR::_0 => false,
-            CONTR::_1 => true,
+impl From<CONT_A> for bool {
+    #[inline(always)]
+    fn from(variant: CONT_A) -> Self {
+        match variant {
+            CONT_A::_0 => false,
+            CONT_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CONTR {
-        match value {
-            false => CONTR::_0,
-            true => CONTR::_1,
+}
+#[doc = "Reader of field `CONT`"]
+pub type CONT_R = crate::R<bool, CONT_A>;
+impl CONT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CONT_A {
+        match self.bits {
+            false => CONT_A::_0,
+            true => CONT_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CONTR::_0
+        *self == CONT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CONTR::_1
+        *self == CONT_A::_1
     }
 }
-#[doc = r" Proxy"]
-pub struct _TXDATAW<'a> {
+#[doc = "Write proxy for field `CONT`"]
+pub struct CONT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXDATAW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 65535;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS0`"]
-pub enum PCS0W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS0W::_0 => false,
-            PCS0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS0W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS0W) -> &'a mut W {
+impl<'a> CONT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CONT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS0W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS0W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS1`"]
-pub enum PCS1W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS1W::_0 => false,
-            PCS1W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS1W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS1W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS2`"]
-pub enum PCS2W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS2W::_0 => false,
-            PCS2W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS2W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS2W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS3`"]
-pub enum PCS3W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS3W::_0 => false,
-            PCS3W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS3W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS3W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS3W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS3W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS4`"]
-pub enum PCS4W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS4W::_0 => false,
-            PCS4W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS4W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS4W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS4W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS4W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCS5`"]
-pub enum PCS5W {
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    _0,
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    _1,
-}
-impl PCS5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PCS5W::_0 => false,
-            PCS5W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCS5W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCS5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCS5W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Negate the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(PCS5W::_0)
-    }
-    #[doc = "Assert the PCS\\[x\\] signal."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(PCS5W::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CTCNT`"]
-pub enum CTCNTW {
-    #[doc = "Do not clear the TCR\\[TCNT\\] field."]
-    _0,
-    #[doc = "Clear the TCR\\[TCNT\\] field."]
-    _1,
-}
-impl CTCNTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CTCNTW::_0 => false,
-            CTCNTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CTCNTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CTCNTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTCNTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Do not clear the TCR\\[TCNT\\] field."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(CTCNTW::_0)
-    }
-    #[doc = "Clear the TCR\\[TCNT\\] field."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(CTCNTW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `EOQ`"]
-pub enum EOQW {
-    #[doc = "The SPI data is not the last data to transfer."]
-    _0,
-    #[doc = "The SPI data is the last data to transfer."]
-    _1,
-}
-impl EOQW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EOQW::_0 => false,
-            EOQW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EOQW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _EOQW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EOQW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "The SPI data is not the last data to transfer."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(EOQW::_0)
-    }
-    #[doc = "The SPI data is the last data to transfer."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(EOQW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CTAS`"]
-pub enum CTASW {
-    #[doc = "CTAR0"]
-    _000,
-    #[doc = "CTAR1"]
-    _001,
-}
-impl CTASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CTASW::_000 => 0,
-            CTASW::_001 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CTASW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CTASW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTASW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "CTAR0"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(CTASW::_000)
-    }
-    #[doc = "CTAR1"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(CTASW::_001)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CONT`"]
-pub enum CONTW {
-    #[doc = "Return PCSn signals to their inactive state between transfers."]
-    _0,
-    #[doc = "Keep PCSn signals asserted between transfers."]
-    _1,
-}
-impl CONTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CONTW::_0 => false,
-            CONTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CONTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CONTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CONTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Return PCSn signals to their inactive state between transfers."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CONTW::_0)
+        self.variant(CONT_A::_0)
     }
     #[doc = "Keep PCSn signals asserted between transfers."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CONTW::_1)
+        self.variant(CONT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Transmit Data"]
-    #[inline]
-    pub fn txdata(&self) -> TXDATAR {
-        let bits = {
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TXDATAR { bits }
+    #[inline(always)]
+    pub fn txdata(&self) -> TXDATA_R {
+        TXDATA_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bit 16 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs0(&self) -> PCS0R {
-        PCS0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs0(&self) -> PCS0_R {
+        PCS0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs1(&self) -> PCS1R {
-        PCS1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs1(&self) -> PCS1_R {
+        PCS1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs2(&self) -> PCS2R {
-        PCS2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs2(&self) -> PCS2_R {
+        PCS2_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs3(&self) -> PCS3R {
-        PCS3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs3(&self) -> PCS3_R {
+        PCS3_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs4(&self) -> PCS4R {
-        PCS4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs4(&self) -> PCS4_R {
+        PCS4_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs5(&self) -> PCS5R {
-        PCS5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pcs5(&self) -> PCS5_R {
+        PCS5_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Clear Transfer Counter"]
-    #[inline]
-    pub fn ctcnt(&self) -> CTCNTR {
-        CTCNTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ctcnt(&self) -> CTCNT_R {
+        CTCNT_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - End Of Queue"]
-    #[inline]
-    pub fn eoq(&self) -> EOQR {
-        EOQR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn eoq(&self) -> EOQ_R {
+        EOQ_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bits 28:30 - Clock and Transfer Attributes Select"]
-    #[inline]
-    pub fn ctas(&self) -> CTASR {
-        CTASR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn ctas(&self) -> CTAS_R {
+        CTAS_R::new(((self.bits >> 28) & 0x07) as u8)
     }
     #[doc = "Bit 31 - Continuous Peripheral Chip Select Enable"]
-    #[inline]
-    pub fn cont(&self) -> CONTR {
-        CONTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cont(&self) -> CONT_R {
+        CONT_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - Transmit Data"]
-    #[inline]
-    pub fn txdata(&mut self) -> _TXDATAW {
-        _TXDATAW { w: self }
+    #[inline(always)]
+    pub fn txdata(&mut self) -> TXDATA_W {
+        TXDATA_W { w: self }
     }
     #[doc = "Bit 16 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs0(&mut self) -> _PCS0W {
-        _PCS0W { w: self }
+    #[inline(always)]
+    pub fn pcs0(&mut self) -> PCS0_W {
+        PCS0_W { w: self }
     }
     #[doc = "Bit 17 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs1(&mut self) -> _PCS1W {
-        _PCS1W { w: self }
+    #[inline(always)]
+    pub fn pcs1(&mut self) -> PCS1_W {
+        PCS1_W { w: self }
     }
     #[doc = "Bit 18 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs2(&mut self) -> _PCS2W {
-        _PCS2W { w: self }
+    #[inline(always)]
+    pub fn pcs2(&mut self) -> PCS2_W {
+        PCS2_W { w: self }
     }
     #[doc = "Bit 19 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs3(&mut self) -> _PCS3W {
-        _PCS3W { w: self }
+    #[inline(always)]
+    pub fn pcs3(&mut self) -> PCS3_W {
+        PCS3_W { w: self }
     }
     #[doc = "Bit 20 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs4(&mut self) -> _PCS4W {
-        _PCS4W { w: self }
+    #[inline(always)]
+    pub fn pcs4(&mut self) -> PCS4_W {
+        PCS4_W { w: self }
     }
     #[doc = "Bit 21 - Select which PCS signals are to be asserted for the transfer"]
-    #[inline]
-    pub fn pcs5(&mut self) -> _PCS5W {
-        _PCS5W { w: self }
+    #[inline(always)]
+    pub fn pcs5(&mut self) -> PCS5_W {
+        PCS5_W { w: self }
     }
     #[doc = "Bit 26 - Clear Transfer Counter"]
-    #[inline]
-    pub fn ctcnt(&mut self) -> _CTCNTW {
-        _CTCNTW { w: self }
+    #[inline(always)]
+    pub fn ctcnt(&mut self) -> CTCNT_W {
+        CTCNT_W { w: self }
     }
     #[doc = "Bit 27 - End Of Queue"]
-    #[inline]
-    pub fn eoq(&mut self) -> _EOQW {
-        _EOQW { w: self }
+    #[inline(always)]
+    pub fn eoq(&mut self) -> EOQ_W {
+        EOQ_W { w: self }
     }
     #[doc = "Bits 28:30 - Clock and Transfer Attributes Select"]
-    #[inline]
-    pub fn ctas(&mut self) -> _CTASW {
-        _CTASW { w: self }
+    #[inline(always)]
+    pub fn ctas(&mut self) -> CTAS_W {
+        CTAS_W { w: self }
     }
     #[doc = "Bit 31 - Continuous Peripheral Chip Select Enable"]
-    #[inline]
-    pub fn cont(&mut self) -> _CONTW {
-        _CONTW { w: self }
+    #[inline(always)]
+    pub fn cont(&mut self) -> CONT_W {
+        CONT_W { w: self }
     }
 }

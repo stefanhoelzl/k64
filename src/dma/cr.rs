@@ -1,1016 +1,720 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CR"]
+pub type R = crate::R<u32, super::CR>;
+#[doc = "Writer for register CR"]
+pub type W = crate::W<u32, super::CR>;
+#[doc = "Register CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `EDBG`"]
+#[doc = "Enable Debug\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EDBGR {
-    #[doc = "When in debug mode, the DMA continues to operate."]
+pub enum EDBG_A {
+    #[doc = "0: When in debug mode, the DMA continues to operate."]
     _0,
-    #[doc = "When in debug mode, the DMA stalls the start of a new channel. Executing channels are allowed to complete. Channel execution resumes when the system exits debug mode or the EDBG bit is cleared."]
+    #[doc = "1: When in debug mode, the DMA stalls the start of a new channel. Executing channels are allowed to complete. Channel execution resumes when the system exits debug mode or the EDBG bit is cleared."]
     _1,
 }
-impl EDBGR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EDBGR::_0 => false,
-            EDBGR::_1 => true,
+impl From<EDBG_A> for bool {
+    #[inline(always)]
+    fn from(variant: EDBG_A) -> Self {
+        match variant {
+            EDBG_A::_0 => false,
+            EDBG_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EDBGR {
-        match value {
-            false => EDBGR::_0,
-            true => EDBGR::_1,
+}
+#[doc = "Reader of field `EDBG`"]
+pub type EDBG_R = crate::R<bool, EDBG_A>;
+impl EDBG_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EDBG_A {
+        match self.bits {
+            false => EDBG_A::_0,
+            true => EDBG_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == EDBGR::_0
+        *self == EDBG_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == EDBGR::_1
+        *self == EDBG_A::_1
     }
 }
-#[doc = "Possible values of the field `ERCA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ERCAR {
-    #[doc = "Fixed priority arbitration is used for channel selection ."]
-    _0,
-    #[doc = "Round robin arbitration is used for channel selection ."]
-    _1,
-}
-impl ERCAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ERCAR::_0 => false,
-            ERCAR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ERCAR {
-        match value {
-            false => ERCAR::_0,
-            true => ERCAR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ERCAR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ERCAR::_1
-    }
-}
-#[doc = "Possible values of the field `HOE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HOER {
-    #[doc = "Normal operation"]
-    _0,
-    #[doc = "Any error causes the HALT bit to set. Subsequently, all service requests are ignored until the HALT bit is cleared."]
-    _1,
-}
-impl HOER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HOER::_0 => false,
-            HOER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HOER {
-        match value {
-            false => HOER::_0,
-            true => HOER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == HOER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == HOER::_1
-    }
-}
-#[doc = "Possible values of the field `HALT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HALTR {
-    #[doc = "Normal operation"]
-    _0,
-    #[doc = "Stall the start of any new channels. Executing channels are allowed to complete. Channel execution resumes when this bit is cleared."]
-    _1,
-}
-impl HALTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HALTR::_0 => false,
-            HALTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HALTR {
-        match value {
-            false => HALTR::_0,
-            true => HALTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == HALTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == HALTR::_1
-    }
-}
-#[doc = "Possible values of the field `CLM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLMR {
-    #[doc = "A minor loop channel link made to itself goes through channel arbitration before being activated again."]
-    _0,
-    #[doc = "A minor loop channel link made to itself does not go through channel arbitration before being activated again. Upon minor loop completion, the channel activates again if that channel has a minor loop channel link enabled and the link channel is itself. This effectively applies the minor loop offsets and restarts the next minor loop."]
-    _1,
-}
-impl CLMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CLMR::_0 => false,
-            CLMR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CLMR {
-        match value {
-            false => CLMR::_0,
-            true => CLMR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CLMR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CLMR::_1
-    }
-}
-#[doc = "Possible values of the field `EMLM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EMLMR {
-    #[doc = "Disabled. TCDn.word2 is defined as a 32-bit NBYTES field."]
-    _0,
-    #[doc = "Enabled. TCDn.word2 is redefined to include individual enable fields, an offset field, and the NBYTES field. The individual enable fields allow the minor loop offset to be applied to the source address, the destination address, or both. The NBYTES field is reduced when either offset is enabled."]
-    _1,
-}
-impl EMLMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EMLMR::_0 => false,
-            EMLMR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EMLMR {
-        match value {
-            false => EMLMR::_0,
-            true => EMLMR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == EMLMR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == EMLMR::_1
-    }
-}
-#[doc = "Possible values of the field `ECX`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ECXR {
-    #[doc = "Normal operation"]
-    _0,
-    #[doc = "Cancel the remaining data transfer in the same fashion as the CX bit. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The ECX bit clears itself after the cancel is honored. In addition to cancelling the transfer, ECX treats the cancel as an error condition, thus updating the Error Status register (DMAx_ES) and generating an optional error interrupt."]
-    _1,
-}
-impl ECXR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ECXR::_0 => false,
-            ECXR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ECXR {
-        match value {
-            false => ECXR::_0,
-            true => ECXR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ECXR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ECXR::_1
-    }
-}
-#[doc = "Possible values of the field `CX`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CXR {
-    #[doc = "Normal operation"]
-    _0,
-    #[doc = "Cancel the remaining data transfer. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The CX bit clears itself after the cancel has been honored. This cancel retires the channel normally as if the minor loop was completed."]
-    _1,
-}
-impl CXR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CXR::_0 => false,
-            CXR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CXR {
-        match value {
-            false => CXR::_0,
-            true => CXR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CXR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CXR::_1
-    }
-}
-#[doc = "Values that can be written to the field `EDBG`"]
-pub enum EDBGW {
-    #[doc = "When in debug mode, the DMA continues to operate."]
-    _0,
-    #[doc = "When in debug mode, the DMA stalls the start of a new channel. Executing channels are allowed to complete. Channel execution resumes when the system exits debug mode or the EDBG bit is cleared."]
-    _1,
-}
-impl EDBGW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EDBGW::_0 => false,
-            EDBGW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EDBGW<'a> {
+#[doc = "Write proxy for field `EDBG`"]
+pub struct EDBG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EDBGW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EDBGW) -> &'a mut W {
+impl<'a> EDBG_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EDBG_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "When in debug mode, the DMA continues to operate."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EDBGW::_0)
+        self.variant(EDBG_A::_0)
     }
     #[doc = "When in debug mode, the DMA stalls the start of a new channel. Executing channels are allowed to complete. Channel execution resumes when the system exits debug mode or the EDBG bit is cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EDBGW::_1)
+        self.variant(EDBG_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ERCA`"]
-pub enum ERCAW {
+#[doc = "Enable Round Robin Channel Arbitration\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ERCA_A {
+    #[doc = "0: Fixed priority arbitration is used for channel selection ."]
+    _0,
+    #[doc = "1: Round robin arbitration is used for channel selection ."]
+    _1,
+}
+impl From<ERCA_A> for bool {
+    #[inline(always)]
+    fn from(variant: ERCA_A) -> Self {
+        match variant {
+            ERCA_A::_0 => false,
+            ERCA_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ERCA`"]
+pub type ERCA_R = crate::R<bool, ERCA_A>;
+impl ERCA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ERCA_A {
+        match self.bits {
+            false => ERCA_A::_0,
+            true => ERCA_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ERCA_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ERCA_A::_1
+    }
+}
+#[doc = "Write proxy for field `ERCA`"]
+pub struct ERCA_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ERCA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ERCA_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Fixed priority arbitration is used for channel selection ."]
-    _0,
-    #[doc = "Round robin arbitration is used for channel selection ."]
-    _1,
-}
-impl ERCAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ERCAW::_0 => false,
-            ERCAW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ERCAW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ERCAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ERCAW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Fixed priority arbitration is used for channel selection ."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ERCAW::_0)
+        self.variant(ERCA_A::_0)
     }
     #[doc = "Round robin arbitration is used for channel selection ."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ERCAW::_1)
+        self.variant(ERCA_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HOE`"]
-pub enum HOEW {
-    #[doc = "Normal operation"]
+#[doc = "Halt On Error\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HOE_A {
+    #[doc = "0: Normal operation"]
     _0,
+    #[doc = "1: Any error causes the HALT bit to set. Subsequently, all service requests are ignored until the HALT bit is cleared."]
+    _1,
+}
+impl From<HOE_A> for bool {
+    #[inline(always)]
+    fn from(variant: HOE_A) -> Self {
+        match variant {
+            HOE_A::_0 => false,
+            HOE_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `HOE`"]
+pub type HOE_R = crate::R<bool, HOE_A>;
+impl HOE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HOE_A {
+        match self.bits {
+            false => HOE_A::_0,
+            true => HOE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == HOE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == HOE_A::_1
+    }
+}
+#[doc = "Write proxy for field `HOE`"]
+pub struct HOE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> HOE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HOE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Normal operation"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(HOE_A::_0)
+    }
     #[doc = "Any error causes the HALT bit to set. Subsequently, all service requests are ignored until the HALT bit is cleared."]
-    _1,
-}
-impl HOEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HOEW::_0 => false,
-            HOEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HOEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HOEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HOEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Normal operation"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(HOEW::_0)
-    }
-    #[doc = "Any error causes the HALT bit to set. Subsequently, all service requests are ignored until the HALT bit is cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(HOEW::_1)
+        self.variant(HOE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HALT`"]
-pub enum HALTW {
-    #[doc = "Normal operation"]
+#[doc = "Halt DMA Operations\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HALT_A {
+    #[doc = "0: Normal operation"]
     _0,
-    #[doc = "Stall the start of any new channels. Executing channels are allowed to complete. Channel execution resumes when this bit is cleared."]
+    #[doc = "1: Stall the start of any new channels. Executing channels are allowed to complete. Channel execution resumes when this bit is cleared."]
     _1,
 }
-impl HALTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HALTW::_0 => false,
-            HALTW::_1 => true,
+impl From<HALT_A> for bool {
+    #[inline(always)]
+    fn from(variant: HALT_A) -> Self {
+        match variant {
+            HALT_A::_0 => false,
+            HALT_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HALTW<'a> {
+#[doc = "Reader of field `HALT`"]
+pub type HALT_R = crate::R<bool, HALT_A>;
+impl HALT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HALT_A {
+        match self.bits {
+            false => HALT_A::_0,
+            true => HALT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == HALT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == HALT_A::_1
+    }
+}
+#[doc = "Write proxy for field `HALT`"]
+pub struct HALT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HALTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HALTW) -> &'a mut W {
+impl<'a> HALT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HALT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operation"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(HALTW::_0)
+        self.variant(HALT_A::_0)
     }
     #[doc = "Stall the start of any new channels. Executing channels are allowed to complete. Channel execution resumes when this bit is cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(HALTW::_1)
+        self.variant(HALT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CLM`"]
-pub enum CLMW {
+#[doc = "Continuous Link Mode\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLM_A {
+    #[doc = "0: A minor loop channel link made to itself goes through channel arbitration before being activated again."]
+    _0,
+    #[doc = "1: A minor loop channel link made to itself does not go through channel arbitration before being activated again. Upon minor loop completion, the channel activates again if that channel has a minor loop channel link enabled and the link channel is itself. This effectively applies the minor loop offsets and restarts the next minor loop."]
+    _1,
+}
+impl From<CLM_A> for bool {
+    #[inline(always)]
+    fn from(variant: CLM_A) -> Self {
+        match variant {
+            CLM_A::_0 => false,
+            CLM_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CLM`"]
+pub type CLM_R = crate::R<bool, CLM_A>;
+impl CLM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLM_A {
+        match self.bits {
+            false => CLM_A::_0,
+            true => CLM_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CLM_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CLM_A::_1
+    }
+}
+#[doc = "Write proxy for field `CLM`"]
+pub struct CLM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CLM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLM_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "A minor loop channel link made to itself goes through channel arbitration before being activated again."]
-    _0,
-    #[doc = "A minor loop channel link made to itself does not go through channel arbitration before being activated again. Upon minor loop completion, the channel activates again if that channel has a minor loop channel link enabled and the link channel is itself. This effectively applies the minor loop offsets and restarts the next minor loop."]
-    _1,
-}
-impl CLMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CLMW::_0 => false,
-            CLMW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CLMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLMW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "A minor loop channel link made to itself goes through channel arbitration before being activated again."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CLMW::_0)
+        self.variant(CLM_A::_0)
     }
     #[doc = "A minor loop channel link made to itself does not go through channel arbitration before being activated again. Upon minor loop completion, the channel activates again if that channel has a minor loop channel link enabled and the link channel is itself. This effectively applies the minor loop offsets and restarts the next minor loop."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CLMW::_1)
+        self.variant(CLM_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `EMLM`"]
-pub enum EMLMW {
-    #[doc = "Disabled. TCDn.word2 is defined as a 32-bit NBYTES field."]
+#[doc = "Enable Minor Loop Mapping\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EMLM_A {
+    #[doc = "0: Disabled. TCDn.word2 is defined as a 32-bit NBYTES field."]
     _0,
-    #[doc = "Enabled. TCDn.word2 is redefined to include individual enable fields, an offset field, and the NBYTES field. The individual enable fields allow the minor loop offset to be applied to the source address, the destination address, or both. The NBYTES field is reduced when either offset is enabled."]
+    #[doc = "1: Enabled. TCDn.word2 is redefined to include individual enable fields, an offset field, and the NBYTES field. The individual enable fields allow the minor loop offset to be applied to the source address, the destination address, or both. The NBYTES field is reduced when either offset is enabled."]
     _1,
 }
-impl EMLMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EMLMW::_0 => false,
-            EMLMW::_1 => true,
+impl From<EMLM_A> for bool {
+    #[inline(always)]
+    fn from(variant: EMLM_A) -> Self {
+        match variant {
+            EMLM_A::_0 => false,
+            EMLM_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _EMLMW<'a> {
+#[doc = "Reader of field `EMLM`"]
+pub type EMLM_R = crate::R<bool, EMLM_A>;
+impl EMLM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EMLM_A {
+        match self.bits {
+            false => EMLM_A::_0,
+            true => EMLM_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == EMLM_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == EMLM_A::_1
+    }
+}
+#[doc = "Write proxy for field `EMLM`"]
+pub struct EMLM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EMLMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EMLMW) -> &'a mut W {
+impl<'a> EMLM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EMLM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disabled. TCDn.word2 is defined as a 32-bit NBYTES field."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EMLMW::_0)
+        self.variant(EMLM_A::_0)
     }
     #[doc = "Enabled. TCDn.word2 is redefined to include individual enable fields, an offset field, and the NBYTES field. The individual enable fields allow the minor loop offset to be applied to the source address, the destination address, or both. The NBYTES field is reduced when either offset is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EMLMW::_1)
+        self.variant(EMLM_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ECX`"]
-pub enum ECXW {
-    #[doc = "Normal operation"]
+#[doc = "Error Cancel Transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ECX_A {
+    #[doc = "0: Normal operation"]
     _0,
-    #[doc = "Cancel the remaining data transfer in the same fashion as the CX bit. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The ECX bit clears itself after the cancel is honored. In addition to cancelling the transfer, ECX treats the cancel as an error condition, thus updating the Error Status register (DMAx_ES) and generating an optional error interrupt."]
+    #[doc = "1: Cancel the remaining data transfer in the same fashion as the CX bit. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The ECX bit clears itself after the cancel is honored. In addition to cancelling the transfer, ECX treats the cancel as an error condition, thus updating the Error Status register (DMAx_ES) and generating an optional error interrupt."]
     _1,
 }
-impl ECXW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ECXW::_0 => false,
-            ECXW::_1 => true,
+impl From<ECX_A> for bool {
+    #[inline(always)]
+    fn from(variant: ECX_A) -> Self {
+        match variant {
+            ECX_A::_0 => false,
+            ECX_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ECXW<'a> {
+#[doc = "Reader of field `ECX`"]
+pub type ECX_R = crate::R<bool, ECX_A>;
+impl ECX_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ECX_A {
+        match self.bits {
+            false => ECX_A::_0,
+            true => ECX_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ECX_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ECX_A::_1
+    }
+}
+#[doc = "Write proxy for field `ECX`"]
+pub struct ECX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECXW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ECXW) -> &'a mut W {
+impl<'a> ECX_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ECX_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operation"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ECXW::_0)
+        self.variant(ECX_A::_0)
     }
     #[doc = "Cancel the remaining data transfer in the same fashion as the CX bit. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The ECX bit clears itself after the cancel is honored. In addition to cancelling the transfer, ECX treats the cancel as an error condition, thus updating the Error Status register (DMAx_ES) and generating an optional error interrupt."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ECXW::_1)
+        self.variant(ECX_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CX`"]
-pub enum CXW {
-    #[doc = "Normal operation"]
+#[doc = "Cancel Transfer\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CX_A {
+    #[doc = "0: Normal operation"]
     _0,
-    #[doc = "Cancel the remaining data transfer. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The CX bit clears itself after the cancel has been honored. This cancel retires the channel normally as if the minor loop was completed."]
+    #[doc = "1: Cancel the remaining data transfer. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The CX bit clears itself after the cancel has been honored. This cancel retires the channel normally as if the minor loop was completed."]
     _1,
 }
-impl CXW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CXW::_0 => false,
-            CXW::_1 => true,
+impl From<CX_A> for bool {
+    #[inline(always)]
+    fn from(variant: CX_A) -> Self {
+        match variant {
+            CX_A::_0 => false,
+            CX_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CXW<'a> {
+#[doc = "Reader of field `CX`"]
+pub type CX_R = crate::R<bool, CX_A>;
+impl CX_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CX_A {
+        match self.bits {
+            false => CX_A::_0,
+            true => CX_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CX_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CX_A::_1
+    }
+}
+#[doc = "Write proxy for field `CX`"]
+pub struct CX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CXW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CXW) -> &'a mut W {
+impl<'a> CX_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CX_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operation"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CXW::_0)
+        self.variant(CX_A::_0)
     }
     #[doc = "Cancel the remaining data transfer. Stop the executing channel and force the minor loop to finish. The cancel takes effect after the last write of the current read/write sequence. The CX bit clears itself after the cancel has been honored. This cancel retires the channel normally as if the minor loop was completed."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CXW::_1)
+        self.variant(CX_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 1 - Enable Debug"]
-    #[inline]
-    pub fn edbg(&self) -> EDBGR {
-        EDBGR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn edbg(&self) -> EDBG_R {
+        EDBG_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Enable Round Robin Channel Arbitration"]
-    #[inline]
-    pub fn erca(&self) -> ERCAR {
-        ERCAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn erca(&self) -> ERCA_R {
+        ERCA_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Halt On Error"]
-    #[inline]
-    pub fn hoe(&self) -> HOER {
-        HOER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hoe(&self) -> HOE_R {
+        HOE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Halt DMA Operations"]
-    #[inline]
-    pub fn halt(&self) -> HALTR {
-        HALTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn halt(&self) -> HALT_R {
+        HALT_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Continuous Link Mode"]
-    #[inline]
-    pub fn clm(&self) -> CLMR {
-        CLMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn clm(&self) -> CLM_R {
+        CLM_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Enable Minor Loop Mapping"]
-    #[inline]
-    pub fn emlm(&self) -> EMLMR {
-        EMLMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn emlm(&self) -> EMLM_R {
+        EMLM_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Error Cancel Transfer"]
-    #[inline]
-    pub fn ecx(&self) -> ECXR {
-        ECXR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ecx(&self) -> ECX_R {
+        ECX_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Cancel Transfer"]
-    #[inline]
-    pub fn cx(&self) -> CXR {
-        CXR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cx(&self) -> CX_R {
+        CX_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - Enable Debug"]
-    #[inline]
-    pub fn edbg(&mut self) -> _EDBGW {
-        _EDBGW { w: self }
+    #[inline(always)]
+    pub fn edbg(&mut self) -> EDBG_W {
+        EDBG_W { w: self }
     }
     #[doc = "Bit 2 - Enable Round Robin Channel Arbitration"]
-    #[inline]
-    pub fn erca(&mut self) -> _ERCAW {
-        _ERCAW { w: self }
+    #[inline(always)]
+    pub fn erca(&mut self) -> ERCA_W {
+        ERCA_W { w: self }
     }
     #[doc = "Bit 4 - Halt On Error"]
-    #[inline]
-    pub fn hoe(&mut self) -> _HOEW {
-        _HOEW { w: self }
+    #[inline(always)]
+    pub fn hoe(&mut self) -> HOE_W {
+        HOE_W { w: self }
     }
     #[doc = "Bit 5 - Halt DMA Operations"]
-    #[inline]
-    pub fn halt(&mut self) -> _HALTW {
-        _HALTW { w: self }
+    #[inline(always)]
+    pub fn halt(&mut self) -> HALT_W {
+        HALT_W { w: self }
     }
     #[doc = "Bit 6 - Continuous Link Mode"]
-    #[inline]
-    pub fn clm(&mut self) -> _CLMW {
-        _CLMW { w: self }
+    #[inline(always)]
+    pub fn clm(&mut self) -> CLM_W {
+        CLM_W { w: self }
     }
     #[doc = "Bit 7 - Enable Minor Loop Mapping"]
-    #[inline]
-    pub fn emlm(&mut self) -> _EMLMW {
-        _EMLMW { w: self }
+    #[inline(always)]
+    pub fn emlm(&mut self) -> EMLM_W {
+        EMLM_W { w: self }
     }
     #[doc = "Bit 16 - Error Cancel Transfer"]
-    #[inline]
-    pub fn ecx(&mut self) -> _ECXW {
-        _ECXW { w: self }
+    #[inline(always)]
+    pub fn ecx(&mut self) -> ECX_W {
+        ECX_W { w: self }
     }
     #[doc = "Bit 17 - Cancel Transfer"]
-    #[inline]
-    pub fn cx(&mut self) -> _CXW {
-        _CXW { w: self }
+    #[inline(always)]
+    pub fn cx(&mut self) -> CX_W {
+        CX_W { w: self }
     }
 }

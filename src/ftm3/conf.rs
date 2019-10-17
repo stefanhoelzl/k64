@@ -1,384 +1,240 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CONF {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CONF"]
+pub type R = crate::R<u32, super::CONF>;
+#[doc = "Writer for register CONF"]
+pub type W = crate::W<u32, super::CONF>;
+#[doc = "Register CONF `reset()`'s with value 0"]
+impl crate::ResetValue for super::CONF {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct NUMTOFR {
-    bits: u8,
+#[doc = "Reader of field `NUMTOF`"]
+pub type NUMTOF_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `NUMTOF`"]
+pub struct NUMTOF_W<'a> {
+    w: &'a mut W,
 }
-impl NUMTOFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> NUMTOF_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u32) & 0x1f);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct BDMMODER {
-    bits: u8,
+#[doc = "Reader of field `BDMMODE`"]
+pub type BDMMODE_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BDMMODE`"]
+pub struct BDMMODE_W<'a> {
+    w: &'a mut W,
 }
-impl BDMMODER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> BDMMODE_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
+        self.w
     }
 }
-#[doc = "Possible values of the field `GTBEEN`"]
+#[doc = "Global Time Base Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GTBEENR {
-    #[doc = "Use of an external global time base is disabled."]
+pub enum GTBEEN_A {
+    #[doc = "0: Use of an external global time base is disabled."]
     _0,
-    #[doc = "Use of an external global time base is enabled."]
+    #[doc = "1: Use of an external global time base is enabled."]
     _1,
 }
-impl GTBEENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GTBEENR::_0 => false,
-            GTBEENR::_1 => true,
+impl From<GTBEEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: GTBEEN_A) -> Self {
+        match variant {
+            GTBEEN_A::_0 => false,
+            GTBEEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GTBEENR {
-        match value {
-            false => GTBEENR::_0,
-            true => GTBEENR::_1,
+}
+#[doc = "Reader of field `GTBEEN`"]
+pub type GTBEEN_R = crate::R<bool, GTBEEN_A>;
+impl GTBEEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GTBEEN_A {
+        match self.bits {
+            false => GTBEEN_A::_0,
+            true => GTBEEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == GTBEENR::_0
+        *self == GTBEEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == GTBEENR::_1
+        *self == GTBEEN_A::_1
     }
 }
-#[doc = "Possible values of the field `GTBEOUT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GTBEOUTR {
-    #[doc = "A global time base signal generation is disabled."]
-    _0,
-    #[doc = "A global time base signal generation is enabled."]
-    _1,
+#[doc = "Write proxy for field `GTBEEN`"]
+pub struct GTBEEN_W<'a> {
+    w: &'a mut W,
 }
-impl GTBEOUTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GTBEOUTR::_0 => false,
-            GTBEOUTR::_1 => true,
+impl<'a> GTBEEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GTBEEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GTBEOUTR {
-        match value {
-            false => GTBEOUTR::_0,
-            true => GTBEOUTR::_1,
+    #[doc = "Use of an external global time base is disabled."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(GTBEEN_A::_0)
+    }
+    #[doc = "Use of an external global time base is enabled."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(GTBEEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
+    }
+}
+#[doc = "Global Time Base Output\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GTBEOUT_A {
+    #[doc = "0: A global time base signal generation is disabled."]
+    _0,
+    #[doc = "1: A global time base signal generation is enabled."]
+    _1,
+}
+impl From<GTBEOUT_A> for bool {
+    #[inline(always)]
+    fn from(variant: GTBEOUT_A) -> Self {
+        match variant {
+            GTBEOUT_A::_0 => false,
+            GTBEOUT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `GTBEOUT`"]
+pub type GTBEOUT_R = crate::R<bool, GTBEOUT_A>;
+impl GTBEOUT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GTBEOUT_A {
+        match self.bits {
+            false => GTBEOUT_A::_0,
+            true => GTBEOUT_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == GTBEOUTR::_0
+        *self == GTBEOUT_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == GTBEOUTR::_1
+        *self == GTBEOUT_A::_1
     }
 }
-#[doc = r" Proxy"]
-pub struct _NUMTOFW<'a> {
+#[doc = "Write proxy for field `GTBEOUT`"]
+pub struct GTBEOUT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NUMTOFW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BDMMODEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BDMMODEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `GTBEEN`"]
-pub enum GTBEENW {
-    #[doc = "Use of an external global time base is disabled."]
-    _0,
-    #[doc = "Use of an external global time base is enabled."]
-    _1,
-}
-impl GTBEENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GTBEENW::_0 => false,
-            GTBEENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _GTBEENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _GTBEENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GTBEENW) -> &'a mut W {
+impl<'a> GTBEOUT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GTBEOUT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Use of an external global time base is disabled."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(GTBEENW::_0)
-    }
-    #[doc = "Use of an external global time base is enabled."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(GTBEENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `GTBEOUT`"]
-pub enum GTBEOUTW {
-    #[doc = "A global time base signal generation is disabled."]
-    _0,
-    #[doc = "A global time base signal generation is enabled."]
-    _1,
-}
-impl GTBEOUTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GTBEOUTW::_0 => false,
-            GTBEOUTW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _GTBEOUTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _GTBEOUTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GTBEOUTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "A global time base signal generation is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(GTBEOUTW::_0)
+        self.variant(GTBEOUT_A::_0)
     }
     #[doc = "A global time base signal generation is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(GTBEOUTW::_1)
+        self.variant(GTBEOUT_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - TOF Frequency"]
-    #[inline]
-    pub fn numtof(&self) -> NUMTOFR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        NUMTOFR { bits }
+    #[inline(always)]
+    pub fn numtof(&self) -> NUMTOF_R {
+        NUMTOF_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bits 6:7 - BDM Mode"]
-    #[inline]
-    pub fn bdmmode(&self) -> BDMMODER {
-        let bits = {
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        BDMMODER { bits }
+    #[inline(always)]
+    pub fn bdmmode(&self) -> BDMMODE_R {
+        BDMMODE_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bit 9 - Global Time Base Enable"]
-    #[inline]
-    pub fn gtbeen(&self) -> GTBEENR {
-        GTBEENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn gtbeen(&self) -> GTBEEN_R {
+        GTBEEN_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Global Time Base Output"]
-    #[inline]
-    pub fn gtbeout(&self) -> GTBEOUTR {
-        GTBEOUTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn gtbeout(&self) -> GTBEOUT_R {
+        GTBEOUT_R::new(((self.bits >> 10) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - TOF Frequency"]
-    #[inline]
-    pub fn numtof(&mut self) -> _NUMTOFW {
-        _NUMTOFW { w: self }
+    #[inline(always)]
+    pub fn numtof(&mut self) -> NUMTOF_W {
+        NUMTOF_W { w: self }
     }
     #[doc = "Bits 6:7 - BDM Mode"]
-    #[inline]
-    pub fn bdmmode(&mut self) -> _BDMMODEW {
-        _BDMMODEW { w: self }
+    #[inline(always)]
+    pub fn bdmmode(&mut self) -> BDMMODE_W {
+        BDMMODE_W { w: self }
     }
     #[doc = "Bit 9 - Global Time Base Enable"]
-    #[inline]
-    pub fn gtbeen(&mut self) -> _GTBEENW {
-        _GTBEENW { w: self }
+    #[inline(always)]
+    pub fn gtbeen(&mut self) -> GTBEEN_W {
+        GTBEEN_W { w: self }
     }
     #[doc = "Bit 10 - Global Time Base Output"]
-    #[inline]
-    pub fn gtbeout(&mut self) -> _GTBEOUTW {
-        _GTBEOUTW { w: self }
+    #[inline(always)]
+    pub fn gtbeout(&mut self) -> GTBEOUT_W {
+        GTBEOUT_W { w: self }
     }
 }
