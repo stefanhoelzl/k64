@@ -19,10 +19,6 @@ and the larger `SRAM_U` section (`192K`) is used for the ram.
 
 **Attention:** An un-aligned access across both sections can result in a hard fault!
 
-## Issues
-Due to [svd2rust Issue 16](https://github.com/japaric/svd2rust/issues/16) there are some registers missing.
-see [warnings](WARNINGS.md)
-
 ## Development
 The following `make` commands are available:
 * `setup`: installs tools
