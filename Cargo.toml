@@ -10,7 +10,7 @@ repository = "https://github.com/stefanhoelzl/k64"
 
 [dependencies]
 cortex-m = "0.6.1"
-bare-metal = "0.2.0"
+bare-metal = "0.2.5"
 vcell = "0.1.2"
 
 [dependencies.cortex-m-rt]

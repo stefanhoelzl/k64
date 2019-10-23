@@ -8,10 +8,11 @@ extern crate panic_halt;
 use core::cell::RefCell;
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
-use k64::lptmr0::psr::PCSW;
+use k64::lptmr0::psr::PCS_A;
 use k64::GPIOE;
 use k64::LPTMR0;
 use k64::{interrupt, Interrupt, Peripherals};
+use cortex_m::peripheral::NVIC;
 
 lazy_static! {
     static ref MUTEX_GPIOE_PTOR: Mutex<RefCell<Option<GPIOE>>> = Mutex::new(RefCell::new(None));
@@ -28,7 +29,7 @@ fn main() -> ! {
     let lptmr0 = &p.LPTMR0;
     lptmr0
         .psr
-        .modify(|_, w| w.pcs().variant(PCSW::_01).pbyp().set_bit());
+        .modify(|_, w| w.pcs().variant(PCS_A::_01).pbyp().set_bit());
     lptmr0
         .cmr
         .modify(|_, w| unsafe { w.compare().bits(500 - 1) });
@@ -67,6 +68,5 @@ fn LPTMR0() {
 }
 
 fn config_nvic() {
-    let mut p = cortex_m::Peripherals::take().unwrap();
-    p.NVIC.enable(Interrupt::LPTMR0);
+    unsafe { NVIC::unmask(Interrupt::LPTMR0); }
 }

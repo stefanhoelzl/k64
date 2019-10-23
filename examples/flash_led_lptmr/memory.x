@@ -15,4 +15,4 @@ _stack_start = ORIGIN(STACK) + LENGTH(STACK);
    section */
 /* This is required only on microcontrollers that store some configuration right
    after the vector table */
-_stext = ORIGIN(FLASH) + 0x800;
+//_stext = ORIGIN(FLASH) + 0x800;
