@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CRCR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXCRCR {
-    bits: u16,
-}
-impl TXCRCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MBCRCR {
-    bits: u8,
-}
-impl MBCRCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register CRCR"]
+pub type R = crate::R<u32, super::CRCR>;
+#[doc = "Reader of field `TXCRC`"]
+pub type TXCRC_R = crate::R<u16, u16>;
+#[doc = "Reader of field `MBCRC`"]
+pub type MBCRC_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:14 - CRC Transmitted"]
-    #[inline]
-    pub fn txcrc(&self) -> TXCRCR {
-        let bits = {
-            const MASK: u16 = 32767;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TXCRCR { bits }
+    #[inline(always)]
+    pub fn txcrc(&self) -> TXCRC_R {
+        TXCRC_R::new((self.bits & 0x7fff) as u16)
     }
     #[doc = "Bits 16:22 - CRC Mailbox"]
-    #[inline]
-    pub fn mbcrc(&self) -> MBCRCR {
-        let bits = {
-            const MASK: u8 = 127;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MBCRCR { bits }
+    #[inline(always)]
+    pub fn mbcrc(&self) -> MBCRC_R {
+        MBCRC_R::new(((self.bits >> 16) & 0x7f) as u8)
     }
 }

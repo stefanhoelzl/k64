@@ -1,540 +1,368 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::OTGCTL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OTGCTL"]
+pub type R = crate::R<u8, super::OTGCTL>;
+#[doc = "Writer for register OTGCTL"]
+pub type W = crate::W<u8, super::OTGCTL>;
+#[doc = "Register OTGCTL `reset()`'s with value 0"]
+impl crate::ResetValue for super::OTGCTL {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `OTGEN`"]
+#[doc = "On-The-Go pullup/pulldown resistor enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OTGENR {
-    #[doc = "If USB_EN is 1 and HOST_MODE is 0 in the Control Register (CTL), then the D+ Data Line pull-up resistors are enabled. If HOST_MODE is 1 the D+ and D- Data Line pull-down resistors are engaged."]
+pub enum OTGEN_A {
+    #[doc = "0: If USB_EN is 1 and HOST_MODE is 0 in the Control Register (CTL), then the D+ Data Line pull-up resistors are enabled. If HOST_MODE is 1 the D+ and D- Data Line pull-down resistors are engaged."]
     _0,
-    #[doc = "The pull-up and pull-down controls in this register are used."]
+    #[doc = "1: The pull-up and pull-down controls in this register are used."]
     _1,
 }
-impl OTGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OTGENR::_0 => false,
-            OTGENR::_1 => true,
+impl From<OTGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: OTGEN_A) -> Self {
+        match variant {
+            OTGEN_A::_0 => false,
+            OTGEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OTGENR {
-        match value {
-            false => OTGENR::_0,
-            true => OTGENR::_1,
+}
+#[doc = "Reader of field `OTGEN`"]
+pub type OTGEN_R = crate::R<bool, OTGEN_A>;
+impl OTGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OTGEN_A {
+        match self.bits {
+            false => OTGEN_A::_0,
+            true => OTGEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == OTGENR::_0
+        *self == OTGEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == OTGENR::_1
+        *self == OTGEN_A::_1
     }
 }
-#[doc = "Possible values of the field `DMLOW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMLOWR {
-    #[doc = "D- pulldown resistor is not enabled."]
-    _0,
-    #[doc = "D- pulldown resistor is enabled."]
-    _1,
-}
-impl DMLOWR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMLOWR::_0 => false,
-            DMLOWR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMLOWR {
-        match value {
-            false => DMLOWR::_0,
-            true => DMLOWR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DMLOWR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DMLOWR::_1
-    }
-}
-#[doc = "Possible values of the field `DPLOW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DPLOWR {
-    #[doc = "D+ pulldown resistor is not enabled."]
-    _0,
-    #[doc = "D+ pulldown resistor is enabled."]
-    _1,
-}
-impl DPLOWR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DPLOWR::_0 => false,
-            DPLOWR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DPLOWR {
-        match value {
-            false => DPLOWR::_0,
-            true => DPLOWR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DPLOWR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DPLOWR::_1
-    }
-}
-#[doc = "Possible values of the field `DPHIGH`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DPHIGHR {
-    #[doc = "D+ pullup resistor is not enabled"]
-    _0,
-    #[doc = "D+ pullup resistor is enabled"]
-    _1,
-}
-impl DPHIGHR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DPHIGHR::_0 => false,
-            DPHIGHR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DPHIGHR {
-        match value {
-            false => DPHIGHR::_0,
-            true => DPHIGHR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DPHIGHR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DPHIGHR::_1
-    }
-}
-#[doc = "Values that can be written to the field `OTGEN`"]
-pub enum OTGENW {
-    #[doc = "If USB_EN is 1 and HOST_MODE is 0 in the Control Register (CTL), then the D+ Data Line pull-up resistors are enabled. If HOST_MODE is 1 the D+ and D- Data Line pull-down resistors are engaged."]
-    _0,
-    #[doc = "The pull-up and pull-down controls in this register are used."]
-    _1,
-}
-impl OTGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OTGENW::_0 => false,
-            OTGENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OTGENW<'a> {
+#[doc = "Write proxy for field `OTGEN`"]
+pub struct OTGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OTGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OTGENW) -> &'a mut W {
+impl<'a> OTGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OTGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "If USB_EN is 1 and HOST_MODE is 0 in the Control Register (CTL), then the D+ Data Line pull-up resistors are enabled. If HOST_MODE is 1 the D+ and D- Data Line pull-down resistors are engaged."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(OTGENW::_0)
+        self.variant(OTGEN_A::_0)
     }
     #[doc = "The pull-up and pull-down controls in this register are used."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(OTGENW::_1)
+        self.variant(OTGEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DMLOW`"]
-pub enum DMLOWW {
+#[doc = "D- Data Line pull-down resistor enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMLOW_A {
+    #[doc = "0: D- pulldown resistor is not enabled."]
+    _0,
+    #[doc = "1: D- pulldown resistor is enabled."]
+    _1,
+}
+impl From<DMLOW_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMLOW_A) -> Self {
+        match variant {
+            DMLOW_A::_0 => false,
+            DMLOW_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `DMLOW`"]
+pub type DMLOW_R = crate::R<bool, DMLOW_A>;
+impl DMLOW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMLOW_A {
+        match self.bits {
+            false => DMLOW_A::_0,
+            true => DMLOW_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DMLOW_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DMLOW_A::_1
+    }
+}
+#[doc = "Write proxy for field `DMLOW`"]
+pub struct DMLOW_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DMLOW_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMLOW_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "D- pulldown resistor is not enabled."]
-    _0,
-    #[doc = "D- pulldown resistor is enabled."]
-    _1,
-}
-impl DMLOWW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMLOWW::_0 => false,
-            DMLOWW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMLOWW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMLOWW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMLOWW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "D- pulldown resistor is not enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DMLOWW::_0)
+        self.variant(DMLOW_A::_0)
     }
     #[doc = "D- pulldown resistor is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DMLOWW::_1)
+        self.variant(DMLOW_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DPLOW`"]
-pub enum DPLOWW {
-    #[doc = "D+ pulldown resistor is not enabled."]
+#[doc = "D+ Data Line pull-down resistor enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DPLOW_A {
+    #[doc = "0: D+ pulldown resistor is not enabled."]
     _0,
-    #[doc = "D+ pulldown resistor is enabled."]
+    #[doc = "1: D+ pulldown resistor is enabled."]
     _1,
 }
-impl DPLOWW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DPLOWW::_0 => false,
-            DPLOWW::_1 => true,
+impl From<DPLOW_A> for bool {
+    #[inline(always)]
+    fn from(variant: DPLOW_A) -> Self {
+        match variant {
+            DPLOW_A::_0 => false,
+            DPLOW_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DPLOWW<'a> {
+#[doc = "Reader of field `DPLOW`"]
+pub type DPLOW_R = crate::R<bool, DPLOW_A>;
+impl DPLOW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DPLOW_A {
+        match self.bits {
+            false => DPLOW_A::_0,
+            true => DPLOW_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DPLOW_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DPLOW_A::_1
+    }
+}
+#[doc = "Write proxy for field `DPLOW`"]
+pub struct DPLOW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DPLOWW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DPLOWW) -> &'a mut W {
+impl<'a> DPLOW_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DPLOW_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "D+ pulldown resistor is not enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DPLOWW::_0)
+        self.variant(DPLOW_A::_0)
     }
     #[doc = "D+ pulldown resistor is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DPLOWW::_1)
+        self.variant(DPLOW_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DPHIGH`"]
-pub enum DPHIGHW {
-    #[doc = "D+ pullup resistor is not enabled"]
+#[doc = "D+ Data Line pullup resistor enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DPHIGH_A {
+    #[doc = "0: D+ pullup resistor is not enabled"]
     _0,
-    #[doc = "D+ pullup resistor is enabled"]
+    #[doc = "1: D+ pullup resistor is enabled"]
     _1,
 }
-impl DPHIGHW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DPHIGHW::_0 => false,
-            DPHIGHW::_1 => true,
+impl From<DPHIGH_A> for bool {
+    #[inline(always)]
+    fn from(variant: DPHIGH_A) -> Self {
+        match variant {
+            DPHIGH_A::_0 => false,
+            DPHIGH_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DPHIGHW<'a> {
+#[doc = "Reader of field `DPHIGH`"]
+pub type DPHIGH_R = crate::R<bool, DPHIGH_A>;
+impl DPHIGH_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DPHIGH_A {
+        match self.bits {
+            false => DPHIGH_A::_0,
+            true => DPHIGH_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DPHIGH_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DPHIGH_A::_1
+    }
+}
+#[doc = "Write proxy for field `DPHIGH`"]
+pub struct DPHIGH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DPHIGHW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DPHIGHW) -> &'a mut W {
+impl<'a> DPHIGH_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DPHIGH_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "D+ pullup resistor is not enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DPHIGHW::_0)
+        self.variant(DPHIGH_A::_0)
     }
     #[doc = "D+ pullup resistor is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DPHIGHW::_1)
+        self.variant(DPHIGH_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 2 - On-The-Go pullup/pulldown resistor enable"]
-    #[inline]
-    pub fn otgen(&self) -> OTGENR {
-        OTGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn otgen(&self) -> OTGEN_R {
+        OTGEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 4 - D- Data Line pull-down resistor enable"]
-    #[inline]
-    pub fn dmlow(&self) -> DMLOWR {
-        DMLOWR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dmlow(&self) -> DMLOW_R {
+        DMLOW_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - D+ Data Line pull-down resistor enable"]
-    #[inline]
-    pub fn dplow(&self) -> DPLOWR {
-        DPLOWR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dplow(&self) -> DPLOW_R {
+        DPLOW_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 7 - D+ Data Line pullup resistor enable"]
-    #[inline]
-    pub fn dphigh(&self) -> DPHIGHR {
-        DPHIGHR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dphigh(&self) -> DPHIGH_R {
+        DPHIGH_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 2 - On-The-Go pullup/pulldown resistor enable"]
-    #[inline]
-    pub fn otgen(&mut self) -> _OTGENW {
-        _OTGENW { w: self }
+    #[inline(always)]
+    pub fn otgen(&mut self) -> OTGEN_W {
+        OTGEN_W { w: self }
     }
     #[doc = "Bit 4 - D- Data Line pull-down resistor enable"]
-    #[inline]
-    pub fn dmlow(&mut self) -> _DMLOWW {
-        _DMLOWW { w: self }
+    #[inline(always)]
+    pub fn dmlow(&mut self) -> DMLOW_W {
+        DMLOW_W { w: self }
     }
     #[doc = "Bit 5 - D+ Data Line pull-down resistor enable"]
-    #[inline]
-    pub fn dplow(&mut self) -> _DPLOWW {
-        _DPLOWW { w: self }
+    #[inline(always)]
+    pub fn dplow(&mut self) -> DPLOW_W {
+        DPLOW_W { w: self }
     }
     #[doc = "Bit 7 - D+ Data Line pullup resistor enable"]
-    #[inline]
-    pub fn dphigh(&mut self) -> _DPHIGHW {
-        _DPHIGHW { w: self }
+    #[inline(always)]
+    pub fn dphigh(&mut self) -> DPHIGH_W {
+        DPHIGH_W { w: self }
     }
 }

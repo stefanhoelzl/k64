@@ -1,356 +1,268 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::AC12ERR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `AC12NE`"]
+#[doc = "Reader of register AC12ERR"]
+pub type R = crate::R<u32, super::AC12ERR>;
+#[doc = "Auto CMD12 Not Executed\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AC12NER {
-    #[doc = "Executed."]
+pub enum AC12NE_A {
+    #[doc = "0: Executed."]
     _0,
-    #[doc = "Not executed."]
+    #[doc = "1: Not executed."]
     _1,
 }
-impl AC12NER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AC12NER::_0 => false,
-            AC12NER::_1 => true,
+impl From<AC12NE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AC12NE_A) -> Self {
+        match variant {
+            AC12NE_A::_0 => false,
+            AC12NE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AC12NER {
-        match value {
-            false => AC12NER::_0,
-            true => AC12NER::_1,
+}
+#[doc = "Reader of field `AC12NE`"]
+pub type AC12NE_R = crate::R<bool, AC12NE_A>;
+impl AC12NE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AC12NE_A {
+        match self.bits {
+            false => AC12NE_A::_0,
+            true => AC12NE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AC12NER::_0
+        *self == AC12NE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AC12NER::_1
+        *self == AC12NE_A::_1
     }
 }
-#[doc = "Possible values of the field `AC12TOE`"]
+#[doc = "Auto CMD12 Timeout Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AC12TOER {
-    #[doc = "No error."]
+pub enum AC12TOE_A {
+    #[doc = "0: No error."]
     _0,
-    #[doc = "Time out."]
+    #[doc = "1: Time out."]
     _1,
 }
-impl AC12TOER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AC12TOER::_0 => false,
-            AC12TOER::_1 => true,
+impl From<AC12TOE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AC12TOE_A) -> Self {
+        match variant {
+            AC12TOE_A::_0 => false,
+            AC12TOE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AC12TOER {
-        match value {
-            false => AC12TOER::_0,
-            true => AC12TOER::_1,
+}
+#[doc = "Reader of field `AC12TOE`"]
+pub type AC12TOE_R = crate::R<bool, AC12TOE_A>;
+impl AC12TOE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AC12TOE_A {
+        match self.bits {
+            false => AC12TOE_A::_0,
+            true => AC12TOE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AC12TOER::_0
+        *self == AC12TOE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AC12TOER::_1
+        *self == AC12TOE_A::_1
     }
 }
-#[doc = "Possible values of the field `AC12EBE`"]
+#[doc = "Auto CMD12 End Bit Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AC12EBER {
-    #[doc = "No error."]
+pub enum AC12EBE_A {
+    #[doc = "0: No error."]
     _0,
-    #[doc = "End bit error generated."]
+    #[doc = "1: End bit error generated."]
     _1,
 }
-impl AC12EBER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AC12EBER::_0 => false,
-            AC12EBER::_1 => true,
+impl From<AC12EBE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AC12EBE_A) -> Self {
+        match variant {
+            AC12EBE_A::_0 => false,
+            AC12EBE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AC12EBER {
-        match value {
-            false => AC12EBER::_0,
-            true => AC12EBER::_1,
+}
+#[doc = "Reader of field `AC12EBE`"]
+pub type AC12EBE_R = crate::R<bool, AC12EBE_A>;
+impl AC12EBE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AC12EBE_A {
+        match self.bits {
+            false => AC12EBE_A::_0,
+            true => AC12EBE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AC12EBER::_0
+        *self == AC12EBE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AC12EBER::_1
+        *self == AC12EBE_A::_1
     }
 }
-#[doc = "Possible values of the field `AC12CE`"]
+#[doc = "Auto CMD12 CRC Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AC12CER {
-    #[doc = "No CRC error."]
+pub enum AC12CE_A {
+    #[doc = "0: No CRC error."]
     _0,
-    #[doc = "CRC error met in Auto CMD12 response."]
+    #[doc = "1: CRC error met in Auto CMD12 response."]
     _1,
 }
-impl AC12CER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AC12CER::_0 => false,
-            AC12CER::_1 => true,
+impl From<AC12CE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AC12CE_A) -> Self {
+        match variant {
+            AC12CE_A::_0 => false,
+            AC12CE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AC12CER {
-        match value {
-            false => AC12CER::_0,
-            true => AC12CER::_1,
+}
+#[doc = "Reader of field `AC12CE`"]
+pub type AC12CE_R = crate::R<bool, AC12CE_A>;
+impl AC12CE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AC12CE_A {
+        match self.bits {
+            false => AC12CE_A::_0,
+            true => AC12CE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AC12CER::_0
+        *self == AC12CE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AC12CER::_1
+        *self == AC12CE_A::_1
     }
 }
-#[doc = "Possible values of the field `AC12IE`"]
+#[doc = "Auto CMD12 Index Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AC12IER {
-    #[doc = "No error."]
+pub enum AC12IE_A {
+    #[doc = "0: No error."]
     _0,
-    #[doc = "Error, the CMD index in response is not CMD12."]
+    #[doc = "1: Error, the CMD index in response is not CMD12."]
     _1,
 }
-impl AC12IER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AC12IER::_0 => false,
-            AC12IER::_1 => true,
+impl From<AC12IE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AC12IE_A) -> Self {
+        match variant {
+            AC12IE_A::_0 => false,
+            AC12IE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AC12IER {
-        match value {
-            false => AC12IER::_0,
-            true => AC12IER::_1,
+}
+#[doc = "Reader of field `AC12IE`"]
+pub type AC12IE_R = crate::R<bool, AC12IE_A>;
+impl AC12IE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AC12IE_A {
+        match self.bits {
+            false => AC12IE_A::_0,
+            true => AC12IE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AC12IER::_0
+        *self == AC12IE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AC12IER::_1
+        *self == AC12IE_A::_1
     }
 }
-#[doc = "Possible values of the field `CNIBAC12E`"]
+#[doc = "Command Not Issued By Auto CMD12 Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CNIBAC12ER {
-    #[doc = "No error."]
+pub enum CNIBAC12E_A {
+    #[doc = "0: No error."]
     _0,
-    #[doc = "Not issued."]
+    #[doc = "1: Not issued."]
     _1,
 }
-impl CNIBAC12ER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CNIBAC12ER::_0 => false,
-            CNIBAC12ER::_1 => true,
+impl From<CNIBAC12E_A> for bool {
+    #[inline(always)]
+    fn from(variant: CNIBAC12E_A) -> Self {
+        match variant {
+            CNIBAC12E_A::_0 => false,
+            CNIBAC12E_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CNIBAC12ER {
-        match value {
-            false => CNIBAC12ER::_0,
-            true => CNIBAC12ER::_1,
+}
+#[doc = "Reader of field `CNIBAC12E`"]
+pub type CNIBAC12E_R = crate::R<bool, CNIBAC12E_A>;
+impl CNIBAC12E_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CNIBAC12E_A {
+        match self.bits {
+            false => CNIBAC12E_A::_0,
+            true => CNIBAC12E_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CNIBAC12ER::_0
+        *self == CNIBAC12E_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CNIBAC12ER::_1
+        *self == CNIBAC12E_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Auto CMD12 Not Executed"]
-    #[inline]
-    pub fn ac12ne(&self) -> AC12NER {
-        AC12NER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ac12ne(&self) -> AC12NE_R {
+        AC12NE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Auto CMD12 Timeout Error"]
-    #[inline]
-    pub fn ac12toe(&self) -> AC12TOER {
-        AC12TOER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ac12toe(&self) -> AC12TOE_R {
+        AC12TOE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Auto CMD12 End Bit Error"]
-    #[inline]
-    pub fn ac12ebe(&self) -> AC12EBER {
-        AC12EBER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ac12ebe(&self) -> AC12EBE_R {
+        AC12EBE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Auto CMD12 CRC Error"]
-    #[inline]
-    pub fn ac12ce(&self) -> AC12CER {
-        AC12CER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ac12ce(&self) -> AC12CE_R {
+        AC12CE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Auto CMD12 Index Error"]
-    #[inline]
-    pub fn ac12ie(&self) -> AC12IER {
-        AC12IER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ac12ie(&self) -> AC12IE_R {
+        AC12IE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Command Not Issued By Auto CMD12 Error"]
-    #[inline]
-    pub fn cnibac12e(&self) -> CNIBAC12ER {
-        CNIBAC12ER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cnibac12e(&self) -> CNIBAC12E_R {
+        CNIBAC12E_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }

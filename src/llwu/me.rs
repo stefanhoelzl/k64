@@ -1,1016 +1,720 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::ME {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ME"]
+pub type R = crate::R<u8, super::ME>;
+#[doc = "Writer for register ME"]
+pub type W = crate::W<u8, super::ME>;
+#[doc = "Register ME `reset()`'s with value 0"]
+impl crate::ResetValue for super::ME {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `WUME0`"]
+#[doc = "Wakeup Module Enable For Module 0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME0R {
-    #[doc = "Internal module flag not used as wakeup source"]
+pub enum WUME0_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME0R::_0 => false,
-            WUME0R::_1 => true,
+impl From<WUME0_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME0_A) -> Self {
+        match variant {
+            WUME0_A::_0 => false,
+            WUME0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME0R {
-        match value {
-            false => WUME0R::_0,
-            true => WUME0R::_1,
+}
+#[doc = "Reader of field `WUME0`"]
+pub type WUME0_R = crate::R<bool, WUME0_A>;
+impl WUME0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME0_A {
+        match self.bits {
+            false => WUME0_A::_0,
+            true => WUME0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == WUME0R::_0
+        *self == WUME0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == WUME0R::_1
+        *self == WUME0_A::_1
     }
 }
-#[doc = "Possible values of the field `WUME1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME1R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME1R::_0 => false,
-            WUME1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME1R {
-        match value {
-            false => WUME1R::_0,
-            true => WUME1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME1R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME2R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME2R::_0 => false,
-            WUME2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME2R {
-        match value {
-            false => WUME2R::_0,
-            true => WUME2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME2R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME3R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME3R::_0 => false,
-            WUME3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME3R {
-        match value {
-            false => WUME3R::_0,
-            true => WUME3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME3R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME4R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME4R::_0 => false,
-            WUME4R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME4R {
-        match value {
-            false => WUME4R::_0,
-            true => WUME4R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME4R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME4R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME5R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME5R::_0 => false,
-            WUME5R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME5R {
-        match value {
-            false => WUME5R::_0,
-            true => WUME5R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME5R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME5R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME6R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME6R::_0 => false,
-            WUME6R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME6R {
-        match value {
-            false => WUME6R::_0,
-            true => WUME6R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME6R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME6R::_1
-    }
-}
-#[doc = "Possible values of the field `WUME7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WUME7R {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WUME7R::_0 => false,
-            WUME7R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WUME7R {
-        match value {
-            false => WUME7R::_0,
-            true => WUME7R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WUME7R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WUME7R::_1
-    }
-}
-#[doc = "Values that can be written to the field `WUME0`"]
-pub enum WUME0W {
-    #[doc = "Internal module flag not used as wakeup source"]
-    _0,
-    #[doc = "Internal module flag used as wakeup source"]
-    _1,
-}
-impl WUME0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME0W::_0 => false,
-            WUME0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WUME0W<'a> {
+#[doc = "Write proxy for field `WUME0`"]
+pub struct WUME0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME0W) -> &'a mut W {
+impl<'a> WUME0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME0W::_0)
+        self.variant(WUME0_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME0W::_1)
+        self.variant(WUME0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME1`"]
-pub enum WUME1W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable for Module 1\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME1_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME1W::_0 => false,
-            WUME1W::_1 => true,
+impl From<WUME1_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME1_A) -> Self {
+        match variant {
+            WUME1_A::_0 => false,
+            WUME1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME1W<'a> {
+#[doc = "Reader of field `WUME1`"]
+pub type WUME1_R = crate::R<bool, WUME1_A>;
+impl WUME1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME1_A {
+        match self.bits {
+            false => WUME1_A::_0,
+            true => WUME1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME1_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME1`"]
+pub struct WUME1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME1W) -> &'a mut W {
+impl<'a> WUME1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME1W::_0)
+        self.variant(WUME1_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME1W::_1)
+        self.variant(WUME1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME2`"]
-pub enum WUME2W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 2\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME2_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME2W::_0 => false,
-            WUME2W::_1 => true,
+impl From<WUME2_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME2_A) -> Self {
+        match variant {
+            WUME2_A::_0 => false,
+            WUME2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME2W<'a> {
+#[doc = "Reader of field `WUME2`"]
+pub type WUME2_R = crate::R<bool, WUME2_A>;
+impl WUME2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME2_A {
+        match self.bits {
+            false => WUME2_A::_0,
+            true => WUME2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME2_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME2`"]
+pub struct WUME2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME2W) -> &'a mut W {
+impl<'a> WUME2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME2W::_0)
+        self.variant(WUME2_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME2W::_1)
+        self.variant(WUME2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME3`"]
-pub enum WUME3W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 3\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME3_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME3W::_0 => false,
-            WUME3W::_1 => true,
+impl From<WUME3_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME3_A) -> Self {
+        match variant {
+            WUME3_A::_0 => false,
+            WUME3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME3W<'a> {
+#[doc = "Reader of field `WUME3`"]
+pub type WUME3_R = crate::R<bool, WUME3_A>;
+impl WUME3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME3_A {
+        match self.bits {
+            false => WUME3_A::_0,
+            true => WUME3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME3_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME3`"]
+pub struct WUME3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME3W) -> &'a mut W {
+impl<'a> WUME3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME3W::_0)
+        self.variant(WUME3_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME3W::_1)
+        self.variant(WUME3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME4`"]
-pub enum WUME4W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 4\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME4_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME4W::_0 => false,
-            WUME4W::_1 => true,
+impl From<WUME4_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME4_A) -> Self {
+        match variant {
+            WUME4_A::_0 => false,
+            WUME4_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME4W<'a> {
+#[doc = "Reader of field `WUME4`"]
+pub type WUME4_R = crate::R<bool, WUME4_A>;
+impl WUME4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME4_A {
+        match self.bits {
+            false => WUME4_A::_0,
+            true => WUME4_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME4_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME4_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME4`"]
+pub struct WUME4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME4W) -> &'a mut W {
+impl<'a> WUME4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME4W::_0)
+        self.variant(WUME4_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME4W::_1)
+        self.variant(WUME4_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME5`"]
-pub enum WUME5W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 5\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME5_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME5W::_0 => false,
-            WUME5W::_1 => true,
+impl From<WUME5_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME5_A) -> Self {
+        match variant {
+            WUME5_A::_0 => false,
+            WUME5_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME5W<'a> {
+#[doc = "Reader of field `WUME5`"]
+pub type WUME5_R = crate::R<bool, WUME5_A>;
+impl WUME5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME5_A {
+        match self.bits {
+            false => WUME5_A::_0,
+            true => WUME5_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME5_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME5_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME5`"]
+pub struct WUME5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME5W) -> &'a mut W {
+impl<'a> WUME5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME5W::_0)
+        self.variant(WUME5_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME5W::_1)
+        self.variant(WUME5_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME6`"]
-pub enum WUME6W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 6\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME6_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME6W::_0 => false,
-            WUME6W::_1 => true,
+impl From<WUME6_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME6_A) -> Self {
+        match variant {
+            WUME6_A::_0 => false,
+            WUME6_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME6W<'a> {
+#[doc = "Reader of field `WUME6`"]
+pub type WUME6_R = crate::R<bool, WUME6_A>;
+impl WUME6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME6_A {
+        match self.bits {
+            false => WUME6_A::_0,
+            true => WUME6_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME6_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME6_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME6`"]
+pub struct WUME6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME6W) -> &'a mut W {
+impl<'a> WUME6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME6W::_0)
+        self.variant(WUME6_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME6W::_1)
+        self.variant(WUME6_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WUME7`"]
-pub enum WUME7W {
-    #[doc = "Internal module flag not used as wakeup source"]
+#[doc = "Wakeup Module Enable For Module 7\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WUME7_A {
+    #[doc = "0: Internal module flag not used as wakeup source"]
     _0,
-    #[doc = "Internal module flag used as wakeup source"]
+    #[doc = "1: Internal module flag used as wakeup source"]
     _1,
 }
-impl WUME7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WUME7W::_0 => false,
-            WUME7W::_1 => true,
+impl From<WUME7_A> for bool {
+    #[inline(always)]
+    fn from(variant: WUME7_A) -> Self {
+        match variant {
+            WUME7_A::_0 => false,
+            WUME7_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WUME7W<'a> {
+#[doc = "Reader of field `WUME7`"]
+pub type WUME7_R = crate::R<bool, WUME7_A>;
+impl WUME7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WUME7_A {
+        match self.bits {
+            false => WUME7_A::_0,
+            true => WUME7_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WUME7_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WUME7_A::_1
+    }
+}
+#[doc = "Write proxy for field `WUME7`"]
+pub struct WUME7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WUME7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WUME7W) -> &'a mut W {
+impl<'a> WUME7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WUME7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal module flag not used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WUME7W::_0)
+        self.variant(WUME7_A::_0)
     }
     #[doc = "Internal module flag used as wakeup source"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WUME7W::_1)
+        self.variant(WUME7_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Wakeup Module Enable For Module 0"]
-    #[inline]
-    pub fn wume0(&self) -> WUME0R {
-        WUME0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume0(&self) -> WUME0_R {
+        WUME0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Wakeup Module Enable for Module 1"]
-    #[inline]
-    pub fn wume1(&self) -> WUME1R {
-        WUME1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume1(&self) -> WUME1_R {
+        WUME1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Wakeup Module Enable For Module 2"]
-    #[inline]
-    pub fn wume2(&self) -> WUME2R {
-        WUME2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume2(&self) -> WUME2_R {
+        WUME2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Wakeup Module Enable For Module 3"]
-    #[inline]
-    pub fn wume3(&self) -> WUME3R {
-        WUME3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume3(&self) -> WUME3_R {
+        WUME3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Wakeup Module Enable For Module 4"]
-    #[inline]
-    pub fn wume4(&self) -> WUME4R {
-        WUME4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume4(&self) -> WUME4_R {
+        WUME4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Wakeup Module Enable For Module 5"]
-    #[inline]
-    pub fn wume5(&self) -> WUME5R {
-        WUME5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume5(&self) -> WUME5_R {
+        WUME5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Wakeup Module Enable For Module 6"]
-    #[inline]
-    pub fn wume6(&self) -> WUME6R {
-        WUME6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume6(&self) -> WUME6_R {
+        WUME6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Wakeup Module Enable For Module 7"]
-    #[inline]
-    pub fn wume7(&self) -> WUME7R {
-        WUME7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn wume7(&self) -> WUME7_R {
+        WUME7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Wakeup Module Enable For Module 0"]
-    #[inline]
-    pub fn wume0(&mut self) -> _WUME0W {
-        _WUME0W { w: self }
+    #[inline(always)]
+    pub fn wume0(&mut self) -> WUME0_W {
+        WUME0_W { w: self }
     }
     #[doc = "Bit 1 - Wakeup Module Enable for Module 1"]
-    #[inline]
-    pub fn wume1(&mut self) -> _WUME1W {
-        _WUME1W { w: self }
+    #[inline(always)]
+    pub fn wume1(&mut self) -> WUME1_W {
+        WUME1_W { w: self }
     }
     #[doc = "Bit 2 - Wakeup Module Enable For Module 2"]
-    #[inline]
-    pub fn wume2(&mut self) -> _WUME2W {
-        _WUME2W { w: self }
+    #[inline(always)]
+    pub fn wume2(&mut self) -> WUME2_W {
+        WUME2_W { w: self }
     }
     #[doc = "Bit 3 - Wakeup Module Enable For Module 3"]
-    #[inline]
-    pub fn wume3(&mut self) -> _WUME3W {
-        _WUME3W { w: self }
+    #[inline(always)]
+    pub fn wume3(&mut self) -> WUME3_W {
+        WUME3_W { w: self }
     }
     #[doc = "Bit 4 - Wakeup Module Enable For Module 4"]
-    #[inline]
-    pub fn wume4(&mut self) -> _WUME4W {
-        _WUME4W { w: self }
+    #[inline(always)]
+    pub fn wume4(&mut self) -> WUME4_W {
+        WUME4_W { w: self }
     }
     #[doc = "Bit 5 - Wakeup Module Enable For Module 5"]
-    #[inline]
-    pub fn wume5(&mut self) -> _WUME5W {
-        _WUME5W { w: self }
+    #[inline(always)]
+    pub fn wume5(&mut self) -> WUME5_W {
+        WUME5_W { w: self }
     }
     #[doc = "Bit 6 - Wakeup Module Enable For Module 6"]
-    #[inline]
-    pub fn wume6(&mut self) -> _WUME6W {
-        _WUME6W { w: self }
+    #[inline(always)]
+    pub fn wume6(&mut self) -> WUME6_W {
+        WUME6_W { w: self }
     }
     #[doc = "Bit 7 - Wakeup Module Enable For Module 7"]
-    #[inline]
-    pub fn wume7(&mut self) -> _WUME7W {
-        _WUME7W { w: self }
+    #[inline(always)]
+    pub fn wume7(&mut self) -> WUME7_W {
+        WUME7_W { w: self }
     }
 }

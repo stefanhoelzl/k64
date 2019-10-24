@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CAU_STR_CA0 {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CA0R {
-    bits: u32,
-}
-impl CA0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register CAU_STR_CA0"]
+pub type R = crate::R<u32, super::CAU_STR_CA0>;
+#[doc = "Reader of field `CA0`"]
+pub type CA0_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - CA0"]
-    #[inline]
-    pub fn ca0(&self) -> CA0R {
-        let bits = {
-            const MASK: u32 = 4294967295;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        CA0R { bits }
+    #[inline(always)]
+    pub fn ca0(&self) -> CA0_R {
+        CA0_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

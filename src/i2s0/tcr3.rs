@@ -1,343 +1,216 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TCR3 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TCR3"]
+pub type R = crate::R<u32, super::TCR3>;
+#[doc = "Writer for register TCR3"]
+pub type W = crate::W<u32, super::TCR3>;
+#[doc = "Register TCR3 `reset()`'s with value 0"]
+impl crate::ResetValue for super::TCR3 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct WDFLR {
-    bits: u8,
-}
-impl WDFLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `TCE0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCE0R {
-    #[doc = "Transmit data channel N is disabled."]
-    _0,
-    #[doc = "Transmit data channel N is enabled."]
-    _1,
-}
-impl TCE0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TCE0R::_0 => false,
-            TCE0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TCE0R {
-        match value {
-            false => TCE0R::_0,
-            true => TCE0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TCE0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TCE0R::_1
-    }
-}
-#[doc = "Possible values of the field `TCE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCE1R {
-    #[doc = "Transmit data channel N is disabled."]
-    _0,
-    #[doc = "Transmit data channel N is enabled."]
-    _1,
-}
-impl TCE1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TCE1R::_0 => false,
-            TCE1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TCE1R {
-        match value {
-            false => TCE1R::_0,
-            true => TCE1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TCE1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TCE1R::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WDFLW<'a> {
+#[doc = "Reader of field `WDFL`"]
+pub type WDFL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `WDFL`"]
+pub struct WDFL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDFLW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> WDFL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u32) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TCE0`"]
-pub enum TCE0W {
-    #[doc = "Transmit data channel N is disabled."]
+#[doc = "Transmit Channel Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TCE0_A {
+    #[doc = "0: Transmit data channel N is disabled."]
     _0,
-    #[doc = "Transmit data channel N is enabled."]
+    #[doc = "1: Transmit data channel N is enabled."]
     _1,
 }
-impl TCE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TCE0W::_0 => false,
-            TCE0W::_1 => true,
+impl From<TCE0_A> for bool {
+    #[inline(always)]
+    fn from(variant: TCE0_A) -> Self {
+        match variant {
+            TCE0_A::_0 => false,
+            TCE0_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TCE0W<'a> {
+#[doc = "Reader of field `TCE0`"]
+pub type TCE0_R = crate::R<bool, TCE0_A>;
+impl TCE0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TCE0_A {
+        match self.bits {
+            false => TCE0_A::_0,
+            true => TCE0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TCE0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TCE0_A::_1
+    }
+}
+#[doc = "Write proxy for field `TCE0`"]
+pub struct TCE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TCE0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TCE0W) -> &'a mut W {
+impl<'a> TCE0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TCE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmit data channel N is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TCE0W::_0)
+        self.variant(TCE0_A::_0)
     }
     #[doc = "Transmit data channel N is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TCE0W::_1)
+        self.variant(TCE0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TCE1`"]
-pub enum TCE1W {
-    #[doc = "Transmit data channel N is disabled."]
+#[doc = "Transmit Channel Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TCE1_A {
+    #[doc = "0: Transmit data channel N is disabled."]
     _0,
-    #[doc = "Transmit data channel N is enabled."]
+    #[doc = "1: Transmit data channel N is enabled."]
     _1,
 }
-impl TCE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TCE1W::_0 => false,
-            TCE1W::_1 => true,
+impl From<TCE1_A> for bool {
+    #[inline(always)]
+    fn from(variant: TCE1_A) -> Self {
+        match variant {
+            TCE1_A::_0 => false,
+            TCE1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TCE1W<'a> {
+#[doc = "Reader of field `TCE1`"]
+pub type TCE1_R = crate::R<bool, TCE1_A>;
+impl TCE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TCE1_A {
+        match self.bits {
+            false => TCE1_A::_0,
+            true => TCE1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TCE1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TCE1_A::_1
+    }
+}
+#[doc = "Write proxy for field `TCE1`"]
+pub struct TCE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TCE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TCE1W) -> &'a mut W {
+impl<'a> TCE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TCE1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmit data channel N is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TCE1W::_0)
+        self.variant(TCE1_A::_0)
     }
     #[doc = "Transmit data channel N is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TCE1W::_1)
+        self.variant(TCE1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Word Flag Configuration"]
-    #[inline]
-    pub fn wdfl(&self) -> WDFLR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        WDFLR { bits }
+    #[inline(always)]
+    pub fn wdfl(&self) -> WDFL_R {
+        WDFL_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 16 - Transmit Channel Enable"]
-    #[inline]
-    pub fn tce0(&self) -> TCE0R {
-        TCE0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tce0(&self) -> TCE0_R {
+        TCE0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Transmit Channel Enable"]
-    #[inline]
-    pub fn tce1(&self) -> TCE1R {
-        TCE1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tce1(&self) -> TCE1_R {
+        TCE1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Word Flag Configuration"]
-    #[inline]
-    pub fn wdfl(&mut self) -> _WDFLW {
-        _WDFLW { w: self }
+    #[inline(always)]
+    pub fn wdfl(&mut self) -> WDFL_W {
+        WDFL_W { w: self }
     }
     #[doc = "Bit 16 - Transmit Channel Enable"]
-    #[inline]
-    pub fn tce0(&mut self) -> _TCE0W {
-        _TCE0W { w: self }
+    #[inline(always)]
+    pub fn tce0(&mut self) -> TCE0_W {
+        TCE0_W { w: self }
     }
     #[doc = "Bit 17 - Transmit Channel Enable"]
-    #[inline]
-    pub fn tce1(&mut self) -> _TCE1W {
-        _TCE1W { w: self }
+    #[inline(always)]
+    pub fn tce1(&mut self) -> TCE1_W {
+        TCE1_W { w: self }
     }
 }

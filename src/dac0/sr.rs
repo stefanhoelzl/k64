@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::SR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SR"]
+pub type R = crate::R<u8, super::SR>;
+#[doc = "Writer for register SR"]
+pub type W = crate::W<u8, super::SR>;
+#[doc = "Register SR `reset()`'s with value 0x02"]
+impl crate::ResetValue for super::SR {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x02
     }
 }
-#[doc = "Possible values of the field `DACBFRPBF`"]
+#[doc = "DAC Buffer Read Pointer Bottom Position Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBFRPBFR {
-    #[doc = "The DAC buffer read pointer is not equal to C2\\[DACBFUP\\]."]
+pub enum DACBFRPBF_A {
+    #[doc = "0: The DAC buffer read pointer is not equal to C2\\[DACBFUP\\]."]
     _0,
-    #[doc = "The DAC buffer read pointer is equal to C2\\[DACBFUP\\]."]
+    #[doc = "1: The DAC buffer read pointer is equal to C2\\[DACBFUP\\]."]
     _1,
 }
-impl DACBFRPBFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBFRPBFR::_0 => false,
-            DACBFRPBFR::_1 => true,
+impl From<DACBFRPBF_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBFRPBF_A) -> Self {
+        match variant {
+            DACBFRPBF_A::_0 => false,
+            DACBFRPBF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBFRPBFR {
-        match value {
-            false => DACBFRPBFR::_0,
-            true => DACBFRPBFR::_1,
+}
+#[doc = "Reader of field `DACBFRPBF`"]
+pub type DACBFRPBF_R = crate::R<bool, DACBFRPBF_A>;
+impl DACBFRPBF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBFRPBF_A {
+        match self.bits {
+            false => DACBFRPBF_A::_0,
+            true => DACBFRPBF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DACBFRPBFR::_0
+        *self == DACBFRPBF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DACBFRPBFR::_1
+        *self == DACBFRPBF_A::_1
     }
 }
-#[doc = "Possible values of the field `DACBFRPTF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBFRPTFR {
-    #[doc = "The DAC buffer read pointer is not zero."]
-    _0,
-    #[doc = "The DAC buffer read pointer is zero."]
-    _1,
-}
-impl DACBFRPTFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBFRPTFR::_0 => false,
-            DACBFRPTFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBFRPTFR {
-        match value {
-            false => DACBFRPTFR::_0,
-            true => DACBFRPTFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACBFRPTFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACBFRPTFR::_1
-    }
-}
-#[doc = "Possible values of the field `DACBFWMF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DACBFWMFR {
-    #[doc = "The DAC buffer read pointer has not reached the watermark level."]
-    _0,
-    #[doc = "The DAC buffer read pointer has reached the watermark level."]
-    _1,
-}
-impl DACBFWMFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DACBFWMFR::_0 => false,
-            DACBFWMFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DACBFWMFR {
-        match value {
-            false => DACBFWMFR::_0,
-            true => DACBFWMFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DACBFWMFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DACBFWMFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `DACBFRPBF`"]
-pub enum DACBFRPBFW {
-    #[doc = "The DAC buffer read pointer is not equal to C2\\[DACBFUP\\]."]
-    _0,
-    #[doc = "The DAC buffer read pointer is equal to C2\\[DACBFUP\\]."]
-    _1,
-}
-impl DACBFRPBFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBFRPBFW::_0 => false,
-            DACBFRPBFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DACBFRPBFW<'a> {
+#[doc = "Write proxy for field `DACBFRPBF`"]
+pub struct DACBFRPBF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBFRPBFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBFRPBFW) -> &'a mut W {
+impl<'a> DACBFRPBF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBFRPBF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC buffer read pointer is not equal to C2\\[DACBFUP\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBFRPBFW::_0)
+        self.variant(DACBFRPBF_A::_0)
     }
     #[doc = "The DAC buffer read pointer is equal to C2\\[DACBFUP\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBFRPBFW::_1)
+        self.variant(DACBFRPBF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACBFRPTF`"]
-pub enum DACBFRPTFW {
-    #[doc = "The DAC buffer read pointer is not zero."]
+#[doc = "DAC Buffer Read Pointer Top Position Flag\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACBFRPTF_A {
+    #[doc = "0: The DAC buffer read pointer is not zero."]
     _0,
-    #[doc = "The DAC buffer read pointer is zero."]
+    #[doc = "1: The DAC buffer read pointer is zero."]
     _1,
 }
-impl DACBFRPTFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBFRPTFW::_0 => false,
-            DACBFRPTFW::_1 => true,
+impl From<DACBFRPTF_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBFRPTF_A) -> Self {
+        match variant {
+            DACBFRPTF_A::_0 => false,
+            DACBFRPTF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACBFRPTFW<'a> {
+#[doc = "Reader of field `DACBFRPTF`"]
+pub type DACBFRPTF_R = crate::R<bool, DACBFRPTF_A>;
+impl DACBFRPTF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBFRPTF_A {
+        match self.bits {
+            false => DACBFRPTF_A::_0,
+            true => DACBFRPTF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACBFRPTF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACBFRPTF_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACBFRPTF`"]
+pub struct DACBFRPTF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBFRPTFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBFRPTFW) -> &'a mut W {
+impl<'a> DACBFRPTF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBFRPTF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC buffer read pointer is not zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBFRPTFW::_0)
+        self.variant(DACBFRPTF_A::_0)
     }
     #[doc = "The DAC buffer read pointer is zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBFRPTFW::_1)
+        self.variant(DACBFRPTF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACBFWMF`"]
-pub enum DACBFWMFW {
-    #[doc = "The DAC buffer read pointer has not reached the watermark level."]
+#[doc = "DAC Buffer Watermark Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DACBFWMF_A {
+    #[doc = "0: The DAC buffer read pointer has not reached the watermark level."]
     _0,
-    #[doc = "The DAC buffer read pointer has reached the watermark level."]
+    #[doc = "1: The DAC buffer read pointer has reached the watermark level."]
     _1,
 }
-impl DACBFWMFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DACBFWMFW::_0 => false,
-            DACBFWMFW::_1 => true,
+impl From<DACBFWMF_A> for bool {
+    #[inline(always)]
+    fn from(variant: DACBFWMF_A) -> Self {
+        match variant {
+            DACBFWMF_A::_0 => false,
+            DACBFWMF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DACBFWMFW<'a> {
+#[doc = "Reader of field `DACBFWMF`"]
+pub type DACBFWMF_R = crate::R<bool, DACBFWMF_A>;
+impl DACBFWMF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DACBFWMF_A {
+        match self.bits {
+            false => DACBFWMF_A::_0,
+            true => DACBFWMF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DACBFWMF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DACBFWMF_A::_1
+    }
+}
+#[doc = "Write proxy for field `DACBFWMF`"]
+pub struct DACBFWMF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACBFWMFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACBFWMFW) -> &'a mut W {
+impl<'a> DACBFWMF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACBFWMF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The DAC buffer read pointer has not reached the watermark level."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DACBFWMFW::_0)
+        self.variant(DACBFWMF_A::_0)
     }
     #[doc = "The DAC buffer read pointer has reached the watermark level."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DACBFWMFW::_1)
+        self.variant(DACBFWMF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - DAC Buffer Read Pointer Bottom Position Flag"]
-    #[inline]
-    pub fn dacbfrpbf(&self) -> DACBFRPBFR {
-        DACBFRPBFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbfrpbf(&self) -> DACBFRPBF_R {
+        DACBFRPBF_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - DAC Buffer Read Pointer Top Position Flag"]
-    #[inline]
-    pub fn dacbfrptf(&self) -> DACBFRPTFR {
-        DACBFRPTFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbfrptf(&self) -> DACBFRPTF_R {
+        DACBFRPTF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - DAC Buffer Watermark Flag"]
-    #[inline]
-    pub fn dacbfwmf(&self) -> DACBFWMFR {
-        DACBFWMFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dacbfwmf(&self) -> DACBFWMF_R {
+        DACBFWMF_R::new(((self.bits >> 2) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 2 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - DAC Buffer Read Pointer Bottom Position Flag"]
-    #[inline]
-    pub fn dacbfrpbf(&mut self) -> _DACBFRPBFW {
-        _DACBFRPBFW { w: self }
+    #[inline(always)]
+    pub fn dacbfrpbf(&mut self) -> DACBFRPBF_W {
+        DACBFRPBF_W { w: self }
     }
     #[doc = "Bit 1 - DAC Buffer Read Pointer Top Position Flag"]
-    #[inline]
-    pub fn dacbfrptf(&mut self) -> _DACBFRPTFW {
-        _DACBFRPTFW { w: self }
+    #[inline(always)]
+    pub fn dacbfrptf(&mut self) -> DACBFRPTF_W {
+        DACBFRPTF_W { w: self }
     }
     #[doc = "Bit 2 - DAC Buffer Watermark Flag"]
-    #[inline]
-    pub fn dacbfwmf(&mut self) -> _DACBFWMFW {
-        _DACBFWMFW { w: self }
+    #[inline(always)]
+    pub fn dacbfwmf(&mut self) -> DACBFWMF_W {
+        DACBFWMF_W { w: self }
     }
 }

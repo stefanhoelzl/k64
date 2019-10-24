@@ -1,761 +1,550 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SC"]
+pub type R = crate::R<u32, super::SC>;
+#[doc = "Writer for register SC"]
+pub type W = crate::W<u32, super::SC>;
+#[doc = "Register SC `reset()`'s with value 0"]
+impl crate::ResetValue for super::SC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PS`"]
+#[doc = "Prescale Factor Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSR {
-    #[doc = "Divide by 1"]
+pub enum PS_A {
+    #[doc = "0: Divide by 1"]
     _000,
-    #[doc = "Divide by 2"]
+    #[doc = "1: Divide by 2"]
     _001,
-    #[doc = "Divide by 4"]
+    #[doc = "2: Divide by 4"]
     _010,
-    #[doc = "Divide by 8"]
+    #[doc = "3: Divide by 8"]
     _011,
-    #[doc = "Divide by 16"]
+    #[doc = "4: Divide by 16"]
     _100,
-    #[doc = "Divide by 32"]
+    #[doc = "5: Divide by 32"]
     _101,
-    #[doc = "Divide by 64"]
+    #[doc = "6: Divide by 64"]
     _110,
-    #[doc = "Divide by 128"]
+    #[doc = "7: Divide by 128"]
     _111,
 }
-impl PSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PSR::_000 => 0,
-            PSR::_001 => 1,
-            PSR::_010 => 2,
-            PSR::_011 => 3,
-            PSR::_100 => 4,
-            PSR::_101 => 5,
-            PSR::_110 => 6,
-            PSR::_111 => 7,
+impl From<PS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PS_A) -> Self {
+        match variant {
+            PS_A::_000 => 0,
+            PS_A::_001 => 1,
+            PS_A::_010 => 2,
+            PS_A::_011 => 3,
+            PS_A::_100 => 4,
+            PS_A::_101 => 5,
+            PS_A::_110 => 6,
+            PS_A::_111 => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PSR {
-        match value {
-            0 => PSR::_000,
-            1 => PSR::_001,
-            2 => PSR::_010,
-            3 => PSR::_011,
-            4 => PSR::_100,
-            5 => PSR::_101,
-            6 => PSR::_110,
-            7 => PSR::_111,
+}
+#[doc = "Reader of field `PS`"]
+pub type PS_R = crate::R<u8, PS_A>;
+impl PS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PS_A {
+        match self.bits {
+            0 => PS_A::_000,
+            1 => PS_A::_001,
+            2 => PS_A::_010,
+            3 => PS_A::_011,
+            4 => PS_A::_100,
+            5 => PS_A::_101,
+            6 => PS_A::_110,
+            7 => PS_A::_111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == PSR::_000
+        *self == PS_A::_000
     }
     #[doc = "Checks if the value of the field is `_001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_001(&self) -> bool {
-        *self == PSR::_001
+        *self == PS_A::_001
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == PSR::_010
+        *self == PS_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == PSR::_011
+        *self == PS_A::_011
     }
     #[doc = "Checks if the value of the field is `_100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_100(&self) -> bool {
-        *self == PSR::_100
+        *self == PS_A::_100
     }
     #[doc = "Checks if the value of the field is `_101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_101(&self) -> bool {
-        *self == PSR::_101
+        *self == PS_A::_101
     }
     #[doc = "Checks if the value of the field is `_110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_110(&self) -> bool {
-        *self == PSR::_110
+        *self == PS_A::_110
     }
     #[doc = "Checks if the value of the field is `_111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111(&self) -> bool {
-        *self == PSR::_111
+        *self == PS_A::_111
     }
 }
-#[doc = "Possible values of the field `CLKS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLKSR {
-    #[doc = "No clock selected. This in effect disables the FTM counter."]
-    _00,
-    #[doc = "System clock"]
-    _01,
-    #[doc = "Fixed frequency clock"]
-    _10,
-    #[doc = "External clock"]
-    _11,
+#[doc = "Write proxy for field `PS`"]
+pub struct PS_W<'a> {
+    w: &'a mut W,
 }
-impl CLKSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CLKSR::_00 => 0,
-            CLKSR::_01 => 1,
-            CLKSR::_10 => 2,
-            CLKSR::_11 => 3,
+impl<'a> PS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PS_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CLKSR {
-        match value {
-            0 => CLKSR::_00,
-            1 => CLKSR::_01,
-            2 => CLKSR::_10,
-            3 => CLKSR::_11,
+    #[doc = "Divide by 1"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(PS_A::_000)
+    }
+    #[doc = "Divide by 2"]
+    #[inline(always)]
+    pub fn _001(self) -> &'a mut W {
+        self.variant(PS_A::_001)
+    }
+    #[doc = "Divide by 4"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(PS_A::_010)
+    }
+    #[doc = "Divide by 8"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(PS_A::_011)
+    }
+    #[doc = "Divide by 16"]
+    #[inline(always)]
+    pub fn _100(self) -> &'a mut W {
+        self.variant(PS_A::_100)
+    }
+    #[doc = "Divide by 32"]
+    #[inline(always)]
+    pub fn _101(self) -> &'a mut W {
+        self.variant(PS_A::_101)
+    }
+    #[doc = "Divide by 64"]
+    #[inline(always)]
+    pub fn _110(self) -> &'a mut W {
+        self.variant(PS_A::_110)
+    }
+    #[doc = "Divide by 128"]
+    #[inline(always)]
+    pub fn _111(self) -> &'a mut W {
+        self.variant(PS_A::_111)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w
+    }
+}
+#[doc = "Clock Source Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLKS_A {
+    #[doc = "0: No clock selected. This in effect disables the FTM counter."]
+    _00,
+    #[doc = "1: System clock"]
+    _01,
+    #[doc = "2: Fixed frequency clock"]
+    _10,
+    #[doc = "3: External clock"]
+    _11,
+}
+impl From<CLKS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CLKS_A) -> Self {
+        match variant {
+            CLKS_A::_00 => 0,
+            CLKS_A::_01 => 1,
+            CLKS_A::_10 => 2,
+            CLKS_A::_11 => 3,
+        }
+    }
+}
+#[doc = "Reader of field `CLKS`"]
+pub type CLKS_R = crate::R<u8, CLKS_A>;
+impl CLKS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLKS_A {
+        match self.bits {
+            0 => CLKS_A::_00,
+            1 => CLKS_A::_01,
+            2 => CLKS_A::_10,
+            3 => CLKS_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == CLKSR::_00
+        *self == CLKS_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == CLKSR::_01
+        *self == CLKS_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == CLKSR::_10
+        *self == CLKS_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == CLKSR::_11
+        *self == CLKS_A::_11
     }
 }
-#[doc = "Possible values of the field `CPWMS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CPWMSR {
-    #[doc = "FTM counter operates in Up Counting mode."]
-    _0,
-    #[doc = "FTM counter operates in Up-Down Counting mode."]
-    _1,
-}
-impl CPWMSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CPWMSR::_0 => false,
-            CPWMSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CPWMSR {
-        match value {
-            false => CPWMSR::_0,
-            true => CPWMSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == CPWMSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == CPWMSR::_1
-    }
-}
-#[doc = "Possible values of the field `TOIE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TOIER {
-    #[doc = "Disable TOF interrupts. Use software polling."]
-    _0,
-    #[doc = "Enable TOF interrupts. An interrupt is generated when TOF equals one."]
-    _1,
-}
-impl TOIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TOIER::_0 => false,
-            TOIER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TOIER {
-        match value {
-            false => TOIER::_0,
-            true => TOIER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TOIER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TOIER::_1
-    }
-}
-#[doc = "Possible values of the field `TOF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TOFR {
-    #[doc = "FTM counter has not overflowed."]
-    _0,
-    #[doc = "FTM counter has overflowed."]
-    _1,
-}
-impl TOFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TOFR::_0 => false,
-            TOFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TOFR {
-        match value {
-            false => TOFR::_0,
-            true => TOFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TOFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TOFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `PS`"]
-pub enum PSW {
-    #[doc = "Divide by 1"]
-    _000,
-    #[doc = "Divide by 2"]
-    _001,
-    #[doc = "Divide by 4"]
-    _010,
-    #[doc = "Divide by 8"]
-    _011,
-    #[doc = "Divide by 16"]
-    _100,
-    #[doc = "Divide by 32"]
-    _101,
-    #[doc = "Divide by 64"]
-    _110,
-    #[doc = "Divide by 128"]
-    _111,
-}
-impl PSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PSW::_000 => 0,
-            PSW::_001 => 1,
-            PSW::_010 => 2,
-            PSW::_011 => 3,
-            PSW::_100 => 4,
-            PSW::_101 => 5,
-            PSW::_110 => 6,
-            PSW::_111 => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PSW<'a> {
+#[doc = "Write proxy for field `CLKS`"]
+pub struct CLKS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PSW) -> &'a mut W {
+impl<'a> CLKS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLKS_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Divide by 1"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(PSW::_000)
-    }
-    #[doc = "Divide by 2"]
-    #[inline]
-    pub fn _001(self) -> &'a mut W {
-        self.variant(PSW::_001)
-    }
-    #[doc = "Divide by 4"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(PSW::_010)
-    }
-    #[doc = "Divide by 8"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(PSW::_011)
-    }
-    #[doc = "Divide by 16"]
-    #[inline]
-    pub fn _100(self) -> &'a mut W {
-        self.variant(PSW::_100)
-    }
-    #[doc = "Divide by 32"]
-    #[inline]
-    pub fn _101(self) -> &'a mut W {
-        self.variant(PSW::_101)
-    }
-    #[doc = "Divide by 64"]
-    #[inline]
-    pub fn _110(self) -> &'a mut W {
-        self.variant(PSW::_110)
-    }
-    #[doc = "Divide by 128"]
-    #[inline]
-    pub fn _111(self) -> &'a mut W {
-        self.variant(PSW::_111)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CLKS`"]
-pub enum CLKSW {
-    #[doc = "No clock selected. This in effect disables the FTM counter."]
-    _00,
-    #[doc = "System clock"]
-    _01,
-    #[doc = "Fixed frequency clock"]
-    _10,
-    #[doc = "External clock"]
-    _11,
-}
-impl CLKSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CLKSW::_00 => 0,
-            CLKSW::_01 => 1,
-            CLKSW::_10 => 2,
-            CLKSW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLKSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CLKSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLKSW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "No clock selected. This in effect disables the FTM counter."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(CLKSW::_00)
+        self.variant(CLKS_A::_00)
     }
     #[doc = "System clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(CLKSW::_01)
+        self.variant(CLKS_A::_01)
     }
     #[doc = "Fixed frequency clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(CLKSW::_10)
+        self.variant(CLKS_A::_10)
     }
     #[doc = "External clock"]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(CLKSW::_11)
+        self.variant(CLKS_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 3)) | (((value as u32) & 0x03) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CPWMS`"]
-pub enum CPWMSW {
+#[doc = "Center-Aligned PWM Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CPWMS_A {
+    #[doc = "0: FTM counter operates in Up Counting mode."]
+    _0,
+    #[doc = "1: FTM counter operates in Up-Down Counting mode."]
+    _1,
+}
+impl From<CPWMS_A> for bool {
+    #[inline(always)]
+    fn from(variant: CPWMS_A) -> Self {
+        match variant {
+            CPWMS_A::_0 => false,
+            CPWMS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CPWMS`"]
+pub type CPWMS_R = crate::R<bool, CPWMS_A>;
+impl CPWMS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CPWMS_A {
+        match self.bits {
+            false => CPWMS_A::_0,
+            true => CPWMS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == CPWMS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == CPWMS_A::_1
+    }
+}
+#[doc = "Write proxy for field `CPWMS`"]
+pub struct CPWMS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CPWMS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CPWMS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "FTM counter operates in Up Counting mode."]
-    _0,
-    #[doc = "FTM counter operates in Up-Down Counting mode."]
-    _1,
-}
-impl CPWMSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CPWMSW::_0 => false,
-            CPWMSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CPWMSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CPWMSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CPWMSW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "FTM counter operates in Up Counting mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CPWMSW::_0)
+        self.variant(CPWMS_A::_0)
     }
     #[doc = "FTM counter operates in Up-Down Counting mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CPWMSW::_1)
+        self.variant(CPWMS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TOIE`"]
-pub enum TOIEW {
-    #[doc = "Disable TOF interrupts. Use software polling."]
+#[doc = "Timer Overflow Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TOIE_A {
+    #[doc = "0: Disable TOF interrupts. Use software polling."]
     _0,
-    #[doc = "Enable TOF interrupts. An interrupt is generated when TOF equals one."]
+    #[doc = "1: Enable TOF interrupts. An interrupt is generated when TOF equals one."]
     _1,
 }
-impl TOIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TOIEW::_0 => false,
-            TOIEW::_1 => true,
+impl From<TOIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TOIE_A) -> Self {
+        match variant {
+            TOIE_A::_0 => false,
+            TOIE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TOIEW<'a> {
+#[doc = "Reader of field `TOIE`"]
+pub type TOIE_R = crate::R<bool, TOIE_A>;
+impl TOIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TOIE_A {
+        match self.bits {
+            false => TOIE_A::_0,
+            true => TOIE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TOIE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TOIE_A::_1
+    }
+}
+#[doc = "Write proxy for field `TOIE`"]
+pub struct TOIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TOIEW) -> &'a mut W {
+impl<'a> TOIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TOIE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disable TOF interrupts. Use software polling."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TOIEW::_0)
+        self.variant(TOIE_A::_0)
     }
     #[doc = "Enable TOF interrupts. An interrupt is generated when TOF equals one."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TOIEW::_1)
+        self.variant(TOIE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TOF`"]
-pub enum TOFW {
-    #[doc = "FTM counter has not overflowed."]
+#[doc = "Timer Overflow Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TOF_A {
+    #[doc = "0: FTM counter has not overflowed."]
     _0,
-    #[doc = "FTM counter has overflowed."]
+    #[doc = "1: FTM counter has overflowed."]
     _1,
 }
-impl TOFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TOFW::_0 => false,
-            TOFW::_1 => true,
+impl From<TOF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TOF_A) -> Self {
+        match variant {
+            TOF_A::_0 => false,
+            TOF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TOFW<'a> {
+#[doc = "Reader of field `TOF`"]
+pub type TOF_R = crate::R<bool, TOF_A>;
+impl TOF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TOF_A {
+        match self.bits {
+            false => TOF_A::_0,
+            true => TOF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TOF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TOF_A::_1
+    }
+}
+#[doc = "Write proxy for field `TOF`"]
+pub struct TOF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TOFW) -> &'a mut W {
+impl<'a> TOF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TOF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "FTM counter has not overflowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TOFW::_0)
+        self.variant(TOF_A::_0)
     }
     #[doc = "FTM counter has overflowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TOFW::_1)
+        self.variant(TOF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Prescale Factor Selection"]
-    #[inline]
-    pub fn ps(&self) -> PSR {
-        PSR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn ps(&self) -> PS_R {
+        PS_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 3:4 - Clock Source Selection"]
-    #[inline]
-    pub fn clks(&self) -> CLKSR {
-        CLKSR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn clks(&self) -> CLKS_R {
+        CLKS_R::new(((self.bits >> 3) & 0x03) as u8)
     }
     #[doc = "Bit 5 - Center-Aligned PWM Select"]
-    #[inline]
-    pub fn cpwms(&self) -> CPWMSR {
-        CPWMSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cpwms(&self) -> CPWMS_R {
+        CPWMS_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Timer Overflow Interrupt Enable"]
-    #[inline]
-    pub fn toie(&self) -> TOIER {
-        TOIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn toie(&self) -> TOIE_R {
+        TOIE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Timer Overflow Flag"]
-    #[inline]
-    pub fn tof(&self) -> TOFR {
-        TOFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tof(&self) -> TOF_R {
+        TOF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Prescale Factor Selection"]
-    #[inline]
-    pub fn ps(&mut self) -> _PSW {
-        _PSW { w: self }
+    #[inline(always)]
+    pub fn ps(&mut self) -> PS_W {
+        PS_W { w: self }
     }
     #[doc = "Bits 3:4 - Clock Source Selection"]
-    #[inline]
-    pub fn clks(&mut self) -> _CLKSW {
-        _CLKSW { w: self }
+    #[inline(always)]
+    pub fn clks(&mut self) -> CLKS_W {
+        CLKS_W { w: self }
     }
     #[doc = "Bit 5 - Center-Aligned PWM Select"]
-    #[inline]
-    pub fn cpwms(&mut self) -> _CPWMSW {
-        _CPWMSW { w: self }
+    #[inline(always)]
+    pub fn cpwms(&mut self) -> CPWMS_W {
+        CPWMS_W { w: self }
     }
     #[doc = "Bit 6 - Timer Overflow Interrupt Enable"]
-    #[inline]
-    pub fn toie(&mut self) -> _TOIEW {
-        _TOIEW { w: self }
+    #[inline(always)]
+    pub fn toie(&mut self) -> TOIE_W {
+        TOIE_W { w: self }
     }
     #[doc = "Bit 7 - Timer Overflow Flag"]
-    #[inline]
-    pub fn tof(&mut self) -> _TOFW {
-        _TOFW { w: self }
+    #[inline(always)]
+    pub fn tof(&mut self) -> TOF_W {
+        TOF_W { w: self }
     }
 }

@@ -1,364 +1,190 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CS9 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CS9"]
+pub type R = crate::R<u32, super::CS9>;
+#[doc = "Writer for register CS9"]
+pub type W = crate::W<u32, super::CS9>;
+#[doc = "Register CS9 `reset()`'s with value 0"]
+impl crate::ResetValue for super::CS9 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct TIME_STAMPR {
-    bits: u16,
-}
-impl TIME_STAMPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DLCR {
-    bits: u8,
-}
-impl DLCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RTRR {
-    bits: bool,
-}
-impl RTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct IDER {
-    bits: bool,
-}
-impl IDER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SRRR {
-    bits: bool,
-}
-impl SRRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CODER {
-    bits: u8,
-}
-impl CODER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TIME_STAMPW<'a> {
+#[doc = "Reader of field `TIME_STAMP`"]
+pub type TIME_STAMP_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `TIME_STAMP`"]
+pub struct TIME_STAMP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIME_STAMPW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TIME_STAMP_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 65535;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xffff) | ((value as u32) & 0xffff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _DLCW<'a> {
+#[doc = "Reader of field `DLC`"]
+pub type DLC_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DLC`"]
+pub struct DLC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DLCW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> DLC_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 16)) | (((value as u32) & 0x0f) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RTRW<'a> {
+#[doc = "Reader of field `RTR`"]
+pub type RTR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RTR`"]
+pub struct RTR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTRW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RTR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _IDEW<'a> {
+#[doc = "Reader of field `IDE`"]
+pub type IDE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `IDE`"]
+pub struct IDE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> IDE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SRRW<'a> {
+#[doc = "Reader of field `SRR`"]
+pub type SRR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SRR`"]
+pub struct SRR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SRRW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SRR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CODEW<'a> {
+#[doc = "Reader of field `CODE`"]
+pub type CODE_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CODE`"]
+pub struct CODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CODEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CODE_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Free-Running Counter Time stamp. This 16-bit field is a copy of the Free-Running Timer, captured for Tx and Rx frames at the time when the beginning of the Identifier field appears on the CAN bus."]
-    #[inline]
-    pub fn time_stamp(&self) -> TIME_STAMPR {
-        let bits = {
-            const MASK: u16 = 65535;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TIME_STAMPR { bits }
+    #[inline(always)]
+    pub fn time_stamp(&self) -> TIME_STAMP_R {
+        TIME_STAMP_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:19 - Length of the data to be stored/transmitted."]
-    #[inline]
-    pub fn dlc(&self) -> DLCR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DLCR { bits }
+    #[inline(always)]
+    pub fn dlc(&self) -> DLC_R {
+        DLC_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bit 20 - Remote Transmission Request. One/zero for remote/data frame."]
-    #[inline]
-    pub fn rtr(&self) -> RTRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RTRR { bits }
+    #[inline(always)]
+    pub fn rtr(&self) -> RTR_R {
+        RTR_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - ID Extended. One/zero for extended/standard format frame."]
-    #[inline]
-    pub fn ide(&self) -> IDER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        IDER { bits }
+    #[inline(always)]
+    pub fn ide(&self) -> IDE_R {
+        IDE_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Substitute Remote Request. Contains a fixed recessive bit."]
-    #[inline]
-    pub fn srr(&self) -> SRRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SRRR { bits }
+    #[inline(always)]
+    pub fn srr(&self) -> SRR_R {
+        SRR_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bits 24:27 - Reserved"]
-    #[inline]
-    pub fn code(&self) -> CODER {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CODER { bits }
+    #[inline(always)]
+    pub fn code(&self) -> CODE_R {
+        CODE_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - Free-Running Counter Time stamp. This 16-bit field is a copy of the Free-Running Timer, captured for Tx and Rx frames at the time when the beginning of the Identifier field appears on the CAN bus."]
-    #[inline]
-    pub fn time_stamp(&mut self) -> _TIME_STAMPW {
-        _TIME_STAMPW { w: self }
+    #[inline(always)]
+    pub fn time_stamp(&mut self) -> TIME_STAMP_W {
+        TIME_STAMP_W { w: self }
     }
     #[doc = "Bits 16:19 - Length of the data to be stored/transmitted."]
-    #[inline]
-    pub fn dlc(&mut self) -> _DLCW {
-        _DLCW { w: self }
+    #[inline(always)]
+    pub fn dlc(&mut self) -> DLC_W {
+        DLC_W { w: self }
     }
     #[doc = "Bit 20 - Remote Transmission Request. One/zero for remote/data frame."]
-    #[inline]
-    pub fn rtr(&mut self) -> _RTRW {
-        _RTRW { w: self }
+    #[inline(always)]
+    pub fn rtr(&mut self) -> RTR_W {
+        RTR_W { w: self }
     }
     #[doc = "Bit 21 - ID Extended. One/zero for extended/standard format frame."]
-    #[inline]
-    pub fn ide(&mut self) -> _IDEW {
-        _IDEW { w: self }
+    #[inline(always)]
+    pub fn ide(&mut self) -> IDE_W {
+        IDE_W { w: self }
     }
     #[doc = "Bit 22 - Substitute Remote Request. Contains a fixed recessive bit."]
-    #[inline]
-    pub fn srr(&mut self) -> _SRRW {
-        _SRRW { w: self }
+    #[inline(always)]
+    pub fn srr(&mut self) -> SRR_W {
+        SRR_W { w: self }
     }
     #[doc = "Bits 24:27 - Reserved"]
-    #[inline]
-    pub fn code(&mut self) -> _CODEW {
-        _CODEW { w: self }
+    #[inline(always)]
+    pub fn code(&mut self) -> CODE_W {
+        CODE_W { w: self }
     }
 }

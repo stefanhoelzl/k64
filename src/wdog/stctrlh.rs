@@ -1,1449 +1,1037 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u16,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u16,
-}
-impl super::STCTRLH {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register STCTRLH"]
+pub type R = crate::R<u16, super::STCTRLH>;
+#[doc = "Writer for register STCTRLH"]
+pub type W = crate::W<u16, super::STCTRLH>;
+#[doc = "Register STCTRLH `reset()`'s with value 0x01d3"]
+impl crate::ResetValue for super::STCTRLH {
+    type Type = u16;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x01d3
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Enables or disables the WDOG's operation\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WDOGEN_A {
+    #[doc = "0: WDOG is disabled."]
+    _0,
+    #[doc = "1: WDOG is enabled."]
+    _1,
+}
+impl From<WDOGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: WDOGEN_A) -> Self {
+        match variant {
+            WDOGEN_A::_0 => false,
+            WDOGEN_A::_1 => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `WDOGEN`"]
+pub type WDOGEN_R = crate::R<bool, WDOGEN_A>;
+impl WDOGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WDOGEN_A {
+        match self.bits {
+            false => WDOGEN_A::_0,
+            true => WDOGEN_A::_1,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WDOGEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WDOGEN_A::_1
     }
 }
-#[doc = "Possible values of the field `WDOGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WDOGENR {
+#[doc = "Write proxy for field `WDOGEN`"]
+pub struct WDOGEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WDOGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WDOGEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG is disabled."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(WDOGEN_A::_0)
+    }
     #[doc = "WDOG is enabled."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(WDOGEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u16) & 0x01);
+        self.w
+    }
+}
+#[doc = "Selects clock source for the WDOG timer and other internal timing operations.\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLKSRC_A {
+    #[doc = "0: WDOG clock sourced from LPO ."]
+    _0,
+    #[doc = "1: WDOG clock sourced from alternate clock source."]
     _1,
 }
-impl WDOGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WDOGENR::_0 => false,
-            WDOGENR::_1 => true,
+impl From<CLKSRC_A> for bool {
+    #[inline(always)]
+    fn from(variant: CLKSRC_A) -> Self {
+        match variant {
+            CLKSRC_A::_0 => false,
+            CLKSRC_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WDOGENR {
-        match value {
-            false => WDOGENR::_0,
-            true => WDOGENR::_1,
+}
+#[doc = "Reader of field `CLKSRC`"]
+pub type CLKSRC_R = crate::R<bool, CLKSRC_A>;
+impl CLKSRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLKSRC_A {
+        match self.bits {
+            false => CLKSRC_A::_0,
+            true => CLKSRC_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == WDOGENR::_0
+        *self == CLKSRC_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == WDOGENR::_1
+        *self == CLKSRC_A::_1
     }
 }
-#[doc = "Possible values of the field `CLKSRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLKSRCR {
+#[doc = "Write proxy for field `CLKSRC`"]
+pub struct CLKSRC_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CLKSRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLKSRC_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG clock sourced from LPO ."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(CLKSRC_A::_0)
+    }
     #[doc = "WDOG clock sourced from alternate clock source."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(CLKSRC_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u16) & 0x01) << 1);
+        self.w
+    }
+}
+#[doc = "Used to enable the debug breadcrumbs feature\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IRQRSTEN_A {
+    #[doc = "0: WDOG time-out generates reset only."]
+    _0,
+    #[doc = "1: WDOG time-out initially generates an interrupt. After WCT, it generates a reset."]
     _1,
 }
-impl CLKSRCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CLKSRCR::_0 => false,
-            CLKSRCR::_1 => true,
+impl From<IRQRSTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: IRQRSTEN_A) -> Self {
+        match variant {
+            IRQRSTEN_A::_0 => false,
+            IRQRSTEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CLKSRCR {
-        match value {
-            false => CLKSRCR::_0,
-            true => CLKSRCR::_1,
+}
+#[doc = "Reader of field `IRQRSTEN`"]
+pub type IRQRSTEN_R = crate::R<bool, IRQRSTEN_A>;
+impl IRQRSTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IRQRSTEN_A {
+        match self.bits {
+            false => IRQRSTEN_A::_0,
+            true => IRQRSTEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CLKSRCR::_0
+        *self == IRQRSTEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CLKSRCR::_1
+        *self == IRQRSTEN_A::_1
     }
 }
-#[doc = "Possible values of the field `IRQRSTEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IRQRSTENR {
+#[doc = "Write proxy for field `IRQRSTEN`"]
+pub struct IRQRSTEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> IRQRSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IRQRSTEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG time-out generates reset only."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(IRQRSTEN_A::_0)
+    }
     #[doc = "WDOG time-out initially generates an interrupt. After WCT, it generates a reset."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(IRQRSTEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u16) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "Enables Windowing mode.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WINEN_A {
+    #[doc = "0: Windowing mode is disabled."]
+    _0,
+    #[doc = "1: Windowing mode is enabled."]
     _1,
 }
-impl IRQRSTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IRQRSTENR::_0 => false,
-            IRQRSTENR::_1 => true,
+impl From<WINEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: WINEN_A) -> Self {
+        match variant {
+            WINEN_A::_0 => false,
+            WINEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IRQRSTENR {
-        match value {
-            false => IRQRSTENR::_0,
-            true => IRQRSTENR::_1,
+}
+#[doc = "Reader of field `WINEN`"]
+pub type WINEN_R = crate::R<bool, WINEN_A>;
+impl WINEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WINEN_A {
+        match self.bits {
+            false => WINEN_A::_0,
+            true => WINEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IRQRSTENR::_0
+        *self == WINEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IRQRSTENR::_1
+        *self == WINEN_A::_1
     }
 }
-#[doc = "Possible values of the field `WINEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WINENR {
+#[doc = "Write proxy for field `WINEN`"]
+pub struct WINEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WINEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WINEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Windowing mode is disabled."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(WINEN_A::_0)
+    }
     #[doc = "Windowing mode is enabled."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(WINEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u16) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ALLOWUPDATE_A {
+    #[doc = "0: No further updates allowed to WDOG write-once registers."]
+    _0,
+    #[doc = "1: WDOG write-once registers can be unlocked for updating."]
     _1,
 }
-impl WINENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WINENR::_0 => false,
-            WINENR::_1 => true,
+impl From<ALLOWUPDATE_A> for bool {
+    #[inline(always)]
+    fn from(variant: ALLOWUPDATE_A) -> Self {
+        match variant {
+            ALLOWUPDATE_A::_0 => false,
+            ALLOWUPDATE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WINENR {
-        match value {
-            false => WINENR::_0,
-            true => WINENR::_1,
+}
+#[doc = "Reader of field `ALLOWUPDATE`"]
+pub type ALLOWUPDATE_R = crate::R<bool, ALLOWUPDATE_A>;
+impl ALLOWUPDATE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ALLOWUPDATE_A {
+        match self.bits {
+            false => ALLOWUPDATE_A::_0,
+            true => ALLOWUPDATE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == WINENR::_0
+        *self == ALLOWUPDATE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == WINENR::_1
+        *self == ALLOWUPDATE_A::_1
     }
 }
-#[doc = "Possible values of the field `ALLOWUPDATE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ALLOWUPDATER {
+#[doc = "Write proxy for field `ALLOWUPDATE`"]
+pub struct ALLOWUPDATE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ALLOWUPDATE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ALLOWUPDATE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No further updates allowed to WDOG write-once registers."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(ALLOWUPDATE_A::_0)
+    }
     #[doc = "WDOG write-once registers can be unlocked for updating."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(ALLOWUPDATE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u16) & 0x01) << 4);
+        self.w
+    }
+}
+#[doc = "Enables or disables WDOG in Debug mode.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DBGEN_A {
+    #[doc = "0: WDOG is disabled in CPU Debug mode."]
+    _0,
+    #[doc = "1: WDOG is enabled in CPU Debug mode."]
     _1,
 }
-impl ALLOWUPDATER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ALLOWUPDATER::_0 => false,
-            ALLOWUPDATER::_1 => true,
+impl From<DBGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: DBGEN_A) -> Self {
+        match variant {
+            DBGEN_A::_0 => false,
+            DBGEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ALLOWUPDATER {
-        match value {
-            false => ALLOWUPDATER::_0,
-            true => ALLOWUPDATER::_1,
+}
+#[doc = "Reader of field `DBGEN`"]
+pub type DBGEN_R = crate::R<bool, DBGEN_A>;
+impl DBGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DBGEN_A {
+        match self.bits {
+            false => DBGEN_A::_0,
+            true => DBGEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ALLOWUPDATER::_0
+        *self == DBGEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ALLOWUPDATER::_1
+        *self == DBGEN_A::_1
     }
 }
-#[doc = "Possible values of the field `DBGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DBGENR {
+#[doc = "Write proxy for field `DBGEN`"]
+pub struct DBGEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DBGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DBGEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG is disabled in CPU Debug mode."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(DBGEN_A::_0)
+    }
     #[doc = "WDOG is enabled in CPU Debug mode."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(DBGEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u16) & 0x01) << 5);
+        self.w
+    }
+}
+#[doc = "Enables or disables WDOG in Stop mode.\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum STOPEN_A {
+    #[doc = "0: WDOG is disabled in CPU Stop mode."]
+    _0,
+    #[doc = "1: WDOG is enabled in CPU Stop mode."]
     _1,
 }
-impl DBGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DBGENR::_0 => false,
-            DBGENR::_1 => true,
+impl From<STOPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: STOPEN_A) -> Self {
+        match variant {
+            STOPEN_A::_0 => false,
+            STOPEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DBGENR {
-        match value {
-            false => DBGENR::_0,
-            true => DBGENR::_1,
+}
+#[doc = "Reader of field `STOPEN`"]
+pub type STOPEN_R = crate::R<bool, STOPEN_A>;
+impl STOPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STOPEN_A {
+        match self.bits {
+            false => STOPEN_A::_0,
+            true => STOPEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DBGENR::_0
+        *self == STOPEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DBGENR::_1
+        *self == STOPEN_A::_1
     }
 }
-#[doc = "Possible values of the field `STOPEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STOPENR {
+#[doc = "Write proxy for field `STOPEN`"]
+pub struct STOPEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> STOPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: STOPEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG is disabled in CPU Stop mode."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(STOPEN_A::_0)
+    }
     #[doc = "WDOG is enabled in CPU Stop mode."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(STOPEN_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u16) & 0x01) << 6);
+        self.w
+    }
+}
+#[doc = "Enables or disables WDOG in Wait mode.\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WAITEN_A {
+    #[doc = "0: WDOG is disabled in CPU Wait mode."]
+    _0,
+    #[doc = "1: WDOG is enabled in CPU Wait mode."]
     _1,
 }
-impl STOPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            STOPENR::_0 => false,
-            STOPENR::_1 => true,
+impl From<WAITEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: WAITEN_A) -> Self {
+        match variant {
+            WAITEN_A::_0 => false,
+            WAITEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> STOPENR {
-        match value {
-            false => STOPENR::_0,
-            true => STOPENR::_1,
+}
+#[doc = "Reader of field `WAITEN`"]
+pub type WAITEN_R = crate::R<bool, WAITEN_A>;
+impl WAITEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WAITEN_A {
+        match self.bits {
+            false => WAITEN_A::_0,
+            true => WAITEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == STOPENR::_0
+        *self == WAITEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == STOPENR::_1
+        *self == WAITEN_A::_1
     }
 }
-#[doc = "Possible values of the field `WAITEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WAITENR {
+#[doc = "Write proxy for field `WAITEN`"]
+pub struct WAITEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WAITEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WAITEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "WDOG is disabled in CPU Wait mode."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(WAITEN_A::_0)
+    }
     #[doc = "WDOG is enabled in CPU Wait mode."]
-    _1,
-}
-impl WAITENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(WAITEN_A::_1)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WAITENR::_0 => false,
-            WAITENR::_1 => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WAITENR {
-        match value {
-            false => WAITENR::_0,
-            true => WAITENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WAITENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WAITENR::_1
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u16) & 0x01) << 7);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct TESTWDOGR {
-    bits: bool,
+#[doc = "Reader of field `TESTWDOG`"]
+pub type TESTWDOG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TESTWDOG`"]
+pub struct TESTWDOG_W<'a> {
+    w: &'a mut W,
 }
-impl TESTWDOGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> TESTWDOG_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u16) & 0x01) << 10);
+        self.w
     }
 }
-#[doc = "Possible values of the field `TESTSEL`"]
+#[doc = "Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TESTSELR {
-    #[doc = "Quick test. The timer runs in normal operation. You can load a small time-out value to do a quick test."]
+pub enum TESTSEL_A {
+    #[doc = "0: Quick test. The timer runs in normal operation. You can load a small time-out value to do a quick test."]
     _0,
-    #[doc = "Byte test. Puts the timer in the byte test mode where individual bytes of the timer are enabled for operation and are compared for time-out against the corresponding byte of the programmed time-out value. Select the byte through BYTESEL\\[1:0\\] for testing."]
+    #[doc = "1: Byte test. Puts the timer in the byte test mode where individual bytes of the timer are enabled for operation and are compared for time-out against the corresponding byte of the programmed time-out value. Select the byte through BYTESEL\\[1:0\\] for testing."]
     _1,
 }
-impl TESTSELR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TESTSELR::_0 => false,
-            TESTSELR::_1 => true,
+impl From<TESTSEL_A> for bool {
+    #[inline(always)]
+    fn from(variant: TESTSEL_A) -> Self {
+        match variant {
+            TESTSEL_A::_0 => false,
+            TESTSEL_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TESTSELR {
-        match value {
-            false => TESTSELR::_0,
-            true => TESTSELR::_1,
+}
+#[doc = "Reader of field `TESTSEL`"]
+pub type TESTSEL_R = crate::R<bool, TESTSEL_A>;
+impl TESTSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TESTSEL_A {
+        match self.bits {
+            false => TESTSEL_A::_0,
+            true => TESTSEL_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == TESTSELR::_0
+        *self == TESTSEL_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == TESTSELR::_1
+        *self == TESTSEL_A::_1
     }
 }
-#[doc = "Possible values of the field `BYTESEL`"]
+#[doc = "Write proxy for field `TESTSEL`"]
+pub struct TESTSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TESTSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TESTSEL_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Quick test. The timer runs in normal operation. You can load a small time-out value to do a quick test."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(TESTSEL_A::_0)
+    }
+    #[doc = "Byte test. Puts the timer in the byte test mode where individual bytes of the timer are enabled for operation and are compared for time-out against the corresponding byte of the programmed time-out value. Select the byte through BYTESEL\\[1:0\\] for testing."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(TESTSEL_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u16) & 0x01) << 11);
+        self.w
+    }
+}
+#[doc = "This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BYTESELR {
-    #[doc = "Byte 0 selected"]
+pub enum BYTESEL_A {
+    #[doc = "0: Byte 0 selected"]
     _00,
-    #[doc = "Byte 1 selected"]
+    #[doc = "1: Byte 1 selected"]
     _01,
-    #[doc = "Byte 2 selected"]
+    #[doc = "2: Byte 2 selected"]
     _10,
-    #[doc = "Byte 3 selected"]
+    #[doc = "3: Byte 3 selected"]
     _11,
 }
-impl BYTESELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            BYTESELR::_00 => 0,
-            BYTESELR::_01 => 1,
-            BYTESELR::_10 => 2,
-            BYTESELR::_11 => 3,
+impl From<BYTESEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: BYTESEL_A) -> Self {
+        match variant {
+            BYTESEL_A::_00 => 0,
+            BYTESEL_A::_01 => 1,
+            BYTESEL_A::_10 => 2,
+            BYTESEL_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> BYTESELR {
-        match value {
-            0 => BYTESELR::_00,
-            1 => BYTESELR::_01,
-            2 => BYTESELR::_10,
-            3 => BYTESELR::_11,
+}
+#[doc = "Reader of field `BYTESEL`"]
+pub type BYTESEL_R = crate::R<u8, BYTESEL_A>;
+impl BYTESEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BYTESEL_A {
+        match self.bits {
+            0 => BYTESEL_A::_00,
+            1 => BYTESEL_A::_01,
+            2 => BYTESEL_A::_10,
+            3 => BYTESEL_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == BYTESELR::_00
+        *self == BYTESEL_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == BYTESELR::_01
+        *self == BYTESEL_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == BYTESELR::_10
+        *self == BYTESEL_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == BYTESELR::_11
+        *self == BYTESEL_A::_11
     }
 }
-#[doc = "Possible values of the field `DISTESTWDOG`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DISTESTWDOGR {
-    #[doc = "WDOG functional test mode is not disabled."]
-    _0,
-    #[doc = "WDOG functional test mode is disabled permanently until reset."]
-    _1,
+#[doc = "Write proxy for field `BYTESEL`"]
+pub struct BYTESEL_W<'a> {
+    w: &'a mut W,
 }
-impl DISTESTWDOGR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DISTESTWDOGR::_0 => false,
-            DISTESTWDOGR::_1 => true,
+impl<'a> BYTESEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BYTESEL_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DISTESTWDOGR {
-        match value {
-            false => DISTESTWDOGR::_0,
-            true => DISTESTWDOGR::_1,
+    #[doc = "Byte 0 selected"]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(BYTESEL_A::_00)
+    }
+    #[doc = "Byte 1 selected"]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(BYTESEL_A::_01)
+    }
+    #[doc = "Byte 2 selected"]
+    #[inline(always)]
+    pub fn _10(self) -> &'a mut W {
+        self.variant(BYTESEL_A::_10)
+    }
+    #[doc = "Byte 3 selected"]
+    #[inline(always)]
+    pub fn _11(self) -> &'a mut W {
+        self.variant(BYTESEL_A::_11)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 12)) | (((value as u16) & 0x03) << 12);
+        self.w
+    }
+}
+#[doc = "Allows the WDOG's functional test mode to be disabled permanently\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DISTESTWDOG_A {
+    #[doc = "0: WDOG functional test mode is not disabled."]
+    _0,
+    #[doc = "1: WDOG functional test mode is disabled permanently until reset."]
+    _1,
+}
+impl From<DISTESTWDOG_A> for bool {
+    #[inline(always)]
+    fn from(variant: DISTESTWDOG_A) -> Self {
+        match variant {
+            DISTESTWDOG_A::_0 => false,
+            DISTESTWDOG_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `DISTESTWDOG`"]
+pub type DISTESTWDOG_R = crate::R<bool, DISTESTWDOG_A>;
+impl DISTESTWDOG_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DISTESTWDOG_A {
+        match self.bits {
+            false => DISTESTWDOG_A::_0,
+            true => DISTESTWDOG_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DISTESTWDOGR::_0
+        *self == DISTESTWDOG_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DISTESTWDOGR::_1
+        *self == DISTESTWDOG_A::_1
     }
 }
-#[doc = "Values that can be written to the field `WDOGEN`"]
-pub enum WDOGENW {
-    #[doc = "WDOG is disabled."]
-    _0,
-    #[doc = "WDOG is enabled."]
-    _1,
-}
-impl WDOGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WDOGENW::_0 => false,
-            WDOGENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WDOGENW<'a> {
+#[doc = "Write proxy for field `DISTESTWDOG`"]
+pub struct DISTESTWDOG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDOGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WDOGENW) -> &'a mut W {
+impl<'a> DISTESTWDOG_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DISTESTWDOG_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG is disabled."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(WDOGENW::_0)
-    }
-    #[doc = "WDOG is enabled."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(WDOGENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CLKSRC`"]
-pub enum CLKSRCW {
-    #[doc = "WDOG clock sourced from LPO ."]
-    _0,
-    #[doc = "WDOG clock sourced from alternate clock source."]
-    _1,
-}
-impl CLKSRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CLKSRCW::_0 => false,
-            CLKSRCW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLKSRCW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CLKSRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLKSRCW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG clock sourced from LPO ."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(CLKSRCW::_0)
-    }
-    #[doc = "WDOG clock sourced from alternate clock source."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(CLKSRCW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `IRQRSTEN`"]
-pub enum IRQRSTENW {
-    #[doc = "WDOG time-out generates reset only."]
-    _0,
-    #[doc = "WDOG time-out initially generates an interrupt. After WCT, it generates a reset."]
-    _1,
-}
-impl IRQRSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IRQRSTENW::_0 => false,
-            IRQRSTENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IRQRSTENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _IRQRSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IRQRSTENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG time-out generates reset only."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(IRQRSTENW::_0)
-    }
-    #[doc = "WDOG time-out initially generates an interrupt. After WCT, it generates a reset."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(IRQRSTENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WINEN`"]
-pub enum WINENW {
-    #[doc = "Windowing mode is disabled."]
-    _0,
-    #[doc = "Windowing mode is enabled."]
-    _1,
-}
-impl WINENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WINENW::_0 => false,
-            WINENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WINENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WINENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WINENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Windowing mode is disabled."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(WINENW::_0)
-    }
-    #[doc = "Windowing mode is enabled."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(WINENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ALLOWUPDATE`"]
-pub enum ALLOWUPDATEW {
-    #[doc = "No further updates allowed to WDOG write-once registers."]
-    _0,
-    #[doc = "WDOG write-once registers can be unlocked for updating."]
-    _1,
-}
-impl ALLOWUPDATEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ALLOWUPDATEW::_0 => false,
-            ALLOWUPDATEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ALLOWUPDATEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ALLOWUPDATEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ALLOWUPDATEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No further updates allowed to WDOG write-once registers."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(ALLOWUPDATEW::_0)
-    }
-    #[doc = "WDOG write-once registers can be unlocked for updating."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(ALLOWUPDATEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DBGEN`"]
-pub enum DBGENW {
-    #[doc = "WDOG is disabled in CPU Debug mode."]
-    _0,
-    #[doc = "WDOG is enabled in CPU Debug mode."]
-    _1,
-}
-impl DBGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DBGENW::_0 => false,
-            DBGENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DBGENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DBGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DBGENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG is disabled in CPU Debug mode."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(DBGENW::_0)
-    }
-    #[doc = "WDOG is enabled in CPU Debug mode."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(DBGENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `STOPEN`"]
-pub enum STOPENW {
-    #[doc = "WDOG is disabled in CPU Stop mode."]
-    _0,
-    #[doc = "WDOG is enabled in CPU Stop mode."]
-    _1,
-}
-impl STOPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            STOPENW::_0 => false,
-            STOPENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _STOPENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _STOPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: STOPENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG is disabled in CPU Stop mode."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(STOPENW::_0)
-    }
-    #[doc = "WDOG is enabled in CPU Stop mode."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(STOPENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WAITEN`"]
-pub enum WAITENW {
-    #[doc = "WDOG is disabled in CPU Wait mode."]
-    _0,
-    #[doc = "WDOG is enabled in CPU Wait mode."]
-    _1,
-}
-impl WAITENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WAITENW::_0 => false,
-            WAITENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WAITENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WAITENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WAITENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "WDOG is disabled in CPU Wait mode."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(WAITENW::_0)
-    }
-    #[doc = "WDOG is enabled in CPU Wait mode."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(WAITENW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TESTWDOGW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TESTWDOGW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TESTSEL`"]
-pub enum TESTSELW {
-    #[doc = "Quick test. The timer runs in normal operation. You can load a small time-out value to do a quick test."]
-    _0,
-    #[doc = "Byte test. Puts the timer in the byte test mode where individual bytes of the timer are enabled for operation and are compared for time-out against the corresponding byte of the programmed time-out value. Select the byte through BYTESEL\\[1:0\\] for testing."]
-    _1,
-}
-impl TESTSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TESTSELW::_0 => false,
-            TESTSELW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TESTSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TESTSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TESTSELW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Quick test. The timer runs in normal operation. You can load a small time-out value to do a quick test."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(TESTSELW::_0)
-    }
-    #[doc = "Byte test. Puts the timer in the byte test mode where individual bytes of the timer are enabled for operation and are compared for time-out against the corresponding byte of the programmed time-out value. Select the byte through BYTESEL\\[1:0\\] for testing."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(TESTSELW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `BYTESEL`"]
-pub enum BYTESELW {
-    #[doc = "Byte 0 selected"]
-    _00,
-    #[doc = "Byte 1 selected"]
-    _01,
-    #[doc = "Byte 2 selected"]
-    _10,
-    #[doc = "Byte 3 selected"]
-    _11,
-}
-impl BYTESELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            BYTESELW::_00 => 0,
-            BYTESELW::_01 => 1,
-            BYTESELW::_10 => 2,
-            BYTESELW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BYTESELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BYTESELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BYTESELW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Byte 0 selected"]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(BYTESELW::_00)
-    }
-    #[doc = "Byte 1 selected"]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(BYTESELW::_01)
-    }
-    #[doc = "Byte 2 selected"]
-    #[inline]
-    pub fn _10(self) -> &'a mut W {
-        self.variant(BYTESELW::_10)
-    }
-    #[doc = "Byte 3 selected"]
-    #[inline]
-    pub fn _11(self) -> &'a mut W {
-        self.variant(BYTESELW::_11)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DISTESTWDOG`"]
-pub enum DISTESTWDOGW {
-    #[doc = "WDOG functional test mode is not disabled."]
-    _0,
-    #[doc = "WDOG functional test mode is disabled permanently until reset."]
-    _1,
-}
-impl DISTESTWDOGW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DISTESTWDOGW::_0 => false,
-            DISTESTWDOGW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DISTESTWDOGW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DISTESTWDOGW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DISTESTWDOGW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "WDOG functional test mode is not disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DISTESTWDOGW::_0)
+        self.variant(DISTESTWDOG_A::_0)
     }
     #[doc = "WDOG functional test mode is disabled permanently until reset."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DISTESTWDOGW::_1)
+        self.variant(DISTESTWDOG_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u16) & 0x01) << 14);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enables or disables the WDOG's operation"]
-    #[inline]
-    pub fn wdogen(&self) -> WDOGENR {
-        WDOGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn wdogen(&self) -> WDOGEN_R {
+        WDOGEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Selects clock source for the WDOG timer and other internal timing operations."]
-    #[inline]
-    pub fn clksrc(&self) -> CLKSRCR {
-        CLKSRCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn clksrc(&self) -> CLKSRC_R {
+        CLKSRC_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Used to enable the debug breadcrumbs feature"]
-    #[inline]
-    pub fn irqrsten(&self) -> IRQRSTENR {
-        IRQRSTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn irqrsten(&self) -> IRQRSTEN_R {
+        IRQRSTEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Enables Windowing mode."]
-    #[inline]
-    pub fn winen(&self) -> WINENR {
-        WINENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn winen(&self) -> WINEN_R {
+        WINEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
-    #[inline]
-    pub fn allowupdate(&self) -> ALLOWUPDATER {
-        ALLOWUPDATER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn allowupdate(&self) -> ALLOWUPDATE_R {
+        ALLOWUPDATE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Enables or disables WDOG in Debug mode."]
-    #[inline]
-    pub fn dbgen(&self) -> DBGENR {
-        DBGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn dbgen(&self) -> DBGEN_R {
+        DBGEN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Enables or disables WDOG in Stop mode."]
-    #[inline]
-    pub fn stopen(&self) -> STOPENR {
-        STOPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn stopen(&self) -> STOPEN_R {
+        STOPEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Enables or disables WDOG in Wait mode."]
-    #[inline]
-    pub fn waiten(&self) -> WAITENR {
-        WAITENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn waiten(&self) -> WAITEN_R {
+        WAITEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Puts the watchdog in the functional test mode"]
-    #[inline]
-    pub fn testwdog(&self) -> TESTWDOGR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        };
-        TESTWDOGR { bits }
+    #[inline(always)]
+    pub fn testwdog(&self) -> TESTWDOG_R {
+        TESTWDOG_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
-    #[inline]
-    pub fn testsel(&self) -> TESTSELR {
-        TESTSELR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn testsel(&self) -> TESTSEL_R {
+        TESTSEL_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bits 12:13 - This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
-    #[inline]
-    pub fn bytesel(&self) -> BYTESELR {
-        BYTESELR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn bytesel(&self) -> BYTESEL_R {
+        BYTESEL_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bit 14 - Allows the WDOG's functional test mode to be disabled permanently"]
-    #[inline]
-    pub fn distestwdog(&self) -> DISTESTWDOGR {
-        DISTESTWDOGR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn distestwdog(&self) -> DISTESTWDOG_R {
+        DISTESTWDOG_R::new(((self.bits >> 14) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 467 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u16) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enables or disables the WDOG's operation"]
-    #[inline]
-    pub fn wdogen(&mut self) -> _WDOGENW {
-        _WDOGENW { w: self }
+    #[inline(always)]
+    pub fn wdogen(&mut self) -> WDOGEN_W {
+        WDOGEN_W { w: self }
     }
     #[doc = "Bit 1 - Selects clock source for the WDOG timer and other internal timing operations."]
-    #[inline]
-    pub fn clksrc(&mut self) -> _CLKSRCW {
-        _CLKSRCW { w: self }
+    #[inline(always)]
+    pub fn clksrc(&mut self) -> CLKSRC_W {
+        CLKSRC_W { w: self }
     }
     #[doc = "Bit 2 - Used to enable the debug breadcrumbs feature"]
-    #[inline]
-    pub fn irqrsten(&mut self) -> _IRQRSTENW {
-        _IRQRSTENW { w: self }
+    #[inline(always)]
+    pub fn irqrsten(&mut self) -> IRQRSTEN_W {
+        IRQRSTEN_W { w: self }
     }
     #[doc = "Bit 3 - Enables Windowing mode."]
-    #[inline]
-    pub fn winen(&mut self) -> _WINENW {
-        _WINENW { w: self }
+    #[inline(always)]
+    pub fn winen(&mut self) -> WINEN_W {
+        WINEN_W { w: self }
     }
     #[doc = "Bit 4 - Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
-    #[inline]
-    pub fn allowupdate(&mut self) -> _ALLOWUPDATEW {
-        _ALLOWUPDATEW { w: self }
+    #[inline(always)]
+    pub fn allowupdate(&mut self) -> ALLOWUPDATE_W {
+        ALLOWUPDATE_W { w: self }
     }
     #[doc = "Bit 5 - Enables or disables WDOG in Debug mode."]
-    #[inline]
-    pub fn dbgen(&mut self) -> _DBGENW {
-        _DBGENW { w: self }
+    #[inline(always)]
+    pub fn dbgen(&mut self) -> DBGEN_W {
+        DBGEN_W { w: self }
     }
     #[doc = "Bit 6 - Enables or disables WDOG in Stop mode."]
-    #[inline]
-    pub fn stopen(&mut self) -> _STOPENW {
-        _STOPENW { w: self }
+    #[inline(always)]
+    pub fn stopen(&mut self) -> STOPEN_W {
+        STOPEN_W { w: self }
     }
     #[doc = "Bit 7 - Enables or disables WDOG in Wait mode."]
-    #[inline]
-    pub fn waiten(&mut self) -> _WAITENW {
-        _WAITENW { w: self }
+    #[inline(always)]
+    pub fn waiten(&mut self) -> WAITEN_W {
+        WAITEN_W { w: self }
     }
     #[doc = "Bit 10 - Puts the watchdog in the functional test mode"]
-    #[inline]
-    pub fn testwdog(&mut self) -> _TESTWDOGW {
-        _TESTWDOGW { w: self }
+    #[inline(always)]
+    pub fn testwdog(&mut self) -> TESTWDOG_W {
+        TESTWDOG_W { w: self }
     }
     #[doc = "Bit 11 - Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
-    #[inline]
-    pub fn testsel(&mut self) -> _TESTSELW {
-        _TESTSELW { w: self }
+    #[inline(always)]
+    pub fn testsel(&mut self) -> TESTSEL_W {
+        TESTSEL_W { w: self }
     }
     #[doc = "Bits 12:13 - This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
-    #[inline]
-    pub fn bytesel(&mut self) -> _BYTESELW {
-        _BYTESELW { w: self }
+    #[inline(always)]
+    pub fn bytesel(&mut self) -> BYTESEL_W {
+        BYTESEL_W { w: self }
     }
     #[doc = "Bit 14 - Allows the WDOG's functional test mode to be disabled permanently"]
-    #[inline]
-    pub fn distestwdog(&mut self) -> _DISTESTWDOGW {
-        _DISTESTWDOGW { w: self }
+    #[inline(always)]
+    pub fn distestwdog(&mut self) -> DISTESTWDOG_W {
+        DISTESTWDOG_W { w: self }
     }
 }

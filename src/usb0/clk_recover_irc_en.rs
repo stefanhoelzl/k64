@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::CLK_RECOVER_IRC_EN {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CLK_RECOVER_IRC_EN"]
+pub type R = crate::R<u8, super::CLK_RECOVER_IRC_EN>;
+#[doc = "Writer for register CLK_RECOVER_IRC_EN"]
+pub type W = crate::W<u8, super::CLK_RECOVER_IRC_EN>;
+#[doc = "Register CLK_RECOVER_IRC_EN `reset()`'s with value 0x01"]
+impl crate::ResetValue for super::CLK_RECOVER_IRC_EN {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x01
     }
 }
-#[doc = "Possible values of the field `REG_EN`"]
+#[doc = "IRC48M regulator enable\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REG_ENR {
-    #[doc = "IRC48M local regulator is disabled"]
+pub enum REG_EN_A {
+    #[doc = "0: IRC48M local regulator is disabled"]
     _0,
-    #[doc = "IRC48M local regulator is enabled (default)"]
+    #[doc = "1: IRC48M local regulator is enabled (default)"]
     _1,
 }
-impl REG_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            REG_ENR::_0 => false,
-            REG_ENR::_1 => true,
+impl From<REG_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: REG_EN_A) -> Self {
+        match variant {
+            REG_EN_A::_0 => false,
+            REG_EN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> REG_ENR {
-        match value {
-            false => REG_ENR::_0,
-            true => REG_ENR::_1,
+}
+#[doc = "Reader of field `REG_EN`"]
+pub type REG_EN_R = crate::R<bool, REG_EN_A>;
+impl REG_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> REG_EN_A {
+        match self.bits {
+            false => REG_EN_A::_0,
+            true => REG_EN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == REG_ENR::_0
+        *self == REG_EN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == REG_ENR::_1
+        *self == REG_EN_A::_1
     }
 }
-#[doc = "Possible values of the field `IRC_EN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IRC_ENR {
-    #[doc = "Disable the IRC48M module (default)"]
-    _0,
-    #[doc = "Enable the IRC48M module"]
-    _1,
-}
-impl IRC_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IRC_ENR::_0 => false,
-            IRC_ENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IRC_ENR {
-        match value {
-            false => IRC_ENR::_0,
-            true => IRC_ENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == IRC_ENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == IRC_ENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `REG_EN`"]
-pub enum REG_ENW {
-    #[doc = "IRC48M local regulator is disabled"]
-    _0,
-    #[doc = "IRC48M local regulator is enabled (default)"]
-    _1,
-}
-impl REG_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            REG_ENW::_0 => false,
-            REG_ENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _REG_ENW<'a> {
+#[doc = "Write proxy for field `REG_EN`"]
+pub struct REG_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REG_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: REG_ENW) -> &'a mut W {
+impl<'a> REG_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: REG_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "IRC48M local regulator is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(REG_ENW::_0)
+        self.variant(REG_EN_A::_0)
     }
     #[doc = "IRC48M local regulator is enabled (default)"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(REG_ENW::_1)
+        self.variant(REG_EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IRC_EN`"]
-pub enum IRC_ENW {
-    #[doc = "Disable the IRC48M module (default)"]
+#[doc = "IRC48M enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IRC_EN_A {
+    #[doc = "0: Disable the IRC48M module (default)"]
     _0,
-    #[doc = "Enable the IRC48M module"]
+    #[doc = "1: Enable the IRC48M module"]
     _1,
 }
-impl IRC_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            IRC_ENW::_0 => false,
-            IRC_ENW::_1 => true,
+impl From<IRC_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: IRC_EN_A) -> Self {
+        match variant {
+            IRC_EN_A::_0 => false,
+            IRC_EN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _IRC_ENW<'a> {
+#[doc = "Reader of field `IRC_EN`"]
+pub type IRC_EN_R = crate::R<bool, IRC_EN_A>;
+impl IRC_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IRC_EN_A {
+        match self.bits {
+            false => IRC_EN_A::_0,
+            true => IRC_EN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == IRC_EN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == IRC_EN_A::_1
+    }
+}
+#[doc = "Write proxy for field `IRC_EN`"]
+pub struct IRC_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IRC_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: IRC_ENW) -> &'a mut W {
+impl<'a> IRC_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IRC_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Disable the IRC48M module (default)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(IRC_ENW::_0)
+        self.variant(IRC_EN_A::_0)
     }
     #[doc = "Enable the IRC48M module"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(IRC_ENW::_1)
+        self.variant(IRC_EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - IRC48M regulator enable"]
-    #[inline]
-    pub fn reg_en(&self) -> REG_ENR {
-        REG_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn reg_en(&self) -> REG_EN_R {
+        REG_EN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - IRC48M enable"]
-    #[inline]
-    pub fn irc_en(&self) -> IRC_ENR {
-        IRC_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn irc_en(&self) -> IRC_EN_R {
+        IRC_EN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 1 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - IRC48M regulator enable"]
-    #[inline]
-    pub fn reg_en(&mut self) -> _REG_ENW {
-        _REG_ENW { w: self }
+    #[inline(always)]
+    pub fn reg_en(&mut self) -> REG_EN_W {
+        REG_EN_W { w: self }
     }
     #[doc = "Bit 1 - IRC48M enable"]
-    #[inline]
-    pub fn irc_en(&mut self) -> _IRC_ENW {
-        _IRC_ENW { w: self }
+    #[inline(always)]
+    pub fn irc_en(&mut self) -> IRC_EN_W {
+        IRC_EN_W { w: self }
     }
 }

@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-impl super::FPROT0 {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PROTR {
-    bits: u8,
-}
-impl PROTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register FPROT0"]
+pub type R = crate::R<u8, super::FPROT0>;
+#[doc = "Reader of field `PROT`"]
+pub type PROT_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - P-Flash Region Protect"]
-    #[inline]
-    pub fn prot(&self) -> PROTR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        PROTR { bits }
+    #[inline(always)]
+    pub fn prot(&self) -> PROT_R {
+        PROT_R::new((self.bits & 0xff) as u8)
     }
 }

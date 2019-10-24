@@ -1,1078 +1,798 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PFB0CR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register PFB0CR"]
+pub type R = crate::R<u32, super::PFB0CR>;
+#[doc = "Writer for register PFB0CR"]
+pub type W = crate::W<u32, super::PFB0CR>;
+#[doc = "Register PFB0CR `reset()`'s with value 0x3004_001f"]
+impl crate::ResetValue for super::PFB0CR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x3004_001f
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Bank 0 Single Entry Buffer Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum B0SEBE_A {
+    #[doc = "0: Single entry buffer is disabled."]
+    _0,
+    #[doc = "1: Single entry buffer is enabled."]
+    _1,
+}
+impl From<B0SEBE_A> for bool {
+    #[inline(always)]
+    fn from(variant: B0SEBE_A) -> Self {
+        match variant {
+            B0SEBE_A::_0 => false,
+            B0SEBE_A::_1 => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `B0SEBE`"]
+pub type B0SEBE_R = crate::R<bool, B0SEBE_A>;
+impl B0SEBE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> B0SEBE_A {
+        match self.bits {
+            false => B0SEBE_A::_0,
+            true => B0SEBE_A::_1,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == B0SEBE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == B0SEBE_A::_1
     }
 }
-#[doc = "Possible values of the field `B0SEBE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0SEBER {
+#[doc = "Write proxy for field `B0SEBE`"]
+pub struct B0SEBE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> B0SEBE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: B0SEBE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Single entry buffer is disabled."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(B0SEBE_A::_0)
+    }
     #[doc = "Single entry buffer is enabled."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(B0SEBE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "Bank 0 Instruction Prefetch Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum B0IPE_A {
+    #[doc = "0: Do not prefetch in response to instruction fetches."]
+    _0,
+    #[doc = "1: Enable prefetches in response to instruction fetches."]
     _1,
 }
-impl B0SEBER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            B0SEBER::_0 => false,
-            B0SEBER::_1 => true,
+impl From<B0IPE_A> for bool {
+    #[inline(always)]
+    fn from(variant: B0IPE_A) -> Self {
+        match variant {
+            B0IPE_A::_0 => false,
+            B0IPE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> B0SEBER {
-        match value {
-            false => B0SEBER::_0,
-            true => B0SEBER::_1,
+}
+#[doc = "Reader of field `B0IPE`"]
+pub type B0IPE_R = crate::R<bool, B0IPE_A>;
+impl B0IPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> B0IPE_A {
+        match self.bits {
+            false => B0IPE_A::_0,
+            true => B0IPE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == B0SEBER::_0
+        *self == B0IPE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == B0SEBER::_1
+        *self == B0IPE_A::_1
     }
 }
-#[doc = "Possible values of the field `B0IPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0IPER {
+#[doc = "Write proxy for field `B0IPE`"]
+pub struct B0IPE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> B0IPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: B0IPE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Do not prefetch in response to instruction fetches."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(B0IPE_A::_0)
+    }
     #[doc = "Enable prefetches in response to instruction fetches."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(B0IPE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w
+    }
+}
+#[doc = "Bank 0 Data Prefetch Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum B0DPE_A {
+    #[doc = "0: Do not prefetch in response to data references."]
+    _0,
+    #[doc = "1: Enable prefetches in response to data references."]
     _1,
 }
-impl B0IPER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            B0IPER::_0 => false,
-            B0IPER::_1 => true,
+impl From<B0DPE_A> for bool {
+    #[inline(always)]
+    fn from(variant: B0DPE_A) -> Self {
+        match variant {
+            B0DPE_A::_0 => false,
+            B0DPE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> B0IPER {
-        match value {
-            false => B0IPER::_0,
-            true => B0IPER::_1,
+}
+#[doc = "Reader of field `B0DPE`"]
+pub type B0DPE_R = crate::R<bool, B0DPE_A>;
+impl B0DPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> B0DPE_A {
+        match self.bits {
+            false => B0DPE_A::_0,
+            true => B0DPE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == B0IPER::_0
+        *self == B0DPE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == B0IPER::_1
+        *self == B0DPE_A::_1
     }
 }
-#[doc = "Possible values of the field `B0DPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0DPER {
+#[doc = "Write proxy for field `B0DPE`"]
+pub struct B0DPE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> B0DPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: B0DPE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Do not prefetch in response to data references."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(B0DPE_A::_0)
+    }
     #[doc = "Enable prefetches in response to data references."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(B0DPE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "Bank 0 Instruction Cache Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum B0ICE_A {
+    #[doc = "0: Do not cache instruction fetches."]
+    _0,
+    #[doc = "1: Cache instruction fetches."]
     _1,
 }
-impl B0DPER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            B0DPER::_0 => false,
-            B0DPER::_1 => true,
+impl From<B0ICE_A> for bool {
+    #[inline(always)]
+    fn from(variant: B0ICE_A) -> Self {
+        match variant {
+            B0ICE_A::_0 => false,
+            B0ICE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> B0DPER {
-        match value {
-            false => B0DPER::_0,
-            true => B0DPER::_1,
+}
+#[doc = "Reader of field `B0ICE`"]
+pub type B0ICE_R = crate::R<bool, B0ICE_A>;
+impl B0ICE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> B0ICE_A {
+        match self.bits {
+            false => B0ICE_A::_0,
+            true => B0ICE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == B0DPER::_0
+        *self == B0ICE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == B0DPER::_1
+        *self == B0ICE_A::_1
     }
 }
-#[doc = "Possible values of the field `B0ICE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0ICER {
+#[doc = "Write proxy for field `B0ICE`"]
+pub struct B0ICE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> B0ICE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: B0ICE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Do not cache instruction fetches."]
-    _0,
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(B0ICE_A::_0)
+    }
     #[doc = "Cache instruction fetches."]
-    _1,
-}
-impl B0ICER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(B0ICE_A::_1)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            B0ICER::_0 => false,
-            B0ICER::_1 => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> B0ICER {
-        match value {
-            false => B0ICER::_0,
-            true => B0ICER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == B0ICER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == B0ICER::_1
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
     }
 }
-#[doc = "Possible values of the field `B0DCE`"]
+#[doc = "Bank 0 Data Cache Enable\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0DCER {
-    #[doc = "Do not cache data references."]
+pub enum B0DCE_A {
+    #[doc = "0: Do not cache data references."]
     _0,
-    #[doc = "Cache data references."]
+    #[doc = "1: Cache data references."]
     _1,
 }
-impl B0DCER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            B0DCER::_0 => false,
-            B0DCER::_1 => true,
+impl From<B0DCE_A> for bool {
+    #[inline(always)]
+    fn from(variant: B0DCE_A) -> Self {
+        match variant {
+            B0DCE_A::_0 => false,
+            B0DCE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> B0DCER {
-        match value {
-            false => B0DCER::_0,
-            true => B0DCER::_1,
+}
+#[doc = "Reader of field `B0DCE`"]
+pub type B0DCE_R = crate::R<bool, B0DCE_A>;
+impl B0DCE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> B0DCE_A {
+        match self.bits {
+            false => B0DCE_A::_0,
+            true => B0DCE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == B0DCER::_0
+        *self == B0DCE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == B0DCER::_1
+        *self == B0DCE_A::_1
     }
 }
-#[doc = "Possible values of the field `CRC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CRCR {
-    #[doc = "LRU replacement algorithm per set across all four ways"]
-    _000,
-    #[doc = "Independent LRU with ways \\[0-1\\] for ifetches, \\[2-3\\] for data"]
-    _010,
-    #[doc = "Independent LRU with ways \\[0-2\\] for ifetches, \\[3\\] for data"]
-    _011,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `B0DCE`"]
+pub struct B0DCE_W<'a> {
+    w: &'a mut W,
 }
-impl CRCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CRCR::_000 => 0,
-            CRCR::_010 => 2,
-            CRCR::_011 => 3,
-            CRCR::_Reserved(bits) => bits,
+impl<'a> B0DCE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: B0DCE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CRCR {
-        match value {
-            0 => CRCR::_000,
-            2 => CRCR::_010,
-            3 => CRCR::_011,
-            i => CRCR::_Reserved(i),
+    #[doc = "Do not cache data references."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(B0DCE_A::_0)
+    }
+    #[doc = "Cache data references."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(B0DCE_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
+    }
+}
+#[doc = "Cache Replacement Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CRC_A {
+    #[doc = "0: LRU replacement algorithm per set across all four ways"]
+    _000,
+    #[doc = "2: Independent LRU with ways \\[0-1\\] for ifetches, \\[2-3\\] for data"]
+    _010,
+    #[doc = "3: Independent LRU with ways \\[0-2\\] for ifetches, \\[3\\] for data"]
+    _011,
+}
+impl From<CRC_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CRC_A) -> Self {
+        match variant {
+            CRC_A::_000 => 0,
+            CRC_A::_010 => 2,
+            CRC_A::_011 => 3,
+        }
+    }
+}
+#[doc = "Reader of field `CRC`"]
+pub type CRC_R = crate::R<u8, CRC_A>;
+impl CRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CRC_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CRC_A::_000),
+            2 => Val(CRC_A::_010),
+            3 => Val(CRC_A::_011),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000(&self) -> bool {
-        *self == CRCR::_000
+        *self == CRC_A::_000
     }
     #[doc = "Checks if the value of the field is `_010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_010(&self) -> bool {
-        *self == CRCR::_010
+        *self == CRC_A::_010
     }
     #[doc = "Checks if the value of the field is `_011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_011(&self) -> bool {
-        *self == CRCR::_011
+        *self == CRC_A::_011
     }
 }
-#[doc = "Possible values of the field `B0MW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum B0MWR {
-    #[doc = "32 bits"]
-    _00,
-    #[doc = "64 bits"]
-    _01,
-    #[doc = "128 bits"]
-    _10,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `CRC`"]
+pub struct CRC_W<'a> {
+    w: &'a mut W,
 }
-impl B0MWR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            B0MWR::_00 => 0,
-            B0MWR::_01 => 1,
-            B0MWR::_10 => 2,
-            B0MWR::_Reserved(bits) => bits,
+impl<'a> CRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CRC_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "LRU replacement algorithm per set across all four ways"]
+    #[inline(always)]
+    pub fn _000(self) -> &'a mut W {
+        self.variant(CRC_A::_000)
+    }
+    #[doc = "Independent LRU with ways \\[0-1\\] for ifetches, \\[2-3\\] for data"]
+    #[inline(always)]
+    pub fn _010(self) -> &'a mut W {
+        self.variant(CRC_A::_010)
+    }
+    #[doc = "Independent LRU with ways \\[0-2\\] for ifetches, \\[3\\] for data"]
+    #[inline(always)]
+    pub fn _011(self) -> &'a mut W {
+        self.variant(CRC_A::_011)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 5)) | (((value as u32) & 0x07) << 5);
+        self.w
+    }
+}
+#[doc = "Bank 0 Memory Width\n\nValue on reset: 2"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum B0MW_A {
+    #[doc = "0: 32 bits"]
+    _00,
+    #[doc = "1: 64 bits"]
+    _01,
+    #[doc = "2: 128 bits"]
+    _10,
+}
+impl From<B0MW_A> for u8 {
+    #[inline(always)]
+    fn from(variant: B0MW_A) -> Self {
+        match variant {
+            B0MW_A::_00 => 0,
+            B0MW_A::_01 => 1,
+            B0MW_A::_10 => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> B0MWR {
-        match value {
-            0 => B0MWR::_00,
-            1 => B0MWR::_01,
-            2 => B0MWR::_10,
-            i => B0MWR::_Reserved(i),
+}
+#[doc = "Reader of field `B0MW`"]
+pub type B0MW_R = crate::R<u8, B0MW_A>;
+impl B0MW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, B0MW_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(B0MW_A::_00),
+            1 => Val(B0MW_A::_01),
+            2 => Val(B0MW_A::_10),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == B0MWR::_00
+        *self == B0MW_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == B0MWR::_01
+        *self == B0MW_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == B0MWR::_10
+        *self == B0MW_A::_10
     }
 }
-#[doc = "Possible values of the field `CLCK_WAY`"]
+#[doc = "Invalidate Prefetch Speculation Buffer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLCK_WAYR {
-    #[doc = "Cache way is unlocked and may be displaced"]
+pub enum S_B_INV_AW {
+    #[doc = "0: Speculation buffer and single entry buffer are not affected."]
     _0,
-    #[doc = "Cache way is locked and its contents are not displaced"]
+    #[doc = "1: Invalidate (clear) speculation buffer and single entry buffer."]
     _1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl CLCK_WAYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CLCK_WAYR::_0 => 0,
-            CLCK_WAYR::_1 => 1,
-            CLCK_WAYR::_Reserved(bits) => bits,
+impl From<S_B_INV_AW> for bool {
+    #[inline(always)]
+    fn from(variant: S_B_INV_AW) -> Self {
+        match variant {
+            S_B_INV_AW::_0 => false,
+            S_B_INV_AW::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CLCK_WAYR {
-        match value {
-            0 => CLCK_WAYR::_0,
-            1 => CLCK_WAYR::_1,
-            i => CLCK_WAYR::_Reserved(i),
+}
+#[doc = "Write proxy for field `S_B_INV`"]
+pub struct S_B_INV_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> S_B_INV_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: S_B_INV_AW) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Speculation buffer and single entry buffer are not affected."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(S_B_INV_AW::_0)
+    }
+    #[doc = "Invalidate (clear) speculation buffer and single entry buffer."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(S_B_INV_AW::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w
+    }
+}
+#[doc = "Cache Invalidate Way x\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CINV_WAY_AW {
+    #[doc = "0: No cache way invalidation for the corresponding cache"]
+    _0,
+    #[doc = "1: Invalidate cache way for the corresponding cache: clear the tag, data, and vld bits of ways selected"]
+    _1,
+}
+impl From<CINV_WAY_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: CINV_WAY_AW) -> Self {
+        match variant {
+            CINV_WAY_AW::_0 => 0,
+            CINV_WAY_AW::_1 => 1,
+        }
+    }
+}
+#[doc = "Write proxy for field `CINV_WAY`"]
+pub struct CINV_WAY_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CINV_WAY_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CINV_WAY_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "No cache way invalidation for the corresponding cache"]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(CINV_WAY_AW::_0)
+    }
+    #[doc = "Invalidate cache way for the corresponding cache: clear the tag, data, and vld bits of ways selected"]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(CINV_WAY_AW::_1)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 20)) | (((value as u32) & 0x0f) << 20);
+        self.w
+    }
+}
+#[doc = "Cache Lock Way x\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CLCK_WAY_A {
+    #[doc = "0: Cache way is unlocked and may be displaced"]
+    _0,
+    #[doc = "1: Cache way is locked and its contents are not displaced"]
+    _1,
+}
+impl From<CLCK_WAY_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CLCK_WAY_A) -> Self {
+        match variant {
+            CLCK_WAY_A::_0 => 0,
+            CLCK_WAY_A::_1 => 1,
+        }
+    }
+}
+#[doc = "Reader of field `CLCK_WAY`"]
+pub type CLCK_WAY_R = crate::R<u8, CLCK_WAY_A>;
+impl CLCK_WAY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CLCK_WAY_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CLCK_WAY_A::_0),
+            1 => Val(CLCK_WAY_A::_1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CLCK_WAYR::_0
+        *self == CLCK_WAY_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CLCK_WAYR::_1
+        *self == CLCK_WAY_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct B0RWSCR {
-    bits: u8,
-}
-impl B0RWSCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `B0SEBE`"]
-pub enum B0SEBEW {
-    #[doc = "Single entry buffer is disabled."]
-    _0,
-    #[doc = "Single entry buffer is enabled."]
-    _1,
-}
-impl B0SEBEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            B0SEBEW::_0 => false,
-            B0SEBEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _B0SEBEW<'a> {
+#[doc = "Write proxy for field `CLCK_WAY`"]
+pub struct CLCK_WAY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _B0SEBEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: B0SEBEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Single entry buffer is disabled."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(B0SEBEW::_0)
-    }
-    #[doc = "Single entry buffer is enabled."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(B0SEBEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `B0IPE`"]
-pub enum B0IPEW {
-    #[doc = "Do not prefetch in response to instruction fetches."]
-    _0,
-    #[doc = "Enable prefetches in response to instruction fetches."]
-    _1,
-}
-impl B0IPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            B0IPEW::_0 => false,
-            B0IPEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _B0IPEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _B0IPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: B0IPEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Do not prefetch in response to instruction fetches."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(B0IPEW::_0)
-    }
-    #[doc = "Enable prefetches in response to instruction fetches."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(B0IPEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `B0DPE`"]
-pub enum B0DPEW {
-    #[doc = "Do not prefetch in response to data references."]
-    _0,
-    #[doc = "Enable prefetches in response to data references."]
-    _1,
-}
-impl B0DPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            B0DPEW::_0 => false,
-            B0DPEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _B0DPEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _B0DPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: B0DPEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Do not prefetch in response to data references."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(B0DPEW::_0)
-    }
-    #[doc = "Enable prefetches in response to data references."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(B0DPEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `B0ICE`"]
-pub enum B0ICEW {
-    #[doc = "Do not cache instruction fetches."]
-    _0,
-    #[doc = "Cache instruction fetches."]
-    _1,
-}
-impl B0ICEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            B0ICEW::_0 => false,
-            B0ICEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _B0ICEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _B0ICEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: B0ICEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Do not cache instruction fetches."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(B0ICEW::_0)
-    }
-    #[doc = "Cache instruction fetches."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(B0ICEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `B0DCE`"]
-pub enum B0DCEW {
-    #[doc = "Do not cache data references."]
-    _0,
-    #[doc = "Cache data references."]
-    _1,
-}
-impl B0DCEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            B0DCEW::_0 => false,
-            B0DCEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _B0DCEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _B0DCEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: B0DCEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Do not cache data references."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(B0DCEW::_0)
-    }
-    #[doc = "Cache data references."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(B0DCEW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CRC`"]
-pub enum CRCW {
-    #[doc = "LRU replacement algorithm per set across all four ways"]
-    _000,
-    #[doc = "Independent LRU with ways \\[0-1\\] for ifetches, \\[2-3\\] for data"]
-    _010,
-    #[doc = "Independent LRU with ways \\[0-2\\] for ifetches, \\[3\\] for data"]
-    _011,
-}
-impl CRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CRCW::_000 => 0,
-            CRCW::_010 => 2,
-            CRCW::_011 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CRCW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CRCW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "LRU replacement algorithm per set across all four ways"]
-    #[inline]
-    pub fn _000(self) -> &'a mut W {
-        self.variant(CRCW::_000)
-    }
-    #[doc = "Independent LRU with ways \\[0-1\\] for ifetches, \\[2-3\\] for data"]
-    #[inline]
-    pub fn _010(self) -> &'a mut W {
-        self.variant(CRCW::_010)
-    }
-    #[doc = "Independent LRU with ways \\[0-2\\] for ifetches, \\[3\\] for data"]
-    #[inline]
-    pub fn _011(self) -> &'a mut W {
-        self.variant(CRCW::_011)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `S_B_INV`"]
-pub enum S_B_INVW {
-    #[doc = "Speculation buffer and single entry buffer are not affected."]
-    _0,
-    #[doc = "Invalidate (clear) speculation buffer and single entry buffer."]
-    _1,
-}
-impl S_B_INVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            S_B_INVW::_0 => false,
-            S_B_INVW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _S_B_INVW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _S_B_INVW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: S_B_INVW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Speculation buffer and single entry buffer are not affected."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(S_B_INVW::_0)
-    }
-    #[doc = "Invalidate (clear) speculation buffer and single entry buffer."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(S_B_INVW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CINV_WAY`"]
-pub enum CINV_WAYW {
-    #[doc = "No cache way invalidation for the corresponding cache"]
-    _0,
-    #[doc = "Invalidate cache way for the corresponding cache: clear the tag, data, and vld bits of ways selected"]
-    _1,
-}
-impl CINV_WAYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CINV_WAYW::_0 => 0,
-            CINV_WAYW::_1 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CINV_WAYW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CINV_WAYW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CINV_WAYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "No cache way invalidation for the corresponding cache"]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(CINV_WAYW::_0)
-    }
-    #[doc = "Invalidate cache way for the corresponding cache: clear the tag, data, and vld bits of ways selected"]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(CINV_WAYW::_1)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CLCK_WAY`"]
-pub enum CLCK_WAYW {
-    #[doc = "Cache way is unlocked and may be displaced"]
-    _0,
-    #[doc = "Cache way is locked and its contents are not displaced"]
-    _1,
-}
-impl CLCK_WAYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CLCK_WAYW::_0 => 0,
-            CLCK_WAYW::_1 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLCK_WAYW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CLCK_WAYW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CLCK_WAYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> CLCK_WAY_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CLCK_WAY_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Cache way is unlocked and may be displaced"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CLCK_WAYW::_0)
+        self.variant(CLCK_WAY_A::_0)
     }
     #[doc = "Cache way is locked and its contents are not displaced"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CLCK_WAYW::_1)
+        self.variant(CLCK_WAY_A::_1)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
+#[doc = "Reader of field `B0RWSC`"]
+pub type B0RWSC_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Bank 0 Single Entry Buffer Enable"]
-    #[inline]
-    pub fn b0sebe(&self) -> B0SEBER {
-        B0SEBER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn b0sebe(&self) -> B0SEBE_R {
+        B0SEBE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Bank 0 Instruction Prefetch Enable"]
-    #[inline]
-    pub fn b0ipe(&self) -> B0IPER {
-        B0IPER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn b0ipe(&self) -> B0IPE_R {
+        B0IPE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Bank 0 Data Prefetch Enable"]
-    #[inline]
-    pub fn b0dpe(&self) -> B0DPER {
-        B0DPER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn b0dpe(&self) -> B0DPE_R {
+        B0DPE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Bank 0 Instruction Cache Enable"]
-    #[inline]
-    pub fn b0ice(&self) -> B0ICER {
-        B0ICER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn b0ice(&self) -> B0ICE_R {
+        B0ICE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Bank 0 Data Cache Enable"]
-    #[inline]
-    pub fn b0dce(&self) -> B0DCER {
-        B0DCER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn b0dce(&self) -> B0DCE_R {
+        B0DCE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 5:7 - Cache Replacement Control"]
-    #[inline]
-    pub fn crc(&self) -> CRCR {
-        CRCR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn crc(&self) -> CRC_R {
+        CRC_R::new(((self.bits >> 5) & 0x07) as u8)
     }
     #[doc = "Bits 17:18 - Bank 0 Memory Width"]
-    #[inline]
-    pub fn b0mw(&self) -> B0MWR {
-        B0MWR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn b0mw(&self) -> B0MW_R {
+        B0MW_R::new(((self.bits >> 17) & 0x03) as u8)
     }
     #[doc = "Bits 24:27 - Cache Lock Way x"]
-    #[inline]
-    pub fn clck_way(&self) -> CLCK_WAYR {
-        CLCK_WAYR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn clck_way(&self) -> CLCK_WAY_R {
+        CLCK_WAY_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 28:31 - Bank 0 Read Wait State Control"]
-    #[inline]
-    pub fn b0rwsc(&self) -> B0RWSCR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        B0RWSCR { bits }
+    #[inline(always)]
+    pub fn b0rwsc(&self) -> B0RWSC_R {
+        B0RWSC_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 805568543 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Bank 0 Single Entry Buffer Enable"]
-    #[inline]
-    pub fn b0sebe(&mut self) -> _B0SEBEW {
-        _B0SEBEW { w: self }
+    #[inline(always)]
+    pub fn b0sebe(&mut self) -> B0SEBE_W {
+        B0SEBE_W { w: self }
     }
     #[doc = "Bit 1 - Bank 0 Instruction Prefetch Enable"]
-    #[inline]
-    pub fn b0ipe(&mut self) -> _B0IPEW {
-        _B0IPEW { w: self }
+    #[inline(always)]
+    pub fn b0ipe(&mut self) -> B0IPE_W {
+        B0IPE_W { w: self }
     }
     #[doc = "Bit 2 - Bank 0 Data Prefetch Enable"]
-    #[inline]
-    pub fn b0dpe(&mut self) -> _B0DPEW {
-        _B0DPEW { w: self }
+    #[inline(always)]
+    pub fn b0dpe(&mut self) -> B0DPE_W {
+        B0DPE_W { w: self }
     }
     #[doc = "Bit 3 - Bank 0 Instruction Cache Enable"]
-    #[inline]
-    pub fn b0ice(&mut self) -> _B0ICEW {
-        _B0ICEW { w: self }
+    #[inline(always)]
+    pub fn b0ice(&mut self) -> B0ICE_W {
+        B0ICE_W { w: self }
     }
     #[doc = "Bit 4 - Bank 0 Data Cache Enable"]
-    #[inline]
-    pub fn b0dce(&mut self) -> _B0DCEW {
-        _B0DCEW { w: self }
+    #[inline(always)]
+    pub fn b0dce(&mut self) -> B0DCE_W {
+        B0DCE_W { w: self }
     }
     #[doc = "Bits 5:7 - Cache Replacement Control"]
-    #[inline]
-    pub fn crc(&mut self) -> _CRCW {
-        _CRCW { w: self }
+    #[inline(always)]
+    pub fn crc(&mut self) -> CRC_W {
+        CRC_W { w: self }
     }
     #[doc = "Bit 19 - Invalidate Prefetch Speculation Buffer"]
-    #[inline]
-    pub fn s_b_inv(&mut self) -> _S_B_INVW {
-        _S_B_INVW { w: self }
+    #[inline(always)]
+    pub fn s_b_inv(&mut self) -> S_B_INV_W {
+        S_B_INV_W { w: self }
     }
     #[doc = "Bits 20:23 - Cache Invalidate Way x"]
-    #[inline]
-    pub fn cinv_way(&mut self) -> _CINV_WAYW {
-        _CINV_WAYW { w: self }
+    #[inline(always)]
+    pub fn cinv_way(&mut self) -> CINV_WAY_W {
+        CINV_WAY_W { w: self }
     }
     #[doc = "Bits 24:27 - Cache Lock Way x"]
-    #[inline]
-    pub fn clck_way(&mut self) -> _CLCK_WAYW {
-        _CLCK_WAYW { w: self }
+    #[inline(always)]
+    pub fn clck_way(&mut self) -> CLCK_WAY_W {
+        CLCK_WAY_W { w: self }
     }
 }

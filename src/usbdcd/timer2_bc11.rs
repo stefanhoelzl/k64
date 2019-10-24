@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TIMER2_BC11 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TIMER2_BC11"]
+pub type R = crate::R<u32, super::TIMER2_BC11>;
+#[doc = "Writer for register TIMER2_BC11"]
+pub type W = crate::W<u32, super::TIMER2_BC11>;
+#[doc = "Register TIMER2_BC11 `reset()`'s with value 0x0028_0001"]
+impl crate::ResetValue for super::TIMER2_BC11 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0028_0001
     }
 }
-#[doc = r" Value of the field"]
-pub struct CHECK_DMR {
-    bits: u8,
-}
-impl CHECK_DMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TVDPSRC_CONR {
-    bits: u16,
-}
-impl TVDPSRC_CONR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CHECK_DMW<'a> {
+#[doc = "Reader of field `CHECK_DM`"]
+pub type CHECK_DM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CHECK_DM`"]
+pub struct CHECK_DM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHECK_DMW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CHECK_DM_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _TVDPSRC_CONW<'a> {
+#[doc = "Reader of field `TVDPSRC_CON`"]
+pub type TVDPSRC_CON_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `TVDPSRC_CON`"]
+pub struct TVDPSRC_CON_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TVDPSRC_CONW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TVDPSRC_CON_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 1023;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03ff << 16)) | (((value as u32) & 0x03ff) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Time Before Check of D- Line"]
-    #[inline]
-    pub fn check_dm(&self) -> CHECK_DMR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CHECK_DMR { bits }
+    #[inline(always)]
+    pub fn check_dm(&self) -> CHECK_DM_R {
+        CHECK_DM_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 16:25 - Time Period Before Enabling D+ Pullup"]
-    #[inline]
-    pub fn tvdpsrc_con(&self) -> TVDPSRC_CONR {
-        let bits = {
-            const MASK: u16 = 1023;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TVDPSRC_CONR { bits }
+    #[inline(always)]
+    pub fn tvdpsrc_con(&self) -> TVDPSRC_CON_R {
+        TVDPSRC_CON_R::new(((self.bits >> 16) & 0x03ff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 2621441 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Time Before Check of D- Line"]
-    #[inline]
-    pub fn check_dm(&mut self) -> _CHECK_DMW {
-        _CHECK_DMW { w: self }
+    #[inline(always)]
+    pub fn check_dm(&mut self) -> CHECK_DM_W {
+        CHECK_DM_W { w: self }
     }
     #[doc = "Bits 16:25 - Time Period Before Enabling D+ Pullup"]
-    #[inline]
-    pub fn tvdpsrc_con(&mut self) -> _TVDPSRC_CONW {
-        _TVDPSRC_CONW { w: self }
+    #[inline(always)]
+    pub fn tvdpsrc_con(&mut self) -> TVDPSRC_CON_W {
+        TVDPSRC_CON_W { w: self }
     }
 }

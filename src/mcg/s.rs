@@ -1,503 +1,350 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::S {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register S"]
+pub type R = crate::R<u8, super::S>;
+#[doc = "Writer for register S"]
+pub type W = crate::W<u8, super::S>;
+#[doc = "Register S `reset()`'s with value 0x10"]
+impl crate::ResetValue for super::S {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x10
     }
 }
-#[doc = "Possible values of the field `IRCST`"]
+#[doc = "Internal Reference Clock Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IRCSTR {
-    #[doc = "Source of internal reference clock is the slow clock (32 kHz IRC)."]
+pub enum IRCST_A {
+    #[doc = "0: Source of internal reference clock is the slow clock (32 kHz IRC)."]
     _0,
-    #[doc = "Source of internal reference clock is the fast clock (4 MHz IRC)."]
+    #[doc = "1: Source of internal reference clock is the fast clock (4 MHz IRC)."]
     _1,
 }
-impl IRCSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IRCSTR::_0 => false,
-            IRCSTR::_1 => true,
+impl From<IRCST_A> for bool {
+    #[inline(always)]
+    fn from(variant: IRCST_A) -> Self {
+        match variant {
+            IRCST_A::_0 => false,
+            IRCST_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IRCSTR {
-        match value {
-            false => IRCSTR::_0,
-            true => IRCSTR::_1,
+}
+#[doc = "Reader of field `IRCST`"]
+pub type IRCST_R = crate::R<bool, IRCST_A>;
+impl IRCST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IRCST_A {
+        match self.bits {
+            false => IRCST_A::_0,
+            true => IRCST_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IRCSTR::_0
+        *self == IRCST_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IRCSTR::_1
+        *self == IRCST_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct OSCINIT0R {
-    bits: bool,
-}
-impl OSCINIT0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Possible values of the field `CLKST`"]
+#[doc = "Reader of field `OSCINIT0`"]
+pub type OSCINIT0_R = crate::R<bool, bool>;
+#[doc = "Clock Mode Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CLKSTR {
-    #[doc = "Encoding 0 - Output of the FLL is selected (reset default)."]
+pub enum CLKST_A {
+    #[doc = "0: Encoding 0 - Output of the FLL is selected (reset default)."]
     _00,
-    #[doc = "Encoding 1 - Internal reference clock is selected."]
+    #[doc = "1: Encoding 1 - Internal reference clock is selected."]
     _01,
-    #[doc = "Encoding 2 - External reference clock is selected."]
+    #[doc = "2: Encoding 2 - External reference clock is selected."]
     _10,
-    #[doc = "Encoding 3 - Output of the PLL is selected."]
+    #[doc = "3: Encoding 3 - Output of the PLL is selected."]
     _11,
 }
-impl CLKSTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CLKSTR::_00 => 0,
-            CLKSTR::_01 => 1,
-            CLKSTR::_10 => 2,
-            CLKSTR::_11 => 3,
+impl From<CLKST_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CLKST_A) -> Self {
+        match variant {
+            CLKST_A::_00 => 0,
+            CLKST_A::_01 => 1,
+            CLKST_A::_10 => 2,
+            CLKST_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CLKSTR {
-        match value {
-            0 => CLKSTR::_00,
-            1 => CLKSTR::_01,
-            2 => CLKSTR::_10,
-            3 => CLKSTR::_11,
+}
+#[doc = "Reader of field `CLKST`"]
+pub type CLKST_R = crate::R<u8, CLKST_A>;
+impl CLKST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CLKST_A {
+        match self.bits {
+            0 => CLKST_A::_00,
+            1 => CLKST_A::_01,
+            2 => CLKST_A::_10,
+            3 => CLKST_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == CLKSTR::_00
+        *self == CLKST_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == CLKSTR::_01
+        *self == CLKST_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == CLKSTR::_10
+        *self == CLKST_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == CLKSTR::_11
+        *self == CLKST_A::_11
     }
 }
-#[doc = "Possible values of the field `IREFST`"]
+#[doc = "Internal Reference Status\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IREFSTR {
-    #[doc = "Source of FLL reference clock is the external reference clock."]
+pub enum IREFST_A {
+    #[doc = "0: Source of FLL reference clock is the external reference clock."]
     _0,
-    #[doc = "Source of FLL reference clock is the internal reference clock."]
+    #[doc = "1: Source of FLL reference clock is the internal reference clock."]
     _1,
 }
-impl IREFSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IREFSTR::_0 => false,
-            IREFSTR::_1 => true,
+impl From<IREFST_A> for bool {
+    #[inline(always)]
+    fn from(variant: IREFST_A) -> Self {
+        match variant {
+            IREFST_A::_0 => false,
+            IREFST_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IREFSTR {
-        match value {
-            false => IREFSTR::_0,
-            true => IREFSTR::_1,
+}
+#[doc = "Reader of field `IREFST`"]
+pub type IREFST_R = crate::R<bool, IREFST_A>;
+impl IREFST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IREFST_A {
+        match self.bits {
+            false => IREFST_A::_0,
+            true => IREFST_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IREFSTR::_0
+        *self == IREFST_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IREFSTR::_1
+        *self == IREFST_A::_1
     }
 }
-#[doc = "Possible values of the field `PLLST`"]
+#[doc = "PLL Select Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLSTR {
-    #[doc = "Source of PLLS clock is FLL clock."]
+pub enum PLLST_A {
+    #[doc = "0: Source of PLLS clock is FLL clock."]
     _0,
-    #[doc = "Source of PLLS clock is PLL output clock."]
+    #[doc = "1: Source of PLLS clock is PLL output clock."]
     _1,
 }
-impl PLLSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PLLSTR::_0 => false,
-            PLLSTR::_1 => true,
+impl From<PLLST_A> for bool {
+    #[inline(always)]
+    fn from(variant: PLLST_A) -> Self {
+        match variant {
+            PLLST_A::_0 => false,
+            PLLST_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PLLSTR {
-        match value {
-            false => PLLSTR::_0,
-            true => PLLSTR::_1,
+}
+#[doc = "Reader of field `PLLST`"]
+pub type PLLST_R = crate::R<bool, PLLST_A>;
+impl PLLST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLLST_A {
+        match self.bits {
+            false => PLLST_A::_0,
+            true => PLLST_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PLLSTR::_0
+        *self == PLLST_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PLLSTR::_1
+        *self == PLLST_A::_1
     }
 }
-#[doc = "Possible values of the field `LOCK0`"]
+#[doc = "Lock Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOCK0R {
-    #[doc = "PLL is currently unlocked."]
+pub enum LOCK0_A {
+    #[doc = "0: PLL is currently unlocked."]
     _0,
-    #[doc = "PLL is currently locked."]
+    #[doc = "1: PLL is currently locked."]
     _1,
 }
-impl LOCK0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOCK0R::_0 => false,
-            LOCK0R::_1 => true,
+impl From<LOCK0_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOCK0_A) -> Self {
+        match variant {
+            LOCK0_A::_0 => false,
+            LOCK0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOCK0R {
-        match value {
-            false => LOCK0R::_0,
-            true => LOCK0R::_1,
+}
+#[doc = "Reader of field `LOCK0`"]
+pub type LOCK0_R = crate::R<bool, LOCK0_A>;
+impl LOCK0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOCK0_A {
+        match self.bits {
+            false => LOCK0_A::_0,
+            true => LOCK0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LOCK0R::_0
+        *self == LOCK0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LOCK0R::_1
+        *self == LOCK0_A::_1
     }
 }
-#[doc = "Possible values of the field `LOLS0`"]
+#[doc = "Loss of Lock Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOLS0R {
-    #[doc = "PLL has not lost lock since LOLS 0 was last cleared."]
+pub enum LOLS0_A {
+    #[doc = "0: PLL has not lost lock since LOLS 0 was last cleared."]
     _0,
-    #[doc = "PLL has lost lock since LOLS 0 was last cleared."]
+    #[doc = "1: PLL has lost lock since LOLS 0 was last cleared."]
     _1,
 }
-impl LOLS0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOLS0R::_0 => false,
-            LOLS0R::_1 => true,
+impl From<LOLS0_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOLS0_A) -> Self {
+        match variant {
+            LOLS0_A::_0 => false,
+            LOLS0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOLS0R {
-        match value {
-            false => LOLS0R::_0,
-            true => LOLS0R::_1,
+}
+#[doc = "Reader of field `LOLS0`"]
+pub type LOLS0_R = crate::R<bool, LOLS0_A>;
+impl LOLS0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOLS0_A {
+        match self.bits {
+            false => LOLS0_A::_0,
+            true => LOLS0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == LOLS0R::_0
+        *self == LOLS0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == LOLS0R::_1
+        *self == LOLS0_A::_1
     }
 }
-#[doc = "Values that can be written to the field `LOLS0`"]
-pub enum LOLS0W {
-    #[doc = "PLL has not lost lock since LOLS 0 was last cleared."]
-    _0,
-    #[doc = "PLL has lost lock since LOLS 0 was last cleared."]
-    _1,
-}
-impl LOLS0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOLS0W::_0 => false,
-            LOLS0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LOLS0W<'a> {
+#[doc = "Write proxy for field `LOLS0`"]
+pub struct LOLS0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOLS0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOLS0W) -> &'a mut W {
+impl<'a> LOLS0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOLS0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PLL has not lost lock since LOLS 0 was last cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LOLS0W::_0)
+        self.variant(LOLS0_A::_0)
     }
     #[doc = "PLL has lost lock since LOLS 0 was last cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LOLS0W::_1)
+        self.variant(LOLS0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Internal Reference Clock Status"]
-    #[inline]
-    pub fn ircst(&self) -> IRCSTR {
-        IRCSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ircst(&self) -> IRCST_R {
+        IRCST_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - OSC Initialization"]
-    #[inline]
-    pub fn oscinit0(&self) -> OSCINIT0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        OSCINIT0R { bits }
+    #[inline(always)]
+    pub fn oscinit0(&self) -> OSCINIT0_R {
+        OSCINIT0_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bits 2:3 - Clock Mode Status"]
-    #[inline]
-    pub fn clkst(&self) -> CLKSTR {
-        CLKSTR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn clkst(&self) -> CLKST_R {
+        CLKST_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bit 4 - Internal Reference Status"]
-    #[inline]
-    pub fn irefst(&self) -> IREFSTR {
-        IREFSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn irefst(&self) -> IREFST_R {
+        IREFST_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - PLL Select Status"]
-    #[inline]
-    pub fn pllst(&self) -> PLLSTR {
-        PLLSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn pllst(&self) -> PLLST_R {
+        PLLST_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Lock Status"]
-    #[inline]
-    pub fn lock0(&self) -> LOCK0R {
-        LOCK0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lock0(&self) -> LOCK0_R {
+        LOCK0_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Loss of Lock Status"]
-    #[inline]
-    pub fn lols0(&self) -> LOLS0R {
-        LOLS0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lols0(&self) -> LOLS0_R {
+        LOLS0_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 16 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 7 - Loss of Lock Status"]
-    #[inline]
-    pub fn lols0(&mut self) -> _LOLS0W {
-        _LOLS0W { w: self }
+    #[inline(always)]
+    pub fn lols0(&mut self) -> LOLS0_W {
+        LOLS0_W { w: self }
     }
 }

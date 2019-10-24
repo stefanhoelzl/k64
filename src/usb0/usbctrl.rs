@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::USBCTRL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register USBCTRL"]
+pub type R = crate::R<u8, super::USBCTRL>;
+#[doc = "Writer for register USBCTRL"]
+pub type W = crate::W<u8, super::USBCTRL>;
+#[doc = "Register USBCTRL `reset()`'s with value 0xc0"]
+impl crate::ResetValue for super::USBCTRL {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xc0
     }
 }
-#[doc = "Possible values of the field `PDE`"]
+#[doc = "Enables the weak pulldowns on the USB transceiver.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDER {
-    #[doc = "Weak pulldowns are disabled on D+ and D-."]
+pub enum PDE_A {
+    #[doc = "0: Weak pulldowns are disabled on D+ and D-."]
     _0,
-    #[doc = "Weak pulldowns are enabled on D+ and D-."]
+    #[doc = "1: Weak pulldowns are enabled on D+ and D-."]
     _1,
 }
-impl PDER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDER::_0 => false,
-            PDER::_1 => true,
+impl From<PDE_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDE_A) -> Self {
+        match variant {
+            PDE_A::_0 => false,
+            PDE_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDER {
-        match value {
-            false => PDER::_0,
-            true => PDER::_1,
+}
+#[doc = "Reader of field `PDE`"]
+pub type PDE_R = crate::R<bool, PDE_A>;
+impl PDE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDE_A {
+        match self.bits {
+            false => PDE_A::_0,
+            true => PDE_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PDER::_0
+        *self == PDE_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PDER::_1
+        *self == PDE_A::_1
     }
 }
-#[doc = "Possible values of the field `SUSP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SUSPR {
-    #[doc = "USB transceiver is not in suspend state."]
-    _0,
-    #[doc = "USB transceiver is in suspend state."]
-    _1,
-}
-impl SUSPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SUSPR::_0 => false,
-            SUSPR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SUSPR {
-        match value {
-            false => SUSPR::_0,
-            true => SUSPR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SUSPR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SUSPR::_1
-    }
-}
-#[doc = "Values that can be written to the field `PDE`"]
-pub enum PDEW {
-    #[doc = "Weak pulldowns are disabled on D+ and D-."]
-    _0,
-    #[doc = "Weak pulldowns are enabled on D+ and D-."]
-    _1,
-}
-impl PDEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDEW::_0 => false,
-            PDEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDEW<'a> {
+#[doc = "Write proxy for field `PDE`"]
+pub struct PDE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDEW) -> &'a mut W {
+impl<'a> PDE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Weak pulldowns are disabled on D+ and D-."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PDEW::_0)
+        self.variant(PDE_A::_0)
     }
     #[doc = "Weak pulldowns are enabled on D+ and D-."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PDEW::_1)
+        self.variant(PDE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SUSP`"]
-pub enum SUSPW {
-    #[doc = "USB transceiver is not in suspend state."]
+#[doc = "Places the USB transceiver into the suspend state.\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SUSP_A {
+    #[doc = "0: USB transceiver is not in suspend state."]
     _0,
-    #[doc = "USB transceiver is in suspend state."]
+    #[doc = "1: USB transceiver is in suspend state."]
     _1,
 }
-impl SUSPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SUSPW::_0 => false,
-            SUSPW::_1 => true,
+impl From<SUSP_A> for bool {
+    #[inline(always)]
+    fn from(variant: SUSP_A) -> Self {
+        match variant {
+            SUSP_A::_0 => false,
+            SUSP_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SUSPW<'a> {
+#[doc = "Reader of field `SUSP`"]
+pub type SUSP_R = crate::R<bool, SUSP_A>;
+impl SUSP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SUSP_A {
+        match self.bits {
+            false => SUSP_A::_0,
+            true => SUSP_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SUSP_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SUSP_A::_1
+    }
+}
+#[doc = "Write proxy for field `SUSP`"]
+pub struct SUSP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SUSPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SUSPW) -> &'a mut W {
+impl<'a> SUSP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SUSP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "USB transceiver is not in suspend state."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SUSPW::_0)
+        self.variant(SUSP_A::_0)
     }
     #[doc = "USB transceiver is in suspend state."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SUSPW::_1)
+        self.variant(SUSP_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 6 - Enables the weak pulldowns on the USB transceiver."]
-    #[inline]
-    pub fn pde(&self) -> PDER {
-        PDER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn pde(&self) -> PDE_R {
+        PDE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Places the USB transceiver into the suspend state."]
-    #[inline]
-    pub fn susp(&self) -> SUSPR {
-        SUSPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn susp(&self) -> SUSP_R {
+        SUSP_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 192 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 6 - Enables the weak pulldowns on the USB transceiver."]
-    #[inline]
-    pub fn pde(&mut self) -> _PDEW {
-        _PDEW { w: self }
+    #[inline(always)]
+    pub fn pde(&mut self) -> PDE_W {
+        PDE_W { w: self }
     }
     #[doc = "Bit 7 - Places the USB transceiver into the suspend state."]
-    #[inline]
-    pub fn susp(&mut self) -> _SUSPW {
-        _SUSPW { w: self }
+    #[inline(always)]
+    pub fn susp(&mut self) -> SUSP_W {
+        SUSP_W { w: self }
     }
 }

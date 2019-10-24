@@ -1,981 +1,660 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SR"]
+pub type R = crate::R<u32, super::SR>;
+#[doc = "Writer for register SR"]
+pub type W = crate::W<u32, super::SR>;
+#[doc = "Register SR `reset()`'s with value 0x0200_0000"]
+impl crate::ResetValue for super::SR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0200_0000
     }
 }
-#[doc = r" Value of the field"]
-pub struct POPNXTPTRR {
-    bits: u8,
-}
-impl POPNXTPTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RXCTRR {
-    bits: u8,
-}
-impl RXCTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXNXTPTRR {
-    bits: u8,
-}
-impl TXNXTPTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXCTRR {
-    bits: u8,
-}
-impl TXCTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `RFDF`"]
+#[doc = "Reader of field `POPNXTPTR`"]
+pub type POPNXTPTR_R = crate::R<u8, u8>;
+#[doc = "Reader of field `RXCTR`"]
+pub type RXCTR_R = crate::R<u8, u8>;
+#[doc = "Reader of field `TXNXTPTR`"]
+pub type TXNXTPTR_R = crate::R<u8, u8>;
+#[doc = "Reader of field `TXCTR`"]
+pub type TXCTR_R = crate::R<u8, u8>;
+#[doc = "Receive FIFO Drain Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RFDFR {
-    #[doc = "RX FIFO is empty."]
+pub enum RFDF_A {
+    #[doc = "0: RX FIFO is empty."]
     _0,
-    #[doc = "RX FIFO is not empty."]
+    #[doc = "1: RX FIFO is not empty."]
     _1,
 }
-impl RFDFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RFDFR::_0 => false,
-            RFDFR::_1 => true,
+impl From<RFDF_A> for bool {
+    #[inline(always)]
+    fn from(variant: RFDF_A) -> Self {
+        match variant {
+            RFDF_A::_0 => false,
+            RFDF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RFDFR {
-        match value {
-            false => RFDFR::_0,
-            true => RFDFR::_1,
+}
+#[doc = "Reader of field `RFDF`"]
+pub type RFDF_R = crate::R<bool, RFDF_A>;
+impl RFDF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RFDF_A {
+        match self.bits {
+            false => RFDF_A::_0,
+            true => RFDF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RFDFR::_0
+        *self == RFDF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RFDFR::_1
+        *self == RFDF_A::_1
     }
 }
-#[doc = "Possible values of the field `RFOF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RFOFR {
-    #[doc = "No Rx FIFO overflow."]
-    _0,
-    #[doc = "Rx FIFO overflow has occurred."]
-    _1,
-}
-impl RFOFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RFOFR::_0 => false,
-            RFOFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RFOFR {
-        match value {
-            false => RFOFR::_0,
-            true => RFOFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RFOFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RFOFR::_1
-    }
-}
-#[doc = "Possible values of the field `TFFF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFFFR {
-    #[doc = "TX FIFO is full."]
-    _0,
-    #[doc = "TX FIFO is not full."]
-    _1,
-}
-impl TFFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TFFFR::_0 => false,
-            TFFFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TFFFR {
-        match value {
-            false => TFFFR::_0,
-            true => TFFFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TFFFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TFFFR::_1
-    }
-}
-#[doc = "Possible values of the field `TFUF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFUFR {
-    #[doc = "No TX FIFO underflow."]
-    _0,
-    #[doc = "TX FIFO underflow has occurred."]
-    _1,
-}
-impl TFUFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TFUFR::_0 => false,
-            TFUFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TFUFR {
-        match value {
-            false => TFUFR::_0,
-            true => TFUFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TFUFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TFUFR::_1
-    }
-}
-#[doc = "Possible values of the field `EOQF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EOQFR {
-    #[doc = "EOQ is not set in the executing command."]
-    _0,
-    #[doc = "EOQ is set in the executing SPI command."]
-    _1,
-}
-impl EOQFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EOQFR::_0 => false,
-            EOQFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EOQFR {
-        match value {
-            false => EOQFR::_0,
-            true => EOQFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == EOQFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == EOQFR::_1
-    }
-}
-#[doc = "Possible values of the field `TXRXS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXRXSR {
-    #[doc = "Transmit and receive operations are disabled (The module is in Stopped state)."]
-    _0,
-    #[doc = "Transmit and receive operations are enabled (The module is in Running state)."]
-    _1,
-}
-impl TXRXSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXRXSR::_0 => false,
-            TXRXSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXRXSR {
-        match value {
-            false => TXRXSR::_0,
-            true => TXRXSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXRXSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXRXSR::_1
-    }
-}
-#[doc = "Possible values of the field `TCF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCFR {
-    #[doc = "Transfer not complete."]
-    _0,
-    #[doc = "Transfer complete."]
-    _1,
-}
-impl TCFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TCFR::_0 => false,
-            TCFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TCFR {
-        match value {
-            false => TCFR::_0,
-            true => TCFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TCFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TCFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `RFDF`"]
-pub enum RFDFW {
-    #[doc = "RX FIFO is empty."]
-    _0,
-    #[doc = "RX FIFO is not empty."]
-    _1,
-}
-impl RFDFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RFDFW::_0 => false,
-            RFDFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RFDFW<'a> {
+#[doc = "Write proxy for field `RFDF`"]
+pub struct RFDF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFDFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RFDFW) -> &'a mut W {
+impl<'a> RFDF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RFDF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "RX FIFO is empty."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RFDFW::_0)
+        self.variant(RFDF_A::_0)
     }
     #[doc = "RX FIFO is not empty."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RFDFW::_1)
+        self.variant(RFDF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RFOF`"]
-pub enum RFOFW {
+#[doc = "Receive FIFO Overflow Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RFOF_A {
+    #[doc = "0: No Rx FIFO overflow."]
+    _0,
+    #[doc = "1: Rx FIFO overflow has occurred."]
+    _1,
+}
+impl From<RFOF_A> for bool {
+    #[inline(always)]
+    fn from(variant: RFOF_A) -> Self {
+        match variant {
+            RFOF_A::_0 => false,
+            RFOF_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `RFOF`"]
+pub type RFOF_R = crate::R<bool, RFOF_A>;
+impl RFOF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RFOF_A {
+        match self.bits {
+            false => RFOF_A::_0,
+            true => RFOF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RFOF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RFOF_A::_1
+    }
+}
+#[doc = "Write proxy for field `RFOF`"]
+pub struct RFOF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> RFOF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RFOF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No Rx FIFO overflow."]
-    _0,
-    #[doc = "Rx FIFO overflow has occurred."]
-    _1,
-}
-impl RFOFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RFOFW::_0 => false,
-            RFOFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RFOFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RFOFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RFOFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No Rx FIFO overflow."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RFOFW::_0)
+        self.variant(RFOF_A::_0)
     }
     #[doc = "Rx FIFO overflow has occurred."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RFOFW::_1)
+        self.variant(RFOF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TFFF`"]
-pub enum TFFFW {
-    #[doc = "TX FIFO is full."]
+#[doc = "Transmit FIFO Fill Flag\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TFFF_A {
+    #[doc = "0: TX FIFO is full."]
     _0,
-    #[doc = "TX FIFO is not full."]
+    #[doc = "1: TX FIFO is not full."]
     _1,
 }
-impl TFFFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TFFFW::_0 => false,
-            TFFFW::_1 => true,
+impl From<TFFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TFFF_A) -> Self {
+        match variant {
+            TFFF_A::_0 => false,
+            TFFF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TFFFW<'a> {
+#[doc = "Reader of field `TFFF`"]
+pub type TFFF_R = crate::R<bool, TFFF_A>;
+impl TFFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TFFF_A {
+        match self.bits {
+            false => TFFF_A::_0,
+            true => TFFF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TFFF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TFFF_A::_1
+    }
+}
+#[doc = "Write proxy for field `TFFF`"]
+pub struct TFFF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TFFFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TFFFW) -> &'a mut W {
+impl<'a> TFFF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TFFF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "TX FIFO is full."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TFFFW::_0)
+        self.variant(TFFF_A::_0)
     }
     #[doc = "TX FIFO is not full."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TFFFW::_1)
+        self.variant(TFFF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TFUF`"]
-pub enum TFUFW {
+#[doc = "Transmit FIFO Underflow Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TFUF_A {
+    #[doc = "0: No TX FIFO underflow."]
+    _0,
+    #[doc = "1: TX FIFO underflow has occurred."]
+    _1,
+}
+impl From<TFUF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TFUF_A) -> Self {
+        match variant {
+            TFUF_A::_0 => false,
+            TFUF_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TFUF`"]
+pub type TFUF_R = crate::R<bool, TFUF_A>;
+impl TFUF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TFUF_A {
+        match self.bits {
+            false => TFUF_A::_0,
+            true => TFUF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TFUF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TFUF_A::_1
+    }
+}
+#[doc = "Write proxy for field `TFUF`"]
+pub struct TFUF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TFUF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TFUF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No TX FIFO underflow."]
-    _0,
-    #[doc = "TX FIFO underflow has occurred."]
-    _1,
-}
-impl TFUFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TFUFW::_0 => false,
-            TFUFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TFUFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TFUFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TFUFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No TX FIFO underflow."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TFUFW::_0)
+        self.variant(TFUF_A::_0)
     }
     #[doc = "TX FIFO underflow has occurred."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TFUFW::_1)
+        self.variant(TFUF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `EOQF`"]
-pub enum EOQFW {
-    #[doc = "EOQ is not set in the executing command."]
+#[doc = "End of Queue Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EOQF_A {
+    #[doc = "0: EOQ is not set in the executing command."]
     _0,
-    #[doc = "EOQ is set in the executing SPI command."]
+    #[doc = "1: EOQ is set in the executing SPI command."]
     _1,
 }
-impl EOQFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EOQFW::_0 => false,
-            EOQFW::_1 => true,
+impl From<EOQF_A> for bool {
+    #[inline(always)]
+    fn from(variant: EOQF_A) -> Self {
+        match variant {
+            EOQF_A::_0 => false,
+            EOQF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _EOQFW<'a> {
+#[doc = "Reader of field `EOQF`"]
+pub type EOQF_R = crate::R<bool, EOQF_A>;
+impl EOQF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EOQF_A {
+        match self.bits {
+            false => EOQF_A::_0,
+            true => EOQF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == EOQF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == EOQF_A::_1
+    }
+}
+#[doc = "Write proxy for field `EOQF`"]
+pub struct EOQF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOQFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EOQFW) -> &'a mut W {
+impl<'a> EOQF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EOQF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "EOQ is not set in the executing command."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(EOQFW::_0)
+        self.variant(EOQF_A::_0)
     }
     #[doc = "EOQ is set in the executing SPI command."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(EOQFW::_1)
+        self.variant(EOQF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TXRXS`"]
-pub enum TXRXSW {
-    #[doc = "Transmit and receive operations are disabled (The module is in Stopped state)."]
+#[doc = "TX and RX Status\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXRXS_A {
+    #[doc = "0: Transmit and receive operations are disabled (The module is in Stopped state)."]
     _0,
-    #[doc = "Transmit and receive operations are enabled (The module is in Running state)."]
+    #[doc = "1: Transmit and receive operations are enabled (The module is in Running state)."]
     _1,
 }
-impl TXRXSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TXRXSW::_0 => false,
-            TXRXSW::_1 => true,
+impl From<TXRXS_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXRXS_A) -> Self {
+        match variant {
+            TXRXS_A::_0 => false,
+            TXRXS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TXRXSW<'a> {
+#[doc = "Reader of field `TXRXS`"]
+pub type TXRXS_R = crate::R<bool, TXRXS_A>;
+impl TXRXS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXRXS_A {
+        match self.bits {
+            false => TXRXS_A::_0,
+            true => TXRXS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXRXS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXRXS_A::_1
+    }
+}
+#[doc = "Write proxy for field `TXRXS`"]
+pub struct TXRXS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXRXSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TXRXSW) -> &'a mut W {
+impl<'a> TXRXS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TXRXS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmit and receive operations are disabled (The module is in Stopped state)."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TXRXSW::_0)
+        self.variant(TXRXS_A::_0)
     }
     #[doc = "Transmit and receive operations are enabled (The module is in Running state)."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TXRXSW::_1)
+        self.variant(TXRXS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TCF`"]
-pub enum TCFW {
-    #[doc = "Transfer not complete."]
+#[doc = "Transfer Complete Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TCF_A {
+    #[doc = "0: Transfer not complete."]
     _0,
-    #[doc = "Transfer complete."]
+    #[doc = "1: Transfer complete."]
     _1,
 }
-impl TCFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TCFW::_0 => false,
-            TCFW::_1 => true,
+impl From<TCF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TCF_A) -> Self {
+        match variant {
+            TCF_A::_0 => false,
+            TCF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TCFW<'a> {
+#[doc = "Reader of field `TCF`"]
+pub type TCF_R = crate::R<bool, TCF_A>;
+impl TCF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TCF_A {
+        match self.bits {
+            false => TCF_A::_0,
+            true => TCF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TCF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TCF_A::_1
+    }
+}
+#[doc = "Write proxy for field `TCF`"]
+pub struct TCF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TCFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TCFW) -> &'a mut W {
+impl<'a> TCF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TCF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transfer not complete."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TCFW::_0)
+        self.variant(TCF_A::_0)
     }
     #[doc = "Transfer complete."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TCFW::_1)
+        self.variant(TCF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Pop Next Pointer"]
-    #[inline]
-    pub fn popnxtptr(&self) -> POPNXTPTRR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        POPNXTPTRR { bits }
+    #[inline(always)]
+    pub fn popnxtptr(&self) -> POPNXTPTR_R {
+        POPNXTPTR_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:7 - RX FIFO Counter"]
-    #[inline]
-    pub fn rxctr(&self) -> RXCTRR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        RXCTRR { bits }
+    #[inline(always)]
+    pub fn rxctr(&self) -> RXCTR_R {
+        RXCTR_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
     #[doc = "Bits 8:11 - Transmit Next Pointer"]
-    #[inline]
-    pub fn txnxtptr(&self) -> TXNXTPTRR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        TXNXTPTRR { bits }
+    #[inline(always)]
+    pub fn txnxtptr(&self) -> TXNXTPTR_R {
+        TXNXTPTR_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bits 12:15 - TX FIFO Counter"]
-    #[inline]
-    pub fn txctr(&self) -> TXCTRR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        TXCTRR { bits }
+    #[inline(always)]
+    pub fn txctr(&self) -> TXCTR_R {
+        TXCTR_R::new(((self.bits >> 12) & 0x0f) as u8)
     }
     #[doc = "Bit 17 - Receive FIFO Drain Flag"]
-    #[inline]
-    pub fn rfdf(&self) -> RFDFR {
-        RFDFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rfdf(&self) -> RFDF_R {
+        RFDF_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Receive FIFO Overflow Flag"]
-    #[inline]
-    pub fn rfof(&self) -> RFOFR {
-        RFOFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rfof(&self) -> RFOF_R {
+        RFOF_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Transmit FIFO Fill Flag"]
-    #[inline]
-    pub fn tfff(&self) -> TFFFR {
-        TFFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tfff(&self) -> TFFF_R {
+        TFFF_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Transmit FIFO Underflow Flag"]
-    #[inline]
-    pub fn tfuf(&self) -> TFUFR {
-        TFUFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tfuf(&self) -> TFUF_R {
+        TFUF_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - End of Queue Flag"]
-    #[inline]
-    pub fn eoqf(&self) -> EOQFR {
-        EOQFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn eoqf(&self) -> EOQF_R {
+        EOQF_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 30 - TX and RX Status"]
-    #[inline]
-    pub fn txrxs(&self) -> TXRXSR {
-        TXRXSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn txrxs(&self) -> TXRXS_R {
+        TXRXS_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Transfer Complete Flag"]
-    #[inline]
-    pub fn tcf(&self) -> TCFR {
-        TCFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tcf(&self) -> TCF_R {
+        TCF_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 33554432 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 17 - Receive FIFO Drain Flag"]
-    #[inline]
-    pub fn rfdf(&mut self) -> _RFDFW {
-        _RFDFW { w: self }
+    #[inline(always)]
+    pub fn rfdf(&mut self) -> RFDF_W {
+        RFDF_W { w: self }
     }
     #[doc = "Bit 19 - Receive FIFO Overflow Flag"]
-    #[inline]
-    pub fn rfof(&mut self) -> _RFOFW {
-        _RFOFW { w: self }
+    #[inline(always)]
+    pub fn rfof(&mut self) -> RFOF_W {
+        RFOF_W { w: self }
     }
     #[doc = "Bit 25 - Transmit FIFO Fill Flag"]
-    #[inline]
-    pub fn tfff(&mut self) -> _TFFFW {
-        _TFFFW { w: self }
+    #[inline(always)]
+    pub fn tfff(&mut self) -> TFFF_W {
+        TFFF_W { w: self }
     }
     #[doc = "Bit 27 - Transmit FIFO Underflow Flag"]
-    #[inline]
-    pub fn tfuf(&mut self) -> _TFUFW {
-        _TFUFW { w: self }
+    #[inline(always)]
+    pub fn tfuf(&mut self) -> TFUF_W {
+        TFUF_W { w: self }
     }
     #[doc = "Bit 28 - End of Queue Flag"]
-    #[inline]
-    pub fn eoqf(&mut self) -> _EOQFW {
-        _EOQFW { w: self }
+    #[inline(always)]
+    pub fn eoqf(&mut self) -> EOQF_W {
+        EOQF_W { w: self }
     }
     #[doc = "Bit 30 - TX and RX Status"]
-    #[inline]
-    pub fn txrxs(&mut self) -> _TXRXSW {
-        _TXRXSW { w: self }
+    #[inline(always)]
+    pub fn txrxs(&mut self) -> TXRXS_W {
+        TXRXS_W { w: self }
     }
     #[doc = "Bit 31 - Transfer Complete Flag"]
-    #[inline]
-    pub fn tcf(&mut self) -> _TCFW {
-        _TCFW { w: self }
+    #[inline(always)]
+    pub fn tcf(&mut self) -> TCF_W {
+        TCF_W { w: self }
     }
 }

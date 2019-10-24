@@ -1,208 +1,183 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CAU_XOR_CASR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register CAU_XOR_CASR"]
+pub type W = crate::W<u32, super::CAU_XOR_CASR>;
+#[doc = "Register CAU_XOR_CASR `reset()`'s with value 0x2000_0000"]
+impl crate::ResetValue for super::CAU_XOR_CASR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x2000_0000
     }
 }
-#[doc = "Values that can be written to the field `IC`"]
-pub enum ICW {
-    #[doc = "No illegal commands issued"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum IC_AW {
+    #[doc = "0: No illegal commands issued"]
     _0,
-    #[doc = "Illegal command issued"]
+    #[doc = "1: Illegal command issued"]
     _1,
 }
-impl ICW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ICW::_0 => false,
-            ICW::_1 => true,
+impl From<IC_AW> for bool {
+    #[inline(always)]
+    fn from(variant: IC_AW) -> Self {
+        match variant {
+            IC_AW::_0 => false,
+            IC_AW::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ICW<'a> {
+#[doc = "Write proxy for field `IC`"]
+pub struct IC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ICW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ICW) -> &'a mut W {
+impl<'a> IC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: IC_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No illegal commands issued"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ICW::_0)
+        self.variant(IC_AW::_0)
     }
     #[doc = "Illegal command issued"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ICW::_1)
+        self.variant(IC_AW::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DPE`"]
-pub enum DPEW {
-    #[doc = "No error detected"]
+#[doc = "no description available\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DPE_AW {
+    #[doc = "0: No error detected"]
     _0,
-    #[doc = "DES key parity error detected"]
+    #[doc = "1: DES key parity error detected"]
     _1,
 }
-impl DPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DPEW::_0 => false,
-            DPEW::_1 => true,
+impl From<DPE_AW> for bool {
+    #[inline(always)]
+    fn from(variant: DPE_AW) -> Self {
+        match variant {
+            DPE_AW::_0 => false,
+            DPE_AW::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DPEW<'a> {
+#[doc = "Write proxy for field `DPE`"]
+pub struct DPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DPEW) -> &'a mut W {
+impl<'a> DPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DPE_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No error detected"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DPEW::_0)
+        self.variant(DPE_AW::_0)
     }
     #[doc = "DES key parity error detected"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DPEW::_1)
+        self.variant(DPE_AW::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `VER`"]
-pub enum VERW {
-    #[doc = "Initial CAU version"]
+#[doc = "CAU version\n\nValue on reset: 2"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum VER_AW {
+    #[doc = "1: Initial CAU version"]
     _0001,
-    #[doc = "Second version, added support for SHA-256 algorithm.(This is the value on this device)"]
+    #[doc = "2: Second version, added support for SHA-256 algorithm.(This is the value on this device)"]
     _0010,
 }
-impl VERW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            VERW::_0001 => 1,
-            VERW::_0010 => 2,
+impl From<VER_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: VER_AW) -> Self {
+        match variant {
+            VER_AW::_0001 => 1,
+            VER_AW::_0010 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _VERW<'a> {
+#[doc = "Write proxy for field `VER`"]
+pub struct VER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VERW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VERW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> VER_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VER_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Initial CAU version"]
-    #[inline]
+    #[inline(always)]
     pub fn _0001(self) -> &'a mut W {
-        self.variant(VERW::_0001)
+        self.variant(VER_AW::_0001)
     }
     #[doc = "Second version, added support for SHA-256 algorithm.(This is the value on this device)"]
-    #[inline]
+    #[inline(always)]
     pub fn _0010(self) -> &'a mut W {
-        self.variant(VERW::_0010)
+        self.variant(VER_AW::_0010)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 28)) | (((value as u32) & 0x0f) << 28);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 536870912 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - no description available"]
-    #[inline]
-    pub fn ic(&mut self) -> _ICW {
-        _ICW { w: self }
+    #[inline(always)]
+    pub fn ic(&mut self) -> IC_W {
+        IC_W { w: self }
     }
     #[doc = "Bit 1 - no description available"]
-    #[inline]
-    pub fn dpe(&mut self) -> _DPEW {
-        _DPEW { w: self }
+    #[inline(always)]
+    pub fn dpe(&mut self) -> DPE_W {
+        DPE_W { w: self }
     }
     #[doc = "Bits 28:31 - CAU version"]
-    #[inline]
-    pub fn ver(&mut self) -> _VERW {
-        _VERW { w: self }
+    #[inline(always)]
+    pub fn ver(&mut self) -> VER_W {
+        VER_W { w: self }
     }
 }

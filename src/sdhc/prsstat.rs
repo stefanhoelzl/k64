@@ -1,800 +1,590 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::PRSSTAT {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `CIHB`"]
+#[doc = "Reader of register PRSSTAT"]
+pub type R = crate::R<u32, super::PRSSTAT>;
+#[doc = "Command Inhibit (CMD)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CIHBR {
-    #[doc = "Can issue command using only CMD line."]
+pub enum CIHB_A {
+    #[doc = "0: Can issue command using only CMD line."]
     _0,
-    #[doc = "Cannot issue command."]
+    #[doc = "1: Cannot issue command."]
     _1,
 }
-impl CIHBR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CIHBR::_0 => false,
-            CIHBR::_1 => true,
+impl From<CIHB_A> for bool {
+    #[inline(always)]
+    fn from(variant: CIHB_A) -> Self {
+        match variant {
+            CIHB_A::_0 => false,
+            CIHB_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CIHBR {
-        match value {
-            false => CIHBR::_0,
-            true => CIHBR::_1,
+}
+#[doc = "Reader of field `CIHB`"]
+pub type CIHB_R = crate::R<bool, CIHB_A>;
+impl CIHB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CIHB_A {
+        match self.bits {
+            false => CIHB_A::_0,
+            true => CIHB_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CIHBR::_0
+        *self == CIHB_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CIHBR::_1
+        *self == CIHB_A::_1
     }
 }
-#[doc = "Possible values of the field `CDIHB`"]
+#[doc = "Command Inhibit (DAT)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CDIHBR {
-    #[doc = "Can issue command which uses the DAT line."]
+pub enum CDIHB_A {
+    #[doc = "0: Can issue command which uses the DAT line."]
     _0,
-    #[doc = "Cannot issue command which uses the DAT line."]
+    #[doc = "1: Cannot issue command which uses the DAT line."]
     _1,
 }
-impl CDIHBR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CDIHBR::_0 => false,
-            CDIHBR::_1 => true,
+impl From<CDIHB_A> for bool {
+    #[inline(always)]
+    fn from(variant: CDIHB_A) -> Self {
+        match variant {
+            CDIHB_A::_0 => false,
+            CDIHB_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CDIHBR {
-        match value {
-            false => CDIHBR::_0,
-            true => CDIHBR::_1,
+}
+#[doc = "Reader of field `CDIHB`"]
+pub type CDIHB_R = crate::R<bool, CDIHB_A>;
+impl CDIHB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CDIHB_A {
+        match self.bits {
+            false => CDIHB_A::_0,
+            true => CDIHB_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CDIHBR::_0
+        *self == CDIHB_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CDIHBR::_1
+        *self == CDIHB_A::_1
     }
 }
-#[doc = "Possible values of the field `DLA`"]
+#[doc = "Data Line Active\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DLAR {
-    #[doc = "DAT line inactive."]
+pub enum DLA_A {
+    #[doc = "0: DAT line inactive."]
     _0,
-    #[doc = "DAT line active."]
+    #[doc = "1: DAT line active."]
     _1,
 }
-impl DLAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DLAR::_0 => false,
-            DLAR::_1 => true,
+impl From<DLA_A> for bool {
+    #[inline(always)]
+    fn from(variant: DLA_A) -> Self {
+        match variant {
+            DLA_A::_0 => false,
+            DLA_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DLAR {
-        match value {
-            false => DLAR::_0,
-            true => DLAR::_1,
+}
+#[doc = "Reader of field `DLA`"]
+pub type DLA_R = crate::R<bool, DLA_A>;
+impl DLA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DLA_A {
+        match self.bits {
+            false => DLA_A::_0,
+            true => DLA_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DLAR::_0
+        *self == DLA_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DLAR::_1
+        *self == DLA_A::_1
     }
 }
-#[doc = "Possible values of the field `SDSTB`"]
+#[doc = "SD Clock Stable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SDSTBR {
-    #[doc = "Clock is changing frequency and not stable."]
+pub enum SDSTB_A {
+    #[doc = "0: Clock is changing frequency and not stable."]
     _0,
-    #[doc = "Clock is stable."]
+    #[doc = "1: Clock is stable."]
     _1,
 }
-impl SDSTBR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SDSTBR::_0 => false,
-            SDSTBR::_1 => true,
+impl From<SDSTB_A> for bool {
+    #[inline(always)]
+    fn from(variant: SDSTB_A) -> Self {
+        match variant {
+            SDSTB_A::_0 => false,
+            SDSTB_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SDSTBR {
-        match value {
-            false => SDSTBR::_0,
-            true => SDSTBR::_1,
+}
+#[doc = "Reader of field `SDSTB`"]
+pub type SDSTB_R = crate::R<bool, SDSTB_A>;
+impl SDSTB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SDSTB_A {
+        match self.bits {
+            false => SDSTB_A::_0,
+            true => SDSTB_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SDSTBR::_0
+        *self == SDSTB_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SDSTBR::_1
+        *self == SDSTB_A::_1
     }
 }
-#[doc = "Possible values of the field `IPGOFF`"]
+#[doc = "Bus Clock Gated Off Internally\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IPGOFFR {
-    #[doc = "Bus clock is active."]
+pub enum IPGOFF_A {
+    #[doc = "0: Bus clock is active."]
     _0,
-    #[doc = "Bus clock is gated off."]
+    #[doc = "1: Bus clock is gated off."]
     _1,
 }
-impl IPGOFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            IPGOFFR::_0 => false,
-            IPGOFFR::_1 => true,
+impl From<IPGOFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: IPGOFF_A) -> Self {
+        match variant {
+            IPGOFF_A::_0 => false,
+            IPGOFF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> IPGOFFR {
-        match value {
-            false => IPGOFFR::_0,
-            true => IPGOFFR::_1,
+}
+#[doc = "Reader of field `IPGOFF`"]
+pub type IPGOFF_R = crate::R<bool, IPGOFF_A>;
+impl IPGOFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> IPGOFF_A {
+        match self.bits {
+            false => IPGOFF_A::_0,
+            true => IPGOFF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == IPGOFFR::_0
+        *self == IPGOFF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == IPGOFFR::_1
+        *self == IPGOFF_A::_1
     }
 }
-#[doc = "Possible values of the field `HCKOFF`"]
+#[doc = "System Clock Gated Off Internally\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HCKOFFR {
-    #[doc = "System clock is active."]
+pub enum HCKOFF_A {
+    #[doc = "0: System clock is active."]
     _0,
-    #[doc = "System clock is gated off."]
+    #[doc = "1: System clock is gated off."]
     _1,
 }
-impl HCKOFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HCKOFFR::_0 => false,
-            HCKOFFR::_1 => true,
+impl From<HCKOFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: HCKOFF_A) -> Self {
+        match variant {
+            HCKOFF_A::_0 => false,
+            HCKOFF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HCKOFFR {
-        match value {
-            false => HCKOFFR::_0,
-            true => HCKOFFR::_1,
+}
+#[doc = "Reader of field `HCKOFF`"]
+pub type HCKOFF_R = crate::R<bool, HCKOFF_A>;
+impl HCKOFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HCKOFF_A {
+        match self.bits {
+            false => HCKOFF_A::_0,
+            true => HCKOFF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == HCKOFFR::_0
+        *self == HCKOFF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == HCKOFFR::_1
+        *self == HCKOFF_A::_1
     }
 }
-#[doc = "Possible values of the field `PEROFF`"]
+#[doc = "SDHC clock Gated Off Internally\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PEROFFR {
-    #[doc = "SDHC clock is active."]
+pub enum PEROFF_A {
+    #[doc = "0: SDHC clock is active."]
     _0,
-    #[doc = "SDHC clock is gated off."]
+    #[doc = "1: SDHC clock is gated off."]
     _1,
 }
-impl PEROFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PEROFFR::_0 => false,
-            PEROFFR::_1 => true,
+impl From<PEROFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: PEROFF_A) -> Self {
+        match variant {
+            PEROFF_A::_0 => false,
+            PEROFF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PEROFFR {
-        match value {
-            false => PEROFFR::_0,
-            true => PEROFFR::_1,
+}
+#[doc = "Reader of field `PEROFF`"]
+pub type PEROFF_R = crate::R<bool, PEROFF_A>;
+impl PEROFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PEROFF_A {
+        match self.bits {
+            false => PEROFF_A::_0,
+            true => PEROFF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == PEROFFR::_0
+        *self == PEROFF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == PEROFFR::_1
+        *self == PEROFF_A::_1
     }
 }
-#[doc = "Possible values of the field `SDOFF`"]
+#[doc = "SD Clock Gated Off Internally\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SDOFFR {
-    #[doc = "SD clock is active."]
+pub enum SDOFF_A {
+    #[doc = "0: SD clock is active."]
     _0,
-    #[doc = "SD clock is gated off."]
+    #[doc = "1: SD clock is gated off."]
     _1,
 }
-impl SDOFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SDOFFR::_0 => false,
-            SDOFFR::_1 => true,
+impl From<SDOFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: SDOFF_A) -> Self {
+        match variant {
+            SDOFF_A::_0 => false,
+            SDOFF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SDOFFR {
-        match value {
-            false => SDOFFR::_0,
-            true => SDOFFR::_1,
+}
+#[doc = "Reader of field `SDOFF`"]
+pub type SDOFF_R = crate::R<bool, SDOFF_A>;
+impl SDOFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SDOFF_A {
+        match self.bits {
+            false => SDOFF_A::_0,
+            true => SDOFF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SDOFFR::_0
+        *self == SDOFF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SDOFFR::_1
+        *self == SDOFF_A::_1
     }
 }
-#[doc = "Possible values of the field `WTA`"]
+#[doc = "Write Transfer Active\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WTAR {
-    #[doc = "No valid data."]
+pub enum WTA_A {
+    #[doc = "0: No valid data."]
     _0,
-    #[doc = "Transferring data."]
+    #[doc = "1: Transferring data."]
     _1,
 }
-impl WTAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WTAR::_0 => false,
-            WTAR::_1 => true,
+impl From<WTA_A> for bool {
+    #[inline(always)]
+    fn from(variant: WTA_A) -> Self {
+        match variant {
+            WTA_A::_0 => false,
+            WTA_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WTAR {
-        match value {
-            false => WTAR::_0,
-            true => WTAR::_1,
+}
+#[doc = "Reader of field `WTA`"]
+pub type WTA_R = crate::R<bool, WTA_A>;
+impl WTA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WTA_A {
+        match self.bits {
+            false => WTA_A::_0,
+            true => WTA_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == WTAR::_0
+        *self == WTA_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == WTAR::_1
+        *self == WTA_A::_1
     }
 }
-#[doc = "Possible values of the field `RTA`"]
+#[doc = "Read Transfer Active\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RTAR {
-    #[doc = "No valid data."]
+pub enum RTA_A {
+    #[doc = "0: No valid data."]
     _0,
-    #[doc = "Transferring data."]
+    #[doc = "1: Transferring data."]
     _1,
 }
-impl RTAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RTAR::_0 => false,
-            RTAR::_1 => true,
+impl From<RTA_A> for bool {
+    #[inline(always)]
+    fn from(variant: RTA_A) -> Self {
+        match variant {
+            RTA_A::_0 => false,
+            RTA_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RTAR {
-        match value {
-            false => RTAR::_0,
-            true => RTAR::_1,
+}
+#[doc = "Reader of field `RTA`"]
+pub type RTA_R = crate::R<bool, RTA_A>;
+impl RTA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RTA_A {
+        match self.bits {
+            false => RTA_A::_0,
+            true => RTA_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RTAR::_0
+        *self == RTA_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RTAR::_1
+        *self == RTA_A::_1
     }
 }
-#[doc = "Possible values of the field `BWEN`"]
+#[doc = "Buffer Write Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BWENR {
-    #[doc = "Write disable, the buffer can hold valid data less than the write watermark level."]
+pub enum BWEN_A {
+    #[doc = "0: Write disable, the buffer can hold valid data less than the write watermark level."]
     _0,
-    #[doc = "Write enable, the buffer can hold valid data greater than the write watermark level."]
+    #[doc = "1: Write enable, the buffer can hold valid data greater than the write watermark level."]
     _1,
 }
-impl BWENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BWENR::_0 => false,
-            BWENR::_1 => true,
+impl From<BWEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: BWEN_A) -> Self {
+        match variant {
+            BWEN_A::_0 => false,
+            BWEN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BWENR {
-        match value {
-            false => BWENR::_0,
-            true => BWENR::_1,
+}
+#[doc = "Reader of field `BWEN`"]
+pub type BWEN_R = crate::R<bool, BWEN_A>;
+impl BWEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BWEN_A {
+        match self.bits {
+            false => BWEN_A::_0,
+            true => BWEN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == BWENR::_0
+        *self == BWEN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == BWENR::_1
+        *self == BWEN_A::_1
     }
 }
-#[doc = "Possible values of the field `BREN`"]
+#[doc = "Buffer Read Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BRENR {
-    #[doc = "Read disable, valid data less than the watermark level exist in the buffer."]
+pub enum BREN_A {
+    #[doc = "0: Read disable, valid data less than the watermark level exist in the buffer."]
     _0,
-    #[doc = "Read enable, valid data greater than the watermark level exist in the buffer."]
+    #[doc = "1: Read enable, valid data greater than the watermark level exist in the buffer."]
     _1,
 }
-impl BRENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BRENR::_0 => false,
-            BRENR::_1 => true,
+impl From<BREN_A> for bool {
+    #[inline(always)]
+    fn from(variant: BREN_A) -> Self {
+        match variant {
+            BREN_A::_0 => false,
+            BREN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BRENR {
-        match value {
-            false => BRENR::_0,
-            true => BRENR::_1,
+}
+#[doc = "Reader of field `BREN`"]
+pub type BREN_R = crate::R<bool, BREN_A>;
+impl BREN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BREN_A {
+        match self.bits {
+            false => BREN_A::_0,
+            true => BREN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == BRENR::_0
+        *self == BREN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == BRENR::_1
+        *self == BREN_A::_1
     }
 }
-#[doc = "Possible values of the field `CINS`"]
+#[doc = "Card Inserted\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CINSR {
-    #[doc = "Power on reset or no card."]
+pub enum CINS_A {
+    #[doc = "0: Power on reset or no card."]
     _0,
-    #[doc = "Card inserted."]
+    #[doc = "1: Card inserted."]
     _1,
 }
-impl CINSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CINSR::_0 => false,
-            CINSR::_1 => true,
+impl From<CINS_A> for bool {
+    #[inline(always)]
+    fn from(variant: CINS_A) -> Self {
+        match variant {
+            CINS_A::_0 => false,
+            CINS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CINSR {
-        match value {
-            false => CINSR::_0,
-            true => CINSR::_1,
+}
+#[doc = "Reader of field `CINS`"]
+pub type CINS_R = crate::R<bool, CINS_A>;
+impl CINS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CINS_A {
+        match self.bits {
+            false => CINS_A::_0,
+            true => CINS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CINSR::_0
+        *self == CINS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CINSR::_1
+        *self == CINS_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct CLSLR {
-    bits: bool,
-}
-impl CLSLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DLSLR {
-    bits: u8,
-}
-impl DLSLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of field `CLSL`"]
+pub type CLSL_R = crate::R<bool, bool>;
+#[doc = "Reader of field `DLSL`"]
+pub type DLSL_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Command Inhibit (CMD)"]
-    #[inline]
-    pub fn cihb(&self) -> CIHBR {
-        CIHBR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cihb(&self) -> CIHB_R {
+        CIHB_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Command Inhibit (DAT)"]
-    #[inline]
-    pub fn cdihb(&self) -> CDIHBR {
-        CDIHBR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cdihb(&self) -> CDIHB_R {
+        CDIHB_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Data Line Active"]
-    #[inline]
-    pub fn dla(&self) -> DLAR {
-        DLAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dla(&self) -> DLA_R {
+        DLA_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - SD Clock Stable"]
-    #[inline]
-    pub fn sdstb(&self) -> SDSTBR {
-        SDSTBR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sdstb(&self) -> SDSTB_R {
+        SDSTB_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Bus Clock Gated Off Internally"]
-    #[inline]
-    pub fn ipgoff(&self) -> IPGOFFR {
-        IPGOFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ipgoff(&self) -> IPGOFF_R {
+        IPGOFF_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - System Clock Gated Off Internally"]
-    #[inline]
-    pub fn hckoff(&self) -> HCKOFFR {
-        HCKOFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hckoff(&self) -> HCKOFF_R {
+        HCKOFF_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - SDHC clock Gated Off Internally"]
-    #[inline]
-    pub fn peroff(&self) -> PEROFFR {
-        PEROFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn peroff(&self) -> PEROFF_R {
+        PEROFF_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - SD Clock Gated Off Internally"]
-    #[inline]
-    pub fn sdoff(&self) -> SDOFFR {
-        SDOFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sdoff(&self) -> SDOFF_R {
+        SDOFF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Write Transfer Active"]
-    #[inline]
-    pub fn wta(&self) -> WTAR {
-        WTAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wta(&self) -> WTA_R {
+        WTA_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Read Transfer Active"]
-    #[inline]
-    pub fn rta(&self) -> RTAR {
-        RTAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rta(&self) -> RTA_R {
+        RTA_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Buffer Write Enable"]
-    #[inline]
-    pub fn bwen(&self) -> BWENR {
-        BWENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn bwen(&self) -> BWEN_R {
+        BWEN_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Buffer Read Enable"]
-    #[inline]
-    pub fn bren(&self) -> BRENR {
-        BRENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn bren(&self) -> BREN_R {
+        BREN_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Card Inserted"]
-    #[inline]
-    pub fn cins(&self) -> CINSR {
-        CINSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cins(&self) -> CINS_R {
+        CINS_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 23 - CMD Line Signal Level"]
-    #[inline]
-    pub fn clsl(&self) -> CLSLR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CLSLR { bits }
+    #[inline(always)]
+    pub fn clsl(&self) -> CLSL_R {
+        CLSL_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bits 24:31 - DAT Line Signal Level"]
-    #[inline]
-    pub fn dlsl(&self) -> DLSLR {
-        let bits = {
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DLSLR { bits }
+    #[inline(always)]
+    pub fn dlsl(&self) -> DLSL_R {
+        DLSL_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }

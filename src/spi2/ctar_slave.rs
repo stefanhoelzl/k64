@@ -1,343 +1,216 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CTAR_SLAVE {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CTAR_SLAVE"]
+pub type R = crate::R<u32, super::CTAR_SLAVE>;
+#[doc = "Writer for register CTAR_SLAVE"]
+pub type W = crate::W<u32, super::CTAR_SLAVE>;
+#[doc = "Register CTAR_SLAVE `reset()`'s with value 0x7800_0000"]
+impl crate::ResetValue for super::CTAR_SLAVE {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x7800_0000
     }
 }
-#[doc = "Possible values of the field `CPHA`"]
+#[doc = "Clock Phase\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CPHAR {
-    #[doc = "Data is captured on the leading edge of SCK and changed on the following edge."]
+pub enum CPHA_A {
+    #[doc = "0: Data is captured on the leading edge of SCK and changed on the following edge."]
     _0,
-    #[doc = "Data is changed on the leading edge of SCK and captured on the following edge."]
+    #[doc = "1: Data is changed on the leading edge of SCK and captured on the following edge."]
     _1,
 }
-impl CPHAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CPHAR::_0 => false,
-            CPHAR::_1 => true,
+impl From<CPHA_A> for bool {
+    #[inline(always)]
+    fn from(variant: CPHA_A) -> Self {
+        match variant {
+            CPHA_A::_0 => false,
+            CPHA_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CPHAR {
-        match value {
-            false => CPHAR::_0,
-            true => CPHAR::_1,
+}
+#[doc = "Reader of field `CPHA`"]
+pub type CPHA_R = crate::R<bool, CPHA_A>;
+impl CPHA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CPHA_A {
+        match self.bits {
+            false => CPHA_A::_0,
+            true => CPHA_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CPHAR::_0
+        *self == CPHA_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CPHAR::_1
+        *self == CPHA_A::_1
     }
 }
-#[doc = "Possible values of the field `CPOL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CPOLR {
-    #[doc = "The inactive state value of SCK is low."]
-    _0,
-    #[doc = "The inactive state value of SCK is high."]
-    _1,
+#[doc = "Write proxy for field `CPHA`"]
+pub struct CPHA_W<'a> {
+    w: &'a mut W,
 }
-impl CPOLR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CPOLR::_0 => false,
-            CPOLR::_1 => true,
+impl<'a> CPHA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CPHA_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CPOLR {
-        match value {
-            false => CPOLR::_0,
-            true => CPOLR::_1,
+    #[doc = "Data is captured on the leading edge of SCK and changed on the following edge."]
+    #[inline(always)]
+    pub fn _0(self) -> &'a mut W {
+        self.variant(CPHA_A::_0)
+    }
+    #[doc = "Data is changed on the leading edge of SCK and captured on the following edge."]
+    #[inline(always)]
+    pub fn _1(self) -> &'a mut W {
+        self.variant(CPHA_A::_1)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w
+    }
+}
+#[doc = "Clock Polarity\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CPOL_A {
+    #[doc = "0: The inactive state value of SCK is low."]
+    _0,
+    #[doc = "1: The inactive state value of SCK is high."]
+    _1,
+}
+impl From<CPOL_A> for bool {
+    #[inline(always)]
+    fn from(variant: CPOL_A) -> Self {
+        match variant {
+            CPOL_A::_0 => false,
+            CPOL_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `CPOL`"]
+pub type CPOL_R = crate::R<bool, CPOL_A>;
+impl CPOL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CPOL_A {
+        match self.bits {
+            false => CPOL_A::_0,
+            true => CPOL_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == CPOLR::_0
+        *self == CPOL_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CPOLR::_1
+        *self == CPOL_A::_1
     }
 }
-#[doc = r" Value of the field"]
-pub struct FMSZR {
-    bits: u8,
-}
-impl FMSZR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `CPHA`"]
-pub enum CPHAW {
-    #[doc = "Data is captured on the leading edge of SCK and changed on the following edge."]
-    _0,
-    #[doc = "Data is changed on the leading edge of SCK and captured on the following edge."]
-    _1,
-}
-impl CPHAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CPHAW::_0 => false,
-            CPHAW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CPHAW<'a> {
+#[doc = "Write proxy for field `CPOL`"]
+pub struct CPOL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPHAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CPHAW) -> &'a mut W {
+impl<'a> CPOL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CPOL_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Data is captured on the leading edge of SCK and changed on the following edge."]
-    #[inline]
-    pub fn _0(self) -> &'a mut W {
-        self.variant(CPHAW::_0)
-    }
-    #[doc = "Data is changed on the leading edge of SCK and captured on the following edge."]
-    #[inline]
-    pub fn _1(self) -> &'a mut W {
-        self.variant(CPHAW::_1)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CPOL`"]
-pub enum CPOLW {
-    #[doc = "The inactive state value of SCK is low."]
-    _0,
-    #[doc = "The inactive state value of SCK is high."]
-    _1,
-}
-impl CPOLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CPOLW::_0 => false,
-            CPOLW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CPOLW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CPOLW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CPOLW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The inactive state value of SCK is low."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(CPOLW::_0)
+        self.variant(CPOL_A::_0)
     }
     #[doc = "The inactive state value of SCK is high."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CPOLW::_1)
+        self.variant(CPOL_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _FMSZW<'a> {
+#[doc = "Reader of field `FMSZ`"]
+pub type FMSZ_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FMSZ`"]
+pub struct FMSZ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FMSZW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> FMSZ_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 27)) | (((value as u32) & 0x1f) << 27);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 25 - Clock Phase"]
-    #[inline]
-    pub fn cpha(&self) -> CPHAR {
-        CPHAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cpha(&self) -> CPHA_R {
+        CPHA_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Clock Polarity"]
-    #[inline]
-    pub fn cpol(&self) -> CPOLR {
-        CPOLR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cpol(&self) -> CPOL_R {
+        CPOL_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bits 27:31 - Frame Size"]
-    #[inline]
-    pub fn fmsz(&self) -> FMSZR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        FMSZR { bits }
+    #[inline(always)]
+    pub fn fmsz(&self) -> FMSZ_R {
+        FMSZ_R::new(((self.bits >> 27) & 0x1f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 2013265920 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 25 - Clock Phase"]
-    #[inline]
-    pub fn cpha(&mut self) -> _CPHAW {
-        _CPHAW { w: self }
+    #[inline(always)]
+    pub fn cpha(&mut self) -> CPHA_W {
+        CPHA_W { w: self }
     }
     #[doc = "Bit 26 - Clock Polarity"]
-    #[inline]
-    pub fn cpol(&mut self) -> _CPOLW {
-        _CPOLW { w: self }
+    #[inline(always)]
+    pub fn cpol(&mut self) -> CPOL_W {
+        CPOL_W { w: self }
     }
     #[doc = "Bits 27:31 - Frame Size"]
-    #[inline]
-    pub fn fmsz(&mut self) -> _FMSZW {
-        _FMSZW { w: self }
+    #[inline(always)]
+    pub fn fmsz(&mut self) -> FMSZ_W {
+        FMSZ_W { w: self }
     }
 }

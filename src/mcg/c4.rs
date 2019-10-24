@@ -1,419 +1,269 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::C4 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register C4"]
+pub type R = crate::R<u8, super::C4>;
+#[doc = "Writer for register C4"]
+pub type W = crate::W<u8, super::C4>;
+#[doc = "Register C4 `reset()`'s with value 0"]
+impl crate::ResetValue for super::C4 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct SCFTRIMR {
-    bits: bool,
+#[doc = "Reader of field `SCFTRIM`"]
+pub type SCFTRIM_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SCFTRIM`"]
+pub struct SCFTRIM_W<'a> {
+    w: &'a mut W,
 }
-impl SCFTRIMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> SCFTRIM_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FCTRIMR {
-    bits: u8,
-}
-impl FCTRIMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
+        self.w
     }
 }
-#[doc = "Possible values of the field `DRST_DRS`"]
+#[doc = "Reader of field `FCTRIM`"]
+pub type FCTRIM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FCTRIM`"]
+pub struct FCTRIM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FCTRIM_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 1)) | (((value as u8) & 0x0f) << 1);
+        self.w
+    }
+}
+#[doc = "DCO Range Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DRST_DRSR {
-    #[doc = "Encoding 0 - Low range (reset default)."]
+pub enum DRST_DRS_A {
+    #[doc = "0: Encoding 0 - Low range (reset default)."]
     _00,
-    #[doc = "Encoding 1 - Mid range."]
+    #[doc = "1: Encoding 1 - Mid range."]
     _01,
-    #[doc = "Encoding 2 - Mid-high range."]
+    #[doc = "2: Encoding 2 - Mid-high range."]
     _10,
-    #[doc = "Encoding 3 - High range."]
+    #[doc = "3: Encoding 3 - High range."]
     _11,
 }
-impl DRST_DRSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            DRST_DRSR::_00 => 0,
-            DRST_DRSR::_01 => 1,
-            DRST_DRSR::_10 => 2,
-            DRST_DRSR::_11 => 3,
+impl From<DRST_DRS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: DRST_DRS_A) -> Self {
+        match variant {
+            DRST_DRS_A::_00 => 0,
+            DRST_DRS_A::_01 => 1,
+            DRST_DRS_A::_10 => 2,
+            DRST_DRS_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> DRST_DRSR {
-        match value {
-            0 => DRST_DRSR::_00,
-            1 => DRST_DRSR::_01,
-            2 => DRST_DRSR::_10,
-            3 => DRST_DRSR::_11,
+}
+#[doc = "Reader of field `DRST_DRS`"]
+pub type DRST_DRS_R = crate::R<u8, DRST_DRS_A>;
+impl DRST_DRS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DRST_DRS_A {
+        match self.bits {
+            0 => DRST_DRS_A::_00,
+            1 => DRST_DRS_A::_01,
+            2 => DRST_DRS_A::_10,
+            3 => DRST_DRS_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == DRST_DRSR::_00
+        *self == DRST_DRS_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == DRST_DRSR::_01
+        *self == DRST_DRS_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == DRST_DRSR::_10
+        *self == DRST_DRS_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == DRST_DRSR::_11
+        *self == DRST_DRS_A::_11
     }
 }
-#[doc = "Possible values of the field `DMX32`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMX32R {
-    #[doc = "DCO has a default range of 25%."]
-    _0,
-    #[doc = "DCO is fine-tuned for maximum frequency with 32.768 kHz reference."]
-    _1,
+#[doc = "Write proxy for field `DRST_DRS`"]
+pub struct DRST_DRS_W<'a> {
+    w: &'a mut W,
 }
-impl DMX32R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMX32R::_0 => false,
-            DMX32R::_1 => true,
+impl<'a> DRST_DRS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DRST_DRS_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMX32R {
-        match value {
-            false => DMX32R::_0,
-            true => DMX32R::_1,
+    #[doc = "Encoding 0 - Low range (reset default)."]
+    #[inline(always)]
+    pub fn _00(self) -> &'a mut W {
+        self.variant(DRST_DRS_A::_00)
+    }
+    #[doc = "Encoding 1 - Mid range."]
+    #[inline(always)]
+    pub fn _01(self) -> &'a mut W {
+        self.variant(DRST_DRS_A::_01)
+    }
+    #[doc = "Encoding 2 - Mid-high range."]
+    #[inline(always)]
+    pub fn _10(self) -> &'a mut W {
+        self.variant(DRST_DRS_A::_10)
+    }
+    #[doc = "Encoding 3 - High range."]
+    #[inline(always)]
+    pub fn _11(self) -> &'a mut W {
+        self.variant(DRST_DRS_A::_11)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 5)) | (((value as u8) & 0x03) << 5);
+        self.w
+    }
+}
+#[doc = "DCO Maximum Frequency with 32.768 kHz Reference\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMX32_A {
+    #[doc = "0: DCO has a default range of 25%."]
+    _0,
+    #[doc = "1: DCO is fine-tuned for maximum frequency with 32.768 kHz reference."]
+    _1,
+}
+impl From<DMX32_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMX32_A) -> Self {
+        match variant {
+            DMX32_A::_0 => false,
+            DMX32_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `DMX32`"]
+pub type DMX32_R = crate::R<bool, DMX32_A>;
+impl DMX32_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMX32_A {
+        match self.bits {
+            false => DMX32_A::_0,
+            true => DMX32_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DMX32R::_0
+        *self == DMX32_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DMX32R::_1
+        *self == DMX32_A::_1
     }
 }
-#[doc = r" Proxy"]
-pub struct _SCFTRIMW<'a> {
+#[doc = "Write proxy for field `DMX32`"]
+pub struct DMX32_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SCFTRIMW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FCTRIMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FCTRIMW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DRST_DRS`"]
-pub enum DRST_DRSW {
-    #[doc = "Encoding 0 - Low range (reset default)."]
-    _00,
-    #[doc = "Encoding 1 - Mid range."]
-    _01,
-    #[doc = "Encoding 2 - Mid-high range."]
-    _10,
-    #[doc = "Encoding 3 - High range."]
-    _11,
-}
-impl DRST_DRSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            DRST_DRSW::_00 => 0,
-            DRST_DRSW::_01 => 1,
-            DRST_DRSW::_10 => 2,
-            DRST_DRSW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DRST_DRSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DRST_DRSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DRST_DRSW) -> &'a mut W {
+impl<'a> DMX32_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMX32_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Encoding 0 - Low range (reset default)."]
-    #[inline]
-    pub fn _00(self) -> &'a mut W {
-        self.variant(DRST_DRSW::_00)
-    }
-    #[doc = "Encoding 1 - Mid range."]
-    #[inline]
-    pub fn _01(self) -> &'a mut W {
-        self.variant(DRST_DRSW::_01)
-    }
-    #[doc = "Encoding 2 - Mid-high range."]
-    #[inline]
-    pub fn _10(self) -> &'a mut W {
-        self.variant(DRST_DRSW::_10)
-    }
-    #[doc = "Encoding 3 - High range."]
-    #[inline]
-    pub fn _11(self) -> &'a mut W {
-        self.variant(DRST_DRSW::_11)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DMX32`"]
-pub enum DMX32W {
-    #[doc = "DCO has a default range of 25%."]
-    _0,
-    #[doc = "DCO is fine-tuned for maximum frequency with 32.768 kHz reference."]
-    _1,
-}
-impl DMX32W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMX32W::_0 => false,
-            DMX32W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMX32W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMX32W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMX32W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DCO has a default range of 25%."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DMX32W::_0)
+        self.variant(DMX32_A::_0)
     }
     #[doc = "DCO is fine-tuned for maximum frequency with 32.768 kHz reference."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DMX32W::_1)
+        self.variant(DMX32_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Slow Internal Reference Clock Fine Trim"]
-    #[inline]
-    pub fn scftrim(&self) -> SCFTRIMR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        };
-        SCFTRIMR { bits }
+    #[inline(always)]
+    pub fn scftrim(&self) -> SCFTRIM_R {
+        SCFTRIM_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:4 - Fast Internal Reference Clock Trim Setting"]
-    #[inline]
-    pub fn fctrim(&self) -> FCTRIMR {
-        let bits = {
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        FCTRIMR { bits }
+    #[inline(always)]
+    pub fn fctrim(&self) -> FCTRIM_R {
+        FCTRIM_R::new(((self.bits >> 1) & 0x0f) as u8)
     }
     #[doc = "Bits 5:6 - DCO Range Select"]
-    #[inline]
-    pub fn drst_drs(&self) -> DRST_DRSR {
-        DRST_DRSR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn drst_drs(&self) -> DRST_DRS_R {
+        DRST_DRS_R::new(((self.bits >> 5) & 0x03) as u8)
     }
     #[doc = "Bit 7 - DCO Maximum Frequency with 32.768 kHz Reference"]
-    #[inline]
-    pub fn dmx32(&self) -> DMX32R {
-        DMX32R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn dmx32(&self) -> DMX32_R {
+        DMX32_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Slow Internal Reference Clock Fine Trim"]
-    #[inline]
-    pub fn scftrim(&mut self) -> _SCFTRIMW {
-        _SCFTRIMW { w: self }
+    #[inline(always)]
+    pub fn scftrim(&mut self) -> SCFTRIM_W {
+        SCFTRIM_W { w: self }
     }
     #[doc = "Bits 1:4 - Fast Internal Reference Clock Trim Setting"]
-    #[inline]
-    pub fn fctrim(&mut self) -> _FCTRIMW {
-        _FCTRIMW { w: self }
+    #[inline(always)]
+    pub fn fctrim(&mut self) -> FCTRIM_W {
+        FCTRIM_W { w: self }
     }
     #[doc = "Bits 5:6 - DCO Range Select"]
-    #[inline]
-    pub fn drst_drs(&mut self) -> _DRST_DRSW {
-        _DRST_DRSW { w: self }
+    #[inline(always)]
+    pub fn drst_drs(&mut self) -> DRST_DRS_W {
+        DRST_DRS_W { w: self }
     }
     #[doc = "Bit 7 - DCO Maximum Frequency with 32.768 kHz Reference"]
-    #[inline]
-    pub fn dmx32(&mut self) -> _DMX32W {
-        _DMX32W { w: self }
+    #[inline(always)]
+    pub fn dmx32(&mut self) -> DMX32_W {
+        DMX32_W { w: self }
     }
 }

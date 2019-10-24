@@ -1,213 +1,91 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MIBC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MIBC"]
+pub type R = crate::R<u32, super::MIBC>;
+#[doc = "Writer for register MIBC"]
+pub type W = crate::W<u32, super::MIBC>;
+#[doc = "Register MIBC `reset()`'s with value 0xc000_0000"]
+impl crate::ResetValue for super::MIBC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xc000_0000
     }
 }
-#[doc = r" Value of the field"]
-pub struct MIB_CLEARR {
-    bits: bool,
-}
-impl MIB_CLEARR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MIB_IDLER {
-    bits: bool,
-}
-impl MIB_IDLER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MIB_DISR {
-    bits: bool,
-}
-impl MIB_DISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MIB_CLEARW<'a> {
+#[doc = "Reader of field `MIB_CLEAR`"]
+pub type MIB_CLEAR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MIB_CLEAR`"]
+pub struct MIB_CLEAR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MIB_CLEARW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> MIB_CLEAR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MIB_DISW<'a> {
+#[doc = "Reader of field `MIB_IDLE`"]
+pub type MIB_IDLE_R = crate::R<bool, bool>;
+#[doc = "Reader of field `MIB_DIS`"]
+pub type MIB_DIS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MIB_DIS`"]
+pub struct MIB_DIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MIB_DISW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> MIB_DIS_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 29 - MIB Clear"]
-    #[inline]
-    pub fn mib_clear(&self) -> MIB_CLEARR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        MIB_CLEARR { bits }
+    #[inline(always)]
+    pub fn mib_clear(&self) -> MIB_CLEAR_R {
+        MIB_CLEAR_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - MIB Idle"]
-    #[inline]
-    pub fn mib_idle(&self) -> MIB_IDLER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        MIB_IDLER { bits }
+    #[inline(always)]
+    pub fn mib_idle(&self) -> MIB_IDLE_R {
+        MIB_IDLE_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Disable MIB Logic"]
-    #[inline]
-    pub fn mib_dis(&self) -> MIB_DISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        MIB_DISR { bits }
+    #[inline(always)]
+    pub fn mib_dis(&self) -> MIB_DIS_R {
+        MIB_DIS_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 3221225472 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 29 - MIB Clear"]
-    #[inline]
-    pub fn mib_clear(&mut self) -> _MIB_CLEARW {
-        _MIB_CLEARW { w: self }
+    #[inline(always)]
+    pub fn mib_clear(&mut self) -> MIB_CLEAR_W {
+        MIB_CLEAR_W { w: self }
     }
     #[doc = "Bit 31 - Disable MIB Logic"]
-    #[inline]
-    pub fn mib_dis(&mut self) -> _MIB_DISW {
-        _MIB_DISW { w: self }
+    #[inline(always)]
+    pub fn mib_dis(&mut self) -> MIB_DIS_W {
+        MIB_DIS_W { w: self }
     }
 }

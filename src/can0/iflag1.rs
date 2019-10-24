@@ -1,3872 +1,2832 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::IFLAG1 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IFLAG1"]
+pub type R = crate::R<u32, super::IFLAG1>;
+#[doc = "Writer for register IFLAG1"]
+pub type W = crate::W<u32, super::IFLAG1>;
+#[doc = "Register IFLAG1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::IFLAG1 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `BUF0I`"]
+#[doc = "Buffer MB0 Interrupt Or \"reserved\"\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF0IR {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+pub enum BUF0I_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _1,
 }
-impl BUF0IR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF0IR::_0 => false,
-            BUF0IR::_1 => true,
+impl From<BUF0I_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF0I_A) -> Self {
+        match variant {
+            BUF0I_A::_0 => false,
+            BUF0I_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF0IR {
-        match value {
-            false => BUF0IR::_0,
-            true => BUF0IR::_1,
+}
+#[doc = "Reader of field `BUF0I`"]
+pub type BUF0I_R = crate::R<bool, BUF0I_A>;
+impl BUF0I_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF0I_A {
+        match self.bits {
+            false => BUF0I_A::_0,
+            true => BUF0I_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == BUF0IR::_0
+        *self == BUF0I_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == BUF0IR::_1
+        *self == BUF0I_A::_1
     }
 }
-#[doc = "Possible values of the field `BUF4TO1I0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF4TO1I0R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _1,
-}
-impl BUF4TO1I0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF4TO1I0R::_0 => false,
-            BUF4TO1I0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF4TO1I0R {
-        match value {
-            false => BUF4TO1I0R::_0,
-            true => BUF4TO1I0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF4TO1I0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF4TO1I0R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF4TO1I1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF4TO1I1R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _1,
-}
-impl BUF4TO1I1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF4TO1I1R::_0 => false,
-            BUF4TO1I1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF4TO1I1R {
-        match value {
-            false => BUF4TO1I1R::_0,
-            true => BUF4TO1I1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF4TO1I1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF4TO1I1R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF4TO1I2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF4TO1I2R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _1,
-}
-impl BUF4TO1I2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF4TO1I2R::_0 => false,
-            BUF4TO1I2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF4TO1I2R {
-        match value {
-            false => BUF4TO1I2R::_0,
-            true => BUF4TO1I2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF4TO1I2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF4TO1I2R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF4TO1I3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF4TO1I3R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _1,
-}
-impl BUF4TO1I3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF4TO1I3R::_0 => false,
-            BUF4TO1I3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF4TO1I3R {
-        match value {
-            false => BUF4TO1I3R::_0,
-            true => BUF4TO1I3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF4TO1I3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF4TO1I3R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF5I`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF5IR {
-    #[doc = "No occurrence of MB5 completing transmission/reception when MCR\\[RFEN\\]=0, or of frame(s) available in the FIFO, when MCR\\[RFEN\\]=1"]
-    _0,
-    #[doc = "MB5 completed transmission/reception when MCR\\[RFEN\\]=0, or frame(s) available in the Rx FIFO when MCR\\[RFEN\\]=1"]
-    _1,
-}
-impl BUF5IR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF5IR::_0 => false,
-            BUF5IR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF5IR {
-        match value {
-            false => BUF5IR::_0,
-            true => BUF5IR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF5IR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF5IR::_1
-    }
-}
-#[doc = "Possible values of the field `BUF6I`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF6IR {
-    #[doc = "No occurrence of MB6 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    _0,
-    #[doc = "MB6 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    _1,
-}
-impl BUF6IR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF6IR::_0 => false,
-            BUF6IR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF6IR {
-        match value {
-            false => BUF6IR::_0,
-            true => BUF6IR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF6IR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF6IR::_1
-    }
-}
-#[doc = "Possible values of the field `BUF7I`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF7IR {
-    #[doc = "No occurrence of MB7 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO overflow when MCR\\[RFEN\\]=1"]
-    _0,
-    #[doc = "MB7 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO overflow when MCR\\[RFEN\\]=1"]
-    _1,
-}
-impl BUF7IR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF7IR::_0 => false,
-            BUF7IR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF7IR {
-        match value {
-            false => BUF7IR::_0,
-            true => BUF7IR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF7IR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF7IR::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I0R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I0R::_0 => false,
-            BUF31TO8I0R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I0R {
-        match value {
-            false => BUF31TO8I0R::_0,
-            true => BUF31TO8I0R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I0R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I0R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I1R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I1R::_0 => false,
-            BUF31TO8I1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I1R {
-        match value {
-            false => BUF31TO8I1R::_0,
-            true => BUF31TO8I1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I1R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I2R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I2R::_0 => false,
-            BUF31TO8I2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I2R {
-        match value {
-            false => BUF31TO8I2R::_0,
-            true => BUF31TO8I2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I2R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I3R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I3R::_0 => false,
-            BUF31TO8I3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I3R {
-        match value {
-            false => BUF31TO8I3R::_0,
-            true => BUF31TO8I3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I3R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I4R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I4R::_0 => false,
-            BUF31TO8I4R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I4R {
-        match value {
-            false => BUF31TO8I4R::_0,
-            true => BUF31TO8I4R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I4R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I4R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I5R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I5R::_0 => false,
-            BUF31TO8I5R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I5R {
-        match value {
-            false => BUF31TO8I5R::_0,
-            true => BUF31TO8I5R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I5R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I5R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I6R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I6R::_0 => false,
-            BUF31TO8I6R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I6R {
-        match value {
-            false => BUF31TO8I6R::_0,
-            true => BUF31TO8I6R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I6R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I6R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I7R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I7R::_0 => false,
-            BUF31TO8I7R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I7R {
-        match value {
-            false => BUF31TO8I7R::_0,
-            true => BUF31TO8I7R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I7R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I7R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I8R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I8R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I8R::_0 => false,
-            BUF31TO8I8R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I8R {
-        match value {
-            false => BUF31TO8I8R::_0,
-            true => BUF31TO8I8R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I8R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I8R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I9R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I9R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I9R::_0 => false,
-            BUF31TO8I9R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I9R {
-        match value {
-            false => BUF31TO8I9R::_0,
-            true => BUF31TO8I9R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I9R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I9R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I10R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I10R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I10R::_0 => false,
-            BUF31TO8I10R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I10R {
-        match value {
-            false => BUF31TO8I10R::_0,
-            true => BUF31TO8I10R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I10R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I10R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I11R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I11R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I11R::_0 => false,
-            BUF31TO8I11R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I11R {
-        match value {
-            false => BUF31TO8I11R::_0,
-            true => BUF31TO8I11R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I11R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I11R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I12`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I12R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I12R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I12R::_0 => false,
-            BUF31TO8I12R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I12R {
-        match value {
-            false => BUF31TO8I12R::_0,
-            true => BUF31TO8I12R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I12R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I12R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I13`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I13R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I13R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I13R::_0 => false,
-            BUF31TO8I13R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I13R {
-        match value {
-            false => BUF31TO8I13R::_0,
-            true => BUF31TO8I13R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I13R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I13R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I14`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I14R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I14R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I14R::_0 => false,
-            BUF31TO8I14R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I14R {
-        match value {
-            false => BUF31TO8I14R::_0,
-            true => BUF31TO8I14R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I14R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I14R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I15`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I15R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I15R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I15R::_0 => false,
-            BUF31TO8I15R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I15R {
-        match value {
-            false => BUF31TO8I15R::_0,
-            true => BUF31TO8I15R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I15R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I15R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I16`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I16R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I16R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I16R::_0 => false,
-            BUF31TO8I16R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I16R {
-        match value {
-            false => BUF31TO8I16R::_0,
-            true => BUF31TO8I16R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I16R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I16R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I17`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I17R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I17R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I17R::_0 => false,
-            BUF31TO8I17R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I17R {
-        match value {
-            false => BUF31TO8I17R::_0,
-            true => BUF31TO8I17R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I17R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I17R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I18`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I18R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I18R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I18R::_0 => false,
-            BUF31TO8I18R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I18R {
-        match value {
-            false => BUF31TO8I18R::_0,
-            true => BUF31TO8I18R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I18R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I18R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I19`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I19R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I19R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I19R::_0 => false,
-            BUF31TO8I19R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I19R {
-        match value {
-            false => BUF31TO8I19R::_0,
-            true => BUF31TO8I19R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I19R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I19R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I20`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I20R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I20R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I20R::_0 => false,
-            BUF31TO8I20R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I20R {
-        match value {
-            false => BUF31TO8I20R::_0,
-            true => BUF31TO8I20R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I20R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I20R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I21`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I21R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I21R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I21R::_0 => false,
-            BUF31TO8I21R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I21R {
-        match value {
-            false => BUF31TO8I21R::_0,
-            true => BUF31TO8I21R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I21R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I21R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I22`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I22R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I22R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I22R::_0 => false,
-            BUF31TO8I22R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I22R {
-        match value {
-            false => BUF31TO8I22R::_0,
-            true => BUF31TO8I22R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I22R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I22R::_1
-    }
-}
-#[doc = "Possible values of the field `BUF31TO8I23`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUF31TO8I23R {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    _1,
-}
-impl BUF31TO8I23R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUF31TO8I23R::_0 => false,
-            BUF31TO8I23R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUF31TO8I23R {
-        match value {
-            false => BUF31TO8I23R::_0,
-            true => BUF31TO8I23R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == BUF31TO8I23R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == BUF31TO8I23R::_1
-    }
-}
-#[doc = "Values that can be written to the field `BUF0I`"]
-pub enum BUF0IW {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    _1,
-}
-impl BUF0IW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF0IW::_0 => false,
-            BUF0IW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BUF0IW<'a> {
+#[doc = "Write proxy for field `BUF0I`"]
+pub struct BUF0I_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF0IW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF0IW) -> &'a mut W {
+impl<'a> BUF0I_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF0I_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF0IW::_0)
+        self.variant(BUF0I_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF0IW::_1)
+        self.variant(BUF0I_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF4TO1I0`"]
-pub enum BUF4TO1I0W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+#[doc = "Buffer MB i Interrupt Or \"reserved\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF4TO1I0_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _1,
 }
-impl BUF4TO1I0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF4TO1I0W::_0 => false,
-            BUF4TO1I0W::_1 => true,
+impl From<BUF4TO1I0_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF4TO1I0_A) -> Self {
+        match variant {
+            BUF4TO1I0_A::_0 => false,
+            BUF4TO1I0_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF4TO1I0W<'a> {
+#[doc = "Reader of field `BUF4TO1I0`"]
+pub type BUF4TO1I0_R = crate::R<bool, BUF4TO1I0_A>;
+impl BUF4TO1I0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF4TO1I0_A {
+        match self.bits {
+            false => BUF4TO1I0_A::_0,
+            true => BUF4TO1I0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF4TO1I0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF4TO1I0_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF4TO1I0`"]
+pub struct BUF4TO1I0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF4TO1I0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF4TO1I0W) -> &'a mut W {
+impl<'a> BUF4TO1I0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF4TO1I0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF4TO1I0W::_0)
+        self.variant(BUF4TO1I0_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF4TO1I0W::_1)
+        self.variant(BUF4TO1I0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF4TO1I1`"]
-pub enum BUF4TO1I1W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+#[doc = "Buffer MB i Interrupt Or \"reserved\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF4TO1I1_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _1,
 }
-impl BUF4TO1I1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF4TO1I1W::_0 => false,
-            BUF4TO1I1W::_1 => true,
+impl From<BUF4TO1I1_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF4TO1I1_A) -> Self {
+        match variant {
+            BUF4TO1I1_A::_0 => false,
+            BUF4TO1I1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF4TO1I1W<'a> {
+#[doc = "Reader of field `BUF4TO1I1`"]
+pub type BUF4TO1I1_R = crate::R<bool, BUF4TO1I1_A>;
+impl BUF4TO1I1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF4TO1I1_A {
+        match self.bits {
+            false => BUF4TO1I1_A::_0,
+            true => BUF4TO1I1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF4TO1I1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF4TO1I1_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF4TO1I1`"]
+pub struct BUF4TO1I1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF4TO1I1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF4TO1I1W) -> &'a mut W {
+impl<'a> BUF4TO1I1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF4TO1I1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF4TO1I1W::_0)
+        self.variant(BUF4TO1I1_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF4TO1I1W::_1)
+        self.variant(BUF4TO1I1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF4TO1I2`"]
-pub enum BUF4TO1I2W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+#[doc = "Buffer MB i Interrupt Or \"reserved\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF4TO1I2_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _1,
 }
-impl BUF4TO1I2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF4TO1I2W::_0 => false,
-            BUF4TO1I2W::_1 => true,
+impl From<BUF4TO1I2_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF4TO1I2_A) -> Self {
+        match variant {
+            BUF4TO1I2_A::_0 => false,
+            BUF4TO1I2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF4TO1I2W<'a> {
+#[doc = "Reader of field `BUF4TO1I2`"]
+pub type BUF4TO1I2_R = crate::R<bool, BUF4TO1I2_A>;
+impl BUF4TO1I2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF4TO1I2_A {
+        match self.bits {
+            false => BUF4TO1I2_A::_0,
+            true => BUF4TO1I2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF4TO1I2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF4TO1I2_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF4TO1I2`"]
+pub struct BUF4TO1I2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF4TO1I2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF4TO1I2W) -> &'a mut W {
+impl<'a> BUF4TO1I2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF4TO1I2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF4TO1I2W::_0)
+        self.variant(BUF4TO1I2_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF4TO1I2W::_1)
+        self.variant(BUF4TO1I2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF4TO1I3`"]
-pub enum BUF4TO1I3W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+#[doc = "Buffer MB i Interrupt Or \"reserved\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF4TO1I3_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
     _1,
 }
-impl BUF4TO1I3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF4TO1I3W::_0 => false,
-            BUF4TO1I3W::_1 => true,
+impl From<BUF4TO1I3_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF4TO1I3_A) -> Self {
+        match variant {
+            BUF4TO1I3_A::_0 => false,
+            BUF4TO1I3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF4TO1I3W<'a> {
+#[doc = "Reader of field `BUF4TO1I3`"]
+pub type BUF4TO1I3_R = crate::R<bool, BUF4TO1I3_A>;
+impl BUF4TO1I3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF4TO1I3_A {
+        match self.bits {
+            false => BUF4TO1I3_A::_0,
+            true => BUF4TO1I3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF4TO1I3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF4TO1I3_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF4TO1I3`"]
+pub struct BUF4TO1I3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF4TO1I3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF4TO1I3W) -> &'a mut W {
+impl<'a> BUF4TO1I3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF4TO1I3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF4TO1I3W::_0)
+        self.variant(BUF4TO1I3_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception when MCR\\[RFEN\\]=0."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF4TO1I3W::_1)
+        self.variant(BUF4TO1I3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF5I`"]
-pub enum BUF5IW {
-    #[doc = "No occurrence of MB5 completing transmission/reception when MCR\\[RFEN\\]=0, or of frame(s) available in the FIFO, when MCR\\[RFEN\\]=1"]
+#[doc = "Buffer MB5 Interrupt Or \"Frames available in Rx FIFO\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF5I_A {
+    #[doc = "0: No occurrence of MB5 completing transmission/reception when MCR\\[RFEN\\]=0, or of frame(s) available in the FIFO, when MCR\\[RFEN\\]=1"]
     _0,
-    #[doc = "MB5 completed transmission/reception when MCR\\[RFEN\\]=0, or frame(s) available in the Rx FIFO when MCR\\[RFEN\\]=1"]
+    #[doc = "1: MB5 completed transmission/reception when MCR\\[RFEN\\]=0, or frame(s) available in the Rx FIFO when MCR\\[RFEN\\]=1"]
     _1,
 }
-impl BUF5IW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF5IW::_0 => false,
-            BUF5IW::_1 => true,
+impl From<BUF5I_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF5I_A) -> Self {
+        match variant {
+            BUF5I_A::_0 => false,
+            BUF5I_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF5IW<'a> {
+#[doc = "Reader of field `BUF5I`"]
+pub type BUF5I_R = crate::R<bool, BUF5I_A>;
+impl BUF5I_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF5I_A {
+        match self.bits {
+            false => BUF5I_A::_0,
+            true => BUF5I_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF5I_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF5I_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF5I`"]
+pub struct BUF5I_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF5IW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF5IW) -> &'a mut W {
+impl<'a> BUF5I_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF5I_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No occurrence of MB5 completing transmission/reception when MCR\\[RFEN\\]=0, or of frame(s) available in the FIFO, when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF5IW::_0)
+        self.variant(BUF5I_A::_0)
     }
     #[doc = "MB5 completed transmission/reception when MCR\\[RFEN\\]=0, or frame(s) available in the Rx FIFO when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF5IW::_1)
+        self.variant(BUF5I_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF6I`"]
-pub enum BUF6IW {
+#[doc = "Buffer MB6 Interrupt Or \"Rx FIFO Warning\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF6I_A {
+    #[doc = "0: No occurrence of MB6 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO almost full when MCR\\[RFEN\\]=1"]
+    _0,
+    #[doc = "1: MB6 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO almost full when MCR\\[RFEN\\]=1"]
+    _1,
+}
+impl From<BUF6I_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF6I_A) -> Self {
+        match variant {
+            BUF6I_A::_0 => false,
+            BUF6I_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `BUF6I`"]
+pub type BUF6I_R = crate::R<bool, BUF6I_A>;
+impl BUF6I_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF6I_A {
+        match self.bits {
+            false => BUF6I_A::_0,
+            true => BUF6I_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF6I_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF6I_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF6I`"]
+pub struct BUF6I_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> BUF6I_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF6I_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No occurrence of MB6 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    _0,
-    #[doc = "MB6 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    _1,
-}
-impl BUF6IW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF6IW::_0 => false,
-            BUF6IW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BUF6IW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BUF6IW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF6IW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No occurrence of MB6 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF6IW::_0)
+        self.variant(BUF6I_A::_0)
     }
     #[doc = "MB6 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO almost full when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF6IW::_1)
+        self.variant(BUF6I_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF7I`"]
-pub enum BUF7IW {
-    #[doc = "No occurrence of MB7 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO overflow when MCR\\[RFEN\\]=1"]
+#[doc = "Buffer MB7 Interrupt Or \"Rx FIFO Overflow\"\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF7I_A {
+    #[doc = "0: No occurrence of MB7 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO overflow when MCR\\[RFEN\\]=1"]
     _0,
-    #[doc = "MB7 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO overflow when MCR\\[RFEN\\]=1"]
+    #[doc = "1: MB7 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO overflow when MCR\\[RFEN\\]=1"]
     _1,
 }
-impl BUF7IW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF7IW::_0 => false,
-            BUF7IW::_1 => true,
+impl From<BUF7I_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF7I_A) -> Self {
+        match variant {
+            BUF7I_A::_0 => false,
+            BUF7I_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF7IW<'a> {
+#[doc = "Reader of field `BUF7I`"]
+pub type BUF7I_R = crate::R<bool, BUF7I_A>;
+impl BUF7I_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF7I_A {
+        match self.bits {
+            false => BUF7I_A::_0,
+            true => BUF7I_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF7I_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF7I_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF7I`"]
+pub struct BUF7I_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF7IW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF7IW) -> &'a mut W {
+impl<'a> BUF7I_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF7I_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No occurrence of MB7 completing transmission/reception when MCR\\[RFEN\\]=0, or of Rx FIFO overflow when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF7IW::_0)
+        self.variant(BUF7I_A::_0)
     }
     #[doc = "MB7 completed transmission/reception when MCR\\[RFEN\\]=0, or Rx FIFO overflow when MCR\\[RFEN\\]=1"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF7IW::_1)
+        self.variant(BUF7I_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I0`"]
-pub enum BUF31TO8I0W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I0_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I0W::_0 => false,
-            BUF31TO8I0W::_1 => true,
+impl From<BUF31TO8I0_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I0_A) -> Self {
+        match variant {
+            BUF31TO8I0_A::_0 => false,
+            BUF31TO8I0_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I0W<'a> {
+#[doc = "Reader of field `BUF31TO8I0`"]
+pub type BUF31TO8I0_R = crate::R<bool, BUF31TO8I0_A>;
+impl BUF31TO8I0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I0_A {
+        match self.bits {
+            false => BUF31TO8I0_A::_0,
+            true => BUF31TO8I0_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I0_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I0_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I0`"]
+pub struct BUF31TO8I0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I0W) -> &'a mut W {
+impl<'a> BUF31TO8I0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I0W::_0)
+        self.variant(BUF31TO8I0_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I0W::_1)
+        self.variant(BUF31TO8I0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I1`"]
-pub enum BUF31TO8I1W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I1_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I1W::_0 => false,
-            BUF31TO8I1W::_1 => true,
+impl From<BUF31TO8I1_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I1_A) -> Self {
+        match variant {
+            BUF31TO8I1_A::_0 => false,
+            BUF31TO8I1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I1W<'a> {
+#[doc = "Reader of field `BUF31TO8I1`"]
+pub type BUF31TO8I1_R = crate::R<bool, BUF31TO8I1_A>;
+impl BUF31TO8I1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I1_A {
+        match self.bits {
+            false => BUF31TO8I1_A::_0,
+            true => BUF31TO8I1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I1_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I1`"]
+pub struct BUF31TO8I1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I1W) -> &'a mut W {
+impl<'a> BUF31TO8I1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I1W::_0)
+        self.variant(BUF31TO8I1_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I1W::_1)
+        self.variant(BUF31TO8I1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I2`"]
-pub enum BUF31TO8I2W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I2_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I2W::_0 => false,
-            BUF31TO8I2W::_1 => true,
+impl From<BUF31TO8I2_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I2_A) -> Self {
+        match variant {
+            BUF31TO8I2_A::_0 => false,
+            BUF31TO8I2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I2W<'a> {
+#[doc = "Reader of field `BUF31TO8I2`"]
+pub type BUF31TO8I2_R = crate::R<bool, BUF31TO8I2_A>;
+impl BUF31TO8I2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I2_A {
+        match self.bits {
+            false => BUF31TO8I2_A::_0,
+            true => BUF31TO8I2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I2_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I2`"]
+pub struct BUF31TO8I2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I2W) -> &'a mut W {
+impl<'a> BUF31TO8I2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I2W::_0)
+        self.variant(BUF31TO8I2_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I2W::_1)
+        self.variant(BUF31TO8I2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I3`"]
-pub enum BUF31TO8I3W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I3_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I3W::_0 => false,
-            BUF31TO8I3W::_1 => true,
+impl From<BUF31TO8I3_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I3_A) -> Self {
+        match variant {
+            BUF31TO8I3_A::_0 => false,
+            BUF31TO8I3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I3W<'a> {
+#[doc = "Reader of field `BUF31TO8I3`"]
+pub type BUF31TO8I3_R = crate::R<bool, BUF31TO8I3_A>;
+impl BUF31TO8I3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I3_A {
+        match self.bits {
+            false => BUF31TO8I3_A::_0,
+            true => BUF31TO8I3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I3_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I3`"]
+pub struct BUF31TO8I3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I3W) -> &'a mut W {
+impl<'a> BUF31TO8I3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I3W::_0)
+        self.variant(BUF31TO8I3_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I3W::_1)
+        self.variant(BUF31TO8I3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I4`"]
-pub enum BUF31TO8I4W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I4_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I4W::_0 => false,
-            BUF31TO8I4W::_1 => true,
+impl From<BUF31TO8I4_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I4_A) -> Self {
+        match variant {
+            BUF31TO8I4_A::_0 => false,
+            BUF31TO8I4_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I4W<'a> {
+#[doc = "Reader of field `BUF31TO8I4`"]
+pub type BUF31TO8I4_R = crate::R<bool, BUF31TO8I4_A>;
+impl BUF31TO8I4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I4_A {
+        match self.bits {
+            false => BUF31TO8I4_A::_0,
+            true => BUF31TO8I4_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I4_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I4_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I4`"]
+pub struct BUF31TO8I4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I4W) -> &'a mut W {
+impl<'a> BUF31TO8I4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I4W::_0)
+        self.variant(BUF31TO8I4_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I4W::_1)
+        self.variant(BUF31TO8I4_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I5`"]
-pub enum BUF31TO8I5W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I5_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I5W::_0 => false,
-            BUF31TO8I5W::_1 => true,
+impl From<BUF31TO8I5_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I5_A) -> Self {
+        match variant {
+            BUF31TO8I5_A::_0 => false,
+            BUF31TO8I5_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I5W<'a> {
+#[doc = "Reader of field `BUF31TO8I5`"]
+pub type BUF31TO8I5_R = crate::R<bool, BUF31TO8I5_A>;
+impl BUF31TO8I5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I5_A {
+        match self.bits {
+            false => BUF31TO8I5_A::_0,
+            true => BUF31TO8I5_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I5_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I5_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I5`"]
+pub struct BUF31TO8I5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I5W) -> &'a mut W {
+impl<'a> BUF31TO8I5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I5W::_0)
+        self.variant(BUF31TO8I5_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I5W::_1)
+        self.variant(BUF31TO8I5_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I6`"]
-pub enum BUF31TO8I6W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I6_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I6W::_0 => false,
-            BUF31TO8I6W::_1 => true,
+impl From<BUF31TO8I6_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I6_A) -> Self {
+        match variant {
+            BUF31TO8I6_A::_0 => false,
+            BUF31TO8I6_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I6W<'a> {
+#[doc = "Reader of field `BUF31TO8I6`"]
+pub type BUF31TO8I6_R = crate::R<bool, BUF31TO8I6_A>;
+impl BUF31TO8I6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I6_A {
+        match self.bits {
+            false => BUF31TO8I6_A::_0,
+            true => BUF31TO8I6_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I6_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I6_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I6`"]
+pub struct BUF31TO8I6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I6W) -> &'a mut W {
+impl<'a> BUF31TO8I6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I6W::_0)
+        self.variant(BUF31TO8I6_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I6W::_1)
+        self.variant(BUF31TO8I6_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I7`"]
-pub enum BUF31TO8I7W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I7_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I7W::_0 => false,
-            BUF31TO8I7W::_1 => true,
+impl From<BUF31TO8I7_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I7_A) -> Self {
+        match variant {
+            BUF31TO8I7_A::_0 => false,
+            BUF31TO8I7_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I7W<'a> {
+#[doc = "Reader of field `BUF31TO8I7`"]
+pub type BUF31TO8I7_R = crate::R<bool, BUF31TO8I7_A>;
+impl BUF31TO8I7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I7_A {
+        match self.bits {
+            false => BUF31TO8I7_A::_0,
+            true => BUF31TO8I7_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I7_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I7_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I7`"]
+pub struct BUF31TO8I7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I7W) -> &'a mut W {
+impl<'a> BUF31TO8I7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I7W::_0)
+        self.variant(BUF31TO8I7_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I7W::_1)
+        self.variant(BUF31TO8I7_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I8`"]
-pub enum BUF31TO8I8W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I8_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I8W::_0 => false,
-            BUF31TO8I8W::_1 => true,
+impl From<BUF31TO8I8_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I8_A) -> Self {
+        match variant {
+            BUF31TO8I8_A::_0 => false,
+            BUF31TO8I8_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I8W<'a> {
+#[doc = "Reader of field `BUF31TO8I8`"]
+pub type BUF31TO8I8_R = crate::R<bool, BUF31TO8I8_A>;
+impl BUF31TO8I8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I8_A {
+        match self.bits {
+            false => BUF31TO8I8_A::_0,
+            true => BUF31TO8I8_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I8_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I8_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I8`"]
+pub struct BUF31TO8I8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I8W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I8W) -> &'a mut W {
+impl<'a> BUF31TO8I8_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I8_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I8W::_0)
+        self.variant(BUF31TO8I8_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I8W::_1)
+        self.variant(BUF31TO8I8_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I9`"]
-pub enum BUF31TO8I9W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I9_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I9W::_0 => false,
-            BUF31TO8I9W::_1 => true,
+impl From<BUF31TO8I9_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I9_A) -> Self {
+        match variant {
+            BUF31TO8I9_A::_0 => false,
+            BUF31TO8I9_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I9W<'a> {
+#[doc = "Reader of field `BUF31TO8I9`"]
+pub type BUF31TO8I9_R = crate::R<bool, BUF31TO8I9_A>;
+impl BUF31TO8I9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I9_A {
+        match self.bits {
+            false => BUF31TO8I9_A::_0,
+            true => BUF31TO8I9_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I9_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I9_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I9`"]
+pub struct BUF31TO8I9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I9W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I9W) -> &'a mut W {
+impl<'a> BUF31TO8I9_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I9_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I9W::_0)
+        self.variant(BUF31TO8I9_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I9W::_1)
+        self.variant(BUF31TO8I9_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I10`"]
-pub enum BUF31TO8I10W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I10_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I10W::_0 => false,
-            BUF31TO8I10W::_1 => true,
+impl From<BUF31TO8I10_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I10_A) -> Self {
+        match variant {
+            BUF31TO8I10_A::_0 => false,
+            BUF31TO8I10_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I10W<'a> {
+#[doc = "Reader of field `BUF31TO8I10`"]
+pub type BUF31TO8I10_R = crate::R<bool, BUF31TO8I10_A>;
+impl BUF31TO8I10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I10_A {
+        match self.bits {
+            false => BUF31TO8I10_A::_0,
+            true => BUF31TO8I10_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I10_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I10_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I10`"]
+pub struct BUF31TO8I10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I10W) -> &'a mut W {
+impl<'a> BUF31TO8I10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I10_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I10W::_0)
+        self.variant(BUF31TO8I10_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I10W::_1)
+        self.variant(BUF31TO8I10_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I11`"]
-pub enum BUF31TO8I11W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I11_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I11W::_0 => false,
-            BUF31TO8I11W::_1 => true,
+impl From<BUF31TO8I11_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I11_A) -> Self {
+        match variant {
+            BUF31TO8I11_A::_0 => false,
+            BUF31TO8I11_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I11W<'a> {
+#[doc = "Reader of field `BUF31TO8I11`"]
+pub type BUF31TO8I11_R = crate::R<bool, BUF31TO8I11_A>;
+impl BUF31TO8I11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I11_A {
+        match self.bits {
+            false => BUF31TO8I11_A::_0,
+            true => BUF31TO8I11_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I11_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I11_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I11`"]
+pub struct BUF31TO8I11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I11W) -> &'a mut W {
+impl<'a> BUF31TO8I11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I11_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I11W::_0)
+        self.variant(BUF31TO8I11_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I11W::_1)
+        self.variant(BUF31TO8I11_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I12`"]
-pub enum BUF31TO8I12W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I12_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I12W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I12W::_0 => false,
-            BUF31TO8I12W::_1 => true,
+impl From<BUF31TO8I12_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I12_A) -> Self {
+        match variant {
+            BUF31TO8I12_A::_0 => false,
+            BUF31TO8I12_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I12W<'a> {
+#[doc = "Reader of field `BUF31TO8I12`"]
+pub type BUF31TO8I12_R = crate::R<bool, BUF31TO8I12_A>;
+impl BUF31TO8I12_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I12_A {
+        match self.bits {
+            false => BUF31TO8I12_A::_0,
+            true => BUF31TO8I12_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I12_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I12_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I12`"]
+pub struct BUF31TO8I12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I12W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I12W) -> &'a mut W {
+impl<'a> BUF31TO8I12_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I12_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I12W::_0)
+        self.variant(BUF31TO8I12_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I12W::_1)
+        self.variant(BUF31TO8I12_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I13`"]
-pub enum BUF31TO8I13W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I13_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I13W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I13W::_0 => false,
-            BUF31TO8I13W::_1 => true,
+impl From<BUF31TO8I13_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I13_A) -> Self {
+        match variant {
+            BUF31TO8I13_A::_0 => false,
+            BUF31TO8I13_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I13W<'a> {
+#[doc = "Reader of field `BUF31TO8I13`"]
+pub type BUF31TO8I13_R = crate::R<bool, BUF31TO8I13_A>;
+impl BUF31TO8I13_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I13_A {
+        match self.bits {
+            false => BUF31TO8I13_A::_0,
+            true => BUF31TO8I13_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I13_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I13_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I13`"]
+pub struct BUF31TO8I13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I13W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I13W) -> &'a mut W {
+impl<'a> BUF31TO8I13_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I13_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I13W::_0)
+        self.variant(BUF31TO8I13_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I13W::_1)
+        self.variant(BUF31TO8I13_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I14`"]
-pub enum BUF31TO8I14W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I14_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I14W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I14W::_0 => false,
-            BUF31TO8I14W::_1 => true,
+impl From<BUF31TO8I14_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I14_A) -> Self {
+        match variant {
+            BUF31TO8I14_A::_0 => false,
+            BUF31TO8I14_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I14W<'a> {
+#[doc = "Reader of field `BUF31TO8I14`"]
+pub type BUF31TO8I14_R = crate::R<bool, BUF31TO8I14_A>;
+impl BUF31TO8I14_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I14_A {
+        match self.bits {
+            false => BUF31TO8I14_A::_0,
+            true => BUF31TO8I14_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I14_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I14_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I14`"]
+pub struct BUF31TO8I14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I14W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I14W) -> &'a mut W {
+impl<'a> BUF31TO8I14_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I14_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I14W::_0)
+        self.variant(BUF31TO8I14_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I14W::_1)
+        self.variant(BUF31TO8I14_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I15`"]
-pub enum BUF31TO8I15W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I15_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I15W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I15W::_0 => false,
-            BUF31TO8I15W::_1 => true,
+impl From<BUF31TO8I15_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I15_A) -> Self {
+        match variant {
+            BUF31TO8I15_A::_0 => false,
+            BUF31TO8I15_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I15W<'a> {
+#[doc = "Reader of field `BUF31TO8I15`"]
+pub type BUF31TO8I15_R = crate::R<bool, BUF31TO8I15_A>;
+impl BUF31TO8I15_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I15_A {
+        match self.bits {
+            false => BUF31TO8I15_A::_0,
+            true => BUF31TO8I15_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I15_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I15_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I15`"]
+pub struct BUF31TO8I15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I15W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I15W) -> &'a mut W {
+impl<'a> BUF31TO8I15_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I15_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I15W::_0)
+        self.variant(BUF31TO8I15_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I15W::_1)
+        self.variant(BUF31TO8I15_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I16`"]
-pub enum BUF31TO8I16W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I16_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I16W::_0 => false,
-            BUF31TO8I16W::_1 => true,
+impl From<BUF31TO8I16_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I16_A) -> Self {
+        match variant {
+            BUF31TO8I16_A::_0 => false,
+            BUF31TO8I16_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I16W<'a> {
+#[doc = "Reader of field `BUF31TO8I16`"]
+pub type BUF31TO8I16_R = crate::R<bool, BUF31TO8I16_A>;
+impl BUF31TO8I16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I16_A {
+        match self.bits {
+            false => BUF31TO8I16_A::_0,
+            true => BUF31TO8I16_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I16_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I16_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I16`"]
+pub struct BUF31TO8I16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I16W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I16W) -> &'a mut W {
+impl<'a> BUF31TO8I16_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I16W::_0)
+        self.variant(BUF31TO8I16_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I16W::_1)
+        self.variant(BUF31TO8I16_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I17`"]
-pub enum BUF31TO8I17W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I17_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I17W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I17W::_0 => false,
-            BUF31TO8I17W::_1 => true,
+impl From<BUF31TO8I17_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I17_A) -> Self {
+        match variant {
+            BUF31TO8I17_A::_0 => false,
+            BUF31TO8I17_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I17W<'a> {
+#[doc = "Reader of field `BUF31TO8I17`"]
+pub type BUF31TO8I17_R = crate::R<bool, BUF31TO8I17_A>;
+impl BUF31TO8I17_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I17_A {
+        match self.bits {
+            false => BUF31TO8I17_A::_0,
+            true => BUF31TO8I17_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I17_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I17_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I17`"]
+pub struct BUF31TO8I17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I17W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I17W) -> &'a mut W {
+impl<'a> BUF31TO8I17_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I17_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I17W::_0)
+        self.variant(BUF31TO8I17_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I17W::_1)
+        self.variant(BUF31TO8I17_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I18`"]
-pub enum BUF31TO8I18W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I18_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I18W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I18W::_0 => false,
-            BUF31TO8I18W::_1 => true,
+impl From<BUF31TO8I18_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I18_A) -> Self {
+        match variant {
+            BUF31TO8I18_A::_0 => false,
+            BUF31TO8I18_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I18W<'a> {
+#[doc = "Reader of field `BUF31TO8I18`"]
+pub type BUF31TO8I18_R = crate::R<bool, BUF31TO8I18_A>;
+impl BUF31TO8I18_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I18_A {
+        match self.bits {
+            false => BUF31TO8I18_A::_0,
+            true => BUF31TO8I18_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I18_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I18_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I18`"]
+pub struct BUF31TO8I18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I18W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I18W) -> &'a mut W {
+impl<'a> BUF31TO8I18_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I18_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I18W::_0)
+        self.variant(BUF31TO8I18_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I18W::_1)
+        self.variant(BUF31TO8I18_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I19`"]
-pub enum BUF31TO8I19W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I19_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I19W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I19W::_0 => false,
-            BUF31TO8I19W::_1 => true,
+impl From<BUF31TO8I19_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I19_A) -> Self {
+        match variant {
+            BUF31TO8I19_A::_0 => false,
+            BUF31TO8I19_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I19W<'a> {
+#[doc = "Reader of field `BUF31TO8I19`"]
+pub type BUF31TO8I19_R = crate::R<bool, BUF31TO8I19_A>;
+impl BUF31TO8I19_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I19_A {
+        match self.bits {
+            false => BUF31TO8I19_A::_0,
+            true => BUF31TO8I19_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I19_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I19_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I19`"]
+pub struct BUF31TO8I19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I19W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I19W) -> &'a mut W {
+impl<'a> BUF31TO8I19_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I19_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I19W::_0)
+        self.variant(BUF31TO8I19_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I19W::_1)
+        self.variant(BUF31TO8I19_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I20`"]
-pub enum BUF31TO8I20W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I20_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I20W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I20W::_0 => false,
-            BUF31TO8I20W::_1 => true,
+impl From<BUF31TO8I20_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I20_A) -> Self {
+        match variant {
+            BUF31TO8I20_A::_0 => false,
+            BUF31TO8I20_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I20W<'a> {
+#[doc = "Reader of field `BUF31TO8I20`"]
+pub type BUF31TO8I20_R = crate::R<bool, BUF31TO8I20_A>;
+impl BUF31TO8I20_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I20_A {
+        match self.bits {
+            false => BUF31TO8I20_A::_0,
+            true => BUF31TO8I20_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I20_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I20_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I20`"]
+pub struct BUF31TO8I20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I20W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I20W) -> &'a mut W {
+impl<'a> BUF31TO8I20_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I20_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I20W::_0)
+        self.variant(BUF31TO8I20_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I20W::_1)
+        self.variant(BUF31TO8I20_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I21`"]
-pub enum BUF31TO8I21W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I21_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I21W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I21W::_0 => false,
-            BUF31TO8I21W::_1 => true,
+impl From<BUF31TO8I21_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I21_A) -> Self {
+        match variant {
+            BUF31TO8I21_A::_0 => false,
+            BUF31TO8I21_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I21W<'a> {
+#[doc = "Reader of field `BUF31TO8I21`"]
+pub type BUF31TO8I21_R = crate::R<bool, BUF31TO8I21_A>;
+impl BUF31TO8I21_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I21_A {
+        match self.bits {
+            false => BUF31TO8I21_A::_0,
+            true => BUF31TO8I21_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I21_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I21_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I21`"]
+pub struct BUF31TO8I21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I21W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I21W) -> &'a mut W {
+impl<'a> BUF31TO8I21_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I21_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I21W::_0)
+        self.variant(BUF31TO8I21_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I21W::_1)
+        self.variant(BUF31TO8I21_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I22`"]
-pub enum BUF31TO8I22W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I22_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I22W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I22W::_0 => false,
-            BUF31TO8I22W::_1 => true,
+impl From<BUF31TO8I22_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I22_A) -> Self {
+        match variant {
+            BUF31TO8I22_A::_0 => false,
+            BUF31TO8I22_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I22W<'a> {
+#[doc = "Reader of field `BUF31TO8I22`"]
+pub type BUF31TO8I22_R = crate::R<bool, BUF31TO8I22_A>;
+impl BUF31TO8I22_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I22_A {
+        match self.bits {
+            false => BUF31TO8I22_A::_0,
+            true => BUF31TO8I22_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I22_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I22_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I22`"]
+pub struct BUF31TO8I22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I22W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I22W) -> &'a mut W {
+impl<'a> BUF31TO8I22_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I22_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I22W::_0)
+        self.variant(BUF31TO8I22_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I22W::_1)
+        self.variant(BUF31TO8I22_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BUF31TO8I23`"]
-pub enum BUF31TO8I23W {
-    #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
+#[doc = "Buffer MBi Interrupt\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BUF31TO8I23_A {
+    #[doc = "0: The corresponding buffer has no occurrence of successfully completed transmission or reception."]
     _0,
-    #[doc = "The corresponding buffer has successfully completed transmission or reception."]
+    #[doc = "1: The corresponding buffer has successfully completed transmission or reception."]
     _1,
 }
-impl BUF31TO8I23W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BUF31TO8I23W::_0 => false,
-            BUF31TO8I23W::_1 => true,
+impl From<BUF31TO8I23_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUF31TO8I23_A) -> Self {
+        match variant {
+            BUF31TO8I23_A::_0 => false,
+            BUF31TO8I23_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUF31TO8I23W<'a> {
+#[doc = "Reader of field `BUF31TO8I23`"]
+pub type BUF31TO8I23_R = crate::R<bool, BUF31TO8I23_A>;
+impl BUF31TO8I23_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUF31TO8I23_A {
+        match self.bits {
+            false => BUF31TO8I23_A::_0,
+            true => BUF31TO8I23_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == BUF31TO8I23_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == BUF31TO8I23_A::_1
+    }
+}
+#[doc = "Write proxy for field `BUF31TO8I23`"]
+pub struct BUF31TO8I23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUF31TO8I23W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BUF31TO8I23W) -> &'a mut W {
+impl<'a> BUF31TO8I23_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BUF31TO8I23_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The corresponding buffer has no occurrence of successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(BUF31TO8I23W::_0)
+        self.variant(BUF31TO8I23_A::_0)
     }
     #[doc = "The corresponding buffer has successfully completed transmission or reception."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(BUF31TO8I23W::_1)
+        self.variant(BUF31TO8I23_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Buffer MB0 Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf0i(&self) -> BUF0IR {
-        BUF0IR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf0i(&self) -> BUF0I_R {
+        BUF0I_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i0(&self) -> BUF4TO1I0R {
-        BUF4TO1I0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf4to1i0(&self) -> BUF4TO1I0_R {
+        BUF4TO1I0_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i1(&self) -> BUF4TO1I1R {
-        BUF4TO1I1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf4to1i1(&self) -> BUF4TO1I1_R {
+        BUF4TO1I1_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i2(&self) -> BUF4TO1I2R {
-        BUF4TO1I2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf4to1i2(&self) -> BUF4TO1I2_R {
+        BUF4TO1I2_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i3(&self) -> BUF4TO1I3R {
-        BUF4TO1I3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf4to1i3(&self) -> BUF4TO1I3_R {
+        BUF4TO1I3_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Buffer MB5 Interrupt Or \"Frames available in Rx FIFO\""]
-    #[inline]
-    pub fn buf5i(&self) -> BUF5IR {
-        BUF5IR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf5i(&self) -> BUF5I_R {
+        BUF5I_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Buffer MB6 Interrupt Or \"Rx FIFO Warning\""]
-    #[inline]
-    pub fn buf6i(&self) -> BUF6IR {
-        BUF6IR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf6i(&self) -> BUF6I_R {
+        BUF6I_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Buffer MB7 Interrupt Or \"Rx FIFO Overflow\""]
-    #[inline]
-    pub fn buf7i(&self) -> BUF7IR {
-        BUF7IR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf7i(&self) -> BUF7I_R {
+        BUF7I_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i0(&self) -> BUF31TO8I0R {
-        BUF31TO8I0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i0(&self) -> BUF31TO8I0_R {
+        BUF31TO8I0_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i1(&self) -> BUF31TO8I1R {
-        BUF31TO8I1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i1(&self) -> BUF31TO8I1_R {
+        BUF31TO8I1_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i2(&self) -> BUF31TO8I2R {
-        BUF31TO8I2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i2(&self) -> BUF31TO8I2_R {
+        BUF31TO8I2_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i3(&self) -> BUF31TO8I3R {
-        BUF31TO8I3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i3(&self) -> BUF31TO8I3_R {
+        BUF31TO8I3_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i4(&self) -> BUF31TO8I4R {
-        BUF31TO8I4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i4(&self) -> BUF31TO8I4_R {
+        BUF31TO8I4_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i5(&self) -> BUF31TO8I5R {
-        BUF31TO8I5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i5(&self) -> BUF31TO8I5_R {
+        BUF31TO8I5_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i6(&self) -> BUF31TO8I6R {
-        BUF31TO8I6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i6(&self) -> BUF31TO8I6_R {
+        BUF31TO8I6_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i7(&self) -> BUF31TO8I7R {
-        BUF31TO8I7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i7(&self) -> BUF31TO8I7_R {
+        BUF31TO8I7_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i8(&self) -> BUF31TO8I8R {
-        BUF31TO8I8R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i8(&self) -> BUF31TO8I8_R {
+        BUF31TO8I8_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i9(&self) -> BUF31TO8I9R {
-        BUF31TO8I9R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i9(&self) -> BUF31TO8I9_R {
+        BUF31TO8I9_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i10(&self) -> BUF31TO8I10R {
-        BUF31TO8I10R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i10(&self) -> BUF31TO8I10_R {
+        BUF31TO8I10_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i11(&self) -> BUF31TO8I11R {
-        BUF31TO8I11R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i11(&self) -> BUF31TO8I11_R {
+        BUF31TO8I11_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i12(&self) -> BUF31TO8I12R {
-        BUF31TO8I12R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i12(&self) -> BUF31TO8I12_R {
+        BUF31TO8I12_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i13(&self) -> BUF31TO8I13R {
-        BUF31TO8I13R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i13(&self) -> BUF31TO8I13_R {
+        BUF31TO8I13_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i14(&self) -> BUF31TO8I14R {
-        BUF31TO8I14R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i14(&self) -> BUF31TO8I14_R {
+        BUF31TO8I14_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i15(&self) -> BUF31TO8I15R {
-        BUF31TO8I15R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i15(&self) -> BUF31TO8I15_R {
+        BUF31TO8I15_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i16(&self) -> BUF31TO8I16R {
-        BUF31TO8I16R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i16(&self) -> BUF31TO8I16_R {
+        BUF31TO8I16_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i17(&self) -> BUF31TO8I17R {
-        BUF31TO8I17R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i17(&self) -> BUF31TO8I17_R {
+        BUF31TO8I17_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i18(&self) -> BUF31TO8I18R {
-        BUF31TO8I18R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i18(&self) -> BUF31TO8I18_R {
+        BUF31TO8I18_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i19(&self) -> BUF31TO8I19R {
-        BUF31TO8I19R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i19(&self) -> BUF31TO8I19_R {
+        BUF31TO8I19_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i20(&self) -> BUF31TO8I20R {
-        BUF31TO8I20R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i20(&self) -> BUF31TO8I20_R {
+        BUF31TO8I20_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i21(&self) -> BUF31TO8I21R {
-        BUF31TO8I21R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i21(&self) -> BUF31TO8I21_R {
+        BUF31TO8I21_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i22(&self) -> BUF31TO8I22R {
-        BUF31TO8I22R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i22(&self) -> BUF31TO8I22_R {
+        BUF31TO8I22_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i23(&self) -> BUF31TO8I23R {
-        BUF31TO8I23R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn buf31to8i23(&self) -> BUF31TO8I23_R {
+        BUF31TO8I23_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Buffer MB0 Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf0i(&mut self) -> _BUF0IW {
-        _BUF0IW { w: self }
+    #[inline(always)]
+    pub fn buf0i(&mut self) -> BUF0I_W {
+        BUF0I_W { w: self }
     }
     #[doc = "Bit 1 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i0(&mut self) -> _BUF4TO1I0W {
-        _BUF4TO1I0W { w: self }
+    #[inline(always)]
+    pub fn buf4to1i0(&mut self) -> BUF4TO1I0_W {
+        BUF4TO1I0_W { w: self }
     }
     #[doc = "Bit 2 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i1(&mut self) -> _BUF4TO1I1W {
-        _BUF4TO1I1W { w: self }
+    #[inline(always)]
+    pub fn buf4to1i1(&mut self) -> BUF4TO1I1_W {
+        BUF4TO1I1_W { w: self }
     }
     #[doc = "Bit 3 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i2(&mut self) -> _BUF4TO1I2W {
-        _BUF4TO1I2W { w: self }
+    #[inline(always)]
+    pub fn buf4to1i2(&mut self) -> BUF4TO1I2_W {
+        BUF4TO1I2_W { w: self }
     }
     #[doc = "Bit 4 - Buffer MB i Interrupt Or \"reserved\""]
-    #[inline]
-    pub fn buf4to1i3(&mut self) -> _BUF4TO1I3W {
-        _BUF4TO1I3W { w: self }
+    #[inline(always)]
+    pub fn buf4to1i3(&mut self) -> BUF4TO1I3_W {
+        BUF4TO1I3_W { w: self }
     }
     #[doc = "Bit 5 - Buffer MB5 Interrupt Or \"Frames available in Rx FIFO\""]
-    #[inline]
-    pub fn buf5i(&mut self) -> _BUF5IW {
-        _BUF5IW { w: self }
+    #[inline(always)]
+    pub fn buf5i(&mut self) -> BUF5I_W {
+        BUF5I_W { w: self }
     }
     #[doc = "Bit 6 - Buffer MB6 Interrupt Or \"Rx FIFO Warning\""]
-    #[inline]
-    pub fn buf6i(&mut self) -> _BUF6IW {
-        _BUF6IW { w: self }
+    #[inline(always)]
+    pub fn buf6i(&mut self) -> BUF6I_W {
+        BUF6I_W { w: self }
     }
     #[doc = "Bit 7 - Buffer MB7 Interrupt Or \"Rx FIFO Overflow\""]
-    #[inline]
-    pub fn buf7i(&mut self) -> _BUF7IW {
-        _BUF7IW { w: self }
+    #[inline(always)]
+    pub fn buf7i(&mut self) -> BUF7I_W {
+        BUF7I_W { w: self }
     }
     #[doc = "Bit 8 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i0(&mut self) -> _BUF31TO8I0W {
-        _BUF31TO8I0W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i0(&mut self) -> BUF31TO8I0_W {
+        BUF31TO8I0_W { w: self }
     }
     #[doc = "Bit 9 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i1(&mut self) -> _BUF31TO8I1W {
-        _BUF31TO8I1W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i1(&mut self) -> BUF31TO8I1_W {
+        BUF31TO8I1_W { w: self }
     }
     #[doc = "Bit 10 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i2(&mut self) -> _BUF31TO8I2W {
-        _BUF31TO8I2W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i2(&mut self) -> BUF31TO8I2_W {
+        BUF31TO8I2_W { w: self }
     }
     #[doc = "Bit 11 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i3(&mut self) -> _BUF31TO8I3W {
-        _BUF31TO8I3W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i3(&mut self) -> BUF31TO8I3_W {
+        BUF31TO8I3_W { w: self }
     }
     #[doc = "Bit 12 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i4(&mut self) -> _BUF31TO8I4W {
-        _BUF31TO8I4W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i4(&mut self) -> BUF31TO8I4_W {
+        BUF31TO8I4_W { w: self }
     }
     #[doc = "Bit 13 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i5(&mut self) -> _BUF31TO8I5W {
-        _BUF31TO8I5W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i5(&mut self) -> BUF31TO8I5_W {
+        BUF31TO8I5_W { w: self }
     }
     #[doc = "Bit 14 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i6(&mut self) -> _BUF31TO8I6W {
-        _BUF31TO8I6W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i6(&mut self) -> BUF31TO8I6_W {
+        BUF31TO8I6_W { w: self }
     }
     #[doc = "Bit 15 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i7(&mut self) -> _BUF31TO8I7W {
-        _BUF31TO8I7W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i7(&mut self) -> BUF31TO8I7_W {
+        BUF31TO8I7_W { w: self }
     }
     #[doc = "Bit 16 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i8(&mut self) -> _BUF31TO8I8W {
-        _BUF31TO8I8W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i8(&mut self) -> BUF31TO8I8_W {
+        BUF31TO8I8_W { w: self }
     }
     #[doc = "Bit 17 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i9(&mut self) -> _BUF31TO8I9W {
-        _BUF31TO8I9W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i9(&mut self) -> BUF31TO8I9_W {
+        BUF31TO8I9_W { w: self }
     }
     #[doc = "Bit 18 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i10(&mut self) -> _BUF31TO8I10W {
-        _BUF31TO8I10W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i10(&mut self) -> BUF31TO8I10_W {
+        BUF31TO8I10_W { w: self }
     }
     #[doc = "Bit 19 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i11(&mut self) -> _BUF31TO8I11W {
-        _BUF31TO8I11W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i11(&mut self) -> BUF31TO8I11_W {
+        BUF31TO8I11_W { w: self }
     }
     #[doc = "Bit 20 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i12(&mut self) -> _BUF31TO8I12W {
-        _BUF31TO8I12W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i12(&mut self) -> BUF31TO8I12_W {
+        BUF31TO8I12_W { w: self }
     }
     #[doc = "Bit 21 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i13(&mut self) -> _BUF31TO8I13W {
-        _BUF31TO8I13W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i13(&mut self) -> BUF31TO8I13_W {
+        BUF31TO8I13_W { w: self }
     }
     #[doc = "Bit 22 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i14(&mut self) -> _BUF31TO8I14W {
-        _BUF31TO8I14W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i14(&mut self) -> BUF31TO8I14_W {
+        BUF31TO8I14_W { w: self }
     }
     #[doc = "Bit 23 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i15(&mut self) -> _BUF31TO8I15W {
-        _BUF31TO8I15W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i15(&mut self) -> BUF31TO8I15_W {
+        BUF31TO8I15_W { w: self }
     }
     #[doc = "Bit 24 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i16(&mut self) -> _BUF31TO8I16W {
-        _BUF31TO8I16W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i16(&mut self) -> BUF31TO8I16_W {
+        BUF31TO8I16_W { w: self }
     }
     #[doc = "Bit 25 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i17(&mut self) -> _BUF31TO8I17W {
-        _BUF31TO8I17W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i17(&mut self) -> BUF31TO8I17_W {
+        BUF31TO8I17_W { w: self }
     }
     #[doc = "Bit 26 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i18(&mut self) -> _BUF31TO8I18W {
-        _BUF31TO8I18W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i18(&mut self) -> BUF31TO8I18_W {
+        BUF31TO8I18_W { w: self }
     }
     #[doc = "Bit 27 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i19(&mut self) -> _BUF31TO8I19W {
-        _BUF31TO8I19W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i19(&mut self) -> BUF31TO8I19_W {
+        BUF31TO8I19_W { w: self }
     }
     #[doc = "Bit 28 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i20(&mut self) -> _BUF31TO8I20W {
-        _BUF31TO8I20W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i20(&mut self) -> BUF31TO8I20_W {
+        BUF31TO8I20_W { w: self }
     }
     #[doc = "Bit 29 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i21(&mut self) -> _BUF31TO8I21W {
-        _BUF31TO8I21W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i21(&mut self) -> BUF31TO8I21_W {
+        BUF31TO8I21_W { w: self }
     }
     #[doc = "Bit 30 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i22(&mut self) -> _BUF31TO8I22W {
-        _BUF31TO8I22W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i22(&mut self) -> BUF31TO8I22_W {
+        BUF31TO8I22_W { w: self }
     }
     #[doc = "Bit 31 - Buffer MBi Interrupt"]
-    #[inline]
-    pub fn buf31to8i23(&mut self) -> _BUF31TO8I23W {
-        _BUF31TO8I23W { w: self }
+    #[inline(always)]
+    pub fn buf31to8i23(&mut self) -> BUF31TO8I23_W {
+        BUF31TO8I23_W { w: self }
     }
 }

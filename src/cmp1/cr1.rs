@@ -1,897 +1,632 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::CR1 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CR1"]
+pub type R = crate::R<u8, super::CR1>;
+#[doc = "Writer for register CR1"]
+pub type W = crate::W<u8, super::CR1>;
+#[doc = "Register CR1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::CR1 {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `EN`"]
+#[doc = "Comparator Module Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ENR {
-    #[doc = "Analog Comparator is disabled."]
+pub enum EN_A {
+    #[doc = "0: Analog Comparator is disabled."]
     _0,
-    #[doc = "Analog Comparator is enabled."]
+    #[doc = "1: Analog Comparator is enabled."]
     _1,
 }
-impl ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ENR::_0 => false,
-            ENR::_1 => true,
+impl From<EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: EN_A) -> Self {
+        match variant {
+            EN_A::_0 => false,
+            EN_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ENR {
-        match value {
-            false => ENR::_0,
-            true => ENR::_1,
+}
+#[doc = "Reader of field `EN`"]
+pub type EN_R = crate::R<bool, EN_A>;
+impl EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EN_A {
+        match self.bits {
+            false => EN_A::_0,
+            true => EN_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == ENR::_0
+        *self == EN_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == ENR::_1
+        *self == EN_A::_1
     }
 }
-#[doc = "Possible values of the field `OPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OPER {
-    #[doc = "CMPO is not available on the associated CMPO output pin. If the comparator does not own the pin, this field has no effect."]
-    _0,
-    #[doc = "CMPO is available on the associated CMPO output pin. The comparator output (CMPO) is driven out on the associated CMPO output pin if the comparator owns the pin. If the comparator does not own the field, this bit has no effect."]
-    _1,
-}
-impl OPER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OPER::_0 => false,
-            OPER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OPER {
-        match value {
-            false => OPER::_0,
-            true => OPER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == OPER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == OPER::_1
-    }
-}
-#[doc = "Possible values of the field `COS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum COSR {
-    #[doc = "Set the filtered comparator output (CMPO) to equal COUT."]
-    _0,
-    #[doc = "Set the unfiltered comparator output (CMPO) to equal COUTA."]
-    _1,
-}
-impl COSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            COSR::_0 => false,
-            COSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> COSR {
-        match value {
-            false => COSR::_0,
-            true => COSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == COSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == COSR::_1
-    }
-}
-#[doc = "Possible values of the field `INV`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum INVR {
-    #[doc = "Does not invert the comparator output."]
-    _0,
-    #[doc = "Inverts the comparator output."]
-    _1,
-}
-impl INVR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            INVR::_0 => false,
-            INVR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> INVR {
-        match value {
-            false => INVR::_0,
-            true => INVR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == INVR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == INVR::_1
-    }
-}
-#[doc = "Possible values of the field `PMODE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PMODER {
-    #[doc = "Low-Speed (LS) Comparison mode selected. In this mode, CMP has slower output propagation delay and lower current consumption."]
-    _0,
-    #[doc = "High-Speed (HS) Comparison mode selected. In this mode, CMP has faster output propagation delay and higher current consumption."]
-    _1,
-}
-impl PMODER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PMODER::_0 => false,
-            PMODER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PMODER {
-        match value {
-            false => PMODER::_0,
-            true => PMODER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == PMODER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == PMODER::_1
-    }
-}
-#[doc = "Possible values of the field `WE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WER {
-    #[doc = "Windowing mode is not selected."]
-    _0,
-    #[doc = "Windowing mode is selected."]
-    _1,
-}
-impl WER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WER::_0 => false,
-            WER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WER {
-        match value {
-            false => WER::_0,
-            true => WER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == WER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == WER::_1
-    }
-}
-#[doc = "Possible values of the field `SE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SER {
-    #[doc = "Sampling mode is not selected."]
-    _0,
-    #[doc = "Sampling mode is selected."]
-    _1,
-}
-impl SER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SER::_0 => false,
-            SER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SER {
-        match value {
-            false => SER::_0,
-            true => SER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SER::_1
-    }
-}
-#[doc = "Values that can be written to the field `EN`"]
-pub enum ENW {
-    #[doc = "Analog Comparator is disabled."]
-    _0,
-    #[doc = "Analog Comparator is enabled."]
-    _1,
-}
-impl ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ENW::_0 => false,
-            ENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ENW<'a> {
+#[doc = "Write proxy for field `EN`"]
+pub struct EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ENW) -> &'a mut W {
+impl<'a> EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Analog Comparator is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ENW::_0)
+        self.variant(EN_A::_0)
     }
     #[doc = "Analog Comparator is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ENW::_1)
+        self.variant(EN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `OPE`"]
-pub enum OPEW {
+#[doc = "Comparator Output Pin Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum OPE_A {
+    #[doc = "0: CMPO is not available on the associated CMPO output pin. If the comparator does not own the pin, this field has no effect."]
+    _0,
+    #[doc = "1: CMPO is available on the associated CMPO output pin. The comparator output (CMPO) is driven out on the associated CMPO output pin if the comparator owns the pin. If the comparator does not own the field, this bit has no effect."]
+    _1,
+}
+impl From<OPE_A> for bool {
+    #[inline(always)]
+    fn from(variant: OPE_A) -> Self {
+        match variant {
+            OPE_A::_0 => false,
+            OPE_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `OPE`"]
+pub type OPE_R = crate::R<bool, OPE_A>;
+impl OPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OPE_A {
+        match self.bits {
+            false => OPE_A::_0,
+            true => OPE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == OPE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == OPE_A::_1
+    }
+}
+#[doc = "Write proxy for field `OPE`"]
+pub struct OPE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> OPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OPE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "CMPO is not available on the associated CMPO output pin. If the comparator does not own the pin, this field has no effect."]
-    _0,
-    #[doc = "CMPO is available on the associated CMPO output pin. The comparator output (CMPO) is driven out on the associated CMPO output pin if the comparator owns the pin. If the comparator does not own the field, this bit has no effect."]
-    _1,
-}
-impl OPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OPEW::_0 => false,
-            OPEW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OPEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _OPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OPEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "CMPO is not available on the associated CMPO output pin. If the comparator does not own the pin, this field has no effect."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(OPEW::_0)
+        self.variant(OPE_A::_0)
     }
     #[doc = "CMPO is available on the associated CMPO output pin. The comparator output (CMPO) is driven out on the associated CMPO output pin if the comparator owns the pin. If the comparator does not own the field, this bit has no effect."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(OPEW::_1)
+        self.variant(OPE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `COS`"]
-pub enum COSW {
-    #[doc = "Set the filtered comparator output (CMPO) to equal COUT."]
+#[doc = "Comparator Output Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum COS_A {
+    #[doc = "0: Set the filtered comparator output (CMPO) to equal COUT."]
     _0,
-    #[doc = "Set the unfiltered comparator output (CMPO) to equal COUTA."]
+    #[doc = "1: Set the unfiltered comparator output (CMPO) to equal COUTA."]
     _1,
 }
-impl COSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            COSW::_0 => false,
-            COSW::_1 => true,
+impl From<COS_A> for bool {
+    #[inline(always)]
+    fn from(variant: COS_A) -> Self {
+        match variant {
+            COS_A::_0 => false,
+            COS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _COSW<'a> {
+#[doc = "Reader of field `COS`"]
+pub type COS_R = crate::R<bool, COS_A>;
+impl COS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> COS_A {
+        match self.bits {
+            false => COS_A::_0,
+            true => COS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == COS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == COS_A::_1
+    }
+}
+#[doc = "Write proxy for field `COS`"]
+pub struct COS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: COSW) -> &'a mut W {
+impl<'a> COS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: COS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Set the filtered comparator output (CMPO) to equal COUT."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(COSW::_0)
+        self.variant(COS_A::_0)
     }
     #[doc = "Set the unfiltered comparator output (CMPO) to equal COUTA."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(COSW::_1)
+        self.variant(COS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `INV`"]
-pub enum INVW {
+#[doc = "Comparator INVERT\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum INV_A {
+    #[doc = "0: Does not invert the comparator output."]
+    _0,
+    #[doc = "1: Inverts the comparator output."]
+    _1,
+}
+impl From<INV_A> for bool {
+    #[inline(always)]
+    fn from(variant: INV_A) -> Self {
+        match variant {
+            INV_A::_0 => false,
+            INV_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `INV`"]
+pub type INV_R = crate::R<bool, INV_A>;
+impl INV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> INV_A {
+        match self.bits {
+            false => INV_A::_0,
+            true => INV_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == INV_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == INV_A::_1
+    }
+}
+#[doc = "Write proxy for field `INV`"]
+pub struct INV_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> INV_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: INV_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Does not invert the comparator output."]
-    _0,
-    #[doc = "Inverts the comparator output."]
-    _1,
-}
-impl INVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            INVW::_0 => false,
-            INVW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _INVW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _INVW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: INVW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Does not invert the comparator output."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(INVW::_0)
+        self.variant(INV_A::_0)
     }
     #[doc = "Inverts the comparator output."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(INVW::_1)
+        self.variant(INV_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PMODE`"]
-pub enum PMODEW {
-    #[doc = "Low-Speed (LS) Comparison mode selected. In this mode, CMP has slower output propagation delay and lower current consumption."]
+#[doc = "Power Mode Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PMODE_A {
+    #[doc = "0: Low-Speed (LS) Comparison mode selected. In this mode, CMP has slower output propagation delay and lower current consumption."]
     _0,
-    #[doc = "High-Speed (HS) Comparison mode selected. In this mode, CMP has faster output propagation delay and higher current consumption."]
+    #[doc = "1: High-Speed (HS) Comparison mode selected. In this mode, CMP has faster output propagation delay and higher current consumption."]
     _1,
 }
-impl PMODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PMODEW::_0 => false,
-            PMODEW::_1 => true,
+impl From<PMODE_A> for bool {
+    #[inline(always)]
+    fn from(variant: PMODE_A) -> Self {
+        match variant {
+            PMODE_A::_0 => false,
+            PMODE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PMODEW<'a> {
+#[doc = "Reader of field `PMODE`"]
+pub type PMODE_R = crate::R<bool, PMODE_A>;
+impl PMODE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PMODE_A {
+        match self.bits {
+            false => PMODE_A::_0,
+            true => PMODE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == PMODE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == PMODE_A::_1
+    }
+}
+#[doc = "Write proxy for field `PMODE`"]
+pub struct PMODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PMODEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PMODEW) -> &'a mut W {
+impl<'a> PMODE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PMODE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Low-Speed (LS) Comparison mode selected. In this mode, CMP has slower output propagation delay and lower current consumption."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(PMODEW::_0)
+        self.variant(PMODE_A::_0)
     }
     #[doc = "High-Speed (HS) Comparison mode selected. In this mode, CMP has faster output propagation delay and higher current consumption."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(PMODEW::_1)
+        self.variant(PMODE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u8) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WE`"]
-pub enum WEW {
-    #[doc = "Windowing mode is not selected."]
+#[doc = "Windowing Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WE_A {
+    #[doc = "0: Windowing mode is not selected."]
     _0,
-    #[doc = "Windowing mode is selected."]
+    #[doc = "1: Windowing mode is selected."]
     _1,
 }
-impl WEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WEW::_0 => false,
-            WEW::_1 => true,
+impl From<WE_A> for bool {
+    #[inline(always)]
+    fn from(variant: WE_A) -> Self {
+        match variant {
+            WE_A::_0 => false,
+            WE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _WEW<'a> {
+#[doc = "Reader of field `WE`"]
+pub type WE_R = crate::R<bool, WE_A>;
+impl WE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WE_A {
+        match self.bits {
+            false => WE_A::_0,
+            true => WE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == WE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == WE_A::_1
+    }
+}
+#[doc = "Write proxy for field `WE`"]
+pub struct WE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WEW) -> &'a mut W {
+impl<'a> WE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Windowing mode is not selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(WEW::_0)
+        self.variant(WE_A::_0)
     }
     #[doc = "Windowing mode is selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(WEW::_1)
+        self.variant(WE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SE`"]
-pub enum SEW {
-    #[doc = "Sampling mode is not selected."]
+#[doc = "Sample Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SE_A {
+    #[doc = "0: Sampling mode is not selected."]
     _0,
-    #[doc = "Sampling mode is selected."]
+    #[doc = "1: Sampling mode is selected."]
     _1,
 }
-impl SEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEW::_0 => false,
-            SEW::_1 => true,
+impl From<SE_A> for bool {
+    #[inline(always)]
+    fn from(variant: SE_A) -> Self {
+        match variant {
+            SE_A::_0 => false,
+            SE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SEW<'a> {
+#[doc = "Reader of field `SE`"]
+pub type SE_R = crate::R<bool, SE_A>;
+impl SE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SE_A {
+        match self.bits {
+            false => SE_A::_0,
+            true => SE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SE_A::_1
+    }
+}
+#[doc = "Write proxy for field `SE`"]
+pub struct SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEW) -> &'a mut W {
+impl<'a> SE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Sampling mode is not selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SEW::_0)
+        self.variant(SE_A::_0)
     }
     #[doc = "Sampling mode is selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SEW::_1)
+        self.variant(SE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Comparator Module Enable"]
-    #[inline]
-    pub fn en(&self) -> ENR {
-        ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn en(&self) -> EN_R {
+        EN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Comparator Output Pin Enable"]
-    #[inline]
-    pub fn ope(&self) -> OPER {
-        OPER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn ope(&self) -> OPE_R {
+        OPE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Comparator Output Select"]
-    #[inline]
-    pub fn cos(&self) -> COSR {
-        COSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn cos(&self) -> COS_R {
+        COS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Comparator INVERT"]
-    #[inline]
-    pub fn inv(&self) -> INVR {
-        INVR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn inv(&self) -> INV_R {
+        INV_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Power Mode Select"]
-    #[inline]
-    pub fn pmode(&self) -> PMODER {
-        PMODER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn pmode(&self) -> PMODE_R {
+        PMODE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Windowing Enable"]
-    #[inline]
-    pub fn we(&self) -> WER {
-        WER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn we(&self) -> WE_R {
+        WE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Sample Enable"]
-    #[inline]
-    pub fn se(&self) -> SER {
-        SER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn se(&self) -> SE_R {
+        SE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Comparator Module Enable"]
-    #[inline]
-    pub fn en(&mut self) -> _ENW {
-        _ENW { w: self }
+    #[inline(always)]
+    pub fn en(&mut self) -> EN_W {
+        EN_W { w: self }
     }
     #[doc = "Bit 1 - Comparator Output Pin Enable"]
-    #[inline]
-    pub fn ope(&mut self) -> _OPEW {
-        _OPEW { w: self }
+    #[inline(always)]
+    pub fn ope(&mut self) -> OPE_W {
+        OPE_W { w: self }
     }
     #[doc = "Bit 2 - Comparator Output Select"]
-    #[inline]
-    pub fn cos(&mut self) -> _COSW {
-        _COSW { w: self }
+    #[inline(always)]
+    pub fn cos(&mut self) -> COS_W {
+        COS_W { w: self }
     }
     #[doc = "Bit 3 - Comparator INVERT"]
-    #[inline]
-    pub fn inv(&mut self) -> _INVW {
-        _INVW { w: self }
+    #[inline(always)]
+    pub fn inv(&mut self) -> INV_W {
+        INV_W { w: self }
     }
     #[doc = "Bit 4 - Power Mode Select"]
-    #[inline]
-    pub fn pmode(&mut self) -> _PMODEW {
-        _PMODEW { w: self }
+    #[inline(always)]
+    pub fn pmode(&mut self) -> PMODE_W {
+        PMODE_W { w: self }
     }
     #[doc = "Bit 6 - Windowing Enable"]
-    #[inline]
-    pub fn we(&mut self) -> _WEW {
-        _WEW { w: self }
+    #[inline(always)]
+    pub fn we(&mut self) -> WE_W {
+        WE_W { w: self }
     }
     #[doc = "Bit 7 - Sample Enable"]
-    #[inline]
-    pub fn se(&mut self) -> _SEW {
-        _SEW { w: self }
+    #[inline(always)]
+    pub fn se(&mut self) -> SE_W {
+        SE_W { w: self }
     }
 }

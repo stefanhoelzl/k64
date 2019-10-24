@@ -1,354 +1,238 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TFWR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TFWR"]
+pub type R = crate::R<u32, super::TFWR>;
+#[doc = "Writer for register TFWR"]
+pub type W = crate::W<u32, super::TFWR>;
+#[doc = "Register TFWR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TFWR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TFWR`"]
+#[doc = "Transmit FIFO Write\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFWRR {
-    #[doc = "64 bytes written."]
+pub enum TFWR_A {
+    #[doc = "0: 64 bytes written."]
     _000000,
-    #[doc = "64 bytes written."]
+    #[doc = "1: 64 bytes written."]
     _000001,
-    #[doc = "128 bytes written."]
+    #[doc = "2: 128 bytes written."]
     _000010,
-    #[doc = "192 bytes written."]
+    #[doc = "3: 192 bytes written."]
     _000011,
-    #[doc = "3968 bytes written."]
+    #[doc = "62: 3968 bytes written."]
     _111110,
-    #[doc = "4032 bytes written."]
+    #[doc = "63: 4032 bytes written."]
     _111111,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl TFWRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TFWRR::_000000 => 0,
-            TFWRR::_000001 => 1,
-            TFWRR::_000010 => 2,
-            TFWRR::_000011 => 3,
-            TFWRR::_111110 => 62,
-            TFWRR::_111111 => 63,
-            TFWRR::_Reserved(bits) => bits,
+impl From<TFWR_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TFWR_A) -> Self {
+        match variant {
+            TFWR_A::_000000 => 0,
+            TFWR_A::_000001 => 1,
+            TFWR_A::_000010 => 2,
+            TFWR_A::_000011 => 3,
+            TFWR_A::_111110 => 62,
+            TFWR_A::_111111 => 63,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TFWRR {
-        match value {
-            0 => TFWRR::_000000,
-            1 => TFWRR::_000001,
-            2 => TFWRR::_000010,
-            3 => TFWRR::_000011,
-            62 => TFWRR::_111110,
-            63 => TFWRR::_111111,
-            i => TFWRR::_Reserved(i),
+}
+#[doc = "Reader of field `TFWR`"]
+pub type TFWR_R = crate::R<u8, TFWR_A>;
+impl TFWR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TFWR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TFWR_A::_000000),
+            1 => Val(TFWR_A::_000001),
+            2 => Val(TFWR_A::_000010),
+            3 => Val(TFWR_A::_000011),
+            62 => Val(TFWR_A::_111110),
+            63 => Val(TFWR_A::_111111),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_000000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000000(&self) -> bool {
-        *self == TFWRR::_000000
+        *self == TFWR_A::_000000
     }
     #[doc = "Checks if the value of the field is `_000001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000001(&self) -> bool {
-        *self == TFWRR::_000001
+        *self == TFWR_A::_000001
     }
     #[doc = "Checks if the value of the field is `_000010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000010(&self) -> bool {
-        *self == TFWRR::_000010
+        *self == TFWR_A::_000010
     }
     #[doc = "Checks if the value of the field is `_000011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_000011(&self) -> bool {
-        *self == TFWRR::_000011
+        *self == TFWR_A::_000011
     }
     #[doc = "Checks if the value of the field is `_111110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111110(&self) -> bool {
-        *self == TFWRR::_111110
+        *self == TFWR_A::_111110
     }
     #[doc = "Checks if the value of the field is `_111111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_111111(&self) -> bool {
-        *self == TFWRR::_111111
+        *self == TFWR_A::_111111
     }
 }
-#[doc = "Possible values of the field `STRFWD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STRFWDR {
-    #[doc = "Reset. The transmission start threshold is programmed in TFWR\\[TFWR\\]."]
-    _0,
-    #[doc = "Enabled."]
-    _1,
-}
-impl STRFWDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            STRFWDR::_0 => false,
-            STRFWDR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> STRFWDR {
-        match value {
-            false => STRFWDR::_0,
-            true => STRFWDR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == STRFWDR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == STRFWDR::_1
-    }
-}
-#[doc = "Values that can be written to the field `TFWR`"]
-pub enum TFWRW {
-    #[doc = "64 bytes written."]
-    _000000,
-    #[doc = "64 bytes written."]
-    _000001,
-    #[doc = "128 bytes written."]
-    _000010,
-    #[doc = "192 bytes written."]
-    _000011,
-    #[doc = "3968 bytes written."]
-    _111110,
-    #[doc = "4032 bytes written."]
-    _111111,
-}
-impl TFWRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TFWRW::_000000 => 0,
-            TFWRW::_000001 => 1,
-            TFWRW::_000010 => 2,
-            TFWRW::_000011 => 3,
-            TFWRW::_111110 => 62,
-            TFWRW::_111111 => 63,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TFWRW<'a> {
+#[doc = "Write proxy for field `TFWR`"]
+pub struct TFWR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TFWRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TFWRW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> TFWR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TFWR_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "64 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _000000(self) -> &'a mut W {
-        self.variant(TFWRW::_000000)
+        self.variant(TFWR_A::_000000)
     }
     #[doc = "64 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _000001(self) -> &'a mut W {
-        self.variant(TFWRW::_000001)
+        self.variant(TFWR_A::_000001)
     }
     #[doc = "128 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _000010(self) -> &'a mut W {
-        self.variant(TFWRW::_000010)
+        self.variant(TFWR_A::_000010)
     }
     #[doc = "192 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _000011(self) -> &'a mut W {
-        self.variant(TFWRW::_000011)
+        self.variant(TFWR_A::_000011)
     }
     #[doc = "3968 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _111110(self) -> &'a mut W {
-        self.variant(TFWRW::_111110)
+        self.variant(TFWR_A::_111110)
     }
     #[doc = "4032 bytes written."]
-    #[inline]
+    #[inline(always)]
     pub fn _111111(self) -> &'a mut W {
-        self.variant(TFWRW::_111111)
+        self.variant(TFWR_A::_111111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 63;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x3f) | ((value as u32) & 0x3f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `STRFWD`"]
-pub enum STRFWDW {
-    #[doc = "Reset. The transmission start threshold is programmed in TFWR\\[TFWR\\]."]
+#[doc = "Store And Forward Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum STRFWD_A {
+    #[doc = "0: Reset. The transmission start threshold is programmed in TFWR\\[TFWR\\]."]
     _0,
-    #[doc = "Enabled."]
+    #[doc = "1: Enabled."]
     _1,
 }
-impl STRFWDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            STRFWDW::_0 => false,
-            STRFWDW::_1 => true,
+impl From<STRFWD_A> for bool {
+    #[inline(always)]
+    fn from(variant: STRFWD_A) -> Self {
+        match variant {
+            STRFWD_A::_0 => false,
+            STRFWD_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _STRFWDW<'a> {
+#[doc = "Reader of field `STRFWD`"]
+pub type STRFWD_R = crate::R<bool, STRFWD_A>;
+impl STRFWD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STRFWD_A {
+        match self.bits {
+            false => STRFWD_A::_0,
+            true => STRFWD_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == STRFWD_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == STRFWD_A::_1
+    }
+}
+#[doc = "Write proxy for field `STRFWD`"]
+pub struct STRFWD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STRFWDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: STRFWDW) -> &'a mut W {
+impl<'a> STRFWD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: STRFWD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset. The transmission start threshold is programmed in TFWR\\[TFWR\\]."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(STRFWDW::_0)
+        self.variant(STRFWD_A::_0)
     }
     #[doc = "Enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(STRFWDW::_1)
+        self.variant(STRFWD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:5 - Transmit FIFO Write"]
-    #[inline]
-    pub fn tfwr(&self) -> TFWRR {
-        TFWRR::_from({
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn tfwr(&self) -> TFWR_R {
+        TFWR_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bit 8 - Store And Forward Enable"]
-    #[inline]
-    pub fn strfwd(&self) -> STRFWDR {
-        STRFWDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn strfwd(&self) -> STRFWD_R {
+        STRFWD_R::new(((self.bits >> 8) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:5 - Transmit FIFO Write"]
-    #[inline]
-    pub fn tfwr(&mut self) -> _TFWRW {
-        _TFWRW { w: self }
+    #[inline(always)]
+    pub fn tfwr(&mut self) -> TFWR_W {
+        TFWR_W { w: self }
     }
     #[doc = "Bit 8 - Store And Forward Enable"]
-    #[inline]
-    pub fn strfwd(&mut self) -> _STRFWDW {
-        _STRFWDW { w: self }
+    #[inline(always)]
+    pub fn strfwd(&mut self) -> STRFWD_W {
+        STRFWD_W { w: self }
     }
 }

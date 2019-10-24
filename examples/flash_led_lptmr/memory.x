@@ -9,10 +9,3 @@ MEMORY
 /* This is where the call stack will be allocated. */
 /* The stack is of the full descending type. */
 _stack_start = ORIGIN(STACK) + LENGTH(STACK);
-
-/* You can use this symbol to customize the location of the .text section */
-/* If omitted the .text section will be placed right after the .vector_table
-   section */
-/* This is required only on microcontrollers that store some configuration right
-   after the vector table */
-_stext = ORIGIN(FLASH) + 0x800;

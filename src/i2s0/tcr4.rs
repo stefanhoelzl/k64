@@ -1,622 +1,416 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TCR4 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TCR4"]
+pub type R = crate::R<u32, super::TCR4>;
+#[doc = "Writer for register TCR4"]
+pub type W = crate::W<u32, super::TCR4>;
+#[doc = "Register TCR4 `reset()`'s with value 0"]
+impl crate::ResetValue for super::TCR4 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `FSD`"]
+#[doc = "Frame Sync Direction\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSDR {
-    #[doc = "Frame sync is generated externally in Slave mode."]
+pub enum FSD_A {
+    #[doc = "0: Frame sync is generated externally in Slave mode."]
     _0,
-    #[doc = "Frame sync is generated internally in Master mode."]
+    #[doc = "1: Frame sync is generated internally in Master mode."]
     _1,
 }
-impl FSDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FSDR::_0 => false,
-            FSDR::_1 => true,
+impl From<FSD_A> for bool {
+    #[inline(always)]
+    fn from(variant: FSD_A) -> Self {
+        match variant {
+            FSD_A::_0 => false,
+            FSD_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FSDR {
-        match value {
-            false => FSDR::_0,
-            true => FSDR::_1,
+}
+#[doc = "Reader of field `FSD`"]
+pub type FSD_R = crate::R<bool, FSD_A>;
+impl FSD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FSD_A {
+        match self.bits {
+            false => FSD_A::_0,
+            true => FSD_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == FSDR::_0
+        *self == FSD_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == FSDR::_1
+        *self == FSD_A::_1
     }
 }
-#[doc = "Possible values of the field `FSP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSPR {
-    #[doc = "Frame sync is active high."]
-    _0,
-    #[doc = "Frame sync is active low."]
-    _1,
-}
-impl FSPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FSPR::_0 => false,
-            FSPR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FSPR {
-        match value {
-            false => FSPR::_0,
-            true => FSPR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == FSPR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == FSPR::_1
-    }
-}
-#[doc = "Possible values of the field `FSE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSER {
-    #[doc = "Frame sync asserts with the first bit of the frame."]
-    _0,
-    #[doc = "Frame sync asserts one bit before the first bit of the frame."]
-    _1,
-}
-impl FSER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FSER::_0 => false,
-            FSER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FSER {
-        match value {
-            false => FSER::_0,
-            true => FSER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == FSER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == FSER::_1
-    }
-}
-#[doc = "Possible values of the field `MF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MFR {
-    #[doc = "LSB is transmitted first."]
-    _0,
-    #[doc = "MSB is transmitted first."]
-    _1,
-}
-impl MFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MFR::_0 => false,
-            MFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MFR {
-        match value {
-            false => MFR::_0,
-            true => MFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MFR::_1
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SYWDR {
-    bits: u8,
-}
-impl SYWDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FRSZR {
-    bits: u8,
-}
-impl FRSZR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `FSD`"]
-pub enum FSDW {
-    #[doc = "Frame sync is generated externally in Slave mode."]
-    _0,
-    #[doc = "Frame sync is generated internally in Master mode."]
-    _1,
-}
-impl FSDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FSDW::_0 => false,
-            FSDW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FSDW<'a> {
+#[doc = "Write proxy for field `FSD`"]
+pub struct FSD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FSDW) -> &'a mut W {
+impl<'a> FSD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FSD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Frame sync is generated externally in Slave mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(FSDW::_0)
+        self.variant(FSD_A::_0)
     }
     #[doc = "Frame sync is generated internally in Master mode."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(FSDW::_1)
+        self.variant(FSD_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `FSP`"]
-pub enum FSPW {
+#[doc = "Frame Sync Polarity\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FSP_A {
+    #[doc = "0: Frame sync is active high."]
+    _0,
+    #[doc = "1: Frame sync is active low."]
+    _1,
+}
+impl From<FSP_A> for bool {
+    #[inline(always)]
+    fn from(variant: FSP_A) -> Self {
+        match variant {
+            FSP_A::_0 => false,
+            FSP_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `FSP`"]
+pub type FSP_R = crate::R<bool, FSP_A>;
+impl FSP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FSP_A {
+        match self.bits {
+            false => FSP_A::_0,
+            true => FSP_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == FSP_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == FSP_A::_1
+    }
+}
+#[doc = "Write proxy for field `FSP`"]
+pub struct FSP_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FSP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FSP_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Frame sync is active high."]
-    _0,
-    #[doc = "Frame sync is active low."]
-    _1,
-}
-impl FSPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FSPW::_0 => false,
-            FSPW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FSPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FSPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FSPW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Frame sync is active high."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(FSPW::_0)
+        self.variant(FSP_A::_0)
     }
     #[doc = "Frame sync is active low."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(FSPW::_1)
+        self.variant(FSP_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `FSE`"]
-pub enum FSEW {
-    #[doc = "Frame sync asserts with the first bit of the frame."]
+#[doc = "Frame Sync Early\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FSE_A {
+    #[doc = "0: Frame sync asserts with the first bit of the frame."]
     _0,
-    #[doc = "Frame sync asserts one bit before the first bit of the frame."]
+    #[doc = "1: Frame sync asserts one bit before the first bit of the frame."]
     _1,
 }
-impl FSEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FSEW::_0 => false,
-            FSEW::_1 => true,
+impl From<FSE_A> for bool {
+    #[inline(always)]
+    fn from(variant: FSE_A) -> Self {
+        match variant {
+            FSE_A::_0 => false,
+            FSE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _FSEW<'a> {
+#[doc = "Reader of field `FSE`"]
+pub type FSE_R = crate::R<bool, FSE_A>;
+impl FSE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FSE_A {
+        match self.bits {
+            false => FSE_A::_0,
+            true => FSE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == FSE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == FSE_A::_1
+    }
+}
+#[doc = "Write proxy for field `FSE`"]
+pub struct FSE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FSEW) -> &'a mut W {
+impl<'a> FSE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FSE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Frame sync asserts with the first bit of the frame."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(FSEW::_0)
+        self.variant(FSE_A::_0)
     }
     #[doc = "Frame sync asserts one bit before the first bit of the frame."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(FSEW::_1)
+        self.variant(FSE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MF`"]
-pub enum MFW {
-    #[doc = "LSB is transmitted first."]
+#[doc = "MSB First\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MF_A {
+    #[doc = "0: LSB is transmitted first."]
     _0,
-    #[doc = "MSB is transmitted first."]
+    #[doc = "1: MSB is transmitted first."]
     _1,
 }
-impl MFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MFW::_0 => false,
-            MFW::_1 => true,
+impl From<MF_A> for bool {
+    #[inline(always)]
+    fn from(variant: MF_A) -> Self {
+        match variant {
+            MF_A::_0 => false,
+            MF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MFW<'a> {
+#[doc = "Reader of field `MF`"]
+pub type MF_R = crate::R<bool, MF_A>;
+impl MF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MF_A {
+        match self.bits {
+            false => MF_A::_0,
+            true => MF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MF_A::_1
+    }
+}
+#[doc = "Write proxy for field `MF`"]
+pub struct MF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MFW) -> &'a mut W {
+impl<'a> MF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "LSB is transmitted first."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MFW::_0)
+        self.variant(MF_A::_0)
     }
     #[doc = "MSB is transmitted first."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MFW::_1)
+        self.variant(MF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SYWDW<'a> {
+#[doc = "Reader of field `SYWD`"]
+pub type SYWD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SYWD`"]
+pub struct SYWD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYWDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> SYWD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 8)) | (((value as u32) & 0x1f) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _FRSZW<'a> {
+#[doc = "Reader of field `FRSZ`"]
+pub type FRSZ_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FRSZ`"]
+pub struct FRSZ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRSZW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> FRSZ_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 16)) | (((value as u32) & 0x1f) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Frame Sync Direction"]
-    #[inline]
-    pub fn fsd(&self) -> FSDR {
-        FSDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn fsd(&self) -> FSD_R {
+        FSD_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Frame Sync Polarity"]
-    #[inline]
-    pub fn fsp(&self) -> FSPR {
-        FSPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn fsp(&self) -> FSP_R {
+        FSP_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Frame Sync Early"]
-    #[inline]
-    pub fn fse(&self) -> FSER {
-        FSER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn fse(&self) -> FSE_R {
+        FSE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - MSB First"]
-    #[inline]
-    pub fn mf(&self) -> MFR {
-        MFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mf(&self) -> MF_R {
+        MF_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 8:12 - Sync Width"]
-    #[inline]
-    pub fn sywd(&self) -> SYWDR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        SYWDR { bits }
+    #[inline(always)]
+    pub fn sywd(&self) -> SYWD_R {
+        SYWD_R::new(((self.bits >> 8) & 0x1f) as u8)
     }
     #[doc = "Bits 16:20 - Frame size"]
-    #[inline]
-    pub fn frsz(&self) -> FRSZR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        FRSZR { bits }
+    #[inline(always)]
+    pub fn frsz(&self) -> FRSZ_R {
+        FRSZ_R::new(((self.bits >> 16) & 0x1f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Frame Sync Direction"]
-    #[inline]
-    pub fn fsd(&mut self) -> _FSDW {
-        _FSDW { w: self }
+    #[inline(always)]
+    pub fn fsd(&mut self) -> FSD_W {
+        FSD_W { w: self }
     }
     #[doc = "Bit 1 - Frame Sync Polarity"]
-    #[inline]
-    pub fn fsp(&mut self) -> _FSPW {
-        _FSPW { w: self }
+    #[inline(always)]
+    pub fn fsp(&mut self) -> FSP_W {
+        FSP_W { w: self }
     }
     #[doc = "Bit 3 - Frame Sync Early"]
-    #[inline]
-    pub fn fse(&mut self) -> _FSEW {
-        _FSEW { w: self }
+    #[inline(always)]
+    pub fn fse(&mut self) -> FSE_W {
+        FSE_W { w: self }
     }
     #[doc = "Bit 4 - MSB First"]
-    #[inline]
-    pub fn mf(&mut self) -> _MFW {
-        _MFW { w: self }
+    #[inline(always)]
+    pub fn mf(&mut self) -> MF_W {
+        MF_W { w: self }
     }
     #[doc = "Bits 8:12 - Sync Width"]
-    #[inline]
-    pub fn sywd(&mut self) -> _SYWDW {
-        _SYWDW { w: self }
+    #[inline(always)]
+    pub fn sywd(&mut self) -> SYWD_W {
+        SYWD_W { w: self }
     }
     #[doc = "Bits 16:20 - Frame size"]
-    #[inline]
-    pub fn frsz(&mut self) -> _FRSZW {
-        _FRSZW { w: self }
+    #[inline(always)]
+    pub fn frsz(&mut self) -> FRSZ_W {
+        FRSZ_W { w: self }
     }
 }

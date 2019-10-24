@@ -1,9 +1,9 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control/Error Status Register"]
     pub cesr: CESR,
-    _reserved0: [u8; 12usize],
+    _reserved1: [u8; 12usize],
     #[doc = "0x10 - Error Address Register, slave port n"]
     pub ear0: EAR,
     #[doc = "0x14 - Error Detail Register, slave port n"]
@@ -24,7 +24,7 @@ pub struct RegisterBlock {
     pub ear4: EAR,
     #[doc = "0x34 - Error Detail Register, slave port n"]
     pub edr4: EDR,
-    _reserved1: [u8; 968usize],
+    _reserved11: [u8; 968usize],
     #[doc = "0x400 - Region Descriptor n, Word 0"]
     pub rgd0_word0: RGD_WORD0,
     #[doc = "0x404 - Region Descriptor n, Word 1"]
@@ -121,55 +121,91 @@ pub struct RegisterBlock {
     pub rgd11_word2: RGD_WORD2,
     #[doc = "0x4bc - Region Descriptor n, Word 3"]
     pub rgd11_word3: RGD_WORD3,
-    _reserved2: [u8; 832usize],
+    _reserved59: [u8; 832usize],
     #[doc = "0x800 - Region Descriptor Alternate Access Control n"]
     pub rgdaac: [RGDAAC; 12],
 }
-#[doc = "Control/Error Status Register"]
-pub struct CESR {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Control/Error Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cesr](cesr) module"]
+pub type CESR = crate::Reg<u32, _CESR>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _CESR;
+#[doc = "`read()` method returns [cesr::R](cesr::R) reader structure"]
+impl crate::Readable for CESR {}
+#[doc = "`write(|w| ..)` method takes [cesr::W](cesr::W) writer structure"]
+impl crate::Writable for CESR {}
 #[doc = "Control/Error Status Register"]
 pub mod cesr;
-#[doc = "Error Address Register, slave port n"]
-pub struct EAR {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Error Address Register, slave port n\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ear](ear) module"]
+pub type EAR = crate::Reg<u32, _EAR>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _EAR;
+#[doc = "`read()` method returns [ear::R](ear::R) reader structure"]
+impl crate::Readable for EAR {}
 #[doc = "Error Address Register, slave port n"]
 pub mod ear;
-#[doc = "Error Detail Register, slave port n"]
-pub struct EDR {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Error Detail Register, slave port n\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [edr](edr) module"]
+pub type EDR = crate::Reg<u32, _EDR>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _EDR;
+#[doc = "`read()` method returns [edr::R](edr::R) reader structure"]
+impl crate::Readable for EDR {}
 #[doc = "Error Detail Register, slave port n"]
 pub mod edr;
-#[doc = "Region Descriptor n, Word 0"]
-pub struct RGD_WORD0 {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Region Descriptor n, Word 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rgd_word0](rgd_word0) module"]
+pub type RGD_WORD0 = crate::Reg<u32, _RGD_WORD0>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _RGD_WORD0;
+#[doc = "`read()` method returns [rgd_word0::R](rgd_word0::R) reader structure"]
+impl crate::Readable for RGD_WORD0 {}
+#[doc = "`write(|w| ..)` method takes [rgd_word0::W](rgd_word0::W) writer structure"]
+impl crate::Writable for RGD_WORD0 {}
 #[doc = "Region Descriptor n, Word 0"]
 pub mod rgd_word0;
-#[doc = "Region Descriptor n, Word 1"]
-pub struct RGD_WORD1 {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Region Descriptor n, Word 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rgd_word1](rgd_word1) module"]
+pub type RGD_WORD1 = crate::Reg<u32, _RGD_WORD1>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _RGD_WORD1;
+#[doc = "`read()` method returns [rgd_word1::R](rgd_word1::R) reader structure"]
+impl crate::Readable for RGD_WORD1 {}
+#[doc = "`write(|w| ..)` method takes [rgd_word1::W](rgd_word1::W) writer structure"]
+impl crate::Writable for RGD_WORD1 {}
 #[doc = "Region Descriptor n, Word 1"]
 pub mod rgd_word1;
-#[doc = "Region Descriptor n, Word 2"]
-pub struct RGD_WORD2 {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Region Descriptor n, Word 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rgd_word2](rgd_word2) module"]
+pub type RGD_WORD2 = crate::Reg<u32, _RGD_WORD2>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _RGD_WORD2;
+#[doc = "`read()` method returns [rgd_word2::R](rgd_word2::R) reader structure"]
+impl crate::Readable for RGD_WORD2 {}
+#[doc = "`write(|w| ..)` method takes [rgd_word2::W](rgd_word2::W) writer structure"]
+impl crate::Writable for RGD_WORD2 {}
 #[doc = "Region Descriptor n, Word 2"]
 pub mod rgd_word2;
-#[doc = "Region Descriptor n, Word 3"]
-pub struct RGD_WORD3 {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Region Descriptor n, Word 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rgd_word3](rgd_word3) module"]
+pub type RGD_WORD3 = crate::Reg<u32, _RGD_WORD3>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _RGD_WORD3;
+#[doc = "`read()` method returns [rgd_word3::R](rgd_word3::R) reader structure"]
+impl crate::Readable for RGD_WORD3 {}
+#[doc = "`write(|w| ..)` method takes [rgd_word3::W](rgd_word3::W) writer structure"]
+impl crate::Writable for RGD_WORD3 {}
 #[doc = "Region Descriptor n, Word 3"]
 pub mod rgd_word3;
-#[doc = "Region Descriptor Alternate Access Control n"]
-pub struct RGDAAC {
-    register: ::vcell::VolatileCell<u32>,
-}
+#[doc = "Region Descriptor Alternate Access Control n\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rgdaac](rgdaac) module"]
+pub type RGDAAC = crate::Reg<u32, _RGDAAC>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _RGDAAC;
+#[doc = "`read()` method returns [rgdaac::R](rgdaac::R) reader structure"]
+impl crate::Readable for RGDAAC {}
+#[doc = "`write(|w| ..)` method takes [rgdaac::W](rgdaac::W) writer structure"]
+impl crate::Writable for RGDAAC {}
 #[doc = "Region Descriptor Alternate Access Control n"]
 pub mod rgdaac;

@@ -1,3872 +1,2832 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DFER {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DFER"]
+pub type R = crate::R<u32, super::DFER>;
+#[doc = "Writer for register DFER"]
+pub type W = crate::W<u32, super::DFER>;
+#[doc = "Register DFER `reset()`'s with value 0"]
+impl crate::ResetValue for super::DFER {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `DFE0`"]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE0R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+pub enum DFE0_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE0R::_0 => false,
-            DFE0R::_1 => true,
+impl From<DFE0_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE0_A) -> Self {
+        match variant {
+            DFE0_A::_0 => false,
+            DFE0_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE0R {
-        match value {
-            false => DFE0R::_0,
-            true => DFE0R::_1,
+}
+#[doc = "Reader of field `DFE0`"]
+pub type DFE0_R = crate::R<bool, DFE0_A>;
+impl DFE0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE0_A {
+        match self.bits {
+            false => DFE0_A::_0,
+            true => DFE0_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == DFE0R::_0
+        *self == DFE0_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DFE0R::_1
+        *self == DFE0_A::_1
     }
 }
-#[doc = "Possible values of the field `DFE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE1R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE1R::_0 => false,
-            DFE1R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE1R {
-        match value {
-            false => DFE1R::_0,
-            true => DFE1R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE1R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE1R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE2R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE2R::_0 => false,
-            DFE2R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE2R {
-        match value {
-            false => DFE2R::_0,
-            true => DFE2R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE2R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE2R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE3R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE3R::_0 => false,
-            DFE3R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE3R {
-        match value {
-            false => DFE3R::_0,
-            true => DFE3R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE3R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE3R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE4R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE4R::_0 => false,
-            DFE4R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE4R {
-        match value {
-            false => DFE4R::_0,
-            true => DFE4R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE4R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE4R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE5R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE5R::_0 => false,
-            DFE5R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE5R {
-        match value {
-            false => DFE5R::_0,
-            true => DFE5R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE5R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE5R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE6R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE6R::_0 => false,
-            DFE6R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE6R {
-        match value {
-            false => DFE6R::_0,
-            true => DFE6R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE6R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE6R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE7R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE7R::_0 => false,
-            DFE7R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE7R {
-        match value {
-            false => DFE7R::_0,
-            true => DFE7R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE7R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE7R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE8R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE8R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE8R::_0 => false,
-            DFE8R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE8R {
-        match value {
-            false => DFE8R::_0,
-            true => DFE8R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE8R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE8R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE9R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE9R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE9R::_0 => false,
-            DFE9R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE9R {
-        match value {
-            false => DFE9R::_0,
-            true => DFE9R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE9R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE9R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE10R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE10R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE10R::_0 => false,
-            DFE10R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE10R {
-        match value {
-            false => DFE10R::_0,
-            true => DFE10R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE10R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE10R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE11R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE11R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE11R::_0 => false,
-            DFE11R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE11R {
-        match value {
-            false => DFE11R::_0,
-            true => DFE11R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE11R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE11R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE12`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE12R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE12R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE12R::_0 => false,
-            DFE12R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE12R {
-        match value {
-            false => DFE12R::_0,
-            true => DFE12R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE12R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE12R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE13`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE13R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE13R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE13R::_0 => false,
-            DFE13R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE13R {
-        match value {
-            false => DFE13R::_0,
-            true => DFE13R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE13R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE13R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE14`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE14R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE14R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE14R::_0 => false,
-            DFE14R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE14R {
-        match value {
-            false => DFE14R::_0,
-            true => DFE14R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE14R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE14R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE15`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE15R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE15R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE15R::_0 => false,
-            DFE15R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE15R {
-        match value {
-            false => DFE15R::_0,
-            true => DFE15R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE15R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE15R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE16`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE16R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE16R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE16R::_0 => false,
-            DFE16R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE16R {
-        match value {
-            false => DFE16R::_0,
-            true => DFE16R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE16R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE16R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE17`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE17R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE17R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE17R::_0 => false,
-            DFE17R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE17R {
-        match value {
-            false => DFE17R::_0,
-            true => DFE17R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE17R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE17R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE18`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE18R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE18R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE18R::_0 => false,
-            DFE18R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE18R {
-        match value {
-            false => DFE18R::_0,
-            true => DFE18R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE18R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE18R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE19`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE19R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE19R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE19R::_0 => false,
-            DFE19R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE19R {
-        match value {
-            false => DFE19R::_0,
-            true => DFE19R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE19R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE19R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE20`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE20R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE20R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE20R::_0 => false,
-            DFE20R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE20R {
-        match value {
-            false => DFE20R::_0,
-            true => DFE20R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE20R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE20R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE21`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE21R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE21R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE21R::_0 => false,
-            DFE21R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE21R {
-        match value {
-            false => DFE21R::_0,
-            true => DFE21R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE21R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE21R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE22`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE22R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE22R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE22R::_0 => false,
-            DFE22R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE22R {
-        match value {
-            false => DFE22R::_0,
-            true => DFE22R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE22R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE22R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE23`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE23R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE23R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE23R::_0 => false,
-            DFE23R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE23R {
-        match value {
-            false => DFE23R::_0,
-            true => DFE23R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE23R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE23R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE24`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE24R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE24R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE24R::_0 => false,
-            DFE24R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE24R {
-        match value {
-            false => DFE24R::_0,
-            true => DFE24R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE24R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE24R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE25`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE25R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE25R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE25R::_0 => false,
-            DFE25R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE25R {
-        match value {
-            false => DFE25R::_0,
-            true => DFE25R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE25R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE25R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE26`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE26R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE26R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE26R::_0 => false,
-            DFE26R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE26R {
-        match value {
-            false => DFE26R::_0,
-            true => DFE26R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE26R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE26R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE27`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE27R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE27R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE27R::_0 => false,
-            DFE27R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE27R {
-        match value {
-            false => DFE27R::_0,
-            true => DFE27R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE27R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE27R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE28`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE28R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE28R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE28R::_0 => false,
-            DFE28R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE28R {
-        match value {
-            false => DFE28R::_0,
-            true => DFE28R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE28R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE28R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE29`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE29R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE29R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE29R::_0 => false,
-            DFE29R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE29R {
-        match value {
-            false => DFE29R::_0,
-            true => DFE29R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE29R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE29R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE30`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE30R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE30R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE30R::_0 => false,
-            DFE30R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE30R {
-        match value {
-            false => DFE30R::_0,
-            true => DFE30R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE30R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE30R::_1
-    }
-}
-#[doc = "Possible values of the field `DFE31`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DFE31R {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE31R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DFE31R::_0 => false,
-            DFE31R::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DFE31R {
-        match value {
-            false => DFE31R::_0,
-            true => DFE31R::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DFE31R::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DFE31R::_1
-    }
-}
-#[doc = "Values that can be written to the field `DFE0`"]
-pub enum DFE0W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    _1,
-}
-impl DFE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE0W::_0 => false,
-            DFE0W::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DFE0W<'a> {
+#[doc = "Write proxy for field `DFE0`"]
+pub struct DFE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE0W) -> &'a mut W {
+impl<'a> DFE0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE0W::_0)
+        self.variant(DFE0_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE0W::_1)
+        self.variant(DFE0_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE1`"]
-pub enum DFE1W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE1_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE1W::_0 => false,
-            DFE1W::_1 => true,
+impl From<DFE1_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE1_A) -> Self {
+        match variant {
+            DFE1_A::_0 => false,
+            DFE1_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE1W<'a> {
+#[doc = "Reader of field `DFE1`"]
+pub type DFE1_R = crate::R<bool, DFE1_A>;
+impl DFE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE1_A {
+        match self.bits {
+            false => DFE1_A::_0,
+            true => DFE1_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE1_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE1_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE1`"]
+pub struct DFE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE1W) -> &'a mut W {
+impl<'a> DFE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE1W::_0)
+        self.variant(DFE1_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE1W::_1)
+        self.variant(DFE1_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE2`"]
-pub enum DFE2W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE2_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE2W::_0 => false,
-            DFE2W::_1 => true,
+impl From<DFE2_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE2_A) -> Self {
+        match variant {
+            DFE2_A::_0 => false,
+            DFE2_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE2W<'a> {
+#[doc = "Reader of field `DFE2`"]
+pub type DFE2_R = crate::R<bool, DFE2_A>;
+impl DFE2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE2_A {
+        match self.bits {
+            false => DFE2_A::_0,
+            true => DFE2_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE2_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE2_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE2`"]
+pub struct DFE2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE2W) -> &'a mut W {
+impl<'a> DFE2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE2W::_0)
+        self.variant(DFE2_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE2W::_1)
+        self.variant(DFE2_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE3`"]
-pub enum DFE3W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE3_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE3W::_0 => false,
-            DFE3W::_1 => true,
+impl From<DFE3_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE3_A) -> Self {
+        match variant {
+            DFE3_A::_0 => false,
+            DFE3_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE3W<'a> {
+#[doc = "Reader of field `DFE3`"]
+pub type DFE3_R = crate::R<bool, DFE3_A>;
+impl DFE3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE3_A {
+        match self.bits {
+            false => DFE3_A::_0,
+            true => DFE3_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE3_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE3_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE3`"]
+pub struct DFE3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE3W) -> &'a mut W {
+impl<'a> DFE3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE3W::_0)
+        self.variant(DFE3_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE3W::_1)
+        self.variant(DFE3_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE4`"]
-pub enum DFE4W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE4_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE4W::_0 => false,
-            DFE4W::_1 => true,
+impl From<DFE4_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE4_A) -> Self {
+        match variant {
+            DFE4_A::_0 => false,
+            DFE4_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE4W<'a> {
+#[doc = "Reader of field `DFE4`"]
+pub type DFE4_R = crate::R<bool, DFE4_A>;
+impl DFE4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE4_A {
+        match self.bits {
+            false => DFE4_A::_0,
+            true => DFE4_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE4_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE4_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE4`"]
+pub struct DFE4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE4W) -> &'a mut W {
+impl<'a> DFE4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE4W::_0)
+        self.variant(DFE4_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE4W::_1)
+        self.variant(DFE4_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE5`"]
-pub enum DFE5W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE5_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE5W::_0 => false,
-            DFE5W::_1 => true,
+impl From<DFE5_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE5_A) -> Self {
+        match variant {
+            DFE5_A::_0 => false,
+            DFE5_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE5W<'a> {
+#[doc = "Reader of field `DFE5`"]
+pub type DFE5_R = crate::R<bool, DFE5_A>;
+impl DFE5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE5_A {
+        match self.bits {
+            false => DFE5_A::_0,
+            true => DFE5_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE5_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE5_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE5`"]
+pub struct DFE5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE5W) -> &'a mut W {
+impl<'a> DFE5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE5W::_0)
+        self.variant(DFE5_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE5W::_1)
+        self.variant(DFE5_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE6`"]
-pub enum DFE6W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE6_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE6W::_0 => false,
-            DFE6W::_1 => true,
+impl From<DFE6_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE6_A) -> Self {
+        match variant {
+            DFE6_A::_0 => false,
+            DFE6_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE6W<'a> {
+#[doc = "Reader of field `DFE6`"]
+pub type DFE6_R = crate::R<bool, DFE6_A>;
+impl DFE6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE6_A {
+        match self.bits {
+            false => DFE6_A::_0,
+            true => DFE6_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE6_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE6_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE6`"]
+pub struct DFE6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE6W) -> &'a mut W {
+impl<'a> DFE6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE6W::_0)
+        self.variant(DFE6_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE6W::_1)
+        self.variant(DFE6_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE7`"]
-pub enum DFE7W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE7_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE7W::_0 => false,
-            DFE7W::_1 => true,
+impl From<DFE7_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE7_A) -> Self {
+        match variant {
+            DFE7_A::_0 => false,
+            DFE7_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE7W<'a> {
+#[doc = "Reader of field `DFE7`"]
+pub type DFE7_R = crate::R<bool, DFE7_A>;
+impl DFE7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE7_A {
+        match self.bits {
+            false => DFE7_A::_0,
+            true => DFE7_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE7_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE7_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE7`"]
+pub struct DFE7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE7W) -> &'a mut W {
+impl<'a> DFE7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE7W::_0)
+        self.variant(DFE7_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE7W::_1)
+        self.variant(DFE7_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE8`"]
-pub enum DFE8W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE8_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE8W::_0 => false,
-            DFE8W::_1 => true,
+impl From<DFE8_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE8_A) -> Self {
+        match variant {
+            DFE8_A::_0 => false,
+            DFE8_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE8W<'a> {
+#[doc = "Reader of field `DFE8`"]
+pub type DFE8_R = crate::R<bool, DFE8_A>;
+impl DFE8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE8_A {
+        match self.bits {
+            false => DFE8_A::_0,
+            true => DFE8_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE8_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE8_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE8`"]
+pub struct DFE8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE8W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE8W) -> &'a mut W {
+impl<'a> DFE8_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE8_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE8W::_0)
+        self.variant(DFE8_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE8W::_1)
+        self.variant(DFE8_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE9`"]
-pub enum DFE9W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE9_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE9W::_0 => false,
-            DFE9W::_1 => true,
+impl From<DFE9_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE9_A) -> Self {
+        match variant {
+            DFE9_A::_0 => false,
+            DFE9_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE9W<'a> {
+#[doc = "Reader of field `DFE9`"]
+pub type DFE9_R = crate::R<bool, DFE9_A>;
+impl DFE9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE9_A {
+        match self.bits {
+            false => DFE9_A::_0,
+            true => DFE9_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE9_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE9_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE9`"]
+pub struct DFE9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE9W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE9W) -> &'a mut W {
+impl<'a> DFE9_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE9_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE9W::_0)
+        self.variant(DFE9_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE9W::_1)
+        self.variant(DFE9_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE10`"]
-pub enum DFE10W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE10_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE10W::_0 => false,
-            DFE10W::_1 => true,
+impl From<DFE10_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE10_A) -> Self {
+        match variant {
+            DFE10_A::_0 => false,
+            DFE10_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE10W<'a> {
+#[doc = "Reader of field `DFE10`"]
+pub type DFE10_R = crate::R<bool, DFE10_A>;
+impl DFE10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE10_A {
+        match self.bits {
+            false => DFE10_A::_0,
+            true => DFE10_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE10_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE10_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE10`"]
+pub struct DFE10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE10W) -> &'a mut W {
+impl<'a> DFE10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE10_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE10W::_0)
+        self.variant(DFE10_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE10W::_1)
+        self.variant(DFE10_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE11`"]
-pub enum DFE11W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE11_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE11W::_0 => false,
-            DFE11W::_1 => true,
+impl From<DFE11_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE11_A) -> Self {
+        match variant {
+            DFE11_A::_0 => false,
+            DFE11_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE11W<'a> {
+#[doc = "Reader of field `DFE11`"]
+pub type DFE11_R = crate::R<bool, DFE11_A>;
+impl DFE11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE11_A {
+        match self.bits {
+            false => DFE11_A::_0,
+            true => DFE11_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE11_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE11_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE11`"]
+pub struct DFE11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE11W) -> &'a mut W {
+impl<'a> DFE11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE11_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE11W::_0)
+        self.variant(DFE11_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE11W::_1)
+        self.variant(DFE11_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE12`"]
-pub enum DFE12W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE12_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE12W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE12W::_0 => false,
-            DFE12W::_1 => true,
+impl From<DFE12_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE12_A) -> Self {
+        match variant {
+            DFE12_A::_0 => false,
+            DFE12_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE12W<'a> {
+#[doc = "Reader of field `DFE12`"]
+pub type DFE12_R = crate::R<bool, DFE12_A>;
+impl DFE12_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE12_A {
+        match self.bits {
+            false => DFE12_A::_0,
+            true => DFE12_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE12_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE12_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE12`"]
+pub struct DFE12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE12W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE12W) -> &'a mut W {
+impl<'a> DFE12_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE12_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE12W::_0)
+        self.variant(DFE12_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE12W::_1)
+        self.variant(DFE12_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE13`"]
-pub enum DFE13W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE13_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE13W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE13W::_0 => false,
-            DFE13W::_1 => true,
+impl From<DFE13_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE13_A) -> Self {
+        match variant {
+            DFE13_A::_0 => false,
+            DFE13_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE13W<'a> {
+#[doc = "Reader of field `DFE13`"]
+pub type DFE13_R = crate::R<bool, DFE13_A>;
+impl DFE13_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE13_A {
+        match self.bits {
+            false => DFE13_A::_0,
+            true => DFE13_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE13_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE13_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE13`"]
+pub struct DFE13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE13W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE13W) -> &'a mut W {
+impl<'a> DFE13_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE13_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE13W::_0)
+        self.variant(DFE13_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE13W::_1)
+        self.variant(DFE13_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE14`"]
-pub enum DFE14W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE14_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE14W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE14W::_0 => false,
-            DFE14W::_1 => true,
+impl From<DFE14_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE14_A) -> Self {
+        match variant {
+            DFE14_A::_0 => false,
+            DFE14_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE14W<'a> {
+#[doc = "Reader of field `DFE14`"]
+pub type DFE14_R = crate::R<bool, DFE14_A>;
+impl DFE14_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE14_A {
+        match self.bits {
+            false => DFE14_A::_0,
+            true => DFE14_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE14_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE14_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE14`"]
+pub struct DFE14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE14W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE14W) -> &'a mut W {
+impl<'a> DFE14_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE14_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE14W::_0)
+        self.variant(DFE14_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE14W::_1)
+        self.variant(DFE14_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE15`"]
-pub enum DFE15W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE15_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE15W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE15W::_0 => false,
-            DFE15W::_1 => true,
+impl From<DFE15_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE15_A) -> Self {
+        match variant {
+            DFE15_A::_0 => false,
+            DFE15_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE15W<'a> {
+#[doc = "Reader of field `DFE15`"]
+pub type DFE15_R = crate::R<bool, DFE15_A>;
+impl DFE15_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE15_A {
+        match self.bits {
+            false => DFE15_A::_0,
+            true => DFE15_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE15_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE15_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE15`"]
+pub struct DFE15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE15W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE15W) -> &'a mut W {
+impl<'a> DFE15_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE15_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE15W::_0)
+        self.variant(DFE15_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE15W::_1)
+        self.variant(DFE15_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE16`"]
-pub enum DFE16W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE16_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE16W::_0 => false,
-            DFE16W::_1 => true,
+impl From<DFE16_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE16_A) -> Self {
+        match variant {
+            DFE16_A::_0 => false,
+            DFE16_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE16W<'a> {
+#[doc = "Reader of field `DFE16`"]
+pub type DFE16_R = crate::R<bool, DFE16_A>;
+impl DFE16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE16_A {
+        match self.bits {
+            false => DFE16_A::_0,
+            true => DFE16_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE16_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE16_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE16`"]
+pub struct DFE16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE16W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE16W) -> &'a mut W {
+impl<'a> DFE16_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE16W::_0)
+        self.variant(DFE16_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE16W::_1)
+        self.variant(DFE16_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE17`"]
-pub enum DFE17W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE17_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE17W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE17W::_0 => false,
-            DFE17W::_1 => true,
+impl From<DFE17_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE17_A) -> Self {
+        match variant {
+            DFE17_A::_0 => false,
+            DFE17_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE17W<'a> {
+#[doc = "Reader of field `DFE17`"]
+pub type DFE17_R = crate::R<bool, DFE17_A>;
+impl DFE17_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE17_A {
+        match self.bits {
+            false => DFE17_A::_0,
+            true => DFE17_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE17_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE17_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE17`"]
+pub struct DFE17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE17W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE17W) -> &'a mut W {
+impl<'a> DFE17_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE17_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE17W::_0)
+        self.variant(DFE17_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE17W::_1)
+        self.variant(DFE17_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE18`"]
-pub enum DFE18W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE18_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE18W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE18W::_0 => false,
-            DFE18W::_1 => true,
+impl From<DFE18_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE18_A) -> Self {
+        match variant {
+            DFE18_A::_0 => false,
+            DFE18_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE18W<'a> {
+#[doc = "Reader of field `DFE18`"]
+pub type DFE18_R = crate::R<bool, DFE18_A>;
+impl DFE18_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE18_A {
+        match self.bits {
+            false => DFE18_A::_0,
+            true => DFE18_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE18_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE18_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE18`"]
+pub struct DFE18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE18W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE18W) -> &'a mut W {
+impl<'a> DFE18_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE18_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE18W::_0)
+        self.variant(DFE18_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE18W::_1)
+        self.variant(DFE18_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE19`"]
-pub enum DFE19W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE19_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE19W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE19W::_0 => false,
-            DFE19W::_1 => true,
+impl From<DFE19_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE19_A) -> Self {
+        match variant {
+            DFE19_A::_0 => false,
+            DFE19_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE19W<'a> {
+#[doc = "Reader of field `DFE19`"]
+pub type DFE19_R = crate::R<bool, DFE19_A>;
+impl DFE19_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE19_A {
+        match self.bits {
+            false => DFE19_A::_0,
+            true => DFE19_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE19_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE19_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE19`"]
+pub struct DFE19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE19W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE19W) -> &'a mut W {
+impl<'a> DFE19_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE19_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE19W::_0)
+        self.variant(DFE19_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE19W::_1)
+        self.variant(DFE19_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE20`"]
-pub enum DFE20W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE20_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE20W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE20W::_0 => false,
-            DFE20W::_1 => true,
+impl From<DFE20_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE20_A) -> Self {
+        match variant {
+            DFE20_A::_0 => false,
+            DFE20_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE20W<'a> {
+#[doc = "Reader of field `DFE20`"]
+pub type DFE20_R = crate::R<bool, DFE20_A>;
+impl DFE20_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE20_A {
+        match self.bits {
+            false => DFE20_A::_0,
+            true => DFE20_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE20_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE20_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE20`"]
+pub struct DFE20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE20W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE20W) -> &'a mut W {
+impl<'a> DFE20_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE20_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE20W::_0)
+        self.variant(DFE20_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE20W::_1)
+        self.variant(DFE20_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE21`"]
-pub enum DFE21W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE21_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE21W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE21W::_0 => false,
-            DFE21W::_1 => true,
+impl From<DFE21_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE21_A) -> Self {
+        match variant {
+            DFE21_A::_0 => false,
+            DFE21_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE21W<'a> {
+#[doc = "Reader of field `DFE21`"]
+pub type DFE21_R = crate::R<bool, DFE21_A>;
+impl DFE21_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE21_A {
+        match self.bits {
+            false => DFE21_A::_0,
+            true => DFE21_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE21_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE21_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE21`"]
+pub struct DFE21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE21W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE21W) -> &'a mut W {
+impl<'a> DFE21_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE21_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE21W::_0)
+        self.variant(DFE21_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE21W::_1)
+        self.variant(DFE21_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE22`"]
-pub enum DFE22W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE22_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE22W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE22W::_0 => false,
-            DFE22W::_1 => true,
+impl From<DFE22_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE22_A) -> Self {
+        match variant {
+            DFE22_A::_0 => false,
+            DFE22_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE22W<'a> {
+#[doc = "Reader of field `DFE22`"]
+pub type DFE22_R = crate::R<bool, DFE22_A>;
+impl DFE22_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE22_A {
+        match self.bits {
+            false => DFE22_A::_0,
+            true => DFE22_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE22_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE22_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE22`"]
+pub struct DFE22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE22W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE22W) -> &'a mut W {
+impl<'a> DFE22_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE22_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE22W::_0)
+        self.variant(DFE22_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE22W::_1)
+        self.variant(DFE22_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE23`"]
-pub enum DFE23W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE23_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE23W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE23W::_0 => false,
-            DFE23W::_1 => true,
+impl From<DFE23_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE23_A) -> Self {
+        match variant {
+            DFE23_A::_0 => false,
+            DFE23_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE23W<'a> {
+#[doc = "Reader of field `DFE23`"]
+pub type DFE23_R = crate::R<bool, DFE23_A>;
+impl DFE23_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE23_A {
+        match self.bits {
+            false => DFE23_A::_0,
+            true => DFE23_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE23_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE23_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE23`"]
+pub struct DFE23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE23W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE23W) -> &'a mut W {
+impl<'a> DFE23_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE23_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE23W::_0)
+        self.variant(DFE23_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE23W::_1)
+        self.variant(DFE23_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE24`"]
-pub enum DFE24W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE24_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE24W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE24W::_0 => false,
-            DFE24W::_1 => true,
+impl From<DFE24_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE24_A) -> Self {
+        match variant {
+            DFE24_A::_0 => false,
+            DFE24_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE24W<'a> {
+#[doc = "Reader of field `DFE24`"]
+pub type DFE24_R = crate::R<bool, DFE24_A>;
+impl DFE24_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE24_A {
+        match self.bits {
+            false => DFE24_A::_0,
+            true => DFE24_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE24_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE24_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE24`"]
+pub struct DFE24_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE24W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE24W) -> &'a mut W {
+impl<'a> DFE24_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE24_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE24W::_0)
+        self.variant(DFE24_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE24W::_1)
+        self.variant(DFE24_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE25`"]
-pub enum DFE25W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE25_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE25W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE25W::_0 => false,
-            DFE25W::_1 => true,
+impl From<DFE25_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE25_A) -> Self {
+        match variant {
+            DFE25_A::_0 => false,
+            DFE25_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE25W<'a> {
+#[doc = "Reader of field `DFE25`"]
+pub type DFE25_R = crate::R<bool, DFE25_A>;
+impl DFE25_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE25_A {
+        match self.bits {
+            false => DFE25_A::_0,
+            true => DFE25_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE25_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE25_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE25`"]
+pub struct DFE25_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE25W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE25W) -> &'a mut W {
+impl<'a> DFE25_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE25_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE25W::_0)
+        self.variant(DFE25_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE25W::_1)
+        self.variant(DFE25_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE26`"]
-pub enum DFE26W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE26_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE26W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE26W::_0 => false,
-            DFE26W::_1 => true,
+impl From<DFE26_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE26_A) -> Self {
+        match variant {
+            DFE26_A::_0 => false,
+            DFE26_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE26W<'a> {
+#[doc = "Reader of field `DFE26`"]
+pub type DFE26_R = crate::R<bool, DFE26_A>;
+impl DFE26_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE26_A {
+        match self.bits {
+            false => DFE26_A::_0,
+            true => DFE26_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE26_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE26_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE26`"]
+pub struct DFE26_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE26W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE26W) -> &'a mut W {
+impl<'a> DFE26_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE26_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE26W::_0)
+        self.variant(DFE26_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE26W::_1)
+        self.variant(DFE26_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE27`"]
-pub enum DFE27W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE27_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE27W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE27W::_0 => false,
-            DFE27W::_1 => true,
+impl From<DFE27_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE27_A) -> Self {
+        match variant {
+            DFE27_A::_0 => false,
+            DFE27_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE27W<'a> {
+#[doc = "Reader of field `DFE27`"]
+pub type DFE27_R = crate::R<bool, DFE27_A>;
+impl DFE27_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE27_A {
+        match self.bits {
+            false => DFE27_A::_0,
+            true => DFE27_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE27_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE27_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE27`"]
+pub struct DFE27_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE27W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE27W) -> &'a mut W {
+impl<'a> DFE27_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE27_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE27W::_0)
+        self.variant(DFE27_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE27W::_1)
+        self.variant(DFE27_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE28`"]
-pub enum DFE28W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE28_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE28W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE28W::_0 => false,
-            DFE28W::_1 => true,
+impl From<DFE28_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE28_A) -> Self {
+        match variant {
+            DFE28_A::_0 => false,
+            DFE28_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE28W<'a> {
+#[doc = "Reader of field `DFE28`"]
+pub type DFE28_R = crate::R<bool, DFE28_A>;
+impl DFE28_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE28_A {
+        match self.bits {
+            false => DFE28_A::_0,
+            true => DFE28_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE28_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE28_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE28`"]
+pub struct DFE28_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE28W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE28W) -> &'a mut W {
+impl<'a> DFE28_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE28_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE28W::_0)
+        self.variant(DFE28_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE28W::_1)
+        self.variant(DFE28_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE29`"]
-pub enum DFE29W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE29_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE29W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE29W::_0 => false,
-            DFE29W::_1 => true,
+impl From<DFE29_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE29_A) -> Self {
+        match variant {
+            DFE29_A::_0 => false,
+            DFE29_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE29W<'a> {
+#[doc = "Reader of field `DFE29`"]
+pub type DFE29_R = crate::R<bool, DFE29_A>;
+impl DFE29_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE29_A {
+        match self.bits {
+            false => DFE29_A::_0,
+            true => DFE29_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE29_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE29_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE29`"]
+pub struct DFE29_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE29W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE29W) -> &'a mut W {
+impl<'a> DFE29_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE29_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE29W::_0)
+        self.variant(DFE29_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE29W::_1)
+        self.variant(DFE29_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE30`"]
-pub enum DFE30W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE30_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE30W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE30W::_0 => false,
-            DFE30W::_1 => true,
+impl From<DFE30_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE30_A) -> Self {
+        match variant {
+            DFE30_A::_0 => false,
+            DFE30_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE30W<'a> {
+#[doc = "Reader of field `DFE30`"]
+pub type DFE30_R = crate::R<bool, DFE30_A>;
+impl DFE30_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE30_A {
+        match self.bits {
+            false => DFE30_A::_0,
+            true => DFE30_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE30_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE30_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE30`"]
+pub struct DFE30_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE30W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE30W) -> &'a mut W {
+impl<'a> DFE30_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE30_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE30W::_0)
+        self.variant(DFE30_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE30W::_1)
+        self.variant(DFE30_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DFE31`"]
-pub enum DFE31W {
-    #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
+#[doc = "Digital Filter Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DFE31_A {
+    #[doc = "0: Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
     _0,
-    #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
+    #[doc = "1: Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
     _1,
 }
-impl DFE31W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DFE31W::_0 => false,
-            DFE31W::_1 => true,
+impl From<DFE31_A> for bool {
+    #[inline(always)]
+    fn from(variant: DFE31_A) -> Self {
+        match variant {
+            DFE31_A::_0 => false,
+            DFE31_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _DFE31W<'a> {
+#[doc = "Reader of field `DFE31`"]
+pub type DFE31_R = crate::R<bool, DFE31_A>;
+impl DFE31_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DFE31_A {
+        match self.bits {
+            false => DFE31_A::_0,
+            true => DFE31_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DFE31_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DFE31_A::_1
+    }
+}
+#[doc = "Write proxy for field `DFE31`"]
+pub struct DFE31_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DFE31W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DFE31W) -> &'a mut W {
+impl<'a> DFE31_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DFE31_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Digital filter is disabled on the corresponding pin and output of the digital filter is reset to zero."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(DFE31W::_0)
+        self.variant(DFE31_A::_0)
     }
     #[doc = "Digital filter is enabled on the corresponding pin, if the pin is configured as a digital input."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(DFE31W::_1)
+        self.variant(DFE31_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe0(&self) -> DFE0R {
-        DFE0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe0(&self) -> DFE0_R {
+        DFE0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe1(&self) -> DFE1R {
-        DFE1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe1(&self) -> DFE1_R {
+        DFE1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe2(&self) -> DFE2R {
-        DFE2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe2(&self) -> DFE2_R {
+        DFE2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe3(&self) -> DFE3R {
-        DFE3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe3(&self) -> DFE3_R {
+        DFE3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe4(&self) -> DFE4R {
-        DFE4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe4(&self) -> DFE4_R {
+        DFE4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe5(&self) -> DFE5R {
-        DFE5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe5(&self) -> DFE5_R {
+        DFE5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe6(&self) -> DFE6R {
-        DFE6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe6(&self) -> DFE6_R {
+        DFE6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe7(&self) -> DFE7R {
-        DFE7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe7(&self) -> DFE7_R {
+        DFE7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe8(&self) -> DFE8R {
-        DFE8R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe8(&self) -> DFE8_R {
+        DFE8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe9(&self) -> DFE9R {
-        DFE9R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe9(&self) -> DFE9_R {
+        DFE9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe10(&self) -> DFE10R {
-        DFE10R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe10(&self) -> DFE10_R {
+        DFE10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe11(&self) -> DFE11R {
-        DFE11R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe11(&self) -> DFE11_R {
+        DFE11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe12(&self) -> DFE12R {
-        DFE12R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe12(&self) -> DFE12_R {
+        DFE12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe13(&self) -> DFE13R {
-        DFE13R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe13(&self) -> DFE13_R {
+        DFE13_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe14(&self) -> DFE14R {
-        DFE14R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe14(&self) -> DFE14_R {
+        DFE14_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe15(&self) -> DFE15R {
-        DFE15R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe15(&self) -> DFE15_R {
+        DFE15_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe16(&self) -> DFE16R {
-        DFE16R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe16(&self) -> DFE16_R {
+        DFE16_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe17(&self) -> DFE17R {
-        DFE17R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe17(&self) -> DFE17_R {
+        DFE17_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe18(&self) -> DFE18R {
-        DFE18R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe18(&self) -> DFE18_R {
+        DFE18_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe19(&self) -> DFE19R {
-        DFE19R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe19(&self) -> DFE19_R {
+        DFE19_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe20(&self) -> DFE20R {
-        DFE20R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe20(&self) -> DFE20_R {
+        DFE20_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe21(&self) -> DFE21R {
-        DFE21R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe21(&self) -> DFE21_R {
+        DFE21_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe22(&self) -> DFE22R {
-        DFE22R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe22(&self) -> DFE22_R {
+        DFE22_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe23(&self) -> DFE23R {
-        DFE23R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe23(&self) -> DFE23_R {
+        DFE23_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe24(&self) -> DFE24R {
-        DFE24R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe24(&self) -> DFE24_R {
+        DFE24_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe25(&self) -> DFE25R {
-        DFE25R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe25(&self) -> DFE25_R {
+        DFE25_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe26(&self) -> DFE26R {
-        DFE26R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe26(&self) -> DFE26_R {
+        DFE26_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe27(&self) -> DFE27R {
-        DFE27R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe27(&self) -> DFE27_R {
+        DFE27_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe28(&self) -> DFE28R {
-        DFE28R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe28(&self) -> DFE28_R {
+        DFE28_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe29(&self) -> DFE29R {
-        DFE29R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe29(&self) -> DFE29_R {
+        DFE29_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe30(&self) -> DFE30R {
-        DFE30R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe30(&self) -> DFE30_R {
+        DFE30_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe31(&self) -> DFE31R {
-        DFE31R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dfe31(&self) -> DFE31_R {
+        DFE31_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe0(&mut self) -> _DFE0W {
-        _DFE0W { w: self }
+    #[inline(always)]
+    pub fn dfe0(&mut self) -> DFE0_W {
+        DFE0_W { w: self }
     }
     #[doc = "Bit 1 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe1(&mut self) -> _DFE1W {
-        _DFE1W { w: self }
+    #[inline(always)]
+    pub fn dfe1(&mut self) -> DFE1_W {
+        DFE1_W { w: self }
     }
     #[doc = "Bit 2 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe2(&mut self) -> _DFE2W {
-        _DFE2W { w: self }
+    #[inline(always)]
+    pub fn dfe2(&mut self) -> DFE2_W {
+        DFE2_W { w: self }
     }
     #[doc = "Bit 3 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe3(&mut self) -> _DFE3W {
-        _DFE3W { w: self }
+    #[inline(always)]
+    pub fn dfe3(&mut self) -> DFE3_W {
+        DFE3_W { w: self }
     }
     #[doc = "Bit 4 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe4(&mut self) -> _DFE4W {
-        _DFE4W { w: self }
+    #[inline(always)]
+    pub fn dfe4(&mut self) -> DFE4_W {
+        DFE4_W { w: self }
     }
     #[doc = "Bit 5 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe5(&mut self) -> _DFE5W {
-        _DFE5W { w: self }
+    #[inline(always)]
+    pub fn dfe5(&mut self) -> DFE5_W {
+        DFE5_W { w: self }
     }
     #[doc = "Bit 6 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe6(&mut self) -> _DFE6W {
-        _DFE6W { w: self }
+    #[inline(always)]
+    pub fn dfe6(&mut self) -> DFE6_W {
+        DFE6_W { w: self }
     }
     #[doc = "Bit 7 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe7(&mut self) -> _DFE7W {
-        _DFE7W { w: self }
+    #[inline(always)]
+    pub fn dfe7(&mut self) -> DFE7_W {
+        DFE7_W { w: self }
     }
     #[doc = "Bit 8 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe8(&mut self) -> _DFE8W {
-        _DFE8W { w: self }
+    #[inline(always)]
+    pub fn dfe8(&mut self) -> DFE8_W {
+        DFE8_W { w: self }
     }
     #[doc = "Bit 9 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe9(&mut self) -> _DFE9W {
-        _DFE9W { w: self }
+    #[inline(always)]
+    pub fn dfe9(&mut self) -> DFE9_W {
+        DFE9_W { w: self }
     }
     #[doc = "Bit 10 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe10(&mut self) -> _DFE10W {
-        _DFE10W { w: self }
+    #[inline(always)]
+    pub fn dfe10(&mut self) -> DFE10_W {
+        DFE10_W { w: self }
     }
     #[doc = "Bit 11 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe11(&mut self) -> _DFE11W {
-        _DFE11W { w: self }
+    #[inline(always)]
+    pub fn dfe11(&mut self) -> DFE11_W {
+        DFE11_W { w: self }
     }
     #[doc = "Bit 12 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe12(&mut self) -> _DFE12W {
-        _DFE12W { w: self }
+    #[inline(always)]
+    pub fn dfe12(&mut self) -> DFE12_W {
+        DFE12_W { w: self }
     }
     #[doc = "Bit 13 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe13(&mut self) -> _DFE13W {
-        _DFE13W { w: self }
+    #[inline(always)]
+    pub fn dfe13(&mut self) -> DFE13_W {
+        DFE13_W { w: self }
     }
     #[doc = "Bit 14 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe14(&mut self) -> _DFE14W {
-        _DFE14W { w: self }
+    #[inline(always)]
+    pub fn dfe14(&mut self) -> DFE14_W {
+        DFE14_W { w: self }
     }
     #[doc = "Bit 15 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe15(&mut self) -> _DFE15W {
-        _DFE15W { w: self }
+    #[inline(always)]
+    pub fn dfe15(&mut self) -> DFE15_W {
+        DFE15_W { w: self }
     }
     #[doc = "Bit 16 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe16(&mut self) -> _DFE16W {
-        _DFE16W { w: self }
+    #[inline(always)]
+    pub fn dfe16(&mut self) -> DFE16_W {
+        DFE16_W { w: self }
     }
     #[doc = "Bit 17 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe17(&mut self) -> _DFE17W {
-        _DFE17W { w: self }
+    #[inline(always)]
+    pub fn dfe17(&mut self) -> DFE17_W {
+        DFE17_W { w: self }
     }
     #[doc = "Bit 18 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe18(&mut self) -> _DFE18W {
-        _DFE18W { w: self }
+    #[inline(always)]
+    pub fn dfe18(&mut self) -> DFE18_W {
+        DFE18_W { w: self }
     }
     #[doc = "Bit 19 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe19(&mut self) -> _DFE19W {
-        _DFE19W { w: self }
+    #[inline(always)]
+    pub fn dfe19(&mut self) -> DFE19_W {
+        DFE19_W { w: self }
     }
     #[doc = "Bit 20 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe20(&mut self) -> _DFE20W {
-        _DFE20W { w: self }
+    #[inline(always)]
+    pub fn dfe20(&mut self) -> DFE20_W {
+        DFE20_W { w: self }
     }
     #[doc = "Bit 21 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe21(&mut self) -> _DFE21W {
-        _DFE21W { w: self }
+    #[inline(always)]
+    pub fn dfe21(&mut self) -> DFE21_W {
+        DFE21_W { w: self }
     }
     #[doc = "Bit 22 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe22(&mut self) -> _DFE22W {
-        _DFE22W { w: self }
+    #[inline(always)]
+    pub fn dfe22(&mut self) -> DFE22_W {
+        DFE22_W { w: self }
     }
     #[doc = "Bit 23 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe23(&mut self) -> _DFE23W {
-        _DFE23W { w: self }
+    #[inline(always)]
+    pub fn dfe23(&mut self) -> DFE23_W {
+        DFE23_W { w: self }
     }
     #[doc = "Bit 24 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe24(&mut self) -> _DFE24W {
-        _DFE24W { w: self }
+    #[inline(always)]
+    pub fn dfe24(&mut self) -> DFE24_W {
+        DFE24_W { w: self }
     }
     #[doc = "Bit 25 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe25(&mut self) -> _DFE25W {
-        _DFE25W { w: self }
+    #[inline(always)]
+    pub fn dfe25(&mut self) -> DFE25_W {
+        DFE25_W { w: self }
     }
     #[doc = "Bit 26 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe26(&mut self) -> _DFE26W {
-        _DFE26W { w: self }
+    #[inline(always)]
+    pub fn dfe26(&mut self) -> DFE26_W {
+        DFE26_W { w: self }
     }
     #[doc = "Bit 27 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe27(&mut self) -> _DFE27W {
-        _DFE27W { w: self }
+    #[inline(always)]
+    pub fn dfe27(&mut self) -> DFE27_W {
+        DFE27_W { w: self }
     }
     #[doc = "Bit 28 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe28(&mut self) -> _DFE28W {
-        _DFE28W { w: self }
+    #[inline(always)]
+    pub fn dfe28(&mut self) -> DFE28_W {
+        DFE28_W { w: self }
     }
     #[doc = "Bit 29 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe29(&mut self) -> _DFE29W {
-        _DFE29W { w: self }
+    #[inline(always)]
+    pub fn dfe29(&mut self) -> DFE29_W {
+        DFE29_W { w: self }
     }
     #[doc = "Bit 30 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe30(&mut self) -> _DFE30W {
-        _DFE30W { w: self }
+    #[inline(always)]
+    pub fn dfe30(&mut self) -> DFE30_W {
+        DFE30_W { w: self }
     }
     #[doc = "Bit 31 - Digital Filter Enable"]
-    #[inline]
-    pub fn dfe31(&mut self) -> _DFE31W {
-        _DFE31W { w: self }
+    #[inline(always)]
+    pub fn dfe31(&mut self) -> DFE31_W {
+        DFE31_W { w: self }
     }
 }

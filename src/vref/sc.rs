@@ -1,597 +1,416 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::SC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SC"]
+pub type R = crate::R<u8, super::SC>;
+#[doc = "Writer for register SC"]
+pub type W = crate::W<u8, super::SC>;
+#[doc = "Register SC `reset()`'s with value 0"]
+impl crate::ResetValue for super::SC {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `MODE_LV`"]
+#[doc = "Buffer Mode selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MODE_LVR {
-    #[doc = "Bandgap on only, for stabilization and startup"]
+pub enum MODE_LV_A {
+    #[doc = "0: Bandgap on only, for stabilization and startup"]
     _00,
-    #[doc = "High power buffer mode enabled"]
+    #[doc = "1: High power buffer mode enabled"]
     _01,
-    #[doc = "Low-power buffer mode enabled"]
+    #[doc = "2: Low-power buffer mode enabled"]
     _10,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl MODE_LVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MODE_LVR::_00 => 0,
-            MODE_LVR::_01 => 1,
-            MODE_LVR::_10 => 2,
-            MODE_LVR::_Reserved(bits) => bits,
+impl From<MODE_LV_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MODE_LV_A) -> Self {
+        match variant {
+            MODE_LV_A::_00 => 0,
+            MODE_LV_A::_01 => 1,
+            MODE_LV_A::_10 => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MODE_LVR {
-        match value {
-            0 => MODE_LVR::_00,
-            1 => MODE_LVR::_01,
-            2 => MODE_LVR::_10,
-            i => MODE_LVR::_Reserved(i),
+}
+#[doc = "Reader of field `MODE_LV`"]
+pub type MODE_LV_R = crate::R<u8, MODE_LV_A>;
+impl MODE_LV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, MODE_LV_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(MODE_LV_A::_00),
+            1 => Val(MODE_LV_A::_01),
+            2 => Val(MODE_LV_A::_10),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == MODE_LVR::_00
+        *self == MODE_LV_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == MODE_LVR::_01
+        *self == MODE_LV_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == MODE_LVR::_10
+        *self == MODE_LV_A::_10
     }
 }
-#[doc = "Possible values of the field `VREFST`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VREFSTR {
-    #[doc = "The module is disabled or not stable."]
-    _0,
-    #[doc = "The module is stable."]
-    _1,
-}
-impl VREFSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            VREFSTR::_0 => false,
-            VREFSTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> VREFSTR {
-        match value {
-            false => VREFSTR::_0,
-            true => VREFSTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == VREFSTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == VREFSTR::_1
-    }
-}
-#[doc = "Possible values of the field `ICOMPEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ICOMPENR {
-    #[doc = "Disabled"]
-    _0,
-    #[doc = "Enabled"]
-    _1,
-}
-impl ICOMPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ICOMPENR::_0 => false,
-            ICOMPENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ICOMPENR {
-        match value {
-            false => ICOMPENR::_0,
-            true => ICOMPENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ICOMPENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ICOMPENR::_1
-    }
-}
-#[doc = "Possible values of the field `REGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REGENR {
-    #[doc = "Internal 1.75 V regulator is disabled."]
-    _0,
-    #[doc = "Internal 1.75 V regulator is enabled."]
-    _1,
-}
-impl REGENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            REGENR::_0 => false,
-            REGENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> REGENR {
-        match value {
-            false => REGENR::_0,
-            true => REGENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == REGENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == REGENR::_1
-    }
-}
-#[doc = "Possible values of the field `VREFEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VREFENR {
-    #[doc = "The module is disabled."]
-    _0,
-    #[doc = "The module is enabled."]
-    _1,
-}
-impl VREFENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            VREFENR::_0 => false,
-            VREFENR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> VREFENR {
-        match value {
-            false => VREFENR::_0,
-            true => VREFENR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == VREFENR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == VREFENR::_1
-    }
-}
-#[doc = "Values that can be written to the field `MODE_LV`"]
-pub enum MODE_LVW {
-    #[doc = "Bandgap on only, for stabilization and startup"]
-    _00,
-    #[doc = "High power buffer mode enabled"]
-    _01,
-    #[doc = "Low-power buffer mode enabled"]
-    _10,
-}
-impl MODE_LVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MODE_LVW::_00 => 0,
-            MODE_LVW::_01 => 1,
-            MODE_LVW::_10 => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MODE_LVW<'a> {
+#[doc = "Write proxy for field `MODE_LV`"]
+pub struct MODE_LV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODE_LVW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MODE_LVW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> MODE_LV_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MODE_LV_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Bandgap on only, for stabilization and startup"]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(MODE_LVW::_00)
+        self.variant(MODE_LV_A::_00)
     }
     #[doc = "High power buffer mode enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(MODE_LVW::_01)
+        self.variant(MODE_LV_A::_01)
     }
     #[doc = "Low-power buffer mode enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(MODE_LVW::_10)
+        self.variant(MODE_LV_A::_10)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u8) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ICOMPEN`"]
-pub enum ICOMPENW {
+#[doc = "Internal Voltage Reference stable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum VREFST_A {
+    #[doc = "0: The module is disabled or not stable."]
+    _0,
+    #[doc = "1: The module is stable."]
+    _1,
+}
+impl From<VREFST_A> for bool {
+    #[inline(always)]
+    fn from(variant: VREFST_A) -> Self {
+        match variant {
+            VREFST_A::_0 => false,
+            VREFST_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `VREFST`"]
+pub type VREFST_R = crate::R<bool, VREFST_A>;
+impl VREFST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VREFST_A {
+        match self.bits {
+            false => VREFST_A::_0,
+            true => VREFST_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == VREFST_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == VREFST_A::_1
+    }
+}
+#[doc = "Second order curvature compensation enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ICOMPEN_A {
+    #[doc = "0: Disabled"]
+    _0,
+    #[doc = "1: Enabled"]
+    _1,
+}
+impl From<ICOMPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: ICOMPEN_A) -> Self {
+        match variant {
+            ICOMPEN_A::_0 => false,
+            ICOMPEN_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `ICOMPEN`"]
+pub type ICOMPEN_R = crate::R<bool, ICOMPEN_A>;
+impl ICOMPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ICOMPEN_A {
+        match self.bits {
+            false => ICOMPEN_A::_0,
+            true => ICOMPEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ICOMPEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ICOMPEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `ICOMPEN`"]
+pub struct ICOMPEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ICOMPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ICOMPEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Disabled"]
-    _0,
-    #[doc = "Enabled"]
-    _1,
-}
-impl ICOMPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ICOMPENW::_0 => false,
-            ICOMPENW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ICOMPENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ICOMPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ICOMPENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ICOMPENW::_0)
+        self.variant(ICOMPEN_A::_0)
     }
     #[doc = "Enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ICOMPENW::_1)
+        self.variant(ICOMPEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `REGEN`"]
-pub enum REGENW {
-    #[doc = "Internal 1.75 V regulator is disabled."]
+#[doc = "Regulator enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum REGEN_A {
+    #[doc = "0: Internal 1.75 V regulator is disabled."]
     _0,
-    #[doc = "Internal 1.75 V regulator is enabled."]
+    #[doc = "1: Internal 1.75 V regulator is enabled."]
     _1,
 }
-impl REGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            REGENW::_0 => false,
-            REGENW::_1 => true,
+impl From<REGEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: REGEN_A) -> Self {
+        match variant {
+            REGEN_A::_0 => false,
+            REGEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _REGENW<'a> {
+#[doc = "Reader of field `REGEN`"]
+pub type REGEN_R = crate::R<bool, REGEN_A>;
+impl REGEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> REGEN_A {
+        match self.bits {
+            false => REGEN_A::_0,
+            true => REGEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == REGEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == REGEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `REGEN`"]
+pub struct REGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: REGENW) -> &'a mut W {
+impl<'a> REGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: REGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Internal 1.75 V regulator is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(REGENW::_0)
+        self.variant(REGEN_A::_0)
     }
     #[doc = "Internal 1.75 V regulator is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(REGENW::_1)
+        self.variant(REGEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `VREFEN`"]
-pub enum VREFENW {
-    #[doc = "The module is disabled."]
+#[doc = "Internal Voltage Reference enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum VREFEN_A {
+    #[doc = "0: The module is disabled."]
     _0,
-    #[doc = "The module is enabled."]
+    #[doc = "1: The module is enabled."]
     _1,
 }
-impl VREFENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            VREFENW::_0 => false,
-            VREFENW::_1 => true,
+impl From<VREFEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: VREFEN_A) -> Self {
+        match variant {
+            VREFEN_A::_0 => false,
+            VREFEN_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _VREFENW<'a> {
+#[doc = "Reader of field `VREFEN`"]
+pub type VREFEN_R = crate::R<bool, VREFEN_A>;
+impl VREFEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VREFEN_A {
+        match self.bits {
+            false => VREFEN_A::_0,
+            true => VREFEN_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == VREFEN_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == VREFEN_A::_1
+    }
+}
+#[doc = "Write proxy for field `VREFEN`"]
+pub struct VREFEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VREFENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VREFENW) -> &'a mut W {
+impl<'a> VREFEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VREFEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The module is disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(VREFENW::_0)
+        self.variant(VREFEN_A::_0)
     }
     #[doc = "The module is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(VREFENW::_1)
+        self.variant(VREFEN_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Buffer Mode selection"]
-    #[inline]
-    pub fn mode_lv(&self) -> MODE_LVR {
-        MODE_LVR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn mode_lv(&self) -> MODE_LV_R {
+        MODE_LV_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bit 2 - Internal Voltage Reference stable"]
-    #[inline]
-    pub fn vrefst(&self) -> VREFSTR {
-        VREFSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn vrefst(&self) -> VREFST_R {
+        VREFST_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Second order curvature compensation enable"]
-    #[inline]
-    pub fn icompen(&self) -> ICOMPENR {
-        ICOMPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn icompen(&self) -> ICOMPEN_R {
+        ICOMPEN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Regulator enable"]
-    #[inline]
-    pub fn regen(&self) -> REGENR {
-        REGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn regen(&self) -> REGEN_R {
+        REGEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Internal Voltage Reference enable"]
-    #[inline]
-    pub fn vrefen(&self) -> VREFENR {
-        VREFENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn vrefen(&self) -> VREFEN_R {
+        VREFEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Buffer Mode selection"]
-    #[inline]
-    pub fn mode_lv(&mut self) -> _MODE_LVW {
-        _MODE_LVW { w: self }
+    #[inline(always)]
+    pub fn mode_lv(&mut self) -> MODE_LV_W {
+        MODE_LV_W { w: self }
     }
     #[doc = "Bit 5 - Second order curvature compensation enable"]
-    #[inline]
-    pub fn icompen(&mut self) -> _ICOMPENW {
-        _ICOMPENW { w: self }
+    #[inline(always)]
+    pub fn icompen(&mut self) -> ICOMPEN_W {
+        ICOMPEN_W { w: self }
     }
     #[doc = "Bit 6 - Regulator enable"]
-    #[inline]
-    pub fn regen(&mut self) -> _REGENW {
-        _REGENW { w: self }
+    #[inline(always)]
+    pub fn regen(&mut self) -> REGEN_W {
+        REGEN_W { w: self }
     }
     #[doc = "Bit 7 - Internal Voltage Reference enable"]
-    #[inline]
-    pub fn vrefen(&mut self) -> _VREFENW {
-        _VREFENW { w: self }
+    #[inline(always)]
+    pub fn vrefen(&mut self) -> VREFEN_W {
+        VREFEN_W { w: self }
     }
 }

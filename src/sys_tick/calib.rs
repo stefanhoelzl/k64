@@ -1,153 +1,99 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CALIB {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TENMSR {
-    bits: u32,
-}
-impl TENMSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `SKEW`"]
+#[doc = "Reader of register CALIB"]
+pub type R = crate::R<u32, super::CALIB>;
+#[doc = "Reader of field `TENMS`"]
+pub type TENMS_R = crate::R<u32, u32>;
+#[doc = "no description available\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SKEWR {
-    #[doc = "10ms calibration value is exact"]
+pub enum SKEW_A {
+    #[doc = "0: 10ms calibration value is exact"]
     _0,
-    #[doc = "10ms calibration value is inexact, because of the clock frequency"]
+    #[doc = "1: 10ms calibration value is inexact, because of the clock frequency"]
     _1,
 }
-impl SKEWR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SKEWR::_0 => false,
-            SKEWR::_1 => true,
+impl From<SKEW_A> for bool {
+    #[inline(always)]
+    fn from(variant: SKEW_A) -> Self {
+        match variant {
+            SKEW_A::_0 => false,
+            SKEW_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SKEWR {
-        match value {
-            false => SKEWR::_0,
-            true => SKEWR::_1,
+}
+#[doc = "Reader of field `SKEW`"]
+pub type SKEW_R = crate::R<bool, SKEW_A>;
+impl SKEW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SKEW_A {
+        match self.bits {
+            false => SKEW_A::_0,
+            true => SKEW_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == SKEWR::_0
+        *self == SKEW_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == SKEWR::_1
+        *self == SKEW_A::_1
     }
 }
-#[doc = "Possible values of the field `NOREF`"]
+#[doc = "no description available\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NOREFR {
-    #[doc = "The reference clock is provided"]
+pub enum NOREF_A {
+    #[doc = "0: The reference clock is provided"]
     _0,
-    #[doc = "The reference clock is not provided"]
+    #[doc = "1: The reference clock is not provided"]
     _1,
 }
-impl NOREFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            NOREFR::_0 => false,
-            NOREFR::_1 => true,
+impl From<NOREF_A> for bool {
+    #[inline(always)]
+    fn from(variant: NOREF_A) -> Self {
+        match variant {
+            NOREF_A::_0 => false,
+            NOREF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> NOREFR {
-        match value {
-            false => NOREFR::_0,
-            true => NOREFR::_1,
+}
+#[doc = "Reader of field `NOREF`"]
+pub type NOREF_R = crate::R<bool, NOREF_A>;
+impl NOREF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NOREF_A {
+        match self.bits {
+            false => NOREF_A::_0,
+            true => NOREF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == NOREFR::_0
+        *self == NOREF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == NOREFR::_1
+        *self == NOREF_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:23 - Reload value to use for 10ms timing"]
-    #[inline]
-    pub fn tenms(&self) -> TENMSR {
-        let bits = {
-            const MASK: u32 = 16777215;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        TENMSR { bits }
+    #[inline(always)]
+    pub fn tenms(&self) -> TENMS_R {
+        TENMS_R::new((self.bits & 0x00ff_ffff) as u32)
     }
     #[doc = "Bit 30 - no description available"]
-    #[inline]
-    pub fn skew(&self) -> SKEWR {
-        SKEWR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn skew(&self) -> SKEW_R {
+        SKEW_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - no description available"]
-    #[inline]
-    pub fn noref(&self) -> NOREFR {
-        NOREFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn noref(&self) -> NOREF_R {
+        NOREF_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }

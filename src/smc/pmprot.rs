@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::PMPROT {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PMPROT"]
+pub type R = crate::R<u8, super::PMPROT>;
+#[doc = "Writer for register PMPROT"]
+pub type W = crate::W<u8, super::PMPROT>;
+#[doc = "Register PMPROT `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMPROT {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `AVLLS`"]
+#[doc = "Allow Very-Low-Leakage Stop Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AVLLSR {
-    #[doc = "Any VLLSx mode is not allowed"]
+pub enum AVLLS_A {
+    #[doc = "0: Any VLLSx mode is not allowed"]
     _0,
-    #[doc = "Any VLLSx mode is allowed"]
+    #[doc = "1: Any VLLSx mode is allowed"]
     _1,
 }
-impl AVLLSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AVLLSR::_0 => false,
-            AVLLSR::_1 => true,
+impl From<AVLLS_A> for bool {
+    #[inline(always)]
+    fn from(variant: AVLLS_A) -> Self {
+        match variant {
+            AVLLS_A::_0 => false,
+            AVLLS_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AVLLSR {
-        match value {
-            false => AVLLSR::_0,
-            true => AVLLSR::_1,
+}
+#[doc = "Reader of field `AVLLS`"]
+pub type AVLLS_R = crate::R<bool, AVLLS_A>;
+impl AVLLS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AVLLS_A {
+        match self.bits {
+            false => AVLLS_A::_0,
+            true => AVLLS_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == AVLLSR::_0
+        *self == AVLLS_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == AVLLSR::_1
+        *self == AVLLS_A::_1
     }
 }
-#[doc = "Possible values of the field `ALLS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ALLSR {
-    #[doc = "LLS is not allowed"]
-    _0,
-    #[doc = "LLS is allowed"]
-    _1,
-}
-impl ALLSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ALLSR::_0 => false,
-            ALLSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ALLSR {
-        match value {
-            false => ALLSR::_0,
-            true => ALLSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == ALLSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == ALLSR::_1
-    }
-}
-#[doc = "Possible values of the field `AVLP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AVLPR {
-    #[doc = "VLPR, VLPW, and VLPS are not allowed."]
-    _0,
-    #[doc = "VLPR, VLPW, and VLPS are allowed."]
-    _1,
-}
-impl AVLPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AVLPR::_0 => false,
-            AVLPR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AVLPR {
-        match value {
-            false => AVLPR::_0,
-            true => AVLPR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == AVLPR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == AVLPR::_1
-    }
-}
-#[doc = "Values that can be written to the field `AVLLS`"]
-pub enum AVLLSW {
-    #[doc = "Any VLLSx mode is not allowed"]
-    _0,
-    #[doc = "Any VLLSx mode is allowed"]
-    _1,
-}
-impl AVLLSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            AVLLSW::_0 => false,
-            AVLLSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _AVLLSW<'a> {
+#[doc = "Write proxy for field `AVLLS`"]
+pub struct AVLLS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AVLLSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: AVLLSW) -> &'a mut W {
+impl<'a> AVLLS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: AVLLS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Any VLLSx mode is not allowed"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(AVLLSW::_0)
+        self.variant(AVLLS_A::_0)
     }
     #[doc = "Any VLLSx mode is allowed"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(AVLLSW::_1)
+        self.variant(AVLLS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ALLS`"]
-pub enum ALLSW {
-    #[doc = "LLS is not allowed"]
+#[doc = "Allow Low-Leakage Stop Mode\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ALLS_A {
+    #[doc = "0: LLS is not allowed"]
     _0,
-    #[doc = "LLS is allowed"]
+    #[doc = "1: LLS is allowed"]
     _1,
 }
-impl ALLSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ALLSW::_0 => false,
-            ALLSW::_1 => true,
+impl From<ALLS_A> for bool {
+    #[inline(always)]
+    fn from(variant: ALLS_A) -> Self {
+        match variant {
+            ALLS_A::_0 => false,
+            ALLS_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _ALLSW<'a> {
+#[doc = "Reader of field `ALLS`"]
+pub type ALLS_R = crate::R<bool, ALLS_A>;
+impl ALLS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ALLS_A {
+        match self.bits {
+            false => ALLS_A::_0,
+            true => ALLS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == ALLS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == ALLS_A::_1
+    }
+}
+#[doc = "Write proxy for field `ALLS`"]
+pub struct ALLS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALLSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ALLSW) -> &'a mut W {
+impl<'a> ALLS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ALLS_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "LLS is not allowed"]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(ALLSW::_0)
+        self.variant(ALLS_A::_0)
     }
     #[doc = "LLS is allowed"]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(ALLSW::_1)
+        self.variant(ALLS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u8) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `AVLP`"]
-pub enum AVLPW {
-    #[doc = "VLPR, VLPW, and VLPS are not allowed."]
+#[doc = "Allow Very-Low-Power Modes\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum AVLP_A {
+    #[doc = "0: VLPR, VLPW, and VLPS are not allowed."]
     _0,
-    #[doc = "VLPR, VLPW, and VLPS are allowed."]
+    #[doc = "1: VLPR, VLPW, and VLPS are allowed."]
     _1,
 }
-impl AVLPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            AVLPW::_0 => false,
-            AVLPW::_1 => true,
+impl From<AVLP_A> for bool {
+    #[inline(always)]
+    fn from(variant: AVLP_A) -> Self {
+        match variant {
+            AVLP_A::_0 => false,
+            AVLP_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _AVLPW<'a> {
+#[doc = "Reader of field `AVLP`"]
+pub type AVLP_R = crate::R<bool, AVLP_A>;
+impl AVLP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AVLP_A {
+        match self.bits {
+            false => AVLP_A::_0,
+            true => AVLP_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == AVLP_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == AVLP_A::_1
+    }
+}
+#[doc = "Write proxy for field `AVLP`"]
+pub struct AVLP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AVLPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: AVLPW) -> &'a mut W {
+impl<'a> AVLP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: AVLP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "VLPR, VLPW, and VLPS are not allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(AVLPW::_0)
+        self.variant(AVLP_A::_0)
     }
     #[doc = "VLPR, VLPW, and VLPS are allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(AVLPW::_1)
+        self.variant(AVLP_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 1 - Allow Very-Low-Leakage Stop Mode"]
-    #[inline]
-    pub fn avlls(&self) -> AVLLSR {
-        AVLLSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn avlls(&self) -> AVLLS_R {
+        AVLLS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Allow Low-Leakage Stop Mode"]
-    #[inline]
-    pub fn alls(&self) -> ALLSR {
-        ALLSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn alls(&self) -> ALLS_R {
+        ALLS_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Allow Very-Low-Power Modes"]
-    #[inline]
-    pub fn avlp(&self) -> AVLPR {
-        AVLPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn avlp(&self) -> AVLP_R {
+        AVLP_R::new(((self.bits >> 5) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - Allow Very-Low-Leakage Stop Mode"]
-    #[inline]
-    pub fn avlls(&mut self) -> _AVLLSW {
-        _AVLLSW { w: self }
+    #[inline(always)]
+    pub fn avlls(&mut self) -> AVLLS_W {
+        AVLLS_W { w: self }
     }
     #[doc = "Bit 3 - Allow Low-Leakage Stop Mode"]
-    #[inline]
-    pub fn alls(&mut self) -> _ALLSW {
-        _ALLSW { w: self }
+    #[inline(always)]
+    pub fn alls(&mut self) -> ALLS_W {
+        ALLS_W { w: self }
     }
     #[doc = "Bit 5 - Allow Very-Low-Power Modes"]
-    #[inline]
-    pub fn avlp(&mut self) -> _AVLPW {
-        _AVLPW { w: self }
+    #[inline(always)]
+    pub fn avlp(&mut self) -> AVLP_W {
+        AVLP_W { w: self }
     }
 }

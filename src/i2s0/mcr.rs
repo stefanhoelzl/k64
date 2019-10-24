@@ -1,375 +1,255 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MCR"]
+pub type R = crate::R<u32, super::MCR>;
+#[doc = "Writer for register MCR"]
+pub type W = crate::W<u32, super::MCR>;
+#[doc = "Register MCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `MICS`"]
+#[doc = "MCLK Input Clock Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MICSR {
-    #[doc = "MCLK divider input clock 0 selected."]
+pub enum MICS_A {
+    #[doc = "0: MCLK divider input clock 0 selected."]
     _00,
-    #[doc = "MCLK divider input clock 1 selected."]
+    #[doc = "1: MCLK divider input clock 1 selected."]
     _01,
-    #[doc = "MCLK divider input clock 2 selected."]
+    #[doc = "2: MCLK divider input clock 2 selected."]
     _10,
-    #[doc = "MCLK divider input clock 3 selected."]
+    #[doc = "3: MCLK divider input clock 3 selected."]
     _11,
 }
-impl MICSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MICSR::_00 => 0,
-            MICSR::_01 => 1,
-            MICSR::_10 => 2,
-            MICSR::_11 => 3,
+impl From<MICS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MICS_A) -> Self {
+        match variant {
+            MICS_A::_00 => 0,
+            MICS_A::_01 => 1,
+            MICS_A::_10 => 2,
+            MICS_A::_11 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MICSR {
-        match value {
-            0 => MICSR::_00,
-            1 => MICSR::_01,
-            2 => MICSR::_10,
-            3 => MICSR::_11,
+}
+#[doc = "Reader of field `MICS`"]
+pub type MICS_R = crate::R<u8, MICS_A>;
+impl MICS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MICS_A {
+        match self.bits {
+            0 => MICS_A::_00,
+            1 => MICS_A::_01,
+            2 => MICS_A::_10,
+            3 => MICS_A::_11,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00(&self) -> bool {
-        *self == MICSR::_00
+        *self == MICS_A::_00
     }
     #[doc = "Checks if the value of the field is `_01`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01(&self) -> bool {
-        *self == MICSR::_01
+        *self == MICS_A::_01
     }
     #[doc = "Checks if the value of the field is `_10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10(&self) -> bool {
-        *self == MICSR::_10
+        *self == MICS_A::_10
     }
     #[doc = "Checks if the value of the field is `_11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11(&self) -> bool {
-        *self == MICSR::_11
+        *self == MICS_A::_11
     }
 }
-#[doc = "Possible values of the field `MOE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MOER {
-    #[doc = "MCLK signal pin is configured as an input that bypasses the MCLK divider."]
-    _0,
-    #[doc = "MCLK signal pin is configured as an output from the MCLK divider and the MCLK divider is enabled."]
-    _1,
-}
-impl MOER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MOER::_0 => false,
-            MOER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MOER {
-        match value {
-            false => MOER::_0,
-            true => MOER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == MOER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == MOER::_1
-    }
-}
-#[doc = "Possible values of the field `DUF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DUFR {
-    #[doc = "MCLK divider ratio is not being updated currently."]
-    _0,
-    #[doc = "MCLK divider ratio is updating on-the-fly. Further updates to the MCLK divider ratio are blocked while this flag remains set."]
-    _1,
-}
-impl DUFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DUFR::_0 => false,
-            DUFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DUFR {
-        match value {
-            false => DUFR::_0,
-            true => DUFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == DUFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == DUFR::_1
-    }
-}
-#[doc = "Values that can be written to the field `MICS`"]
-pub enum MICSW {
-    #[doc = "MCLK divider input clock 0 selected."]
-    _00,
-    #[doc = "MCLK divider input clock 1 selected."]
-    _01,
-    #[doc = "MCLK divider input clock 2 selected."]
-    _10,
-    #[doc = "MCLK divider input clock 3 selected."]
-    _11,
-}
-impl MICSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MICSW::_00 => 0,
-            MICSW::_01 => 1,
-            MICSW::_10 => 2,
-            MICSW::_11 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MICSW<'a> {
+#[doc = "Write proxy for field `MICS`"]
+pub struct MICS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MICSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MICSW) -> &'a mut W {
+impl<'a> MICS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MICS_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "MCLK divider input clock 0 selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _00(self) -> &'a mut W {
-        self.variant(MICSW::_00)
+        self.variant(MICS_A::_00)
     }
     #[doc = "MCLK divider input clock 1 selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _01(self) -> &'a mut W {
-        self.variant(MICSW::_01)
+        self.variant(MICS_A::_01)
     }
     #[doc = "MCLK divider input clock 2 selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _10(self) -> &'a mut W {
-        self.variant(MICSW::_10)
+        self.variant(MICS_A::_10)
     }
     #[doc = "MCLK divider input clock 3 selected."]
-    #[inline]
+    #[inline(always)]
     pub fn _11(self) -> &'a mut W {
-        self.variant(MICSW::_11)
+        self.variant(MICS_A::_11)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 24)) | (((value as u32) & 0x03) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MOE`"]
-pub enum MOEW {
-    #[doc = "MCLK signal pin is configured as an input that bypasses the MCLK divider."]
+#[doc = "MCLK Output Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MOE_A {
+    #[doc = "0: MCLK signal pin is configured as an input that bypasses the MCLK divider."]
     _0,
-    #[doc = "MCLK signal pin is configured as an output from the MCLK divider and the MCLK divider is enabled."]
+    #[doc = "1: MCLK signal pin is configured as an output from the MCLK divider and the MCLK divider is enabled."]
     _1,
 }
-impl MOEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MOEW::_0 => false,
-            MOEW::_1 => true,
+impl From<MOE_A> for bool {
+    #[inline(always)]
+    fn from(variant: MOE_A) -> Self {
+        match variant {
+            MOE_A::_0 => false,
+            MOE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MOEW<'a> {
+#[doc = "Reader of field `MOE`"]
+pub type MOE_R = crate::R<bool, MOE_A>;
+impl MOE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MOE_A {
+        match self.bits {
+            false => MOE_A::_0,
+            true => MOE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == MOE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == MOE_A::_1
+    }
+}
+#[doc = "Write proxy for field `MOE`"]
+pub struct MOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MOEW) -> &'a mut W {
+impl<'a> MOE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MOE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "MCLK signal pin is configured as an input that bypasses the MCLK divider."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(MOEW::_0)
+        self.variant(MOE_A::_0)
     }
     #[doc = "MCLK signal pin is configured as an output from the MCLK divider and the MCLK divider is enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(MOEW::_1)
+        self.variant(MOE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
+#[doc = "Divider Update Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DUF_A {
+    #[doc = "0: MCLK divider ratio is not being updated currently."]
+    _0,
+    #[doc = "1: MCLK divider ratio is updating on-the-fly. Further updates to the MCLK divider ratio are blocked while this flag remains set."]
+    _1,
+}
+impl From<DUF_A> for bool {
+    #[inline(always)]
+    fn from(variant: DUF_A) -> Self {
+        match variant {
+            DUF_A::_0 => false,
+            DUF_A::_1 => true,
+        }
     }
+}
+#[doc = "Reader of field `DUF`"]
+pub type DUF_R = crate::R<bool, DUF_A>;
+impl DUF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DUF_A {
+        match self.bits {
+            false => DUF_A::_0,
+            true => DUF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == DUF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == DUF_A::_1
+    }
+}
+impl R {
     #[doc = "Bits 24:25 - MCLK Input Clock Select"]
-    #[inline]
-    pub fn mics(&self) -> MICSR {
-        MICSR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn mics(&self) -> MICS_R {
+        MICS_R::new(((self.bits >> 24) & 0x03) as u8)
     }
     #[doc = "Bit 30 - MCLK Output Enable"]
-    #[inline]
-    pub fn moe(&self) -> MOER {
-        MOER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn moe(&self) -> MOE_R {
+        MOE_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Divider Update Flag"]
-    #[inline]
-    pub fn duf(&self) -> DUFR {
-        DUFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn duf(&self) -> DUF_R {
+        DUF_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 24:25 - MCLK Input Clock Select"]
-    #[inline]
-    pub fn mics(&mut self) -> _MICSW {
-        _MICSW { w: self }
+    #[inline(always)]
+    pub fn mics(&mut self) -> MICS_W {
+        MICS_W { w: self }
     }
     #[doc = "Bit 30 - MCLK Output Enable"]
-    #[inline]
-    pub fn moe(&mut self) -> _MOEW {
-        _MOEW { w: self }
+    #[inline(always)]
+    pub fn moe(&mut self) -> MOE_W {
+        MOE_W { w: self }
     }
 }

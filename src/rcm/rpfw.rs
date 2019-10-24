@@ -1,676 +1,515 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::RPFW {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RPFW"]
+pub type R = crate::R<u8, super::RPFW>;
+#[doc = "Writer for register RPFW"]
+pub type W = crate::W<u8, super::RPFW>;
+#[doc = "Register RPFW `reset()`'s with value 0"]
+impl crate::ResetValue for super::RPFW {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RSTFLTSEL`"]
+#[doc = "Reset Pin Filter Bus Clock Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RSTFLTSELR {
-    #[doc = "Bus clock filter count is 1"]
+pub enum RSTFLTSEL_A {
+    #[doc = "0: Bus clock filter count is 1"]
     _00000,
-    #[doc = "Bus clock filter count is 2"]
+    #[doc = "1: Bus clock filter count is 2"]
     _00001,
-    #[doc = "Bus clock filter count is 3"]
+    #[doc = "2: Bus clock filter count is 3"]
     _00010,
-    #[doc = "Bus clock filter count is 4"]
+    #[doc = "3: Bus clock filter count is 4"]
     _00011,
-    #[doc = "Bus clock filter count is 5"]
+    #[doc = "4: Bus clock filter count is 5"]
     _00100,
-    #[doc = "Bus clock filter count is 6"]
+    #[doc = "5: Bus clock filter count is 6"]
     _00101,
-    #[doc = "Bus clock filter count is 7"]
+    #[doc = "6: Bus clock filter count is 7"]
     _00110,
-    #[doc = "Bus clock filter count is 8"]
+    #[doc = "7: Bus clock filter count is 8"]
     _00111,
-    #[doc = "Bus clock filter count is 9"]
+    #[doc = "8: Bus clock filter count is 9"]
     _01000,
-    #[doc = "Bus clock filter count is 10"]
+    #[doc = "9: Bus clock filter count is 10"]
     _01001,
-    #[doc = "Bus clock filter count is 11"]
+    #[doc = "10: Bus clock filter count is 11"]
     _01010,
-    #[doc = "Bus clock filter count is 12"]
+    #[doc = "11: Bus clock filter count is 12"]
     _01011,
-    #[doc = "Bus clock filter count is 13"]
+    #[doc = "12: Bus clock filter count is 13"]
     _01100,
-    #[doc = "Bus clock filter count is 14"]
+    #[doc = "13: Bus clock filter count is 14"]
     _01101,
-    #[doc = "Bus clock filter count is 15"]
+    #[doc = "14: Bus clock filter count is 15"]
     _01110,
-    #[doc = "Bus clock filter count is 16"]
+    #[doc = "15: Bus clock filter count is 16"]
     _01111,
-    #[doc = "Bus clock filter count is 17"]
+    #[doc = "16: Bus clock filter count is 17"]
     _10000,
-    #[doc = "Bus clock filter count is 18"]
+    #[doc = "17: Bus clock filter count is 18"]
     _10001,
-    #[doc = "Bus clock filter count is 19"]
+    #[doc = "18: Bus clock filter count is 19"]
     _10010,
-    #[doc = "Bus clock filter count is 20"]
+    #[doc = "19: Bus clock filter count is 20"]
     _10011,
-    #[doc = "Bus clock filter count is 21"]
+    #[doc = "20: Bus clock filter count is 21"]
     _10100,
-    #[doc = "Bus clock filter count is 22"]
+    #[doc = "21: Bus clock filter count is 22"]
     _10101,
-    #[doc = "Bus clock filter count is 23"]
+    #[doc = "22: Bus clock filter count is 23"]
     _10110,
-    #[doc = "Bus clock filter count is 24"]
+    #[doc = "23: Bus clock filter count is 24"]
     _10111,
-    #[doc = "Bus clock filter count is 25"]
+    #[doc = "24: Bus clock filter count is 25"]
     _11000,
-    #[doc = "Bus clock filter count is 26"]
+    #[doc = "25: Bus clock filter count is 26"]
     _11001,
-    #[doc = "Bus clock filter count is 27"]
+    #[doc = "26: Bus clock filter count is 27"]
     _11010,
-    #[doc = "Bus clock filter count is 28"]
+    #[doc = "27: Bus clock filter count is 28"]
     _11011,
-    #[doc = "Bus clock filter count is 29"]
+    #[doc = "28: Bus clock filter count is 29"]
     _11100,
-    #[doc = "Bus clock filter count is 30"]
+    #[doc = "29: Bus clock filter count is 30"]
     _11101,
-    #[doc = "Bus clock filter count is 31"]
+    #[doc = "30: Bus clock filter count is 31"]
     _11110,
-    #[doc = "Bus clock filter count is 32"]
+    #[doc = "31: Bus clock filter count is 32"]
     _11111,
 }
-impl RSTFLTSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            RSTFLTSELR::_00000 => 0,
-            RSTFLTSELR::_00001 => 1,
-            RSTFLTSELR::_00010 => 2,
-            RSTFLTSELR::_00011 => 3,
-            RSTFLTSELR::_00100 => 4,
-            RSTFLTSELR::_00101 => 5,
-            RSTFLTSELR::_00110 => 6,
-            RSTFLTSELR::_00111 => 7,
-            RSTFLTSELR::_01000 => 8,
-            RSTFLTSELR::_01001 => 9,
-            RSTFLTSELR::_01010 => 10,
-            RSTFLTSELR::_01011 => 11,
-            RSTFLTSELR::_01100 => 12,
-            RSTFLTSELR::_01101 => 13,
-            RSTFLTSELR::_01110 => 14,
-            RSTFLTSELR::_01111 => 15,
-            RSTFLTSELR::_10000 => 16,
-            RSTFLTSELR::_10001 => 17,
-            RSTFLTSELR::_10010 => 18,
-            RSTFLTSELR::_10011 => 19,
-            RSTFLTSELR::_10100 => 20,
-            RSTFLTSELR::_10101 => 21,
-            RSTFLTSELR::_10110 => 22,
-            RSTFLTSELR::_10111 => 23,
-            RSTFLTSELR::_11000 => 24,
-            RSTFLTSELR::_11001 => 25,
-            RSTFLTSELR::_11010 => 26,
-            RSTFLTSELR::_11011 => 27,
-            RSTFLTSELR::_11100 => 28,
-            RSTFLTSELR::_11101 => 29,
-            RSTFLTSELR::_11110 => 30,
-            RSTFLTSELR::_11111 => 31,
+impl From<RSTFLTSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: RSTFLTSEL_A) -> Self {
+        match variant {
+            RSTFLTSEL_A::_00000 => 0,
+            RSTFLTSEL_A::_00001 => 1,
+            RSTFLTSEL_A::_00010 => 2,
+            RSTFLTSEL_A::_00011 => 3,
+            RSTFLTSEL_A::_00100 => 4,
+            RSTFLTSEL_A::_00101 => 5,
+            RSTFLTSEL_A::_00110 => 6,
+            RSTFLTSEL_A::_00111 => 7,
+            RSTFLTSEL_A::_01000 => 8,
+            RSTFLTSEL_A::_01001 => 9,
+            RSTFLTSEL_A::_01010 => 10,
+            RSTFLTSEL_A::_01011 => 11,
+            RSTFLTSEL_A::_01100 => 12,
+            RSTFLTSEL_A::_01101 => 13,
+            RSTFLTSEL_A::_01110 => 14,
+            RSTFLTSEL_A::_01111 => 15,
+            RSTFLTSEL_A::_10000 => 16,
+            RSTFLTSEL_A::_10001 => 17,
+            RSTFLTSEL_A::_10010 => 18,
+            RSTFLTSEL_A::_10011 => 19,
+            RSTFLTSEL_A::_10100 => 20,
+            RSTFLTSEL_A::_10101 => 21,
+            RSTFLTSEL_A::_10110 => 22,
+            RSTFLTSEL_A::_10111 => 23,
+            RSTFLTSEL_A::_11000 => 24,
+            RSTFLTSEL_A::_11001 => 25,
+            RSTFLTSEL_A::_11010 => 26,
+            RSTFLTSEL_A::_11011 => 27,
+            RSTFLTSEL_A::_11100 => 28,
+            RSTFLTSEL_A::_11101 => 29,
+            RSTFLTSEL_A::_11110 => 30,
+            RSTFLTSEL_A::_11111 => 31,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> RSTFLTSELR {
-        match value {
-            0 => RSTFLTSELR::_00000,
-            1 => RSTFLTSELR::_00001,
-            2 => RSTFLTSELR::_00010,
-            3 => RSTFLTSELR::_00011,
-            4 => RSTFLTSELR::_00100,
-            5 => RSTFLTSELR::_00101,
-            6 => RSTFLTSELR::_00110,
-            7 => RSTFLTSELR::_00111,
-            8 => RSTFLTSELR::_01000,
-            9 => RSTFLTSELR::_01001,
-            10 => RSTFLTSELR::_01010,
-            11 => RSTFLTSELR::_01011,
-            12 => RSTFLTSELR::_01100,
-            13 => RSTFLTSELR::_01101,
-            14 => RSTFLTSELR::_01110,
-            15 => RSTFLTSELR::_01111,
-            16 => RSTFLTSELR::_10000,
-            17 => RSTFLTSELR::_10001,
-            18 => RSTFLTSELR::_10010,
-            19 => RSTFLTSELR::_10011,
-            20 => RSTFLTSELR::_10100,
-            21 => RSTFLTSELR::_10101,
-            22 => RSTFLTSELR::_10110,
-            23 => RSTFLTSELR::_10111,
-            24 => RSTFLTSELR::_11000,
-            25 => RSTFLTSELR::_11001,
-            26 => RSTFLTSELR::_11010,
-            27 => RSTFLTSELR::_11011,
-            28 => RSTFLTSELR::_11100,
-            29 => RSTFLTSELR::_11101,
-            30 => RSTFLTSELR::_11110,
-            31 => RSTFLTSELR::_11111,
+}
+#[doc = "Reader of field `RSTFLTSEL`"]
+pub type RSTFLTSEL_R = crate::R<u8, RSTFLTSEL_A>;
+impl RSTFLTSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RSTFLTSEL_A {
+        match self.bits {
+            0 => RSTFLTSEL_A::_00000,
+            1 => RSTFLTSEL_A::_00001,
+            2 => RSTFLTSEL_A::_00010,
+            3 => RSTFLTSEL_A::_00011,
+            4 => RSTFLTSEL_A::_00100,
+            5 => RSTFLTSEL_A::_00101,
+            6 => RSTFLTSEL_A::_00110,
+            7 => RSTFLTSEL_A::_00111,
+            8 => RSTFLTSEL_A::_01000,
+            9 => RSTFLTSEL_A::_01001,
+            10 => RSTFLTSEL_A::_01010,
+            11 => RSTFLTSEL_A::_01011,
+            12 => RSTFLTSEL_A::_01100,
+            13 => RSTFLTSEL_A::_01101,
+            14 => RSTFLTSEL_A::_01110,
+            15 => RSTFLTSEL_A::_01111,
+            16 => RSTFLTSEL_A::_10000,
+            17 => RSTFLTSEL_A::_10001,
+            18 => RSTFLTSEL_A::_10010,
+            19 => RSTFLTSEL_A::_10011,
+            20 => RSTFLTSEL_A::_10100,
+            21 => RSTFLTSEL_A::_10101,
+            22 => RSTFLTSEL_A::_10110,
+            23 => RSTFLTSEL_A::_10111,
+            24 => RSTFLTSEL_A::_11000,
+            25 => RSTFLTSEL_A::_11001,
+            26 => RSTFLTSEL_A::_11010,
+            27 => RSTFLTSEL_A::_11011,
+            28 => RSTFLTSEL_A::_11100,
+            29 => RSTFLTSEL_A::_11101,
+            30 => RSTFLTSEL_A::_11110,
+            31 => RSTFLTSEL_A::_11111,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `_00000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00000(&self) -> bool {
-        *self == RSTFLTSELR::_00000
+        *self == RSTFLTSEL_A::_00000
     }
     #[doc = "Checks if the value of the field is `_00001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00001(&self) -> bool {
-        *self == RSTFLTSELR::_00001
+        *self == RSTFLTSEL_A::_00001
     }
     #[doc = "Checks if the value of the field is `_00010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00010(&self) -> bool {
-        *self == RSTFLTSELR::_00010
+        *self == RSTFLTSEL_A::_00010
     }
     #[doc = "Checks if the value of the field is `_00011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00011(&self) -> bool {
-        *self == RSTFLTSELR::_00011
+        *self == RSTFLTSEL_A::_00011
     }
     #[doc = "Checks if the value of the field is `_00100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00100(&self) -> bool {
-        *self == RSTFLTSELR::_00100
+        *self == RSTFLTSEL_A::_00100
     }
     #[doc = "Checks if the value of the field is `_00101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00101(&self) -> bool {
-        *self == RSTFLTSELR::_00101
+        *self == RSTFLTSEL_A::_00101
     }
     #[doc = "Checks if the value of the field is `_00110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00110(&self) -> bool {
-        *self == RSTFLTSELR::_00110
+        *self == RSTFLTSEL_A::_00110
     }
     #[doc = "Checks if the value of the field is `_00111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_00111(&self) -> bool {
-        *self == RSTFLTSELR::_00111
+        *self == RSTFLTSEL_A::_00111
     }
     #[doc = "Checks if the value of the field is `_01000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01000(&self) -> bool {
-        *self == RSTFLTSELR::_01000
+        *self == RSTFLTSEL_A::_01000
     }
     #[doc = "Checks if the value of the field is `_01001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01001(&self) -> bool {
-        *self == RSTFLTSELR::_01001
+        *self == RSTFLTSEL_A::_01001
     }
     #[doc = "Checks if the value of the field is `_01010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01010(&self) -> bool {
-        *self == RSTFLTSELR::_01010
+        *self == RSTFLTSEL_A::_01010
     }
     #[doc = "Checks if the value of the field is `_01011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01011(&self) -> bool {
-        *self == RSTFLTSELR::_01011
+        *self == RSTFLTSEL_A::_01011
     }
     #[doc = "Checks if the value of the field is `_01100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01100(&self) -> bool {
-        *self == RSTFLTSELR::_01100
+        *self == RSTFLTSEL_A::_01100
     }
     #[doc = "Checks if the value of the field is `_01101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01101(&self) -> bool {
-        *self == RSTFLTSELR::_01101
+        *self == RSTFLTSEL_A::_01101
     }
     #[doc = "Checks if the value of the field is `_01110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01110(&self) -> bool {
-        *self == RSTFLTSELR::_01110
+        *self == RSTFLTSEL_A::_01110
     }
     #[doc = "Checks if the value of the field is `_01111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_01111(&self) -> bool {
-        *self == RSTFLTSELR::_01111
+        *self == RSTFLTSEL_A::_01111
     }
     #[doc = "Checks if the value of the field is `_10000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10000(&self) -> bool {
-        *self == RSTFLTSELR::_10000
+        *self == RSTFLTSEL_A::_10000
     }
     #[doc = "Checks if the value of the field is `_10001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10001(&self) -> bool {
-        *self == RSTFLTSELR::_10001
+        *self == RSTFLTSEL_A::_10001
     }
     #[doc = "Checks if the value of the field is `_10010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10010(&self) -> bool {
-        *self == RSTFLTSELR::_10010
+        *self == RSTFLTSEL_A::_10010
     }
     #[doc = "Checks if the value of the field is `_10011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10011(&self) -> bool {
-        *self == RSTFLTSELR::_10011
+        *self == RSTFLTSEL_A::_10011
     }
     #[doc = "Checks if the value of the field is `_10100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10100(&self) -> bool {
-        *self == RSTFLTSELR::_10100
+        *self == RSTFLTSEL_A::_10100
     }
     #[doc = "Checks if the value of the field is `_10101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10101(&self) -> bool {
-        *self == RSTFLTSELR::_10101
+        *self == RSTFLTSEL_A::_10101
     }
     #[doc = "Checks if the value of the field is `_10110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10110(&self) -> bool {
-        *self == RSTFLTSELR::_10110
+        *self == RSTFLTSEL_A::_10110
     }
     #[doc = "Checks if the value of the field is `_10111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_10111(&self) -> bool {
-        *self == RSTFLTSELR::_10111
+        *self == RSTFLTSEL_A::_10111
     }
     #[doc = "Checks if the value of the field is `_11000`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11000(&self) -> bool {
-        *self == RSTFLTSELR::_11000
+        *self == RSTFLTSEL_A::_11000
     }
     #[doc = "Checks if the value of the field is `_11001`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11001(&self) -> bool {
-        *self == RSTFLTSELR::_11001
+        *self == RSTFLTSEL_A::_11001
     }
     #[doc = "Checks if the value of the field is `_11010`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11010(&self) -> bool {
-        *self == RSTFLTSELR::_11010
+        *self == RSTFLTSEL_A::_11010
     }
     #[doc = "Checks if the value of the field is `_11011`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11011(&self) -> bool {
-        *self == RSTFLTSELR::_11011
+        *self == RSTFLTSEL_A::_11011
     }
     #[doc = "Checks if the value of the field is `_11100`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11100(&self) -> bool {
-        *self == RSTFLTSELR::_11100
+        *self == RSTFLTSEL_A::_11100
     }
     #[doc = "Checks if the value of the field is `_11101`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11101(&self) -> bool {
-        *self == RSTFLTSELR::_11101
+        *self == RSTFLTSEL_A::_11101
     }
     #[doc = "Checks if the value of the field is `_11110`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11110(&self) -> bool {
-        *self == RSTFLTSELR::_11110
+        *self == RSTFLTSEL_A::_11110
     }
     #[doc = "Checks if the value of the field is `_11111`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_11111(&self) -> bool {
-        *self == RSTFLTSELR::_11111
+        *self == RSTFLTSEL_A::_11111
     }
 }
-#[doc = "Values that can be written to the field `RSTFLTSEL`"]
-pub enum RSTFLTSELW {
-    #[doc = "Bus clock filter count is 1"]
-    _00000,
-    #[doc = "Bus clock filter count is 2"]
-    _00001,
-    #[doc = "Bus clock filter count is 3"]
-    _00010,
-    #[doc = "Bus clock filter count is 4"]
-    _00011,
-    #[doc = "Bus clock filter count is 5"]
-    _00100,
-    #[doc = "Bus clock filter count is 6"]
-    _00101,
-    #[doc = "Bus clock filter count is 7"]
-    _00110,
-    #[doc = "Bus clock filter count is 8"]
-    _00111,
-    #[doc = "Bus clock filter count is 9"]
-    _01000,
-    #[doc = "Bus clock filter count is 10"]
-    _01001,
-    #[doc = "Bus clock filter count is 11"]
-    _01010,
-    #[doc = "Bus clock filter count is 12"]
-    _01011,
-    #[doc = "Bus clock filter count is 13"]
-    _01100,
-    #[doc = "Bus clock filter count is 14"]
-    _01101,
-    #[doc = "Bus clock filter count is 15"]
-    _01110,
-    #[doc = "Bus clock filter count is 16"]
-    _01111,
-    #[doc = "Bus clock filter count is 17"]
-    _10000,
-    #[doc = "Bus clock filter count is 18"]
-    _10001,
-    #[doc = "Bus clock filter count is 19"]
-    _10010,
-    #[doc = "Bus clock filter count is 20"]
-    _10011,
-    #[doc = "Bus clock filter count is 21"]
-    _10100,
-    #[doc = "Bus clock filter count is 22"]
-    _10101,
-    #[doc = "Bus clock filter count is 23"]
-    _10110,
-    #[doc = "Bus clock filter count is 24"]
-    _10111,
-    #[doc = "Bus clock filter count is 25"]
-    _11000,
-    #[doc = "Bus clock filter count is 26"]
-    _11001,
-    #[doc = "Bus clock filter count is 27"]
-    _11010,
-    #[doc = "Bus clock filter count is 28"]
-    _11011,
-    #[doc = "Bus clock filter count is 29"]
-    _11100,
-    #[doc = "Bus clock filter count is 30"]
-    _11101,
-    #[doc = "Bus clock filter count is 31"]
-    _11110,
-    #[doc = "Bus clock filter count is 32"]
-    _11111,
-}
-impl RSTFLTSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            RSTFLTSELW::_00000 => 0,
-            RSTFLTSELW::_00001 => 1,
-            RSTFLTSELW::_00010 => 2,
-            RSTFLTSELW::_00011 => 3,
-            RSTFLTSELW::_00100 => 4,
-            RSTFLTSELW::_00101 => 5,
-            RSTFLTSELW::_00110 => 6,
-            RSTFLTSELW::_00111 => 7,
-            RSTFLTSELW::_01000 => 8,
-            RSTFLTSELW::_01001 => 9,
-            RSTFLTSELW::_01010 => 10,
-            RSTFLTSELW::_01011 => 11,
-            RSTFLTSELW::_01100 => 12,
-            RSTFLTSELW::_01101 => 13,
-            RSTFLTSELW::_01110 => 14,
-            RSTFLTSELW::_01111 => 15,
-            RSTFLTSELW::_10000 => 16,
-            RSTFLTSELW::_10001 => 17,
-            RSTFLTSELW::_10010 => 18,
-            RSTFLTSELW::_10011 => 19,
-            RSTFLTSELW::_10100 => 20,
-            RSTFLTSELW::_10101 => 21,
-            RSTFLTSELW::_10110 => 22,
-            RSTFLTSELW::_10111 => 23,
-            RSTFLTSELW::_11000 => 24,
-            RSTFLTSELW::_11001 => 25,
-            RSTFLTSELW::_11010 => 26,
-            RSTFLTSELW::_11011 => 27,
-            RSTFLTSELW::_11100 => 28,
-            RSTFLTSELW::_11101 => 29,
-            RSTFLTSELW::_11110 => 30,
-            RSTFLTSELW::_11111 => 31,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RSTFLTSELW<'a> {
+#[doc = "Write proxy for field `RSTFLTSEL`"]
+pub struct RSTFLTSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSTFLTSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RSTFLTSELW) -> &'a mut W {
+impl<'a> RSTFLTSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RSTFLTSEL_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Bus clock filter count is 1"]
-    #[inline]
+    #[inline(always)]
     pub fn _00000(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00000)
+        self.variant(RSTFLTSEL_A::_00000)
     }
     #[doc = "Bus clock filter count is 2"]
-    #[inline]
+    #[inline(always)]
     pub fn _00001(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00001)
+        self.variant(RSTFLTSEL_A::_00001)
     }
     #[doc = "Bus clock filter count is 3"]
-    #[inline]
+    #[inline(always)]
     pub fn _00010(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00010)
+        self.variant(RSTFLTSEL_A::_00010)
     }
     #[doc = "Bus clock filter count is 4"]
-    #[inline]
+    #[inline(always)]
     pub fn _00011(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00011)
+        self.variant(RSTFLTSEL_A::_00011)
     }
     #[doc = "Bus clock filter count is 5"]
-    #[inline]
+    #[inline(always)]
     pub fn _00100(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00100)
+        self.variant(RSTFLTSEL_A::_00100)
     }
     #[doc = "Bus clock filter count is 6"]
-    #[inline]
+    #[inline(always)]
     pub fn _00101(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00101)
+        self.variant(RSTFLTSEL_A::_00101)
     }
     #[doc = "Bus clock filter count is 7"]
-    #[inline]
+    #[inline(always)]
     pub fn _00110(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00110)
+        self.variant(RSTFLTSEL_A::_00110)
     }
     #[doc = "Bus clock filter count is 8"]
-    #[inline]
+    #[inline(always)]
     pub fn _00111(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_00111)
+        self.variant(RSTFLTSEL_A::_00111)
     }
     #[doc = "Bus clock filter count is 9"]
-    #[inline]
+    #[inline(always)]
     pub fn _01000(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01000)
+        self.variant(RSTFLTSEL_A::_01000)
     }
     #[doc = "Bus clock filter count is 10"]
-    #[inline]
+    #[inline(always)]
     pub fn _01001(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01001)
+        self.variant(RSTFLTSEL_A::_01001)
     }
     #[doc = "Bus clock filter count is 11"]
-    #[inline]
+    #[inline(always)]
     pub fn _01010(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01010)
+        self.variant(RSTFLTSEL_A::_01010)
     }
     #[doc = "Bus clock filter count is 12"]
-    #[inline]
+    #[inline(always)]
     pub fn _01011(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01011)
+        self.variant(RSTFLTSEL_A::_01011)
     }
     #[doc = "Bus clock filter count is 13"]
-    #[inline]
+    #[inline(always)]
     pub fn _01100(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01100)
+        self.variant(RSTFLTSEL_A::_01100)
     }
     #[doc = "Bus clock filter count is 14"]
-    #[inline]
+    #[inline(always)]
     pub fn _01101(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01101)
+        self.variant(RSTFLTSEL_A::_01101)
     }
     #[doc = "Bus clock filter count is 15"]
-    #[inline]
+    #[inline(always)]
     pub fn _01110(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01110)
+        self.variant(RSTFLTSEL_A::_01110)
     }
     #[doc = "Bus clock filter count is 16"]
-    #[inline]
+    #[inline(always)]
     pub fn _01111(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_01111)
+        self.variant(RSTFLTSEL_A::_01111)
     }
     #[doc = "Bus clock filter count is 17"]
-    #[inline]
+    #[inline(always)]
     pub fn _10000(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10000)
+        self.variant(RSTFLTSEL_A::_10000)
     }
     #[doc = "Bus clock filter count is 18"]
-    #[inline]
+    #[inline(always)]
     pub fn _10001(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10001)
+        self.variant(RSTFLTSEL_A::_10001)
     }
     #[doc = "Bus clock filter count is 19"]
-    #[inline]
+    #[inline(always)]
     pub fn _10010(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10010)
+        self.variant(RSTFLTSEL_A::_10010)
     }
     #[doc = "Bus clock filter count is 20"]
-    #[inline]
+    #[inline(always)]
     pub fn _10011(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10011)
+        self.variant(RSTFLTSEL_A::_10011)
     }
     #[doc = "Bus clock filter count is 21"]
-    #[inline]
+    #[inline(always)]
     pub fn _10100(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10100)
+        self.variant(RSTFLTSEL_A::_10100)
     }
     #[doc = "Bus clock filter count is 22"]
-    #[inline]
+    #[inline(always)]
     pub fn _10101(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10101)
+        self.variant(RSTFLTSEL_A::_10101)
     }
     #[doc = "Bus clock filter count is 23"]
-    #[inline]
+    #[inline(always)]
     pub fn _10110(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10110)
+        self.variant(RSTFLTSEL_A::_10110)
     }
     #[doc = "Bus clock filter count is 24"]
-    #[inline]
+    #[inline(always)]
     pub fn _10111(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_10111)
+        self.variant(RSTFLTSEL_A::_10111)
     }
     #[doc = "Bus clock filter count is 25"]
-    #[inline]
+    #[inline(always)]
     pub fn _11000(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11000)
+        self.variant(RSTFLTSEL_A::_11000)
     }
     #[doc = "Bus clock filter count is 26"]
-    #[inline]
+    #[inline(always)]
     pub fn _11001(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11001)
+        self.variant(RSTFLTSEL_A::_11001)
     }
     #[doc = "Bus clock filter count is 27"]
-    #[inline]
+    #[inline(always)]
     pub fn _11010(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11010)
+        self.variant(RSTFLTSEL_A::_11010)
     }
     #[doc = "Bus clock filter count is 28"]
-    #[inline]
+    #[inline(always)]
     pub fn _11011(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11011)
+        self.variant(RSTFLTSEL_A::_11011)
     }
     #[doc = "Bus clock filter count is 29"]
-    #[inline]
+    #[inline(always)]
     pub fn _11100(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11100)
+        self.variant(RSTFLTSEL_A::_11100)
     }
     #[doc = "Bus clock filter count is 30"]
-    #[inline]
+    #[inline(always)]
     pub fn _11101(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11101)
+        self.variant(RSTFLTSEL_A::_11101)
     }
     #[doc = "Bus clock filter count is 31"]
-    #[inline]
+    #[inline(always)]
     pub fn _11110(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11110)
+        self.variant(RSTFLTSEL_A::_11110)
     }
     #[doc = "Bus clock filter count is 32"]
-    #[inline]
+    #[inline(always)]
     pub fn _11111(self) -> &'a mut W {
-        self.variant(RSTFLTSELW::_11111)
+        self.variant(RSTFLTSEL_A::_11111)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u8) & 0x1f);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Reset Pin Filter Bus Clock Select"]
-    #[inline]
-    pub fn rstfltsel(&self) -> RSTFLTSELR {
-        RSTFLTSELR::_from({
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        })
+    #[inline(always)]
+    pub fn rstfltsel(&self) -> RSTFLTSEL_R {
+        RSTFLTSEL_R::new((self.bits & 0x1f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Reset Pin Filter Bus Clock Select"]
-    #[inline]
-    pub fn rstfltsel(&mut self) -> _RSTFLTSELW {
-        _RSTFLTSELW { w: self }
+    #[inline(always)]
+    pub fn rstfltsel(&mut self) -> RSTFLTSEL_W {
+        RSTFLTSEL_W { w: self }
     }
 }

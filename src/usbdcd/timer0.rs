@@ -1,126 +1,47 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TIMER0 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TIMER0"]
+pub type R = crate::R<u32, super::TIMER0>;
+#[doc = "Writer for register TIMER0"]
+pub type W = crate::W<u32, super::TIMER0>;
+#[doc = "Register TIMER0 `reset()`'s with value 0x0010_0000"]
+impl crate::ResetValue for super::TIMER0 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0010_0000
     }
 }
-#[doc = r" Value of the field"]
-pub struct TUNITCONR {
-    bits: u16,
-}
-impl TUNITCONR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TSEQ_INITR {
-    bits: u16,
-}
-impl TSEQ_INITR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TSEQ_INITW<'a> {
+#[doc = "Reader of field `TUNITCON`"]
+pub type TUNITCON_R = crate::R<u16, u16>;
+#[doc = "Reader of field `TSEQ_INIT`"]
+pub type TSEQ_INIT_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `TSEQ_INIT`"]
+pub struct TSEQ_INIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSEQ_INITW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TSEQ_INIT_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 1023;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03ff << 16)) | (((value as u32) & 0x03ff) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:11 - Unit Connection Timer Elapse (in ms)"]
-    #[inline]
-    pub fn tunitcon(&self) -> TUNITCONR {
-        let bits = {
-            const MASK: u16 = 4095;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TUNITCONR { bits }
+    #[inline(always)]
+    pub fn tunitcon(&self) -> TUNITCON_R {
+        TUNITCON_R::new((self.bits & 0x0fff) as u16)
     }
     #[doc = "Bits 16:25 - Sequence Initiation Time"]
-    #[inline]
-    pub fn tseq_init(&self) -> TSEQ_INITR {
-        let bits = {
-            const MASK: u16 = 1023;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TSEQ_INITR { bits }
+    #[inline(always)]
+    pub fn tseq_init(&self) -> TSEQ_INIT_R {
+        TSEQ_INIT_R::new(((self.bits >> 16) & 0x03ff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 1048576 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 16:25 - Sequence Initiation Time"]
-    #[inline]
-    pub fn tseq_init(&mut self) -> _TSEQ_INITW {
-        _TSEQ_INITW { w: self }
+    #[inline(always)]
+    pub fn tseq_init(&mut self) -> TSEQ_INIT_W {
+        TSEQ_INIT_W { w: self }
     }
 }

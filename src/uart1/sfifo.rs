@@ -1,533 +1,368 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::SFIFO {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SFIFO"]
+pub type R = crate::R<u8, super::SFIFO>;
+#[doc = "Writer for register SFIFO"]
+pub type W = crate::W<u8, super::SFIFO>;
+#[doc = "Register SFIFO `reset()`'s with value 0xc0"]
+impl crate::ResetValue for super::SFIFO {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xc0
     }
 }
-#[doc = "Possible values of the field `RXUF`"]
+#[doc = "Receiver Buffer Underflow Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXUFR {
-    #[doc = "No receive buffer underflow has occurred since the last time the flag was cleared."]
+pub enum RXUF_A {
+    #[doc = "0: No receive buffer underflow has occurred since the last time the flag was cleared."]
     _0,
-    #[doc = "At least one receive buffer underflow has occurred since the last time the flag was cleared."]
+    #[doc = "1: At least one receive buffer underflow has occurred since the last time the flag was cleared."]
     _1,
 }
-impl RXUFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXUFR::_0 => false,
-            RXUFR::_1 => true,
+impl From<RXUF_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXUF_A) -> Self {
+        match variant {
+            RXUF_A::_0 => false,
+            RXUF_A::_1 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXUFR {
-        match value {
-            false => RXUFR::_0,
-            true => RXUFR::_1,
+}
+#[doc = "Reader of field `RXUF`"]
+pub type RXUF_R = crate::R<bool, RXUF_A>;
+impl RXUF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXUF_A {
+        match self.bits {
+            false => RXUF_A::_0,
+            true => RXUF_A::_1,
         }
     }
     #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0(&self) -> bool {
-        *self == RXUFR::_0
+        *self == RXUF_A::_0
     }
     #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == RXUFR::_1
+        *self == RXUF_A::_1
     }
 }
-#[doc = "Possible values of the field `TXOF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXOFR {
-    #[doc = "No transmit buffer overflow has occurred since the last time the flag was cleared."]
-    _0,
-    #[doc = "At least one transmit buffer overflow has occurred since the last time the flag was cleared."]
-    _1,
-}
-impl TXOFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXOFR::_0 => false,
-            TXOFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXOFR {
-        match value {
-            false => TXOFR::_0,
-            true => TXOFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXOFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXOFR::_1
-    }
-}
-#[doc = "Possible values of the field `RXOF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXOFR {
-    #[doc = "No receive buffer overflow has occurred since the last time the flag was cleared."]
-    _0,
-    #[doc = "At least one receive buffer overflow has occurred since the last time the flag was cleared."]
-    _1,
-}
-impl RXOFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXOFR::_0 => false,
-            RXOFR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXOFR {
-        match value {
-            false => RXOFR::_0,
-            true => RXOFR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RXOFR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RXOFR::_1
-    }
-}
-#[doc = "Possible values of the field `RXEMPT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXEMPTR {
-    #[doc = "Receive buffer is not empty."]
-    _0,
-    #[doc = "Receive buffer is empty."]
-    _1,
-}
-impl RXEMPTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXEMPTR::_0 => false,
-            RXEMPTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXEMPTR {
-        match value {
-            false => RXEMPTR::_0,
-            true => RXEMPTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RXEMPTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RXEMPTR::_1
-    }
-}
-#[doc = "Possible values of the field `TXEMPT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TXEMPTR {
-    #[doc = "Transmit buffer is not empty."]
-    _0,
-    #[doc = "Transmit buffer is empty."]
-    _1,
-}
-impl TXEMPTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TXEMPTR::_0 => false,
-            TXEMPTR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TXEMPTR {
-        match value {
-            false => TXEMPTR::_0,
-            true => TXEMPTR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == TXEMPTR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == TXEMPTR::_1
-    }
-}
-#[doc = "Values that can be written to the field `RXUF`"]
-pub enum RXUFW {
-    #[doc = "No receive buffer underflow has occurred since the last time the flag was cleared."]
-    _0,
-    #[doc = "At least one receive buffer underflow has occurred since the last time the flag was cleared."]
-    _1,
-}
-impl RXUFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXUFW::_0 => false,
-            RXUFW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RXUFW<'a> {
+#[doc = "Write proxy for field `RXUF`"]
+pub struct RXUF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXUFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXUFW) -> &'a mut W {
+impl<'a> RXUF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXUF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No receive buffer underflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXUFW::_0)
+        self.variant(RXUF_A::_0)
     }
     #[doc = "At least one receive buffer underflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXUFW::_1)
+        self.variant(RXUF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u8) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TXOF`"]
-pub enum TXOFW {
-    #[doc = "No transmit buffer overflow has occurred since the last time the flag was cleared."]
+#[doc = "Transmitter Buffer Overflow Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXOF_A {
+    #[doc = "0: No transmit buffer overflow has occurred since the last time the flag was cleared."]
     _0,
-    #[doc = "At least one transmit buffer overflow has occurred since the last time the flag was cleared."]
+    #[doc = "1: At least one transmit buffer overflow has occurred since the last time the flag was cleared."]
     _1,
 }
-impl TXOFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TXOFW::_0 => false,
-            TXOFW::_1 => true,
+impl From<TXOF_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXOF_A) -> Self {
+        match variant {
+            TXOF_A::_0 => false,
+            TXOF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TXOFW<'a> {
+#[doc = "Reader of field `TXOF`"]
+pub type TXOF_R = crate::R<bool, TXOF_A>;
+impl TXOF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXOF_A {
+        match self.bits {
+            false => TXOF_A::_0,
+            true => TXOF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXOF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXOF_A::_1
+    }
+}
+#[doc = "Write proxy for field `TXOF`"]
+pub struct TXOF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXOFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TXOFW) -> &'a mut W {
+impl<'a> TXOF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TXOF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No transmit buffer overflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(TXOFW::_0)
+        self.variant(TXOF_A::_0)
     }
     #[doc = "At least one transmit buffer overflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(TXOFW::_1)
+        self.variant(TXOF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u8) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RXOF`"]
-pub enum RXOFW {
-    #[doc = "No receive buffer overflow has occurred since the last time the flag was cleared."]
+#[doc = "Receiver Buffer Overflow Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RXOF_A {
+    #[doc = "0: No receive buffer overflow has occurred since the last time the flag was cleared."]
     _0,
-    #[doc = "At least one receive buffer overflow has occurred since the last time the flag was cleared."]
+    #[doc = "1: At least one receive buffer overflow has occurred since the last time the flag was cleared."]
     _1,
 }
-impl RXOFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXOFW::_0 => false,
-            RXOFW::_1 => true,
+impl From<RXOF_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXOF_A) -> Self {
+        match variant {
+            RXOF_A::_0 => false,
+            RXOF_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RXOFW<'a> {
+#[doc = "Reader of field `RXOF`"]
+pub type RXOF_R = crate::R<bool, RXOF_A>;
+impl RXOF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXOF_A {
+        match self.bits {
+            false => RXOF_A::_0,
+            true => RXOF_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RXOF_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RXOF_A::_1
+    }
+}
+#[doc = "Write proxy for field `RXOF`"]
+pub struct RXOF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXOFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXOFW) -> &'a mut W {
+impl<'a> RXOF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXOF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No receive buffer overflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXOFW::_0)
+        self.variant(RXOF_A::_0)
     }
     #[doc = "At least one receive buffer overflow has occurred since the last time the flag was cleared."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXOFW::_1)
+        self.variant(RXOF_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u8) & 0x01) << 2);
         self.w
+    }
+}
+#[doc = "Receive Buffer/FIFO Empty\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RXEMPT_A {
+    #[doc = "0: Receive buffer is not empty."]
+    _0,
+    #[doc = "1: Receive buffer is empty."]
+    _1,
+}
+impl From<RXEMPT_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXEMPT_A) -> Self {
+        match variant {
+            RXEMPT_A::_0 => false,
+            RXEMPT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `RXEMPT`"]
+pub type RXEMPT_R = crate::R<bool, RXEMPT_A>;
+impl RXEMPT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXEMPT_A {
+        match self.bits {
+            false => RXEMPT_A::_0,
+            true => RXEMPT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RXEMPT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RXEMPT_A::_1
+    }
+}
+#[doc = "Transmit Buffer/FIFO Empty\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TXEMPT_A {
+    #[doc = "0: Transmit buffer is not empty."]
+    _0,
+    #[doc = "1: Transmit buffer is empty."]
+    _1,
+}
+impl From<TXEMPT_A> for bool {
+    #[inline(always)]
+    fn from(variant: TXEMPT_A) -> Self {
+        match variant {
+            TXEMPT_A::_0 => false,
+            TXEMPT_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `TXEMPT`"]
+pub type TXEMPT_R = crate::R<bool, TXEMPT_A>;
+impl TXEMPT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TXEMPT_A {
+        match self.bits {
+            false => TXEMPT_A::_0,
+            true => TXEMPT_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == TXEMPT_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == TXEMPT_A::_1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bit 0 - Receiver Buffer Underflow Flag"]
-    #[inline]
-    pub fn rxuf(&self) -> RXUFR {
-        RXUFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxuf(&self) -> RXUF_R {
+        RXUF_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transmitter Buffer Overflow Flag"]
-    #[inline]
-    pub fn txof(&self) -> TXOFR {
-        TXOFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn txof(&self) -> TXOF_R {
+        TXOF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Receiver Buffer Overflow Flag"]
-    #[inline]
-    pub fn rxof(&self) -> RXOFR {
-        RXOFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxof(&self) -> RXOF_R {
+        RXOF_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Receive Buffer/FIFO Empty"]
-    #[inline]
-    pub fn rxempt(&self) -> RXEMPTR {
-        RXEMPTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxempt(&self) -> RXEMPT_R {
+        RXEMPT_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Transmit Buffer/FIFO Empty"]
-    #[inline]
-    pub fn txempt(&self) -> TXEMPTR {
-        TXEMPTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn txempt(&self) -> TXEMPT_R {
+        TXEMPT_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 192 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Receiver Buffer Underflow Flag"]
-    #[inline]
-    pub fn rxuf(&mut self) -> _RXUFW {
-        _RXUFW { w: self }
+    #[inline(always)]
+    pub fn rxuf(&mut self) -> RXUF_W {
+        RXUF_W { w: self }
     }
     #[doc = "Bit 1 - Transmitter Buffer Overflow Flag"]
-    #[inline]
-    pub fn txof(&mut self) -> _TXOFW {
-        _TXOFW { w: self }
+    #[inline(always)]
+    pub fn txof(&mut self) -> TXOF_W {
+        TXOF_W { w: self }
     }
     #[doc = "Bit 2 - Receiver Buffer Overflow Flag"]
-    #[inline]
-    pub fn rxof(&mut self) -> _RXOFW {
-        _RXOFW { w: self }
+    #[inline(always)]
+    pub fn rxof(&mut self) -> RXOF_W {
+        RXOF_W { w: self }
     }
 }

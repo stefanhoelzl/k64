@@ -1,462 +1,304 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u8,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u8,
-}
-impl super::BDH {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register BDH"]
+pub type R = crate::R<u8, super::BDH>;
+#[doc = "Writer for register BDH"]
+pub type W = crate::W<u8, super::BDH>;
+#[doc = "Register BDH `reset()`'s with value 0"]
+impl crate::ResetValue for super::BDH {
+    type Type = u8;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct SBRR {
-    bits: u8,
-}
-impl SBRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `SBNS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SBNSR {
-    #[doc = "Data frame consists of a single stop bit."]
-    _0,
-    #[doc = "Data frame consists of two stop bits."]
-    _1,
-}
-impl SBNSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SBNSR::_0 => false,
-            SBNSR::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SBNSR {
-        match value {
-            false => SBNSR::_0,
-            true => SBNSR::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == SBNSR::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == SBNSR::_1
-    }
-}
-#[doc = "Possible values of the field `RXEDGIE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RXEDGIER {
-    #[doc = "Hardware interrupts from RXEDGIF disabled using polling."]
-    _0,
-    #[doc = "RXEDGIF interrupt request enabled."]
-    _1,
-}
-impl RXEDGIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RXEDGIER::_0 => false,
-            RXEDGIER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RXEDGIER {
-        match value {
-            false => RXEDGIER::_0,
-            true => RXEDGIER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == RXEDGIER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == RXEDGIER::_1
-    }
-}
-#[doc = "Possible values of the field `LBKDIE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LBKDIER {
-    #[doc = "LBKDIF interrupt and DMA transfer requests disabled."]
-    _0,
-    #[doc = "LBKDIF interrupt or DMA transfer requests enabled."]
-    _1,
-}
-impl LBKDIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LBKDIER::_0 => false,
-            LBKDIER::_1 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LBKDIER {
-        match value {
-            false => LBKDIER::_0,
-            true => LBKDIER::_1,
-        }
-    }
-    #[doc = "Checks if the value of the field is `_0`"]
-    #[inline]
-    pub fn is_0(&self) -> bool {
-        *self == LBKDIER::_0
-    }
-    #[doc = "Checks if the value of the field is `_1`"]
-    #[inline]
-    pub fn is_1(&self) -> bool {
-        *self == LBKDIER::_1
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SBRW<'a> {
+#[doc = "Reader of field `SBR`"]
+pub type SBR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SBR`"]
+pub struct SBR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SBRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> SBR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u8) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SBNS`"]
-pub enum SBNSW {
+#[doc = "Stop Bit Number Select\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SBNS_A {
+    #[doc = "0: Data frame consists of a single stop bit."]
+    _0,
+    #[doc = "1: Data frame consists of two stop bits."]
+    _1,
+}
+impl From<SBNS_A> for bool {
+    #[inline(always)]
+    fn from(variant: SBNS_A) -> Self {
+        match variant {
+            SBNS_A::_0 => false,
+            SBNS_A::_1 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SBNS`"]
+pub type SBNS_R = crate::R<bool, SBNS_A>;
+impl SBNS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SBNS_A {
+        match self.bits {
+            false => SBNS_A::_0,
+            true => SBNS_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == SBNS_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == SBNS_A::_1
+    }
+}
+#[doc = "Write proxy for field `SBNS`"]
+pub struct SBNS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> SBNS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SBNS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Data frame consists of a single stop bit."]
-    _0,
-    #[doc = "Data frame consists of two stop bits."]
-    _1,
-}
-impl SBNSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SBNSW::_0 => false,
-            SBNSW::_1 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SBNSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SBNSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SBNSW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Data frame consists of a single stop bit."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(SBNSW::_0)
+        self.variant(SBNS_A::_0)
     }
     #[doc = "Data frame consists of two stop bits."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(SBNSW::_1)
+        self.variant(SBNS_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u8) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RXEDGIE`"]
-pub enum RXEDGIEW {
-    #[doc = "Hardware interrupts from RXEDGIF disabled using polling."]
+#[doc = "RxD Input Active Edge Interrupt Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RXEDGIE_A {
+    #[doc = "0: Hardware interrupts from RXEDGIF disabled using polling."]
     _0,
-    #[doc = "RXEDGIF interrupt request enabled."]
+    #[doc = "1: RXEDGIF interrupt request enabled."]
     _1,
 }
-impl RXEDGIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RXEDGIEW::_0 => false,
-            RXEDGIEW::_1 => true,
+impl From<RXEDGIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: RXEDGIE_A) -> Self {
+        match variant {
+            RXEDGIE_A::_0 => false,
+            RXEDGIE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RXEDGIEW<'a> {
+#[doc = "Reader of field `RXEDGIE`"]
+pub type RXEDGIE_R = crate::R<bool, RXEDGIE_A>;
+impl RXEDGIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RXEDGIE_A {
+        match self.bits {
+            false => RXEDGIE_A::_0,
+            true => RXEDGIE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == RXEDGIE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == RXEDGIE_A::_1
+    }
+}
+#[doc = "Write proxy for field `RXEDGIE`"]
+pub struct RXEDGIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXEDGIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RXEDGIEW) -> &'a mut W {
+impl<'a> RXEDGIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RXEDGIE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Hardware interrupts from RXEDGIF disabled using polling."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(RXEDGIEW::_0)
+        self.variant(RXEDGIE_A::_0)
     }
     #[doc = "RXEDGIF interrupt request enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(RXEDGIEW::_1)
+        self.variant(RXEDGIE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u8) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LBKDIE`"]
-pub enum LBKDIEW {
-    #[doc = "LBKDIF interrupt and DMA transfer requests disabled."]
+#[doc = "LIN Break Detect Interrupt or DMA Request Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LBKDIE_A {
+    #[doc = "0: LBKDIF interrupt and DMA transfer requests disabled."]
     _0,
-    #[doc = "LBKDIF interrupt or DMA transfer requests enabled."]
+    #[doc = "1: LBKDIF interrupt or DMA transfer requests enabled."]
     _1,
 }
-impl LBKDIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LBKDIEW::_0 => false,
-            LBKDIEW::_1 => true,
+impl From<LBKDIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: LBKDIE_A) -> Self {
+        match variant {
+            LBKDIE_A::_0 => false,
+            LBKDIE_A::_1 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LBKDIEW<'a> {
+#[doc = "Reader of field `LBKDIE`"]
+pub type LBKDIE_R = crate::R<bool, LBKDIE_A>;
+impl LBKDIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LBKDIE_A {
+        match self.bits {
+            false => LBKDIE_A::_0,
+            true => LBKDIE_A::_1,
+        }
+    }
+    #[doc = "Checks if the value of the field is `_0`"]
+    #[inline(always)]
+    pub fn is_0(&self) -> bool {
+        *self == LBKDIE_A::_0
+    }
+    #[doc = "Checks if the value of the field is `_1`"]
+    #[inline(always)]
+    pub fn is_1(&self) -> bool {
+        *self == LBKDIE_A::_1
+    }
+}
+#[doc = "Write proxy for field `LBKDIE`"]
+pub struct LBKDIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LBKDIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LBKDIEW) -> &'a mut W {
+impl<'a> LBKDIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LBKDIE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "LBKDIF interrupt and DMA transfer requests disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _0(self) -> &'a mut W {
-        self.variant(LBKDIEW::_0)
+        self.variant(LBKDIE_A::_0)
     }
     #[doc = "LBKDIF interrupt or DMA transfer requests enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(LBKDIEW::_1)
+        self.variant(LBKDIE_A::_1)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u8) << OFFSET);
-        self.w.bits |= ((value & MASK) as u8) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u8) & 0x01) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - UART Baud Rate Bits"]
-    #[inline]
-    pub fn sbr(&self) -> SBRR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u8) as u8
-        };
-        SBRR { bits }
+    #[inline(always)]
+    pub fn sbr(&self) -> SBR_R {
+        SBR_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 5 - Stop Bit Number Select"]
-    #[inline]
-    pub fn sbns(&self) -> SBNSR {
-        SBNSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn sbns(&self) -> SBNS_R {
+        SBNS_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - RxD Input Active Edge Interrupt Enable"]
-    #[inline]
-    pub fn rxedgie(&self) -> RXEDGIER {
-        RXEDGIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn rxedgie(&self) -> RXEDGIE_R {
+        RXEDGIE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - LIN Break Detect Interrupt or DMA Request Enable"]
-    #[inline]
-    pub fn lbkdie(&self) -> LBKDIER {
-        LBKDIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u8) != 0
-        })
+    #[inline(always)]
+    pub fn lbkdie(&self) -> LBKDIE_R {
+        LBKDIE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u8) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - UART Baud Rate Bits"]
-    #[inline]
-    pub fn sbr(&mut self) -> _SBRW {
-        _SBRW { w: self }
+    #[inline(always)]
+    pub fn sbr(&mut self) -> SBR_W {
+        SBR_W { w: self }
     }
     #[doc = "Bit 5 - Stop Bit Number Select"]
-    #[inline]
-    pub fn sbns(&mut self) -> _SBNSW {
-        _SBNSW { w: self }
+    #[inline(always)]
+    pub fn sbns(&mut self) -> SBNS_W {
+        SBNS_W { w: self }
     }
     #[doc = "Bit 6 - RxD Input Active Edge Interrupt Enable"]
-    #[inline]
-    pub fn rxedgie(&mut self) -> _RXEDGIEW {
-        _RXEDGIEW { w: self }
+    #[inline(always)]
+    pub fn rxedgie(&mut self) -> RXEDGIE_W {
+        RXEDGIE_W { w: self }
     }
     #[doc = "Bit 7 - LIN Break Detect Interrupt or DMA Request Enable"]
-    #[inline]
-    pub fn lbkdie(&mut self) -> _LBKDIEW {
-        _LBKDIEW { w: self }
+    #[inline(always)]
+    pub fn lbkdie(&mut self) -> LBKDIE_W {
+        LBKDIE_W { w: self }
     }
 }
