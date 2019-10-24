@@ -1,6 +1,6 @@
 [package]
 name = "k64"
-version = "0.2.0"
+version = "0.1.0"
 authors = ["Stefan Hoelzl <stefan.hoelzl@posteo.de>", "Miguel Perez <miguelpg_95@hotmail.com>"]
 categories = ["embedded", "hardware-support", "no-std"]
 description = "Peripheral access API for Kinetis K64 microcontrollers"
