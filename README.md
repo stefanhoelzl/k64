@@ -21,8 +21,6 @@ and the larger `SRAM_U` section (`192K`) is used for the ram.
 
 ## Development
 The following `make` commands are available:
-* `setup`: installs tools
-* `generate`: generates new sources from svd file
-* `package`: creates a local package
+* `setup`: installs rust targets
 * `publish`: publishes to [crates.io](http://www.crates.io)
 * `examples`: build all examples
